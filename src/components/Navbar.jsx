@@ -1,25 +1,47 @@
 import { Link } from "react-router-dom";
+import logo from "/logo.png";
 
 const Navbar = () => {
   return (
     <>
-      <div className="rounded-full navbar ">
-        <div className="flex flex-row justify-between w-full gap-3 px-1 font-normal text-accent-content">
-          <div className="flex flex-row flex-grow gap-8 pl-4 text-xl">
-            <Link to="/services">Servicii</Link>
-            <Link to="/projects">Proiecte</Link>
-            <Link to="/careers">Cariere</Link>
-          </div>
-
-          <Link
-            to="/contact"
-            className="flex flex-row items-center gap-8 py-2 pl-4 pr-3 text-base font-light text-white rounded-full bg-accent-content"
-          >
-            Contact
-            <i className="fa-solid fa-phone text-xs bg-base-100 py-1.5 px-2 rounded-full text-accent-content"></i>
+      <nav className="z-50 mx-auto  relative  navbar  max-w-[2000px] text-neutral-content">
+        <div className="fixed top-0 left-0 flex flex-row justify-between w-full px-6 py-3 md:hidden bg-base-200">
+          <Link to="/">
+            <img src={logo} className="object-cover w-20 h-auto" alt="" />
           </Link>
+          <div className="flex flex-col items-end w-8 gap-1.5 opacity-70">
+            <div className="w-full h-[3px] bg-neutral-content rounded-full"></div>
+            <div className="w-9/12 h-[3px] bg-neutral-content rounded-full"></div>
+          </div>
         </div>
-      </div>
+
+        <div className="flex-row justify-between hidden w-full gap-3 px-8 text-base font-normal md:flex">
+          <Link to="/">
+            <img src={logo} className="object-cover w-32 h-auto" alt="" />
+          </Link>
+
+          <div className="flex flex-row gap-8 px-6 text-lg font-bold uppercase lg:gap-16">
+            <Link
+              to="/services"
+              className="flex items-center px-3 pt-2 pb-1 nav-button"
+            >
+              Servicii
+            </Link>
+            <Link
+              to="/projects"
+              className="flex items-center px-4 pt-2 pb-1 transition duration-300 opacity-75 hover:opacity-100 nav-button"
+            >
+              Proiecte
+            </Link>
+            <Link
+              to="/careers"
+              className="flex items-center px-4 pt-2 pb-1 transition duration-300 opacity-75 hover:opacity-100 nav-button"
+            >
+              Cariere
+            </Link>
+          </div>
+        </div>
+      </nav>
     </>
   );
 };

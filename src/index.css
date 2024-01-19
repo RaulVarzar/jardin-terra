@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,4 +32,70 @@ body {
 
 ::-webkit-scrollbar-corner {
   background: #fff3;
+}
+
+.cards .card {
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.cards .card img {
+  filter: brightness(0.65);
+  transition: all 0.3s ease-in;
+}
+
+.cards .card p.tip {
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.cards .card:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.cards .card:hover img {
+  filter: brightness(1);
+}
+
+.cards:hover > .card:not(:hover) {
+  filter: blur(3px);
+  transform: scale(0.95, 0.95);
+}
+
+.nav-button {
+  position: relative;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+  opacity: 0.7;
+}
+
+.nav-button:hover {
+  opacity: 1;
+}
+
+.nav-button:focus:after,
+.nav-button:hover:after {
+  width: 100%;
+  left: 0%;
+}
+
+.nav-button:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  @apply bg-neutral-content;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}
+
+.dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  transform: translate(0) scale(1);
+  visibility: visible;
 }

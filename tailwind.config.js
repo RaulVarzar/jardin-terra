@@ -20,12 +20,12 @@ export default {
         85: ".85",
       },
       fontSize: {
-        sm: "0.8rem",
-        base: "1.2rem",
-        md: "1.55rem",
-        lg: "1.18rem",
-        xl: "1.25rem",
-        "2xl": "1.563rem",
+        sm: "1rem",
+        base: "1.1rem",
+        md: "1.25rem",
+        lg: "1.3rem",
+        xl: "1.45rem",
+        "2xl": "1.6rem",
         "3xl": "1.953rem",
         "4xl": "2.441rem",
         "5xl": "3.2rem",
@@ -33,7 +33,10 @@ export default {
         "7xl": "4.6rem",
       },
       borderRadius: {
-        "4xl": "48px",
+        "4xl": "40px",
+      },
+      aspectRatio: {
+        "4/5": "4 / 5",
       },
     },
   },
@@ -41,10 +44,10 @@ export default {
   daisyui: {
     themes: [
       {
-        cupcake: {
-          ...require("daisyui/src/theming/themes")["cupcake"],
+        forest: {
+          ...require("daisyui/src/theming/themes")["forest"],
           primary: "#047857",
-          secondary: "teal",
+          "base-content": "#221C1C",
           ".btn-twitter": {
             "background-color": "#1EA1F1",
             "border-color": "#1EA1F1",
