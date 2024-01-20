@@ -9,14 +9,14 @@ const Carousel = ({ cards, imageWidth = 240 }) => {
   };
 
   return (
-    <div className="flex flex-col w-full max-w-5xl gap-2 mx-auto">
+    <div className="flex flex-col w-full gap-2 mx-auto">
       <div className="flex items-center overflow-hidden align-middle">
         <div className="grid items-center grid-cols-2 align-middle sm:grid-cols-3 xl:flex">
           {cards.map((card, index) => {
             return (
               <motion.div
                 key={card.title}
-                className={'aspect-4/5 w-full ' + ` xl:w-[240px]`}
+                className={'aspect-5/4 w-full ' + ` xl:w-[240px]`}
                 animate={{
                   opacity: index < page ? 1 : 1,
                   x: index - page * imageWidth,
@@ -40,7 +40,7 @@ const Carousel = ({ cards, imageWidth = 240 }) => {
           })}
         </div>
       </div>
-      <div className="items-center justify-start hidden gap-8 px-4 text-2xl xl:flex text-neutral-content">
+      <div className="flex items-center justify-start gap-8 px-4 text-2xl xl:hidden text-neutral-content">
         <button
           onClick={() => paginate(-1)}
           disabled={page === 0}

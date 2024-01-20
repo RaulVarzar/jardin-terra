@@ -13,7 +13,10 @@
     "framer-motion": "^10.18.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.3"
+    "react-router-dom": "^6.21.3",
+    "resize-observer-polyfill": "^1.5.1",
+    "smooth-scrollbar": "^8.8.4",
+    "smooth-scrollbar-react": "^2.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

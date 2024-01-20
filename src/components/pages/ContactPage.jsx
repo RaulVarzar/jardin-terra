@@ -1,57 +1,104 @@
-const ContactPage = () => {
-  return (
-    <div>
-      <div className="w-full max-w-6xl mx-auto ">
-        <h1 className="text-4xl font-medium">Contact us</h1>
-        <p className="mt-3">Email us at help@domain.com or message us here:</p>
+import { motion, useTransform, useScroll } from 'framer-motion';
+import { useRef } from 'react';
 
-        <form action="" className="mt-10">
-          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
-          <div className="grid gap-6 sm:grid-cols-2">
-            <div className="relative z-0">
-              <input
-                type="text"
-                name="name"
-                className="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                placeholder=" "
-              />
-              <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                Your name
-              </label>
-            </div>
-            <div className="relative z-0">
-              <input
-                type="text"
-                name="email"
-                className="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                placeholder=" "
-              />
-              <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                Your email
-              </label>
-            </div>
-            <div className="relative z-0 col-span-2">
-              <textarea
-                name="message"
-                rows="5"
-                className="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                placeholder=" "
-              ></textarea>
-              <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                Your message
-              </label>
-            </div>
-          </div>
-          <button
-            type="submit"
-            className="px-10 py-2 mt-5 text-white bg-black rounded-md"
-          >
-            Send Message
-          </button>
-        </form>
+const Example = () => {
+  return (
+    <div className="bg-neutral-800">
+      <div className="flex items-center justify-center h-48">
+        <span className="font-semibold uppercase text-neutral-500">
+          Scroll down
+        </span>
+      </div>
+      <HorizontalScrollCarousel />
+      <div className="flex items-center justify-center h-48">
+        <span className="font-semibold uppercase text-neutral-500">
+          Scroll up
+        </span>
       </div>
     </div>
   );
 };
 
-export default ContactPage;
+const HorizontalScrollCarousel = () => {
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], ['1%', '-95%']);
+
+  return (
+    <section ref={targetRef} className="relative h-[300vh] bg-neutral-900">
+      <div className="sticky top-0 flex items-center h-screen overflow-hidden">
+        <motion.div style={{ x }} className="flex gap-4">
+          {cards.map((card) => {
+            return <Card card={card} key={card.id} />;
+          })}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+const Card = ({ card }) => {
+  return (
+    <div
+      key={card.id}
+      className="group relative h-[450px] w-[450px] overflow-hidden bg-neutral-200"
+    >
+      <div
+        style={{
+          backgroundImage: `url(${card.url})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110"
+      ></div>
+      <div className="absolute inset-0 z-10 grid place-content-center">
+        <p className="p-8 text-6xl font-black text-white uppercase bg-gradient-to-br from-white/20 to-white/0 backdrop-blur-lg">
+          {card.title}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Example;
+
+const cards = [
+  {
+    url: 'https://source.unsplash.com/random',
+    title: 'Title 1',
+    id: 1,
+  },
+  {
+    url: 'https://source.unsplash.com/random',
+    title: 'Title 2',
+    id: 2,
+  },
+  {
+    url: 'https://source.unsplash.com/random',
+    title: 'Title 3',
+    id: 3,
+  },
+  {
+    url: 'https://source.unsplash.com/random',
+    title: 'Title 4',
+    id: 4,
+  },
+  {
+    url: 'https://source.unsplash.com/random',
+    title: 'Title 5',
+    id: 5,
+  },
+  {
+    url: 'https://source.unsplash.com/random',
+    title: 'Title 6',
+    id: 6,
+  },
+  {
+    url: 'https://source.unsplash.com/random',
+    title: 'Title 7',
+    id: 7,
+  },
+];

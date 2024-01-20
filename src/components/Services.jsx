@@ -24,10 +24,6 @@ const SERVICES = [
 const Services = () => {
   return (
     <div className="flex flex-col w-full gap-4 px-8 py-4 mx-auto">
-      <h3 className="text-2xl font-semibold uppercase text-neutral-content opacity-40">
-        Serviciile noastre
-      </h3>
-
       <div className="flex justify-center w-full">
         <Carousel cards={SERVICES} />
       </div>

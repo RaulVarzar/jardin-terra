@@ -38,13 +38,13 @@ function App() {
   const location = useLocation();
   return (
     <>
-      {/* <Navbar /> */}
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Layout />}>
             <Route path="" element={<Homepage />} />
             <Route path="servicii" element={<ServicesPage />} />
             <Route path="start" element={<StartPage />} />
+            <Route path="contact" element={<ContactPage />} />
           </Route>
         </Routes>
       </AnimatePresence>

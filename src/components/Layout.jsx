@@ -3,9 +3,9 @@ import Navbar from './Navbar';
 
 export default function Layout() {
   return (
-    <div className="relative flex flex-col justify-start w-full min-h-screen bg-base-100">
+    <div className="relative min-h-screen bg-base-300">
       <Navbar />
-      <div className="flex justify-center grow">
+      <div className="">
         <Outlet />
       </div>
     </div>

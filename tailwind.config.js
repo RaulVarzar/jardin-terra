@@ -37,13 +37,13 @@ export default {
       },
       aspectRatio: {
         '4/5': '4 / 5',
-        wide: '5/8',
+        '5/4': '5/4',
       },
       screens: {
-        '3xl': '1800px',
+        '3xl': '1750px',
       },
       maxWidth: {
-        '8xl': '1600px',
+        '8xl': '1750px',
       },
     },
   },
@@ -56,11 +56,6 @@ export default {
           primary: '#047857',
           'primary-content': '#241D1E',
           'base-content': '#1F1919',
-          '.btn-twitter': {
-            'background-color': '#1EA1F1',
-            'border-color': '#1EA1F1',
-            'border-radius': '8px',
-          },
         },
       },
     ],
