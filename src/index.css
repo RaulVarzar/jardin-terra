@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,7 +15,7 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "Outfit", sans-serif;
+  font-family: 'Outfit', sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -81,7 +81,7 @@ body {
 }
 
 .nav-button:after {
-  content: "";
+  content: '';
   pointer-events: none;
   bottom: -2px;
   left: 50%;
@@ -98,4 +98,31 @@ body {
   opacity: 1;
   transform: translate(0) scale(1);
   visibility: visible;
+}
+
+.mybutton {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  width: fit-content;
+  outline: 0;
+  border: 0;
+  overflow: hidden;
+}
+
+.mybutton span {
+  opacity: 0;
+  margin-left: 16px;
+  display: inline-block;
+  width: 0;
+  transform: translateX(40px);
+  transition: all 0.42s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.mybutton:hover span {
+  opacity: 1;
+  width: 3rem;
+  transform: translateX(0px);
 }
