@@ -1,21 +1,27 @@
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
-export const Reveal = ({ children, delay, duration }) => {
+export const Reveal = ({
+  children,
+  delay,
+  duration,
+  repeat,
+  parentVisible,
+}) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false });
+
+  const isInView = useInView(ref, { once: !repeat || false });
+  const parentInView = parentVisible || isInView;
 
   const mainControls = useAnimation();
-  const sliderControle = useAnimation();
 
   useEffect(() => {
-    if (isInView) {
+    if (isInView && parentInView) {
       mainControls.start('visible');
-      sliderControle.start('visible');
-    } else {
+    } else if (!parentInView) {
       mainControls.start('hidden');
     }
-  }, [isInView]);
+  }, [isInView, parentVisible]);
 
   return (
     <div ref={ref} className="relative overflow-hidden w-fit">
@@ -30,33 +36,32 @@ export const Reveal = ({ children, delay, duration }) => {
       >
         {children}
       </motion.div>
-      {/* <motion.div
-        variants={{
-          hidden: { left: 0 },
-          visible: { left: '100%' },
-        }}
-        initial="hidden"
-        animate={sliderControle}
-        transition={{ duration: 0.8, ease: 'easeIn', delay: delay }}
-        className="absolute top-0 bottom-0 left-0 right-0 z-50 bg-primary"
-      /> */}
     </div>
   );
 };
 
-export const FromLeft = ({ children, delay, duration, repeat, ...props }) => {
+export const FromLeft = ({
+  children,
+  delay,
+  duration,
+  repeat,
+  parentVisible,
+  ...props
+}) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: !repeat });
+
+  const isInView = useInView(ref, { once: !repeat || false });
+  const parentInView = parentVisible || isInView;
 
   const mainControls = useAnimation();
 
   useEffect(() => {
-    if (isInView) {
+    if (isInView && parentInView) {
       mainControls.start('visible');
-    } else {
+    } else if (!parentInView) {
       mainControls.start('hidden');
     }
-  }, [isInView]);
+  }, [isInView, parentVisible]);
 
   return (
     <motion.div
@@ -79,7 +84,7 @@ export const FromBottom = ({ children, delay, duration, ...props }) => {
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 50 },
+        hidden: { opacity: 0, y: 30 },
         visible: { opacity: 1, y: 0 },
       }}
       initial="hidden"
@@ -120,6 +125,26 @@ export const FadeIn = ({ children, delay, duration, ...props }) => {
       initial="hidden"
       animate="visible"
       transition={{ duration: duration || 0.3, delay: delay || 0 }}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export const Blur = ({ children, delay, duration, ...props }) => {
+  return (
+    <motion.div
+      variants={{
+        hidden: { filter: 'blur(10px)' },
+        visible: { filter: 'blur(0px)' },
+      }}
+      initial="hidden"
+      whileInView="visible"
+      transition={{
+        duration: duration || 0.4,
+        delay: delay,
+      }}
       {...props}
     >
       {children}

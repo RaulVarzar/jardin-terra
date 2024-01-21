@@ -43,9 +43,9 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route path="" element={<Homepage />} />
             <Route path="servicii" element={<ServicesPage />} />
-            <Route path="start" element={<StartPage />} />
             <Route path="contact" element={<ContactPage />} />
           </Route>
+          <Route path="/start" element={<StartPage />} />
         </Routes>
       </AnimatePresence>
     </>

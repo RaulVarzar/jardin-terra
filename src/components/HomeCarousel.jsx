@@ -22,7 +22,7 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-full overflow-hidden rounded-4xl">
+    <div className="relative w-full h-full overflow-hidden rounded-2xl group">
       <AnimatePresence mode="popLayout">
         <motion.img
           key={activePhoto}
@@ -31,7 +31,7 @@ const Carousel = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: 'easeInOut' }}
           src={`/${PHOTOS[activePhoto]}`}
-          className="object-cover w-full h-full brightness-75 max-sm:aspect-4/5 sm:max-md:aspect-square md:aspect-4/5"
+          className="object-cover w-full h-full brightness-75 aspect-square md:aspect-4/5"
           alt="banner-img"
         />
       </AnimatePresence>
@@ -40,7 +40,7 @@ const Carousel = () => {
           <div
             key={photo}
             className={
-              'h-2 rounded-full cursor-pointer w-10 xl:w-14 bg-neutral-content ' +
+              'h-2 group-hover:h-3 rounded-full cursor-pointer w-10 xl:w-14 bg-neutral-content  transition-all duration-300 ' +
               (activePhoto != i && ' opacity-40')
             }
             onClick={() => handleSetPhoto(i)}

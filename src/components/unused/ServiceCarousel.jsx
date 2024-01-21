@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
+import { SERVICES } from './utils/data';
 
-const Carousel = ({ cards, imageWidth = 240 }) => {
+const Carousel = ({ imageWidth = 240 }) => {
   const [page, setPage] = useState(0);
 
   const paginate = (direction) => {
@@ -12,7 +13,7 @@ const Carousel = ({ cards, imageWidth = 240 }) => {
     <div className="flex flex-col w-full gap-2 mx-auto">
       <div className="flex items-center overflow-hidden align-middle">
         <div className="grid items-center grid-cols-2 align-middle sm:grid-cols-3 xl:flex">
-          {cards.map((card, index) => {
+          {SERVICES.map((card, index) => {
             return (
               <motion.div
                 key={card.title}
@@ -23,7 +24,7 @@ const Carousel = ({ cards, imageWidth = 240 }) => {
                 }}
                 transition={{ type: 'spring', damping: 20 }}
               >
-                <div className="w-full h-full p-2 overflow-hidden">
+                <div className="w-full h-full p-2 overflow-hidden ">
                   <div className="flex flex-col h-full p-2 transition duration-300 cursor-pointer rounded-2xl hover:bg-primary-content bg-base-content hover:scale-105">
                     <img
                       src={`/images/${card.photo}.jpg`}
@@ -50,8 +51,8 @@ const Carousel = ({ cards, imageWidth = 240 }) => {
         </button>
         <button
           onClick={() => paginate(+1)}
-          disabled={page === cards.length - 2}
-          className={page === cards.length - 2 ? 'opacity-40' : ''}
+          disabled={page === SERVICES.length - 2}
+          className={page === SERVICES.length - 2 ? 'opacity-40' : ''}
         >
           <i className="fa-solid fa-chevron-right"></i>
         </button>

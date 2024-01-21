@@ -21,7 +21,7 @@ const STEPS = [
     image: 'step3.jpeg',
   },
   {
-    title: 'Aprovizionarea de materiale și Amenajare',
+    title: 'Aprovizionare și amenajare',
     content:
       'Odată cu finalizarea proiectării și înainte de a începe lucrările, echipa noastră poate asigura, prin intermediul partenerilor noștri, aprovizionarea de materiale și produse necesare amenajării. Cu ajutorul partenerilor noștri locali, putem oferi și lucrări de amenajare a spațiului verde. Astfel, ne asigurăm de buna implementare a proiectului nostru și de respectarea cerințelor tehnice ale acestuia. La finalizarea lucrărilor de amenajare, îți oferim și un plan cu lucrări specifice de întreținere a spațiului tău verde.',
     image: 'step4.jpeg',
@@ -33,48 +33,34 @@ const Steps = () => {
 
   return (
     <div className="flex">
-      <motion.div
-        layout
-        className="flex flex-col w-9/12 mx-auto border-2 3xl:max-w-8xl backdrop-brightness-90 border-base-content rounded-2xl"
-      >
-        <div className="flex flex-row gap-3 p-3 shadow-md grow ">
+      <div className="flex flex-col items-center gap-12 mx-auto lg:flex-row 3xl:max-w-8xl">
+        <div className="relative flex flex-row px-2 py-1 border-2 shadow-xl lg:px-4 lg:flex-col lg:gap-3 justify-evenly bg-base-200 border-opacity-10 border-neutral-content rounded-2xl">
           {STEPS.map((item, i) => (
             <div
               key={item.title}
               onClick={() => setSelectedTab(i)}
               className={
-                'px-8 py-6  w-full justify-center flex flex-row items-center gap-4 transition-all duration-300  rounded-2xl text-neutral-content cursor-pointer ' +
-                (selectedTab > i
-                  ? ' bg-base-200'
-                  : selectedTab === i
-                  ? 'bg-base-content'
-                  : ' hover:bg-base-200 ')
+                'px-6 py-4 w-full justify-start flex flex-col items-start rounded-2xl transition-all duration-300  text-neutral-content cursor-pointer ' +
+                (selectedTab === i
+                  ? ' text-neutral-content bg-base-100'
+                  : ' opacity-50')
               }
             >
-              <span className="text-2xl bg-base-conten rounded-2xl">
-                {i + 1}
+              <span className="text-sm opacity-50 rounded-2xl">
+                Pasul {i + 1}
               </span>
+              <span className="text-xl leading-tight">{item.title}</span>
             </div>
           ))}
         </div>
 
-        <motion.div
-          layout="position"
-          //   key={selectedTab}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="grid items-start justify-center gap-6 px-10 py-6 xl:py-8 xl:grid-cols-5 "
-        >
-          <motion.div
-            layout
-            className="flex flex-col col-span-3 gap-1 xl:gap-2"
-          >
+        <motion.div className="grid items-center justify-center w-full h-full gap-6 px-10 py-6 xl:py-8 xl:grid-cols-5 ">
+          <motion.div className="flex flex-col col-span-3 gap-1 xl:gap-2 ">
             <AnimatePresence mode="wait">
               <motion.div
                 layout="position"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                animate={{ opacity: 1, delay: 1 }}
                 exit={{ opacity: 0 }}
               >
                 <motion.h2 className="mb-2 text-2xl font-bold leading-tight uppercase xl:text-3xl text-neutral-content">
@@ -86,24 +72,17 @@ const Steps = () => {
               </motion.div>
             </AnimatePresence>
           </motion.div>
-          <AnimatePresence mode="wait">
-            <motion.div
-              layout="position"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              key={selectedTab}
-              className="col-span-2 overflow-hidden rounded-2xl"
-            >
-              <img
+          <motion.div className="w-full h-full col-span-2 overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.img
                 src={`/images/how-it-works/${STEPS[selectedTab].image}`}
-                className="object-cover h-full aspect-square "
+                className="object-cover rounded-2xl aspect-square "
                 alt={`${STEPS[selectedTab].image}`}
               />
-            </motion.div>
-          </AnimatePresence>
+            </AnimatePresence>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </div>
   );
 };

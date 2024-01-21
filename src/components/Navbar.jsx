@@ -3,16 +3,21 @@ import { motion } from 'framer-motion';
 import logo from '/logo.png';
 import { FadeIn, FromBottom } from './utils/animations';
 
-const Navbar = () => {
+const Navbar = ({ hidden }) => {
+  console.log(hidden);
   return (
     <>
       <motion.nav
         initial={{ y: -200 }}
-        animate={{ y: 0 }}
-        transition={{ delay: 0.25, duration: 0.95, ease: 'easeInOut' }}
-        className="fixed left-0 right-0 z-50 flex max-w-2xl mx-auto overflow-hidden border-2 shadow-xl border-opacity-15 rounded-xl border-neutral-content lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl backdrop-brightness-75 backdrop-blur-md top-4 text-neutral-content"
+        variants={{
+          visible: { y: 0 },
+          hidden: { y: '-100%' },
+        }}
+        animate={hidden ? 'hidden' : 'visible'}
+        transition={{ duration: 0.35, ease: 'easeInOut', delay: 0.2 }}
+        className="fixed top-0 left-0 right-0 z-50 flex justify-center mx-auto overflow-hidden border-b-2 rounded-none shadow-2xl border-opacity-10 border-neutral-content backdrop-brightness-75 backdrop-blur-lg text-neutral-content"
       >
-        <div className="fixed top-0 left-0 flex flex-row justify-between w-full px-6 py-3 md:hidden bg-base-200">
+        <div className="flex flex-row justify-between w-full px-6 py-3 border-b-2 md:hidden border-neutral-content backdrop-brightness-50 backdrop-blur-lg border-opacity-10">
           <Link to="/">
             <img src={logo} className="object-cover w-20 h-auto" alt="" />
           </Link>
@@ -22,45 +27,32 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="flex-row justify-between hidden w-full h-full gap-3 px-4 text-base font-thin grow lg:px-6 md:flex">
+        <div className="flex-row justify-between hidden w-full h-full max-w-4xl gap-3 px-4 text-base font-thin xl:max-w-7xl 3xl:max-w-8xl grow lg:px-6 md:flex">
           <FadeIn delay={1} duration={0.5}>
-            <Link to="/">
+            <span>
               <img
                 src={logo}
                 className="object-cover w-24 h-auto py-2"
                 alt=""
               />
-            </Link>
+            </span>
           </FadeIn>
 
-          <div className="flex flex-row justify-end overflow-hidden text-base font-light tracking-wide text-white lg:text-base">
+          <div className="flex flex-row items-center justify-end gap-4 overflow-hidden text-base font-light tracking-wide text-white lg:text-base">
             <FromBottom delay={1}>
-              <NavLink
-                to="/servicii"
-                className={({ isActive }) =>
-                  isActive
-                    ? 'border-b-4 border-neutral flex items-center px-4 pt-2 pb-1'
-                    : 'flex items-center px-4 pt-2 pb-1 hover:bg-opacity-25 nav-button hover:bg-base-300'
-                }
-              >
+              <span className="px-5 py-2 transition duration-300 rounded-lg cursor-pointer hover:bg-opacity-10 hover:bg-neutral-content active:scale-95">
                 Servicii
-              </NavLink>
+              </span>
             </FromBottom>
             <FromBottom delay={1.15}>
-              <Link
-                to="/mod-de-lucru"
-                className="flex items-center px-4 pt-2 pb-1 transition duration-300 hover:bg-opacity-25 nav-button hover:bg-base-300"
-              >
+              <span className="px-5 py-2 transition duration-300 rounded-lg cursor-pointer hover:bg-opacity-10 hover:bg-neutral-content active:scale-95">
                 Mod de lucru
-              </Link>
+              </span>
             </FromBottom>
             <FromBottom delay={1.3}>
-              <Link
-                to="/sustenabilitate"
-                className="flex items-center px-4 pt-2 pb-1 transition duration-300 hover:bg-opacity-25 nav-button hover:bg-base-300"
-              >
+              <span className="px-5 py-2 transition duration-300 rounded-lg cursor-pointer hover:bg-opacity-10 hover:bg-neutral-content active:scale-95">
                 Sustenabilitate
-              </Link>
+              </span>
             </FromBottom>
           </div>
         </div>

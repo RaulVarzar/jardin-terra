@@ -23,10 +23,10 @@ const SERVICES = [
 
 const ServicesGrid = () => {
   return (
-    <div className="grid grid-cols-3 gap-2 xl:gap-8 max-w-7xl">
+    <div className="grid grid-cols-3 gap-2 xl:gap-8 max-w-7xl cards">
       {SERVICES.map((card, index) => {
         return (
-          <motion.div key={card.title} className="w-full ">
+          <motion.div key={card.title} className="w-full card ">
             <div className="flex flex-col items-center justify-center h-full p-2 transition duration-300 cursor-pointer rounded-2xl hover:bg-primary-content bg-base-content hover:scale-105">
               <img
                 src={`/images/${card.photo}.jpg`}

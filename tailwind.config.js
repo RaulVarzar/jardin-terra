@@ -40,10 +40,10 @@ export default {
         '5/4': '5/4',
       },
       screens: {
-        '3xl': '1750px',
+        '3xl': '1800px',
       },
       maxWidth: {
-        '8xl': '1750px',
+        '8xl': '1700px',
       },
     },
   },
