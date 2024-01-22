@@ -11,7 +11,7 @@ import { SERVICES } from '../utils/data';
 import { Reveal } from '../utils/animations';
 import ProjectCard from '../ProjectCard';
 
-const HorizontalScrollCarousel = forwardRef(({}, sectionref) => {
+const HorizontalScrollCarousel = forwardRef(({ id }, sectionref) => {
   const [isVivible, setIsVisible] = useState(false);
 
   const targetRef = useRef(null);
@@ -30,19 +30,23 @@ const HorizontalScrollCarousel = forwardRef(({}, sectionref) => {
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
-  const x = useTransform(scrollYProgress, [0.12, 0.95], ['15%', '-95%']);
+  const x = useTransform(
+    scrollYProgress,
+    [0.12, 0.8, 0.9, 0.95],
+    ['15%', '-75%', '-83%', '-85%']
+  );
   const reverseOpacity = useTransform(
     scrollYProgress,
     [0.05, 0.3],
     ['75%', '0%']
   );
   const opacity = useTransform(scrollYProgress, [0, 1], ['8%', '25%']);
-  const scale = useTransform(scrollYProgress, [0.05, 0.15], ['100%', '70%']);
+  const scale = useTransform(scrollYProgress, [0.1, 0.35], ['100%', '70%']);
 
   const width = useTransform(scrollYProgress, [0.15, 1], ['0%', '100%']);
 
   return (
-    <div ref={targetRef} className=" h-[250vh] relative">
+    <div ref={targetRef} id={id} className=" h-[250vh] relative">
       <div
         ref={sectionref}
         className="sticky top-0 flex items-center w-full h-screen overflow-hidden"
@@ -55,16 +59,17 @@ const HorizontalScrollCarousel = forwardRef(({}, sectionref) => {
           <Reveal delay={0.5}>SERVICIILE NOASTRE </Reveal>
         </motion.h3>
 
-        <motion.div style={{ x }} className="flex gap-6 bg-base-300 h-4/5">
-          {SERVICES.map((project) => {
-            return (
-              <ProjectCard
-                project={project}
-                key={project.title}
-                isVisible={isVivible}
-              />
-            );
-          })}
+        <motion.div
+          style={{ x }}
+          className="flex gap-6 bg-base-200 h-4/5 max-h-[800px]"
+        >
+          {SERVICES.map((project) => (
+            <ProjectCard
+              project={project}
+              key={project.title}
+              isVisible={isVivible}
+            />
+          ))}
         </motion.div>
         <AnimatePresence>
           {isVivible && (

@@ -34,7 +34,7 @@ const Steps = () => {
   return (
     <div className="flex">
       <div className="flex flex-col items-center gap-12 mx-auto lg:flex-row 3xl:max-w-8xl">
-        <div className="relative flex flex-row px-2 py-1 border-2 shadow-xl lg:px-4 lg:flex-col lg:gap-3 justify-evenly bg-base-200 border-opacity-10 border-neutral-content rounded-2xl">
+        <div className="relative flex flex-row px-2 py-4 border-2 shadow-xl lg:px-4 lg:flex-col lg:gap-3 justify-evenly bg-base-200 border-opacity-10 border-neutral-content rounded-2xl">
           {STEPS.map((item, i) => (
             <div
               key={item.title}

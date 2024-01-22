@@ -18,6 +18,7 @@ export default {
       },
       brightness: {
         85: '.85',
+        65: '.65',
       },
       fontSize: {
         sm: '1rem',
@@ -45,18 +46,26 @@ export default {
       maxWidth: {
         '8xl': '1700px',
       },
+      strokeWidth: {
+        3: '3px',
+      },
     },
   },
   plugins: [require('daisyui')],
   daisyui: {
     themes: [
       {
-        forest: {
-          ...require('daisyui/src/theming/themes')['forest'],
-          primary: '#047857',
-          'primary-content': '#241D1E',
+        black: {
+          ...require('daisyui/src/theming/themes')['black'],
+          primary: '#131614',
+          secondary: '#36352C',
           'base-content': '#1F1919',
         },
+        // garden: {
+        //   ...require('daisyui/src/theming/themes')['garden'],
+        //   'neutral-content': '#222',
+        //   'base-content': '#1F1919',
+        // },
       },
     ],
   },

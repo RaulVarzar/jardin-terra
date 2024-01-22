@@ -98,15 +98,38 @@ export const FromBottom = ({ children, delay, duration, ...props }) => {
   );
 };
 
-export const FromRight = ({ children, delay, duration, ...props }) => {
+export const FromRight = ({
+  children,
+  delay,
+  duration,
+  repeat,
+  parentVisible,
+  ...props
+}) => {
+  const ref = useRef(null);
+
+  const isInView = useInView(ref, { once: !repeat || false });
+  const parentInView = parentVisible || isInView;
+
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView && parentInView) {
+      mainControls.start('visible');
+    } else if (!parentInView) {
+      mainControls.start('hidden');
+    }
+  }, [isInView, parentVisible]);
+
   return (
     <motion.div
+      ref={ref}
       variants={{
         hidden: { opacity: 0, x: '100%' },
         visible: { opacity: 1, x: 0 },
       }}
       initial="hidden"
-      animate="visible"
+      animate={mainControls}
       transition={{ duration: duration || 0.3, delay: delay || 0 }}
       {...props}
     >

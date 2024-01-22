@@ -6,7 +6,7 @@ import {
   useInView,
   AnimatePresence,
 } from 'framer-motion';
-import { FromLeft, Reveal } from '../utils/animations';
+import { FromLeft, FromRight } from '../utils/animations';
 
 const STEPS = [
   {
@@ -35,9 +35,22 @@ const STEPS = [
   },
 ];
 
-const VerticalScrollCarousel = forwardRef(({}, sectionref) => {
+const VerticalScrollCarousel = forwardRef(({ id }, sectionref) => {
   const [activeSection, setActiveSection] = useState(0);
   const targetRef = useRef(null);
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+
+  useEffect(() => {
+    if (!isInView) {
+      setIsVisible(false);
+      return;
+    }
+    setIsVisible(true);
+  }, [isInView]);
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -51,8 +64,47 @@ const VerticalScrollCarousel = forwardRef(({}, sectionref) => {
   const height = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
   const y = useTransform(scrollYProgress, [0, 1], ['5vh', '75vh']);
 
+  // individual cards
+  const x = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.2, 0.25, 0.35, 0.45, 0.5, 0.6, 0.7, 0.75, 0.85, 1], //0  0.1 0.1 0.05   0.1 0.1 0.05   0.1 0.1 0.05 0.1 0.15
+    [
+      '0%',
+      '0%',
+      '0%',
+      '120%',
+      '0%',
+      '0%',
+      '120%',
+      '0%',
+      '0%',
+      '120%',
+      '0%',
+      '0%',
+    ]
+  );
+
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.03, 0.2, 0.25, 0.35, 0.45, 0.5, 0.6, 0.7, 0.75, 0.85, 1],
+    [
+      '100%',
+      '100%',
+      '100%',
+      '0%',
+      '100%',
+      '100%',
+      '0%',
+      '100%',
+      '100%',
+      '0%',
+      '100%',
+      '100%',
+    ]
+  );
+
   return (
-    <div ref={targetRef} className="relative h-[400vh]">
+    <div ref={targetRef} id={id} className="relative h-[500vh]">
       <div className="sticky flex flex-col items-center w-full h-[100vh] top-0 overflow-hidden justify-center lg:px-4 xl:px-12">
         {/* <motion.h3 className="inset-x-0 left-0 right-0 flex items-center justify-center pt-24 text-3xl font-bold leading-none text-right lg:text-5xl 3xl:text-6xl grow h-fit">
           <Reveal delay={0.5} repeat>
@@ -65,52 +117,73 @@ const VerticalScrollCarousel = forwardRef(({}, sectionref) => {
             style={{ height }}
             className="z-50 hidden w-2 rounded-full bg-base-content"
           />
-          <motion.div className="relative flex flex-col h-full gap-8 p-2 overflow-hidden grow 2xl:flex-row ">
-            <FromLeft
-              style={{ y: y }}
-              delay={0.8}
-              duration={0.8}
-              repeat
-              className="flex flex-col col-span-1 px-3 py-2 overflow-hidden leading-tight tracking-tighter max-2xl:w-11/12 2xl:w-1/4 h-fit xl:py-6 xl:px-8 rounded-xl"
+          <motion.div className="relative flex flex-col h-full gap-8 p-2 overflow-hidden 2xl:flex-row md:h-[85vh]">
+            <div
+              ref={ref}
+              className="flex flex-row items-end 2xl:w-1/4 2xl:flex-col justify-evenly"
             >
-              <motion.span className="font-light opacity-50 text-md sm:text-2xl 2xl:text-3xl text-neutral-content">
-                Pasul {activeSection + 1}
-              </motion.span>
+              {STEPS.map((title, i) => (
+                <FromLeft
+                  key={title}
+                  delay={i * 0.5}
+                  duration={0.8}
+                  repeat
+                  parentVisible={isVisible}
+                  className="items-center justify-center w-full h-full col-span-1 px-3 py-2 overflow-hidden leading-tight tracking-tighter 2xl:text-right xl:py-1 xl:px-2 rounded-xl "
+                >
+                  <motion.div
+                    className={
+                      'flex flex-col transition duration-500 w-full  p-1 h-full justify-center ' +
+                      (activeSection !== i && ' opacity-20 scale-90')
+                    }
+                  >
+                    <motion.span className="font-light opacity-50 text-md sm:text-2xl 2xl:text-3xl text-neutral-content">
+                      Pasul {i + 1}
+                    </motion.span>
+                    <motion.h3 className="text-lg leading-none md:text-xl lg:text-2xl sm:text-lg 2xl:text-4xl text-neutral-content">
+                      {title.title}
+                    </motion.h3>
+                  </motion.div>
+                </FromLeft>
+              ))}
+            </div>
+            <FromRight
+              delay={0.5}
+              duration={0.9}
+              repeat
+              className="flex items-center h-full p-0 max-2xl:w-full 2xl:w-3/4"
+            >
               <AnimatePresence mode="wait">
                 <motion.div
-                  initial={{ opacity: 0, x: -100 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
+                  layout
                   key={activeSection}
-                  transition={{ duration: 0.5, ease: 'anticipate' }}
+                  style={{ x }}
+                  transition={{ duration: 0.7, ease: 'easeInOut' }}
+                  className="flex flex-col-reverse items-start justify-center w-full max-w-6xl gap-6 px-4 py-6 overflow-hidden border-2 border-opacity-0 xl:py-12 sm:px-8 xl:px-12 bg-base-20 border-neutral-content h-fit rounded-2xl"
                 >
-                  <motion.h3 className="text-3xl leading-none sm:text-4xl 2xl:text-5xl text-neutral-content">
-                    {STEPS[activeSection].title}
-                  </motion.h3>
+                  <motion.p
+                    layout="position"
+                    key={activeSection}
+                    style={{ opacity }}
+                    className="text-sm sm:text-md xl:text-lg text-neutral-content"
+                  >
+                    {STEPS[activeSection].content}
+                  </motion.p>
+                  <motion.div
+                    style={{ opacity }}
+                    layout="position"
+                    key={activeSection}
+                    className=" md:max-w-2xl"
+                  >
+                    <motion.img
+                      src={`/images/how-it-works/${STEPS[activeSection].image}`}
+                      className="object-cover rounded-xl max-w-96 max-h-96"
+                      alt={`${STEPS[activeSection].image}`}
+                    />
+                  </motion.div>
                 </motion.div>
               </AnimatePresence>
-            </FromLeft>
-
-            <div className="flex items-center h-full p-0 max-2xl:w-full 2xl:w-3/4">
-              <motion.div
-                layout="position"
-                className="flex flex-col items-center justify-center w-full gap-6 px-4 py-6 overflow-hidden border-2 xl:py-12 sm:px-8 xl:px-12 bg-base-200 border-neutral-content h-fit rounded-2xl border-opacity-10"
-              >
-                <motion.p
-                  layout="position"
-                  className="max-w-5xl text-sm sm:text-md xl:text-lg text-neutral-content"
-                >
-                  {STEPS[activeSection].content}
-                </motion.p>
-                <motion.div layout="position" className="w-full md:max-w-2xl ">
-                  <motion.img
-                    src={`/images/how-it-works/${STEPS[activeSection].image}`}
-                    className="object-cover w-full rounded-xl max-h-96 "
-                    alt={`${STEPS[activeSection].image}`}
-                  />
-                </motion.div>
-              </motion.div>
-            </div>
+            </FromRight>
           </motion.div>
         </div>
       </div>

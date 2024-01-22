@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FromLeft, Reveal } from './utils/animations.jsx';
+import { FromLeft, Reveal } from '../utils/animations.jsx';
 import { motion } from 'framer-motion';
 import Socials from './Socials.jsx';
 
@@ -30,7 +30,7 @@ const Header = () => {
           <FromLeft delay={1.4} duration={0.7}>
             <Link
               to="/start"
-              className="py-2 pl-6 pr-2 text-sm tracking-wide border-2 border-opacity-10 text-neutral-content hover:border-opacity-15 border-neutral-content backdrop-brightness-85 rounded-xl xl:text-md mybutton hover:text-stone-100 hover:pl-8 hover:bg-base-content"
+              className="py-2 pl-6 pr-2 text-sm tracking-wide border-2 xl:pl-8 xl:pr-4 xl:py-4 border-opacity-10 text-neutral-content hover:border-opacity-15 border-neutral-content backdrop-brightness-85 rounded-xl xl:text-md mybutton hover:text-stone-100 xl:hover:pl-10 hover:pl-8 hover:bg-base-content"
             >
               Începe un proiect
               <span>

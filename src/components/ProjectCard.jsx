@@ -4,7 +4,7 @@ const ProjectCard = ({ project, isVisible }) => {
   const { title, photo, description } = project;
 
   return (
-    <div className="grid max-xl:grid-rows-7 xl:grid-cols-7 w-[95vw] xl:w-[80vw] p-4 transition duration-300  border-2 cursor-pointer backdrop-brightness-110 hover:bg-base-conten border-neutral-content rounded-2xl border-opacity-10 hover:border-opacity-20">
+    <div className="grid max-xl:grid-rows-7 xl:grid-cols-7 w-[95vw] xl:w-[85vw] 3xl:w-[80vw] max-w-7xl p-4 transition duration-300 border-2 cursor-pointer backdrop-brightness-110 hover:backdrop-brightness-125 hover:bg-base-conten border-neutral-content rounded-2xl border-opacity-10 hover:border-opacity-20">
       <div className="z-10 h-full overflow-hidden max-sm:row-span-2 sm:max-xl:row-span-3 xl:col-span-3 rounded-xl ">
         <Blur delay={0.2} duration={0.6} className="w-full h-full">
           <img
@@ -22,7 +22,7 @@ const ProjectCard = ({ project, isVisible }) => {
           </h1>
         </Reveal>
         <FromLeft repeat parentVisible={isVisible} delay={0.9} duration={0.6}>
-          <h3 className="text-base font-normal leading-tight xl:text-md opacity-70 text-neutral-content">
+          <h3 className="text-base font-normal leading-tight tracking-wide xl:text-md opacity-70 text-neutral-content">
             {description}
           </h3>
         </FromLeft>
