@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FromBottom } from '../utils/animations';
+import { FromBottom } from '../../utils/animations';
 
 const SOCIALS = [
   { name: 'facebook', link: 'https://www.facebook.com/JardinTerraRomania' },
@@ -19,7 +19,7 @@ const Socials = () => {
           <motion.a
             href={button.link}
             target="_blank"
-            initial={{ opacity: 0.75 }}
+            initial={{ opacity: 0.65 }}
             whileHover={{
               scale: 1.05,
               opacity: 1,

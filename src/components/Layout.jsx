@@ -22,7 +22,7 @@ export default function Layout() {
 
   return (
     <div className="relative min-h-screen bg-base-200">
-      <Navbar hidden={hidden} scrollProgress={scrollProgress} />
+      {/* <Navbar hidden={hidden} scrollProgress={scrollProgress} /> */}
       <ScrollToHashElement />
       <Outlet />
     </div>

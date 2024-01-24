@@ -1,24 +1,25 @@
 import { Link, NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import logo from '/logo.png';
-import { FadeIn, FromBottom } from './utils/animations';
+import { FadeIn, FromTop } from './utils/animations';
 
 const Navbar = ({ hidden, scrollProgress }) => {
   return (
     <>
       <motion.nav
-        initial={{ y: -200 }}
+        // initial={{ y: -200 }}
         variants={{
-          visible: { y: 0 },
-          hidden: { y: '-100%' },
+          visible: { y: 0, opacity: '100%' },
+          hidden: { opacity: '30%' },
         }}
         animate={hidden && scrollProgress > 400 ? 'hidden' : 'visible'}
-        transition={{ duration: 0.35, ease: 'easeInOut', delay: 0.2 }}
+        whileHover="visible"
+        transition={{ duration: 0.35, ease: 'easeInOut', delay: 0.1 }}
         className={
           'fixed top-0 left-0 right-0 z-50 flex justify-center mx-auto overflow-hidden border-neutral-content transition-all uppercase duration-200 ' +
           (scrollProgress > 50
-            ? ' backdrop-brightness-75 py-2 backdrop-blur-xl shadow-2xl  border-neutral-content border-b-2 border-opacity-10'
-            : ' border-opacity-0')
+            ? ' backdrop-brightness-85 backdrop-blur-xl shadow-md border-neutral-content border-b-2 border-opacity-10'
+            : ' border-opacity-0 py-2')
         }
       >
         <div className="flex flex-row justify-between w-full px-6 py-3 border-b-2 md:hidden border-neutral-content backdrop-brightness-50 backdrop-blur-lg border-opacity-10">
@@ -44,26 +45,34 @@ const Navbar = ({ hidden, scrollProgress }) => {
             </NavLink>
           </FadeIn>
 
-          <div className="flex flex-row items-center justify-between gap-4 overflow-hidden text-base font-medium tracking-wide text-white lg:text-base">
-            <FromBottom delay={1}>
-              <NavLink to="#servicii">
-                <span className="px-5 py-2 transition duration-300 rounded-lg cursor-pointer hover:bg-opacity-10 hover:bg-neutral-content active:scale-95">
-                  Servicii
-                </span>
+          <div
+            className={
+              'flex flex-row items-center overflow-hidden font-medium tracking-wide  justify-stretch  text-neutral-content group lg:text-base ' +
+              (scrollProgress <= 50
+                ? ' border-opacity-0'
+                : ' border-opacity-10')
+            }
+          >
+            <FromTop delay={1} duration={0.6} className="flex h-full ">
+              <NavLink
+                to="#servicii"
+                className="flex items-center h-full px-5 transition duration-300 cursor-pointer xl:px-10 opacity-80 hover:bg-opacity-10 hover:bg-neutral-content active:scale-95 hover:opacity-100"
+              >
+                Servicii
               </NavLink>
-            </FromBottom>
-            <FromBottom delay={1.15}>
+            </FromTop>
+            <FromTop delay={1.15} duration={0.6} className="flex h-full ">
               <NavLink to="#mod-de-lucru">
-                <span className="px-5 py-2 transition duration-300 rounded-lg cursor-pointer hover:bg-opacity-10 hover:bg-neutral-content active:scale-95">
+                <span className="flex items-center h-full px-5 transition duration-300 cursor-pointer xl:px-10 opacity-80 hover:bg-opacity-10 hover:bg-neutral-content active:scale-95 hover:opacity-100">
                   Mod de lucru
                 </span>
               </NavLink>
-            </FromBottom>
-            <FromBottom delay={1.3}>
-              <span className="px-5 py-2 transition duration-300 rounded-lg cursor-pointer hover:bg-opacity-10 hover:bg-neutral-content active:scale-95">
+            </FromTop>
+            <FromTop delay={1.3} duration={0.6} className="flex h-full ">
+              <span className="flex items-center h-full px-5 transition duration-300 cursor-pointer xl:px-10 opacity-80 hover:bg-opacity-10 hover:bg-neutral-content active:scale-95 hover:opacity-100">
                 Sustenabilitate
               </span>
-            </FromBottom>
+            </FromTop>
           </div>
         </div>
       </motion.nav>

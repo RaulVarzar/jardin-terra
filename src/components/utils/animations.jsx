@@ -2,6 +2,7 @@ import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
 export const Reveal = ({
+  // orientation can be vertical or horizontal
   children,
   delay,
   duration,
@@ -27,12 +28,16 @@ export const Reveal = ({
     <div ref={ref} className="relative overflow-hidden w-fit">
       <motion.div
         variants={{
-          hidden: { opacity: 0, y: 75 },
+          hidden: { opacity: 0, y: 100 },
           visible: { opacity: 1, y: 0 },
         }}
         initial="hidden"
         animate={mainControls}
-        transition={{ duration: duration || 0.4, delay: delay }}
+        transition={{
+          duration: duration || 0.4,
+          delay: delay,
+          ease: 'easeInOut',
+        }}
       >
         {children}
       </motion.div>
@@ -72,33 +77,19 @@ export const FromLeft = ({
       }}
       initial="hidden"
       animate={mainControls}
-      transition={{ duration: duration || 0.3, delay: delay || 0 }}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-export const FromBottom = ({ children, delay, duration, ...props }) => {
-  return (
-    <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0 },
+      transition={{
+        duration: duration || 0.3,
+        delay: delay || 0,
+        ease: 'easeInOut',
       }}
-      initial="hidden"
-      animate="visible"
-      transition={{ duration: duration || 0.3, delay: delay || 0 }}
       {...props}
-      className="flex items-stretch justify-stretch"
     >
       {children}
     </motion.div>
   );
 };
 
-export const FromRight = ({
+export const FromBottom = ({
   children,
   delay,
   duration,
@@ -125,12 +116,16 @@ export const FromRight = ({
     <motion.div
       ref={ref}
       variants={{
-        hidden: { opacity: 0, x: '100%' },
-        visible: { opacity: 1, x: 0 },
+        hidden: { opacity: 0, y: 100 },
+        visible: { opacity: 1, y: 0 },
       }}
       initial="hidden"
       animate={mainControls}
-      transition={{ duration: duration || 0.3, delay: delay || 0 }}
+      transition={{
+        duration: duration || 0.3,
+        delay: delay || 0,
+        ease: 'easeInOut',
+      }}
       {...props}
     >
       {children}
@@ -138,16 +133,110 @@ export const FromRight = ({
   );
 };
 
-export const FadeIn = ({ children, delay, duration, ...props }) => {
+export const FromTop = ({ children, delay, duration, ...props }) => {
   return (
     <motion.div
+      variants={{
+        hidden: { opacity: 0, y: -50 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{
+        duration: duration || 0.3,
+        delay: delay || 0,
+        ease: 'easeInOut',
+      }}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export const FromRight = ({
+  // cea mai buna versiune
+  children,
+  delay,
+  duration,
+  repeat,
+  parentVisible,
+  offset,
+  ...props
+}) => {
+  const ref = useRef(null);
+
+  const isInView = useInView(ref, { once: !repeat || false });
+  const parentInView = parentVisible || isInView;
+
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView && parentInView) {
+      mainControls.start('visible');
+    } else if (!parentInView) {
+      mainControls.start('hidden');
+    }
+  }, [isInView, parentVisible]);
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={{
+        hidden: { opacity: 0, x: `${offset}%` || '50%' },
+        visible: { opacity: 1, x: 0 },
+      }}
+      initial="hidden"
+      animate={mainControls}
+      transition={{
+        duration: duration || 0.3,
+        delay: delay || 0,
+        ease: 'easeInOut',
+      }}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export const FadeIn = ({
+  children,
+  delay,
+  duration,
+  repeat,
+  parentVisible,
+  ...props
+}) => {
+  const ref = useRef(null);
+
+  const isInView = useInView(ref, { once: !repeat || false });
+  const parentInView = parentVisible || isInView;
+
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView && parentInView) {
+      mainControls.start('visible');
+    } else if (!parentInView) {
+      mainControls.start('hidden');
+    }
+  }, [isInView, parentVisible]);
+
+  return (
+    <motion.div
+      ref={ref}
       variants={{
         hidden: { opacity: 0, scale: 0.8 },
         visible: { opacity: 1, scale: 1 },
       }}
       initial="hidden"
-      animate="visible"
-      transition={{ duration: duration || 0.3, delay: delay || 0 }}
+      animate={mainControls}
+      transition={{
+        duration: duration || 0.3,
+        delay: delay || 0,
+        ease: 'easeInOut',
+      }}
       {...props}
     >
       {children}
@@ -167,6 +256,7 @@ export const Blur = ({ children, delay, duration, ...props }) => {
       transition={{
         duration: duration || 0.4,
         delay: delay,
+        ease: 'easeInOut',
       }}
       {...props}
     >

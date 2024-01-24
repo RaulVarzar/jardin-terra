@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useTransform } from 'framer-motion';
 
 const PHOTOS = ['home1.jpg', 'home2.jpg', 'home3.jpg'];
 
-const Carousel = () => {
+const Carousel = ({ scrollYProgress }) => {
   const [activePhoto, setActivePhoto] = useState(0);
 
   const handleSetPhoto = (photo) => {
@@ -21,8 +21,11 @@ const Carousel = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const scale = useTransform(scrollYProgress, [0, 1], ['100%', '120%']);
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+
   return (
-    <div className="relative w-full h-full overflow-hidden rounded-2xl group">
+    <div className="relative w-full h-full overflow-hidden group rounded-2xl">
       <AnimatePresence mode="popLayout">
         <motion.img
           key={activePhoto}
@@ -30,8 +33,9 @@ const Carousel = () => {
           animate={{ opacity: 1, transition: { duration: 1.5 } }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: 'easeInOut' }}
+          style={{ scale, y }}
           src={`/${PHOTOS[activePhoto]}`}
-          className="object-cover w-full h-full brightness-75 aspect-square md:aspect-4/5"
+          className="object-cover w-full h-full brightness-75"
           alt="banner-img"
         />
       </AnimatePresence>

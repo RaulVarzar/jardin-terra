@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       borderWidth: {
+        1: '1px',
         3: '3px',
       },
       scale: {
@@ -17,8 +18,11 @@ export default {
         xs: '3px',
       },
       brightness: {
+        25: '.25',
         85: '.85',
         65: '.65',
+        115: '1.15',
+        135: '1.35',
       },
       fontSize: {
         sm: '1rem',
@@ -58,7 +62,9 @@ export default {
         black: {
           ...require('daisyui/src/theming/themes')['black'],
           primary: '#131614',
+          'base-200': '#111',
           secondary: '#36352C',
+          'secondary-content': '#818177',
           'base-content': '#1F1919',
         },
         // garden: {

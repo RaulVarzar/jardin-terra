@@ -1,104 +1,69 @@
-import { motion, useTransform, useScroll } from 'framer-motion';
-import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import Form from '../ContactPage/Form';
+import { Reveal } from '../utils/animations';
+import { useState } from 'react';
+import { useMotionValueEvent, useScroll, motion } from 'framer-motion';
 
-const Example = () => {
-  return (
-    <div className="bg-neutral-800">
-      <div className="flex items-center justify-center h-48">
-        <span className="font-semibold uppercase text-neutral-500">
-          Scroll down
-        </span>
-      </div>
-      <HorizontalScrollCarousel />
-      <div className="flex items-center justify-center h-48">
-        <span className="font-semibold uppercase text-neutral-500">
-          Scroll up
-        </span>
-      </div>
-    </div>
-  );
-};
+const Contact = () => {
+  const [hidden, setHidden] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(null);
 
-const HorizontalScrollCarousel = () => {
-  const targetRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const previous = scrollY.getPrevious();
+    setScrollProgress(latest);
+    if (latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ['1%', '-95%']);
-
   return (
-    <section ref={targetRef} className="relative h-[300vh] bg-neutral-900">
-      <div className="sticky top-0 flex items-center h-screen overflow-hidden">
-        <motion.div style={{ x }} className="flex gap-4">
-          {cards.map((card) => {
-            return <Card card={card} key={card.id} />;
-          })}
-        </motion.div>
+    <div className="relative flex flex-col min-h-screen lg:flex-row">
+      <Link to="/">
+        <motion.button
+          variants={{
+            visible: { x: 0, opacity: '80%' },
+            hidden: {
+              opacity: '50%',
+              x: -100,
+              transition: { duration: 0.5, type: 'spring' },
+            },
+          }}
+          animate={hidden ? 'hidden' : 'visible'}
+          whileHover={{ scale: 1.1, opacity: '100%' }}
+          className="fixed z-50 bg-opacity-40 btn-circle bg-neutral text-secondary-content top-4 left-4 sm:top-10 sm:left-10"
+        >
+          <i className="fa-solid fa-xmark"></i>
+        </motion.button>
+      </Link>
+      <div className="flex items-center sticky top-0 h-screen justify-start pl-12 sm:pl-16 xl:pl-20 2xl:pl-24 3xl:px-36 max-lg:min-h-[50vh] lg:w-1/3 text-neutral-content">
+        <div className="flex flex-col gap-4 sm:gap-8">
+          <Reveal delay={0.3} duration={1}>
+            <h3 className="text-3xl font-semibold tracking-wider sm:text-4xl md:text-5xl xl:text-6xl opacity-80">
+              CONTACT
+            </h3>
+          </Reveal>
+          <span className="flex flex-col items-start text-base font-light tracking-wider md:gap-2 sm:text-md lg:text-xl opacity-60 h-fit">
+            <Reveal delay={0.2} duration={1.5}>
+              <p> office@jardinterra.ro</p>
+            </Reveal>
+            <Reveal delay={0.4} duration={1.5}>
+              <p>Cluj-Napoca, RO</p>
+            </Reveal>
+            <Reveal delay={0.6} duration={1.5}>
+              <p>0737 837 383</p>
+            </Reveal>
+          </span>
+        </div>
       </div>
-    </section>
-  );
-};
-
-const Card = ({ card }) => {
-  return (
-    <div
-      key={card.id}
-      className="group relative h-[450px] w-[450px] overflow-hidden bg-neutral-200"
-    >
-      <div
-        style={{
-          backgroundImage: `url(${card.url})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-        className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110"
-      ></div>
-      <div className="absolute inset-0 z-10 grid place-content-center">
-        <p className="p-8 text-6xl font-black text-white uppercase bg-gradient-to-br from-white/20 to-white/0 backdrop-blur-lg">
-          {card.title}
-        </p>
+      <div className="flex items-start pt-[10vh] h-[200vh] px-16 text-4xl lg:w-2/3 justify-stretch backdrop-brightness-85 text-neutral-content">
+        <Form />
       </div>
     </div>
   );
 };
 
-export default Example;
-
-const cards = [
-  {
-    url: 'https://source.unsplash.com/random',
-    title: 'Title 1',
-    id: 1,
-  },
-  {
-    url: 'https://source.unsplash.com/random',
-    title: 'Title 2',
-    id: 2,
-  },
-  {
-    url: 'https://source.unsplash.com/random',
-    title: 'Title 3',
-    id: 3,
-  },
-  {
-    url: 'https://source.unsplash.com/random',
-    title: 'Title 4',
-    id: 4,
-  },
-  {
-    url: 'https://source.unsplash.com/random',
-    title: 'Title 5',
-    id: 5,
-  },
-  {
-    url: 'https://source.unsplash.com/random',
-    title: 'Title 6',
-    id: 6,
-  },
-  {
-    url: 'https://source.unsplash.com/random',
-    title: 'Title 7',
-    id: 7,
-  },
-];
+export default Contact;

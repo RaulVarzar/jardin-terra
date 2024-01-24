@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FromLeft, Reveal } from '../utils/animations.jsx';
+import { FromLeft, Reveal } from '../../utils/animations.jsx';
 import { motion } from 'framer-motion';
 import Socials from './Socials.jsx';
 
@@ -9,18 +9,18 @@ const Header = () => {
       <div className="flex flex-col w-full px-2 lg:flex-row xl:flex-col xl:px-8 xl:py-8 gap-y-8 rounded-2xl">
         <div className="flex flex-col w-full gap-1 ">
           <div className="flex flex-col gap-2 text-neutral-content">
-            <Reveal delay={0.3} duration={0.8}>
+            <Reveal delay={0.8} duration={1.2}>
               <motion.h3 className="text-xl font-bold leading-none sm:text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl">
                 Noi suntem artiștii
               </motion.h3>
             </Reveal>
-            <Reveal delay={0.5} duration={0.8}>
+            <Reveal delay={0.9} duration={1.2}>
               <h3 className="text-3xl font-black leading-tight sm:text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl">
                 GRĂDINII TALE
               </h3>
             </Reveal>
           </div>
-          <Reveal delay={0.7} duration={0.7}>
+          <Reveal delay={1} duration={1.2}>
             <h3 className="max-w-2xl font-light leading-none text-gray-100 text-md sm:text-lg md:text-xl lg:text-2xl opacity-60 xl:text-3xl">
               Proiectăm spații verzi în armonie cu natura
             </h3>
@@ -30,7 +30,7 @@ const Header = () => {
           <FromLeft delay={1.4} duration={0.7}>
             <Link
               to="/start"
-              className="py-2 pl-6 pr-2 text-sm tracking-wide border-2 xl:pl-8 xl:pr-4 xl:py-4 border-opacity-10 text-neutral-content hover:border-opacity-15 border-neutral-content backdrop-brightness-85 rounded-xl xl:text-md mybutton hover:text-stone-100 xl:hover:pl-10 hover:pl-8 hover:bg-base-content"
+              className="py-2 pl-6 pr-2 text-sm tracking-wider border- negative-shadow xl:pl-8 xl:pr-4 xl:py-4 border-opacity-10 text-neutral-content hover:border-opacity-15 border-neutral-content backdrop-brightness-150 rounded-xl xl:text-md mybutton hover:text-stone-100 xl:hover:pl-10 hover:pl-8 hover:backdrop-brightness-200"
             >
               Începe un proiect
               <span>

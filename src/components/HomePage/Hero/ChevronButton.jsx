@@ -3,11 +3,15 @@ import { motion } from 'framer-motion';
 const ChevronButton = ({ goToSection }) => {
   return (
     <motion.div
-      animate={{
+      whileInView={{
         y: [8, 0, 8],
         opacity: [0.5, 1, 1, 0.5],
       }}
-      transition={{ ease: 'easeInOut', duration: 2.5, repeat: Infinity }}
+      transition={{
+        ease: 'easeInOut',
+        duration: 2.5,
+        repeat: Infinity,
+      }}
       className="flex justify-center w-full mx-auto cursor-pointer"
       onClick={() => goToSection('skills')}
     >
@@ -20,12 +24,12 @@ const ChevronButton = ({ goToSection }) => {
           x1="0"
           y1="3"
           x2="25"
-          y2="20"
+          y2="17"
           className="stroke-3 stroke-neutral-content"
         />
         <line
           x1="25"
-          y1="20"
+          y1="17"
           x2="50"
           y2="3"
           className="stroke-3 stroke-neutral-content"

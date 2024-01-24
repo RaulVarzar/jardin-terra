@@ -38,7 +38,6 @@ const STEPS = [
 const VerticalScrollCarousel = forwardRef(({ id }, sectionref) => {
   const [activeSection, setActiveSection] = useState(0);
   const targetRef = useRef(null);
-
   const [isVisible, setIsVisible] = useState(false);
 
   const ref = useRef(null);
@@ -61,6 +60,7 @@ const VerticalScrollCarousel = forwardRef(({ id }, sectionref) => {
       setActiveSection(Math.floor((progress / 100) * STEPS.length));
     }
   });
+
   const height = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
   const y = useTransform(scrollYProgress, [0, 1], ['5vh', '75vh']);
 
@@ -83,6 +83,7 @@ const VerticalScrollCarousel = forwardRef(({ id }, sectionref) => {
       '0%',
     ]
   );
+  const verticalScroll = useTransform(scrollYProgress, [0, 1], ['10%', '-75%']);
 
   const opacity = useTransform(
     scrollYProgress,
@@ -104,20 +105,18 @@ const VerticalScrollCarousel = forwardRef(({ id }, sectionref) => {
   );
 
   return (
-    <div ref={targetRef} id={id} className="relative h-[500vh]">
+    <div
+      ref={targetRef}
+      id={id}
+      className="relative h-[400vh] border-b-1 border-neutral-content border-opacity-15"
+    >
       <div className="sticky flex flex-col items-center w-full h-[100vh] top-0 overflow-hidden justify-center lg:px-4 xl:px-12">
-        {/* <motion.h3 className="inset-x-0 left-0 right-0 flex items-center justify-center pt-24 text-3xl font-bold leading-none text-right lg:text-5xl 3xl:text-6xl grow h-fit">
-          <Reveal delay={0.5} repeat>
-            MOD DE LUCRU
-          </Reveal>
-        </motion.h3> */}
-
         <div className="flex flex-row items-center justify-center w-full h-full items-between max-w-8xl">
           <motion.div
             style={{ height }}
             className="z-50 hidden w-2 rounded-full bg-base-content"
           />
-          <motion.div className="relative flex flex-col h-full gap-8 p-2 overflow-hidden 2xl:flex-row md:h-[85vh]">
+          <motion.div className="sticky  flex flex-col h-full gap-8 p-2 overflow-hidden 2xl:flex-row md:h-[85vh]">
             <div
               ref={ref}
               className="flex flex-row items-end 2xl:w-1/4 2xl:flex-col justify-evenly"
@@ -134,7 +133,8 @@ const VerticalScrollCarousel = forwardRef(({ id }, sectionref) => {
                   <motion.div
                     className={
                       'flex flex-col transition duration-500 w-full  p-1 h-full justify-center ' +
-                      (activeSection !== i && ' opacity-20 scale-90')
+                      (activeSection !== i && ' opacity-30 scale-90') +
+                      (activeSection > i && ' opacity-5')
                     }
                   >
                     <motion.span className="font-light opacity-50 text-md sm:text-2xl 2xl:text-3xl text-neutral-content">
@@ -147,43 +147,55 @@ const VerticalScrollCarousel = forwardRef(({ id }, sectionref) => {
                 </FromLeft>
               ))}
             </div>
-            <FromRight
-              delay={0.5}
-              duration={0.9}
-              repeat
-              className="flex items-center h-full p-0 max-2xl:w-full 2xl:w-3/4"
-            >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  layout
-                  key={activeSection}
-                  style={{ x }}
-                  transition={{ duration: 0.7, ease: 'easeInOut' }}
-                  className="flex flex-col-reverse items-start justify-center w-full max-w-6xl gap-6 px-4 py-6 overflow-hidden border-2 border-opacity-0 xl:py-12 sm:px-8 xl:px-12 bg-base-20 border-neutral-content h-fit rounded-2xl"
-                >
-                  <motion.p
-                    layout="position"
-                    key={activeSection}
-                    style={{ opacity }}
-                    className="text-sm sm:text-md xl:text-lg text-neutral-content"
-                  >
-                    {STEPS[activeSection].content}
-                  </motion.p>
-                  <motion.div
-                    style={{ opacity }}
-                    layout="position"
-                    key={activeSection}
-                    className=" md:max-w-2xl"
-                  >
-                    <motion.img
-                      src={`/images/how-it-works/${STEPS[activeSection].image}`}
-                      className="object-cover rounded-xl max-w-96 max-h-96"
-                      alt={`${STEPS[activeSection].image}`}
-                    />
-                  </motion.div>
-                </motion.div>
-              </AnimatePresence>
-            </FromRight>
+
+            <div className="h-full overflow-hidden">
+              <motion.div
+                style={{ y: verticalScroll }}
+                className="flex flex-col gap-y-24 h-fit"
+              >
+                {STEPS.map((step, i) => (
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      variants={{
+                        active: { opacity: 1, scale: 1 },
+                        inactive: { opacity: 0.3, scale: 0.8 },
+                      }}
+                      initial="inactive"
+                      animate={activeSection === i && 'active'}
+                      transition={{ duration: 0.8 }}
+                      key={activeSection}
+                      className={
+                        'flex flex-col items-center justify-center  w-full max-w-6xl gap-6 px-4 py-6 overflow-hidden border-2 border-opacity-0  xl:py-12 sm:px-8 xl:px-12 bg-base-20 border-neutral-content h-fit rounded-2xl ' +
+                        (i % 2 !== 0
+                          ? ' xl:flex-row '
+                          : ' xl:flex-row-reverse ')
+                      }
+                    >
+                      <motion.div
+                        style={{ opacity: 1 }}
+                        layout="position"
+                        key={activeSection}
+                        className=" md:max-w-2xl"
+                      >
+                        <motion.img
+                          src={`/images/how-it-works/${step.image}`}
+                          className="object-cover rounded-xl max-w-96 max-h-96"
+                          alt={step.image}
+                        />
+                      </motion.div>
+                      <motion.p
+                        layout="position"
+                        key={activeSection}
+                        style={{ opacity: 1 }}
+                        className="text-sm sm:text-md xl:text-lg text-neutral-content"
+                      >
+                        {step.content}
+                      </motion.p>
+                    </motion.div>
+                  </AnimatePresence>
+                ))}
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -17,28 +18,29 @@ body {
 html,
 body {
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   scroll-behavior: smooth;
 }
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   height: 5px;
-  width: 5px;
-  background: #fff;
+  width: 8px;
+  background: #222;
   -webkit-border-radius: 1ex;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  -webkit-border-radius: 1ex;
+  background: #888;
+  width: 20px;
 }
 
 ::-webkit-scrollbar-corner {
-  background: #fff3;
-} */
+  background: #fff;
+}
 
-.homepage section {
-  height: 100vh;
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 }
 
 .cards .card {
@@ -132,4 +134,17 @@ body {
   opacity: 1;
   width: 3rem;
   transform: translateX(0px);
+}
+
+.negative-shadow {
+  box-shadow: rgba(33, 37, 41, 0.12) 0px 1px 1px 0px,
+    rgba(33, 37, 41, 0.04) 0px 4px 6px 0px,
+    rgba(255, 255, 255, 0.1) 0px 2px 0px 0px inset;
+}
+
+.button-shadow {
+  background-color: #202022;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 2px 0px,
+    rgba(0, 0, 0, 0.2) 0px 3px 6px 0px,
+    rgba(0, 0, 0, 0.6) 0px -3px 0px 0px inset;
 }
