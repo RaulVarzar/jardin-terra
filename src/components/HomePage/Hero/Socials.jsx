@@ -25,7 +25,7 @@ const Socials = () => {
               opacity: 1,
               transition: { duration: 0.3, delay: 0, ease: 'easeInOut' },
             }}
-            className="flex flex-row text-neutral-content group px-2 items-center py-1.5 lg:px-3 cursor-pointer justify-evenly hover:text-accent-content transition-colors duration-300"
+            className="flex flex-row text-base-content group px-2 items-center py-1.5 lg:px-3 cursor-pointer justify-evenly hover:text-accent-content transition-colors duration-300"
           >
             <i
               className={`fa-brands group-hover:-translate-y-0.5 transition ease-in-out duration-200 fa-${button.name}`}

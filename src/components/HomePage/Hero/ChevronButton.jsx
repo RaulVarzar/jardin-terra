@@ -18,7 +18,7 @@ const ChevronButton = ({ goToSection }) => {
       <svg
         height="30"
         width="50"
-        className="scale-75 opacity-30 w-fit md:scale-100"
+        className="scale-75 opacity-40 w-fit md:scale-100"
       >
         <line
           x1="0"

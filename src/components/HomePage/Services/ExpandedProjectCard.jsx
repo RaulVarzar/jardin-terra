@@ -22,7 +22,7 @@ const ExpandedProjectCard = ({ project, setSelectedId, selectedId }) => {
           </Blur>
         </div>
         <motion.button
-          className="absolute z-50 opacity-25 top-4 right-4 btn rounded-xl hover:bg-accent text-neutral-content border-1 border-neutral-content btn-outline hover:text-base-200 hover:opacity-100 hover:scale-95"
+          className="absolute z-50 opacity-20 top-4 right-4 btn rounded-xl hover:bg-error text-neutral-content border-1 border-neutral-content btn-outline hover:text-base-200 hover:border-error hover:opacity-100 hover:scale-98"
           onClick={() => setSelectedId(null)}
         >
           <i className="text-lg fa-solid fa-xmark"></i>

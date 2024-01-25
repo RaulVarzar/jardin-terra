@@ -19,7 +19,7 @@ const Navbar = ({ hidden, scrollProgress }) => {
           'fixed top-0 left-0 right-0 z-50 flex justify-center mx-auto overflow-hidden border-neutral-content transition-all uppercase duration-200 ' +
           (scrollProgress > 50
             ? ' backdrop-brightness-85 backdrop-blur-xl shadow-md border-neutral-content border-b-2 border-opacity-10'
-            : ' border-opacity-0 py-2')
+            : ' border-opacity-0 py-')
         }
       >
         <div className="flex flex-row justify-between w-full px-6 py-3 border-b-2 md:hidden border-neutral-content backdrop-brightness-50 backdrop-blur-lg border-opacity-10">

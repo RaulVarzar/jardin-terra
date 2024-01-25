@@ -8,6 +8,7 @@ export default {
         3: '3px',
       },
       scale: {
+        98: '0.98',
         102: '1.02',
         115: '1.15',
         120: '1.20',
@@ -53,6 +54,9 @@ export default {
       strokeWidth: {
         3: '3px',
       },
+      borderRadius: {
+        '4xl': '50px',
+      },
     },
   },
   plugins: [require('daisyui')],
@@ -62,14 +66,21 @@ export default {
         black: {
           ...require('daisyui/src/theming/themes')['black'],
           primary: '#131614',
-          'base-200': '#111',
-          secondary: '#36352C',
+          'base-200': '#101010',
+          'base-100': '#060605',
+          'base-300': '#171716',
+          secondary: '#424138',
+          accent: '#34413d',
           'secondary-content': '#818177',
           'base-content': '#1F1919',
+          error: '#602b1f',
         },
         // garden: {
         //   ...require('daisyui/src/theming/themes')['garden'],
-        //   'neutral-content': '#222',
+        //   'base-200': '#f0eef0',
+        //   'base-100': '#D4D2D2',
+        //   'base-300': '#f8f8f8',
+        //   'neutral-content': '#0d0d0d',
         //   'base-content': '#1F1919',
         // },
       },

@@ -6,7 +6,7 @@ import Socials from './Socials.jsx';
 const Header = () => {
   return (
     <div className="flex flex-col justify-center w-fit grow ">
-      <div className="flex flex-col w-full px-2 lg:flex-row xl:flex-col xl:px-8 xl:py-8 gap-y-8 rounded-2xl">
+      <div className="flex flex-col w-full px-2 lg:flex-row xl:flex-col xl:px-8 xl:py-8 gap-y-4 md:gap-y-8 xl:gap-y-12 ">
         <div className="flex flex-col w-full gap-1 ">
           <div className="flex flex-col gap-2 text-neutral-content">
             <Reveal delay={0.8} duration={1.2}>
@@ -21,16 +21,16 @@ const Header = () => {
             </Reveal>
           </div>
           <Reveal delay={1} duration={1.2}>
-            <h3 className="max-w-2xl font-light leading-none text-gray-100 text-md sm:text-lg md:text-xl lg:text-2xl opacity-60 xl:text-3xl">
+            <h3 className="max-w-2xl font-light leading-none opacity-50 text-neutral-content text-md sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
               Proiectăm spații verzi în armonie cu natura
             </h3>
           </Reveal>
         </div>
-        <div className="flex flex-col items-center justify-center w-full gap-4 xl:items-start lg:flex-col xl:flex-col xl:justify-start">
+        <div className="flex flex-col items-center justify-center w-full gap-4 md:gap-8 xl:items-start lg:flex-col xl:flex-col xl:justify-start">
           <FromLeft delay={1.4} duration={0.7}>
             <Link
-              to="/start"
-              className="py-2 pl-6 pr-2 text-sm tracking-wider border- negative-shadow xl:pl-8 xl:pr-4 xl:py-4 border-opacity-10 text-neutral-content hover:border-opacity-15 border-neutral-content backdrop-brightness-150 rounded-xl xl:text-md mybutton hover:text-stone-100 xl:hover:pl-10 hover:pl-8 hover:backdrop-brightness-200"
+              to="/contact"
+              className="py-2 pl-6 pr-2 text-sm tracking-wider negative-shadow xl:pl-8 xl:pr-4 xl:py-4 border-opacity-10 text-base-300 hover:border-opacity-15 border-neutral-content backdrop-brightness-15 bg-accent rounded-xl xl:text-md mybutton hover:text-stone-100 xl:hover:pl-10 hover:pl-8 hover:backdrop-brightness-200"
             >
               Începe un proiect
               <span>

@@ -50,24 +50,24 @@ export const STEPS = [
     title: 'Identificare și măsurare',
     content:
       'În urma primei discuții pe baza informațiilor primite online, un reprezentant Jardin Terra se deplasează la domiciliul sau sediul tău, pentru a identifica terenul ce necesită amenajare, reamenajare sau retușuri. La fața locului, măsurăm terenul, facem poze, luăm probe de sol și în funcție de nevoile și dorințele tale, facem schița preliminară.',
-    image: 'step1.jpeg',
+    image: 'step1.jpg',
   },
   {
     title: 'Proiectare 2D',
     content:
       'În urma deplasării pe teren și a discuțiilor avute, proiectăm o serie de planuri 2D, pentru a avea mai multe opțiuni de design de unde poți alege. Fiecare plan realizat vine cu explicații și detalii referitoare la activitățile și materialele necesare pentru amenajarea sau construirea spațiului verde, dar și întreținerea acestuia. Planurile 2D conțin obiecte sau imagini pe două dimensiuni. Acestea reprezintă un desen tehnic al viitorului tău spațiu verde, fiind modalitatea cea mai eficientă și rapidă de a ilustra ideile și propunerile noastre, în concordanță cu bugetul tău.',
-    image: 'step2.jpeg',
+    image: 'step2.jpg',
   },
   {
     title: 'Simulare 3D',
     content:
       'Odată ce ne-am decis împreună asupra planului 2D potrivit în funcție de nevoile, dorințele dar și bugetul tău, trecem la etapa următoare. Aceasta constă în proiectarea 3D a planului respectiv, pentru a îi da viață din punct de vedere grafic. Planul 3D reprezintă o simulare pe trei dimensiuni a obiectelor și elementelor specifice viitorului tău spațiu verde. Acesta este o machetă virtuală proiectată de designerul peisagist, care ia în calcul și următoarele aspecte: - pH-ul solului: în funcție de pH și destinația ce o va avea grădina (utilă sau decorativă), recomandăm gazonul potrivit, plantele și arbuștii necesari pentru plantare, dar și lucrările specifice de pregătire și întreținere a solului; - drenarea terenului și utilizarea apei; - sistemul de irigații; - planificarea aleilor; - iluminatul și sursa de energie electrică; - mobilierul de grădină; - alegerea gardului potrivit.',
-    image: 'step3.jpeg',
+    image: 'step3.jpg',
   },
   {
     title: 'Aprovizionare și amenajare',
     content:
       'Odată cu finalizarea proiectării și înainte de a începe lucrările, echipa noastră poate asigura, prin intermediul partenerilor noștri, aprovizionarea de materiale și produse necesare amenajării. Cu ajutorul partenerilor noștri locali, putem oferi și lucrări de amenajare a spațiului verde. Astfel, ne asigurăm de buna implementare a proiectului nostru și de respectarea cerințelor tehnice ale acestuia. La finalizarea lucrărilor de amenajare, îți oferim și un plan cu lucrări specifice de întreținere a spațiului tău verde.',
-    image: 'step4.jpeg',
+    image: 'step4.jpg',
   },
 ];

@@ -27,11 +27,14 @@ const Homepage = () => {
 
   return (
     <div>
-      <Navbar hidden={hidden} scrollProgress={scrollProgress} /> <HeroSection />
-      <ServicesSection />
-      <StepsSection />
-      <SustainabilitySection />
-      <AboutSection />
+      <Navbar hidden={hidden} scrollProgress={scrollProgress} />
+      <div className="h-full  bg-base-200 rounded-b-3xl md:rounded-b-4xl">
+        <HeroSection />
+        <ServicesSection />
+        <StepsSection />
+        <SustainabilitySection />
+        <AboutSection />
+      </div>
       <Footer />
     </div>
   );

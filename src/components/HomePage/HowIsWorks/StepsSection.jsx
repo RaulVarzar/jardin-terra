@@ -6,13 +6,7 @@ import {
   FromRight,
   Reveal,
 } from '../../utils/animations';
-import {
-  LayoutGroup,
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import Pricing from './Pricing';
 import { STEPS } from '../../utils/data';
 
@@ -51,14 +45,14 @@ const Sustainability = () => {
     offset: ['end end', 'end start'],
   });
 
-  const exitSteps = useTransform(scroll2, [0, 0.6], ['0%', '-12vh']);
+  const exitSteps = useTransform(scroll2, [0, 0.6], ['0%', '-15vh']);
   const exitCarousel = useTransform(scroll2, [0, 0.8], ['0%', '-25vh']);
   const exitProgressBar = useTransform(scroll2, [0, 0.25], ['100%', '0%']);
 
   const progressBar = useSpring(scrollYProgress, {
     stiffness: 100,
-    damping: 25,
-    restDelta: 0.005,
+    damping: 40,
+    restDelta: 0.001,
   });
 
   scrollYProgress.onChange((y) => {
@@ -103,7 +97,7 @@ const Sustainability = () => {
           </p>
         </Reveal>
       </motion.div>
-      <FadeIn delay={0.7} duration={0.6} repeat>
+      <FadeIn delay={0.8} duration={1}>
         <Pricing />
       </FadeIn>
       <motion.div
@@ -115,42 +109,44 @@ const Sustainability = () => {
           <motion.div
             style={{ scaleY: progressBar, opacity: exitProgressBar }}
             className={
-              'absolute top-0 -right-0 w-0.5 h-full origin-top bg-accent-content trasition duration-500 ' +
-              (finished ? ' bg-opacity-30' : ' bg-opacity-55')
+              'absolute top-0 -right-0 w-1 h-full origin-top bg-accent ' +
+              (finished ? ' bg-opacity-50' : ' bg-opacity-100')
             }
           />
-          <LayoutGroup>
-            {STEPS.map((section, i) => (
-              <FromLeft
-                key={section.title}
-                delay={i * 0.5}
-                duration={0.7}
-                style={{ y: exitSteps }}
-                className="flex flex-col items-end justify-center w-full px-3 overflow-hidden leading-tight tracking-tighter 2xl:text-right "
+          {STEPS.map((section, i) => (
+            <FromLeft
+              key={section.title}
+              delay={i * 0.5}
+              duration={0.7}
+              style={{ y: exitSteps }}
+              animate={{
+                scale:
+                  activeSection < i
+                    ? 0.9
+                    : activeSection > i
+                    ? 0.8
+                    : activeSection === i && 1,
+                opacity: activeSection < i ? 0.15 : activeSection > i ? 0.3 : 1,
+                transition: { duration: 1 },
+              }}
+              className="flex flex-col items-end justify-center w-full px-3 overflow-hidden leading-tight tracking-tighter 2xl:text-right "
+            >
+              <motion.span
+                className={
+                  'font-light text-md sm:text-xl 2xl:text-2xl text-neutral-content '
+                }
               >
-                <motion.span
-                  className={
-                    'font-light text-md sm:text-xl 2xl:text-2xl text-neutral-content transition duration-500 ' +
-                    (activeSection > i || finished
-                      ? ' opacity-5 scale-90'
-                      : ' opacity-50')
-                  }
-                >
-                  Pasul {i + 1}
-                </motion.span>
-                <motion.h3
-                  className={
-                    'text-lg leading-none md:text-xl lg:text-2xl max-w-80 xl:max-w-96 w-fit sm:text-lg 2xl:text-4xl text-neutral-content transition-all duration-500 ' +
-                    (activeSection > i || finished
-                      ? ' opacity-10 tracking-tight'
-                      : ' opacity-80 tracking-wide')
-                  }
-                >
-                  {section.title}
-                </motion.h3>
-              </FromLeft>
-            ))}
-          </LayoutGroup>
+                Pasul {i + 1}
+              </motion.span>
+              <motion.h3
+                className={
+                  'text-lg leading-none md:text-xl lg:text-2xl max-w-80 xl:max-w-96 w-fit sm:text-lg 2xl:text-4xl text-neutral-content '
+                }
+              >
+                {section.title}
+              </motion.h3>
+            </FromLeft>
+          ))}
         </motion.div>
         <motion.div
           ref={elementRef}

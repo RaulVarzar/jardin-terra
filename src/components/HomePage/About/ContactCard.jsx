@@ -9,7 +9,7 @@ const ContactCard = () => {
       <div className="flex flex-col items-center w-full gap-y-1 max-w-96">
         <Link
           to="/contact"
-          className="flex gap-3 uppercase rounded-lg bg-opacity-40 border-opacity-40 btn-block btn btn-accent group"
+          className="flex gap-3 tracking-wide uppercase rounded-lg btn-block btn btn-accent group text-base-200"
         >
           <i className="fa-regular fa-message group-hover:hidden"></i>
           Trimite-ne un mesaj

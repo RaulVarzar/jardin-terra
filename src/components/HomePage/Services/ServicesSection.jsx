@@ -11,6 +11,7 @@ import { SERVICES } from '../../utils/data';
 import { Reveal } from '../../utils/animations';
 import ProjectCard from './ProjectCard';
 import ExpandedProjectCard from './ExpandedProjectCard';
+import ProgressBar from './ProgressBar';
 
 const HorizontalScrollCarousel = ({ id }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -32,7 +33,7 @@ const HorizontalScrollCarousel = ({ id }) => {
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
-  const x = useTransform(scrollYProgress, [0.01, 1], ['15%', '-85%']);
+  const x = useTransform(scrollYProgress, [0, 1], ['15%', '-85%']);
   const reverseOpacity = useTransform(
     scrollYProgress,
     [0.05, 0.1],
@@ -82,7 +83,7 @@ const HorizontalScrollCarousel = ({ id }) => {
         >
           <motion.div
             style={{ x }}
-            className="flex gap-6 h-full max-h-[800px] bg-base-200 bg-opacity-10"
+            className="flex gap-8 h-full max-h-[800px] bg-base-200 bg-opacity-10 "
           >
             {SERVICES.map((project) => (
               <ProjectCard
@@ -96,18 +97,11 @@ const HorizontalScrollCarousel = ({ id }) => {
         </motion.div>
         <AnimatePresence>
           {isVisible && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { delay: 0.2 } }}
-              exit={{ opacity: 0 }}
-              key={isVisible}
-              className="absolute left-0 right-0 flex items-center justify-start h-1 mx-auto rounded-md max-w-80 xl:max-w-xl bg-base-content bottom-10"
-            >
-              <motion.div
-                style={{ width, opacity: opacity }}
-                className="absolute z-50 h-0.5 rounded-full bg-neutral-content"
-              ></motion.div>
-            </motion.div>
+            <ProgressBar
+              width={width}
+              opacity={opacity}
+              isVisible={isVisible}
+            />
           )}
         </AnimatePresence>
       </div>

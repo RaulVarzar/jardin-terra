@@ -6,7 +6,7 @@ const ProjectCard = ({ project, isVisible, setSelectedId }) => {
   return (
     <motion.div
       layoutId={title}
-      className="grid max-xl:grid-rows-7 xl:grid-cols-7 w-[95vw] xl:w-[85vw] 3xl:w-[80vw] max-w-7xl p2 md:p-4 xl:p-6 transition duration-300 negative-shadow cursor-pointer backdrop-brightness-135 rounded-2xl border-opacity-10 hover:border-opacity-20"
+      className="grid max-xl:grid-rows-7 xl:grid-cols-7 w-[95vw] xl:w-[85vw] 3xl:w-[80vw] max-w-7xl p2 md:p-4 xl:p-6 transition duration-300 negative-shadow cursor-pointer bg-base-300 rounded-2xl border-opacity-10 hover:border-opacity-20"
     >
       <div className="z-10 h-full overflow-hidden max-sm:row-span-2 sm:max-xl:row-span-3 xl:col-span-3 rounded-xl ">
         <Blur delay={0.2} duration={0.6} className="w-full h-full">
@@ -34,7 +34,7 @@ const ProjectCard = ({ project, isVisible, setSelectedId }) => {
         <FromLeft delay={1.2} duration={0.65} repeat parentVisible={isVisible}>
           <button
             onClick={() => setSelectedId(title)}
-            className="z-50 px-8 py-4 text-base font-light tracking-wider transition duration-300 rounded-md opacity-50 border-1 border-neutral-content text-neutral-content hover:opacity-90 hover:bg-neutral-content hover:text-base-content"
+            className="z-50 px-8 py-4 text-base font-light tracking-wider transition duration-300 rounded-md opacity-50 border-1 hover:text-base-300 border-neutral-content text-neutral-content hover:opacity-90 hover:border-accent hover:bg-accent "
           >
             Citește mai mult
           </button>
