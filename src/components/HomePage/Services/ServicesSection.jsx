@@ -38,7 +38,7 @@ const ServicesSection = ({ id, setServicesInView, colored }) => {
   const reverseOpacity = useTransform(
     scrollYProgress,
     [0.1, 0.2],
-    ["65%", "0%"]
+    ["85%", "0%"]
   );
   const scale = useTransform(scrollYProgress, [0.1, 0.2], ["100%", "70%"]);
 
