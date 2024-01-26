@@ -38,19 +38,24 @@ const Sustainability = () => {
   // TITLE ANIMATIONS
   const { scrollYProgress: sectionScrollProgress } = useScroll({
     target: sectionRef,
-    offset: ['start end', 'start  '],
+    offset: ['start end', 'start'],
   });
-  const enterHeader = useTransform(
-    sectionScrollProgress,
-    [0, 0.8],
-    ['40vh', '0vh']
-  );
   const enterTitle = useTransform(
     sectionScrollProgress,
     [0, 1],
-    ['50%', '100%']
+    ['50%', '80%']
   );
-  const exitHeader = useTransform(scrollYProgress, [0, 0.05], ['100%', '0%']);
+
+  const { scrollYProgress: contentProgress } = useScroll({
+    target: targetRef,
+    offset: ['start end', 'start start'],
+  });
+  const exitHeader = useTransform(contentProgress, [0.7, 0.9], ['100%', '0%']);
+  const letterSpacing = useTransform(
+    contentProgress,
+    [0.4, 0.7],
+    ['1px', '10px']
+  );
 
   // CHECK IS SECTION IS IN VIEW
   const sectionInView = useInView(sectionRef);
@@ -59,17 +64,23 @@ const Sustainability = () => {
     setReset(sectionInView);
   }, [sectionInView]);
 
+  const titleArray = 'SUSTENABILITATE'.split('');
+
   return (
     <div ref={sectionRef}>
       <motion.div
-        style={{ y: enterHeader, opacity: exitHeader }}
-        className="h-[65vh] sticky top-0 uppercase font-semibold grid place-content-center "
+        style={{ opacity: exitHeader }}
+        className="h-[75vh] sticky top-0 uppercase font-semibold grid place-content-center overflow-x-hidden"
       >
         <motion.h1
           style={{ scale: enterTitle, opacity: enterTitle }}
-          className="text-3xl font-bold tracking-wider text-neutral-content md:text-6xl opacity-80"
+          className="flex flex-row text-3xl font-bold tracking-wider text-neutral-content md:text-6xl opacity-80 "
         >
-          Sustenabilitate
+          {titleArray.map((letter, i) => (
+            <motion.span key={i} style={{ margin: letterSpacing }}>
+              {letter}
+            </motion.span>
+          ))}
         </motion.h1>
       </motion.div>
 

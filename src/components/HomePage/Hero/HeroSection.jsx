@@ -2,18 +2,28 @@ import ChevronButton from './ChevronButton';
 import Carousel from './HomeCarousel';
 import Header from './Header';
 import { FromRight } from '../../utils/animations';
-import { useRef } from 'react';
-import { useScroll, useTransform, motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { useScroll, useTransform, motion, useInView } from 'framer-motion';
 
-const HeroSection = () => {
+function HeroSection({ setHomeInView }) {
   const home = useRef(null);
   const { scrollYProgress } = useScroll({
     target: home,
     offset: ['start', 'end start'],
   });
 
-  const carouselY = useTransform(scrollYProgress, [0, 1], ['0%', '-15%']);
-  const headerY = useTransform(scrollYProgress, [0, 1], ['0%', '-30%']);
+  // CHECK IF THE SECTION IS IN VIEW
+  const isInView = useInView(home);
+  useEffect(() => {
+    if (!isInView) {
+      setHomeInView(false);
+      return;
+    }
+    setHomeInView(true);
+  }, [isInView]);
+
+  const carouselY = useTransform(scrollYProgress, [0, 1], ['0%', '-25%']);
+  const headerY = useTransform(scrollYProgress, [0, 1], ['0%', '-35%']);
   const chevronOpacity = useTransform(
     scrollYProgress,
     [0, 0.3],
@@ -25,7 +35,7 @@ const HeroSection = () => {
   return (
     <section
       ref={home}
-      className="relative grid items-center w-full h-screen px-4 pt-24 pb-10 mx-auto overflow-hidden grid-rows-10 gap-x-8 xl:px-12 xl:grid-cols-10 xl:grid-rows-1 snap-center 3xl:px-12"
+      className="relative grid items-center w-full h-screen px-4 pt-32 pb-10 mx-auto overflow-hidden grid-rows-10 gap-x-8 xl:px-12 xl:grid-cols-10 xl:grid-rows-1 snap-center 3xl:px-12"
     >
       <motion.div
         style={{ y: headerY, opacity: mainOpacity }}
@@ -47,13 +57,13 @@ const HeroSection = () => {
       <FromRight
         delay={0.8}
         duration={1.1}
-        style={{ y: carouselY, opacity: mainOpacity, scale: carouselScale }}
+        style={{ y: carouselY, opacity: mainOpacity, scale: 1 }}
         className="w-full h-full row-span-4 xl:col-span-5 sm:row-span-5 md:row-span-6 grow 3xl:col-span-6"
       >
         <Carousel scrollYProgress={scrollYProgress} />
       </FromRight>
     </section>
   );
-};
+}
 
 export default HeroSection;

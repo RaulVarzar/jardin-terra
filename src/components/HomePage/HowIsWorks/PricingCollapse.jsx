@@ -25,11 +25,14 @@ const PricingCollapse = () => {
   }
 
   return (
-    <div className="w-full gap-2 mx-auto join join-vertical">
+    <div className="w-full gap-2 mx-auto rounded-none join join-vertical">
       {PRICING.map((category, i) => (
         <div
           key={category.title}
-          className="border border-t-0 border-x-0 border-b-1 border-neutral-content border-opacity-15 collapse join-item "
+          className={
+            ' border-neutral-content border-opacity-15 collapse join-item ' +
+            (i < PRICING.length - 1 && ' border-b-1')
+          }
           onClick={() => handleSelect(i)}
           checked={selected === i}
         >
@@ -40,7 +43,7 @@ const PricingCollapse = () => {
               (selected !== i && ' opacity-50')
             }
           >
-            <h3 className="text-xl font-normal grow xl:text-2xl ">
+            <h3 className="text-lg font-normal sm:text-xl grow xl:text-2xl ">
               {category.title}
             </h3>
             <i
@@ -51,7 +54,9 @@ const PricingCollapse = () => {
             />
           </div>
           <div className="px-2 font-light opacity-75 md:px-6 xl:px-12 text-neutral-content xl:text-md collapse-content">
-            <p className="py-3">{category.description}</p>
+            <p className="max-md:leading-tight md:py-3">
+              {category.description}
+            </p>
           </div>
         </div>
       ))}

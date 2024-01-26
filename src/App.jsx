@@ -9,35 +9,13 @@ import ServicesPage from './components/pages/ServicesPage';
 import StartPage from './components/pages/StartPage';
 import Navbar from './components/Navbar';
 
-// function App() {
-//   const router = createBrowserRouter([
-//     {
-//       path: '/',
-//       element: <Layout />,
-//       children: [
-//         { index: true, element: <Homepage /> },
-//         { path: 'contact', element: <ContactPage /> },
-//         { path: 'start', element: <StartPage /> },
-//         {
-//           path: 'servicii',
-//           children: [
-//             {
-//               index: true,
-//               element: <ServicesPage />,
-//             },
-//           ],
-//         },
-//       ],
-//     },
-//   ]);
-
-//   return <RouterProvider router={router} />;
-// }
+import ThemeContextProvider from './store/user-context.jsx';
 
 function App() {
   const location = useLocation();
+
   return (
-    <>
+    <ThemeContextProvider>
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Layout />}>
@@ -48,7 +26,7 @@ function App() {
           <Route path="/start" element={<StartPage />} />
         </Routes>
       </AnimatePresence>
-    </>
+    </ThemeContextProvider>
   );
 }
 

@@ -3,12 +3,8 @@ import ContactCard from './ContactCard';
 
 const About = () => {
   return (
-    <div className="flex flex-col min-h-[25vh] gap-6 px-12 py-[15vh] text-neutral-content place-content-center">
-      <div className="flex flex-col items-center justify-center gap-6 grow">
-        <div className="w-full max-w-7xl">
-          <ContactCard />
-        </div>
-      </div>
+    <div className="flex flex-col items-center justify-center pt-[10vh] px-4 md:px-0 gap-6 ">
+      <ContactCard />
     </div>
   );
 };

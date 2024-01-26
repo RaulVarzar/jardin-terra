@@ -18,7 +18,7 @@ const Card = ({ item }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['0.2 1', '0.8 1'],
+    offset: ['0.2 1', '1 1'],
   });
 
   const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
@@ -45,7 +45,7 @@ const Card = ({ item }) => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center w-full max-w-5xl gap-10 mx-auto h-fit">
+    <div className="flex flex-col items-center justify-center w-full max-w-5xl gap-4 mx-auto md:gap-10 h-fit">
       <motion.img
         ref={ref}
         style={{
@@ -67,7 +67,7 @@ const Card = ({ item }) => {
             opacity: textOpacity,
             transition: 'all 0.4s cubic-bezier(0, 0.25, 0.25,1) 0s',
           }}
-          className="max-w-2xl text-3xl font-semibold leading-tight uppercase xl:text-4xl"
+          className="max-w-2xl text-2xl font-semibold leading-tight uppercase sm:text-3xl xl:text-4xl"
         >
           {item.title}
         </motion.h3>
@@ -78,7 +78,7 @@ const Card = ({ item }) => {
             y: descriptionY,
             transition: 'all 0.7s cubic-bezier(0, 0.25, 0.25,1) 0s',
           }}
-          className="font-light tracking-wide opacity-65 text-md md:text-lg 2xl:text-2xl"
+          className="text-base font-light max-md:leading-tight md:tracking-wide opacity-65 md:text-lg 2xl:text-2xl"
         >
           {item.description}
         </motion.p>

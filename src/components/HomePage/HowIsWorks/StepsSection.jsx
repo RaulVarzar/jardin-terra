@@ -9,6 +9,7 @@ import {
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import Pricing from './Pricing';
 import { STEPS } from '../../utils/data';
+import Header from './Header';
 
 const Sustainability = () => {
   const [activeSection, setActiveSection] = useState(0);
@@ -22,22 +23,12 @@ const Sustainability = () => {
 
   const { scrollYProgress: sectionScrollProgress } = useScroll({
     target: sectionRef,
-    offset: ['start end', 'start '],
+    offset: ['start end', '0.2 1 '],
   });
   const enterSection = useTransform(
     sectionScrollProgress,
     [0.3, 1],
     ['150px', '0px']
-  );
-  const enterHeader = useTransform(
-    sectionScrollProgress,
-    [0, 1],
-    ['85%', '100%']
-  );
-  const enterHeaderY = useTransform(
-    sectionScrollProgress,
-    [0, 0.5],
-    ['10vh', '0vh']
   );
 
   const { scrollYProgress: scroll2 } = useScroll({
@@ -72,31 +63,7 @@ const Sustainability = () => {
       ref={sectionRef}
       className="relative flex flex-col justify-center h-fit text-accent"
     >
-      <motion.div
-        style={{ scale: enterHeader, y: enterHeaderY, opacity: enterHeader }}
-        className="flex flex-col items-center max-w-4xl gap-6 mx-auto mt-[15vh] pb-12 text-center  2xl:max-w-5xl text-neutral-content"
-      >
-        <Reveal delay={0.3} duration={0.8}>
-          <h3 className="text-4xl font-bold tracking-wider uppercase xl:text-5xl">
-            Abordarea noastră
-          </h3>
-        </Reveal>
-        <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          transition={{ delay: 1, duration: 1, ease: 'easeInOut' }}
-          className="h-2 mx-auto rounded-md w-36 bg-secondary"
-        ></motion.div>
-        <Reveal delay={0.5} duration={0.8}>
-          <p className="pt-2 text-sm font-light leading-snug tracking-wide opacity-50 xl:text-md">
-            Înainte de a trece la lopată și săpăligă, analizăm dimensiunile și
-            forma spațiului tău verde. Apoi, ascultăm cu atenție dorințele tale
-            și începem proiectarea grădinii. Suntem consultanții peisagiști pe
-            care te poți baza pentru a avea propriul tău colț de natură, în
-            armonie cu nevoile tale personale sau profesionale.
-          </p>
-        </Reveal>
-      </motion.div>
+      <Header />
       <FadeIn delay={0.8} duration={1}>
         <Pricing />
       </FadeIn>
@@ -109,7 +76,7 @@ const Sustainability = () => {
           <motion.div
             style={{ scaleY: progressBar, opacity: exitProgressBar }}
             className={
-              'absolute top-0 -right-0 w-1 h-full origin-top bg-accent ' +
+              'absolute top-0 -right-0 w-1 h-full origin-top bg-neutral-content ' +
               (finished ? ' bg-opacity-50' : ' bg-opacity-100')
             }
           />

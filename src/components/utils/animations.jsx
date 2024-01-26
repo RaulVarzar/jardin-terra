@@ -8,6 +8,7 @@ export const Reveal = ({
   duration,
   repeat,
   parentVisible,
+  offset,
 }) => {
   const ref = useRef(null);
 
@@ -28,7 +29,7 @@ export const Reveal = ({
     <div ref={ref} className="relative overflow-hidden w-fit">
       <motion.div
         variants={{
-          hidden: { opacity: 0, y: 100 },
+          hidden: { opacity: 0, y: (offset && `${offset}%`) || '100%' },
           visible: { opacity: 1, y: 0 },
         }}
         initial="hidden"
@@ -95,6 +96,7 @@ export const FromBottom = ({
   duration,
   repeat,
   parentVisible,
+  offset,
   ...props
 }) => {
   const ref = useRef(null);
@@ -111,12 +113,11 @@ export const FromBottom = ({
       mainControls.start('hidden');
     }
   }, [isInView, parentVisible]);
-
   return (
     <motion.div
       ref={ref}
       variants={{
-        hidden: { opacity: 0, y: 100 },
+        hidden: { opacity: 0, y: `${offset}%` || '100%' },
         visible: { opacity: 1, y: 0 },
       }}
       initial="hidden"
@@ -137,7 +138,7 @@ export const FromTop = ({ children, delay, duration, ...props }) => {
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: -50 },
+        hidden: { opacity: 0, y: '-200%' },
         visible: { opacity: 1, y: 0 },
       }}
       initial="hidden"
@@ -262,5 +263,22 @@ export const Blur = ({ children, delay, duration, ...props }) => {
     >
       {children}
     </motion.div>
+  );
+};
+
+export const LetterReveal = ({ children, delay, duration, offset }) => {
+  const letterArray = children.split('');
+  return (
+    <>
+      {letterArray.map((letter, i) => (
+        <Reveal
+          offset={offset || '30'}
+          delay={delay + i * 0.03}
+          duration={duration}
+        >
+          {letter === ' ' ? <div className="w-2" /> : <span>{letter}</span>}
+        </Reveal>
+      ))}
+    </>
   );
 };

@@ -47,9 +47,6 @@ const Contact = () => {
         className="flex flex-col gap-48 items-start pt-[10vh]  px-16 text-4xl lg:w-2/3 justify-stretch bg-base-100 rounded-l-4xl text-neutral-content"
       >
         <Form container={container} />
-        <Form container={container} />
-        <Form container={container} />
-        <Form container={container} />
       </div>
     </div>
   );

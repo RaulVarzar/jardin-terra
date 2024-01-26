@@ -15,10 +15,10 @@ const Footer = () => {
   const y = useTransform(scrollYProgress, [0.8, 1], ['-150vh', '0vh']);
 
   return (
-    <div className="flex justify-center py-24 overflow-hidden text-neutral-content">
+    <div className="flex justify-center overflow-hidden py-36 text-neutral-content">
       <motion.div
         style={{ opacity, y, scale }}
-        className="grid w-full grid-cols-2 max-w-8xl border-success"
+        className="grid w-full md:grid-cols-2 max-w-8xl border-success"
       >
         <div className="flex flex-col items-center justify-start px-4 py-2">
           <motion.h3 ref={ref} className="text-5xl opacity-55">
@@ -26,12 +26,12 @@ const Footer = () => {
           </motion.h3>
         </div>
         <div className="flex flex-row gap-4 px-4 py-2 font-light opacity-70">
-          <div className="flex flex-col items-center h-full text-xl justify-evenly">
+          <div className="flex flex-col items-center h-full gap-3 text-xl justify-evenly">
             <i className="fa-regular fa-envelope" />
             <i className="fa-solid fa-location-dot" />
             <i className="fa-solid fa-phone" />
           </div>
-          <span className="flex flex-col items-start h-full text-xl tracking-wide justify-evenly">
+          <span className="flex flex-col items-start h-full gap-3 text-xl tracking-wide justify-evenly">
             <p> office@jardinterra.ro</p>
             <p>Cluj-Napoca, RO</p>
             <p>0737 837 383</p>
