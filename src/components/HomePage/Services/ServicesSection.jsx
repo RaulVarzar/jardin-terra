@@ -1,19 +1,17 @@
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 import {
   useScroll,
   motion,
   useTransform,
   useInView,
   AnimatePresence,
-} from 'framer-motion';
+} from "framer-motion";
 
-import { SERVICES } from '../../utils/data';
-import { Reveal } from '../../utils/animations';
-import ProjectCard from './ProjectCard';
-import ExpandedProjectCard from './ExpandedProjectCard';
-import ProgressBar from './ProgressBar';
-
-const TITLE = 'SERVICIILE NOASTRE'.split('');
+import { SERVICES } from "../../utils/data";
+import { Reveal } from "../../utils/animations";
+import ProjectCard from "./ProjectCard";
+import ExpandedProjectCard from "./ExpandedProjectCard";
+import ProgressBar from "./ProgressBar";
 
 const ServicesSection = ({ id, setServicesInView, colored }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,24 +34,24 @@ const ServicesSection = ({ id, setServicesInView, colored }) => {
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
-  const x = useTransform(scrollYProgress, [0, 1], ['15%', '-85%']);
+  const x = useTransform(scrollYProgress, [0.2, 1], ["5%", "-100%"]);
   const reverseOpacity = useTransform(
     scrollYProgress,
-    [0.05, 0.1],
-    ['65%', '0%']
+    [0.1, 0.2],
+    ["65%", "0%"]
   );
-  const scale = useTransform(scrollYProgress, [0, 0.15], ['100%', '70%']);
+  const scale = useTransform(scrollYProgress, [0.1, 0.2], ["100%", "70%"]);
 
-  const width = useTransform(scrollYProgress, [0.15, 1], ['0%', '100%']);
+  const width = useTransform(scrollYProgress, [0.2, 1], ["0%", "100%"]);
 
   const { scrollYProgress: scroll2 } = useScroll({
     target: sectionRef,
-    offset: ['start start', 'start end'],
+    offset: ["start start", "start end"],
   });
 
-  const carouselOpacity = useTransform(scroll2, [0.1, 1], ['100%', '0%']);
-  const carouselScale = useTransform(scroll2, [0.1, 1], ['100%', '80%']);
-  const titleY = useTransform(scroll2, [0, 0.7], ['0%', '200%']);
+  const carouselOpacity = useTransform(scroll2, [0.1, 1], ["100%", "0%"]);
+  const carouselScale = useTransform(scroll2, [0.1, 1], ["100%", "80%"]);
+  const titleY = useTransform(scroll2, [0, 0.7], ["0%", "250%"]);
 
   return (
     <div ref={targetRef} id={id} className=" h-[400vh] relative">
@@ -61,22 +59,32 @@ const ServicesSection = ({ id, setServicesInView, colored }) => {
         ref={sectionRef}
         className="sticky top-0 flex items-center w-full h-screen overflow-hidden"
       >
-        <motion.h3
+        <motion.div
           style={{
             opacity: reverseOpacity,
             scale,
             y: titleY,
           }}
-          ref={ref}
-          className="absolute gap-0.5 inset-x-0 left-0 right-0 flex ml-12 text-5xl font-bold leading-none xl:ml-24 w-fit xl:text-7xl text-neutral-content"
+          className="flex flex-col justify-start w-full gap-4 md:pl-48"
         >
-          {TITLE.map((letter, i) => (
-            <Reveal offset="40" repeat delay={0.4 + i * 0.07} duration={0.4}>
-              {letter === ' ' ? <div className="w-4" /> : <span>{letter}</span>}
-            </Reveal>
-          ))}
-        </motion.h3>
-
+          <Reveal offset="40" delay={0.2} duration={0.7}>
+            <motion.h3
+              ref={ref}
+              className="text-5xl font-bold leading-none whitespace-nowrap xl:text-7xl text-neutral-content"
+            >
+              SERVICIILE NOASTRE
+            </motion.h3>
+          </Reveal>
+          <Reveal offset="40" delay={0.5} duration={0.7}>
+            <span className="text-md text-balance opacity-80 md:tracking-wide">
+              De la grădini decorative, grădini de legume și fructe, spații
+              verzi publice sau locuri de joacă pentru copii, la Jardin Terra
+              îți stăm la dispoziție cu o gamă largă de opțiuni. Oferim servicii
+              de planificare, proiectare și reabilitare spații verzi, indiferent
+              de destinație sau suprafață.
+            </span>
+          </Reveal>
+        </motion.div>
         <motion.div
           style={{ opacity: carouselOpacity, scale: carouselScale }}
           className="flex items-center h-4/5"

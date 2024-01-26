@@ -1,16 +1,16 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const Form = ({ container }) => {
   function handleForm(e) {
     e.preventDefault();
-    console.log('sent');
+    console.log("sent");
   }
 
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start end', '1.4 1'],
+    offset: ["start end", "1.4 1"],
   });
 
   const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
@@ -19,7 +19,7 @@ const Form = ({ container }) => {
     <motion.form
       style={{ scale, opacity: scale }}
       onSubmit={handleForm}
-      className="w-full max-w-6xl px-2 mt-10 lg:px-24 2xl:px-36"
+      className="w-full max-w-6xl px-2 mt-10 "
     >
       <motion.div ref={ref} className="grid gap-6 sm:grid-cols-2">
         <div className="relative z-0">
@@ -60,7 +60,7 @@ const Form = ({ container }) => {
         type="submit"
         className="flex items-center gap-6 px-8 py-3 mt-5 text-lg transition duration-300 rounded-md group border-neutral-content border-1 text-neutral-content opacity-60 hover:opacity-100"
       >
-        Send Message
+        Trimite
         <i className="transition-transform duration-300 fa-regular fa-paper-plane group-hover:rotate-45"></i>
       </motion.button>
     </motion.form>

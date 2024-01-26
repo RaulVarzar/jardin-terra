@@ -1,5 +1,5 @@
-import { motion, useAnimation, useInView } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export const Reveal = ({
   // orientation can be vertical or horizontal
@@ -19,9 +19,9 @@ export const Reveal = ({
 
   useEffect(() => {
     if (isInView && parentInView) {
-      mainControls.start('visible');
+      mainControls.start("visible");
     } else if (!parentInView) {
-      mainControls.start('hidden');
+      mainControls.start("hidden");
     }
   }, [isInView, parentVisible]);
 
@@ -29,7 +29,7 @@ export const Reveal = ({
     <div ref={ref} className="relative overflow-hidden w-fit">
       <motion.div
         variants={{
-          hidden: { opacity: 0, y: (offset && `${offset}%`) || '100%' },
+          hidden: { opacity: 0, y: (offset && `${offset}%`) || "100%" },
           visible: { opacity: 1, y: 0 },
         }}
         initial="hidden"
@@ -37,7 +37,7 @@ export const Reveal = ({
         transition={{
           duration: duration || 0.4,
           delay: delay,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }}
       >
         {children}
@@ -63,9 +63,9 @@ export const FromLeft = ({
 
   useEffect(() => {
     if (isInView && parentInView) {
-      mainControls.start('visible');
+      mainControls.start("visible");
     } else if (!parentInView) {
-      mainControls.start('hidden');
+      mainControls.start("hidden");
     }
   }, [isInView, parentVisible]);
 
@@ -81,7 +81,7 @@ export const FromLeft = ({
       transition={{
         duration: duration || 0.3,
         delay: delay || 0,
-        ease: 'easeInOut',
+        ease: "easeInOut",
       }}
       {...props}
     >
@@ -108,16 +108,16 @@ export const FromBottom = ({
 
   useEffect(() => {
     if (isInView && parentInView) {
-      mainControls.start('visible');
+      mainControls.start("visible");
     } else if (!parentInView) {
-      mainControls.start('hidden');
+      mainControls.start("hidden");
     }
   }, [isInView, parentVisible]);
   return (
     <motion.div
       ref={ref}
       variants={{
-        hidden: { opacity: 0, y: `${offset}%` || '100%' },
+        hidden: { opacity: 0, y: `${offset}%` || "100%" },
         visible: { opacity: 1, y: 0 },
       }}
       initial="hidden"
@@ -125,7 +125,7 @@ export const FromBottom = ({
       transition={{
         duration: duration || 0.3,
         delay: delay || 0,
-        ease: 'easeInOut',
+        ease: "easeInOut",
       }}
       {...props}
     >
@@ -138,7 +138,7 @@ export const FromTop = ({ children, delay, duration, ...props }) => {
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: '-200%' },
+        hidden: { opacity: 0, y: "-200%" },
         visible: { opacity: 1, y: 0 },
       }}
       initial="hidden"
@@ -146,7 +146,7 @@ export const FromTop = ({ children, delay, duration, ...props }) => {
       transition={{
         duration: duration || 0.3,
         delay: delay || 0,
-        ease: 'easeInOut',
+        ease: "easeInOut",
       }}
       {...props}
     >
@@ -174,9 +174,9 @@ export const FromRight = ({
 
   useEffect(() => {
     if (isInView && parentInView) {
-      mainControls.start('visible');
+      mainControls.start("visible");
     } else if (!parentInView) {
-      mainControls.start('hidden');
+      mainControls.start("hidden");
     }
   }, [isInView, parentVisible]);
 
@@ -184,7 +184,7 @@ export const FromRight = ({
     <motion.div
       ref={ref}
       variants={{
-        hidden: { opacity: 0, x: `${offset}%` || '50%' },
+        hidden: { opacity: 0, x: `${offset}%` || "50%" },
         visible: { opacity: 1, x: 0 },
       }}
       initial="hidden"
@@ -192,7 +192,7 @@ export const FromRight = ({
       transition={{
         duration: duration || 0.3,
         delay: delay || 0,
-        ease: 'easeInOut',
+        ease: "easeInOut",
       }}
       {...props}
     >
@@ -218,9 +218,9 @@ export const FadeIn = ({
 
   useEffect(() => {
     if (isInView && parentInView) {
-      mainControls.start('visible');
+      mainControls.start("visible");
     } else if (!parentInView) {
-      mainControls.start('hidden');
+      mainControls.start("hidden");
     }
   }, [isInView, parentVisible]);
 
@@ -236,7 +236,7 @@ export const FadeIn = ({
       transition={{
         duration: duration || 0.3,
         delay: delay || 0,
-        ease: 'easeInOut',
+        ease: "easeInOut",
       }}
       {...props}
     >
@@ -249,15 +249,15 @@ export const Blur = ({ children, delay, duration, ...props }) => {
   return (
     <motion.div
       variants={{
-        hidden: { filter: 'blur(10px)' },
-        visible: { filter: 'blur(0px)' },
+        hidden: { filter: "blur(10px)" },
+        visible: { filter: "blur(0px)" },
       }}
       initial="hidden"
       whileInView="visible"
       transition={{
         duration: duration || 0.4,
         delay: delay,
-        ease: 'easeInOut',
+        ease: "easeInOut",
       }}
       {...props}
     >
@@ -266,17 +266,17 @@ export const Blur = ({ children, delay, duration, ...props }) => {
   );
 };
 
-export const LetterReveal = ({ children, delay, duration, offset }) => {
-  const letterArray = children.split('');
+export const WordReveal = ({ children, delay, duration, offset }) => {
+  const wordArray = children.split(" ");
   return (
     <>
-      {letterArray.map((letter, i) => (
+      {wordArray.map((word, i) => (
         <Reveal
-          offset={offset || '30'}
-          delay={delay + i * 0.03}
+          offset={offset || "30"}
+          delay={delay + i * 0.2}
           duration={duration}
         >
-          {letter === ' ' ? <div className="w-2" /> : <span>{letter}</span>}
+          <span className="mx-0.5">{word}</span>
         </Reveal>
       ))}
     </>

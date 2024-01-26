@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const ProgressBar = ({ isVisible, width }) => {
   return (
@@ -7,7 +7,7 @@ const ProgressBar = ({ isVisible, width }) => {
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
       key={isVisible}
-      className="absolute left-0 right-0 flex items-center justify-start h-2 mx-auto rounded-md bg-base-300 max-w-80 xl:max-w-xl bottom-10"
+      className="absolute left-0 right-0 flex items-center justify-start h-2 mx-auto bg-opacity-50 rounded-md bg-base-300 max-w-80 xl:max-w-xl bottom-10"
     >
       <motion.div
         style={{ width }}

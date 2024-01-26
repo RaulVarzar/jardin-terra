@@ -1,34 +1,34 @@
-import { Link, NavLink } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import logo from '/logo.png';
-import { FadeIn, FromTop } from './utils/animations';
-import HumburgerButton from './HumburgerButton';
-import { useEffect, useState } from 'react';
+import { Link, NavLink } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import logo from "/logo.png";
+import { FadeIn, FromTop } from "./utils/animations";
+import HumburgerButton from "./HumburgerButton";
+import { useEffect, useState } from "react";
 
 const imgVariants = {
   visible: {
-    opacity: '100%',
+    opacity: "100%",
     scale: 1,
     x: 40,
-    transition: { duration: 0.6, ease: 'easeInOut' },
+    transition: { duration: 0.6, ease: "easeInOut" },
   },
   hidden: {
-    opacity: '30%',
+    opacity: "30%",
     scale: 0.8,
     x: 0,
-    transition: { duration: 0.4, ease: 'easeInOut' },
+    transition: { duration: 0.4, ease: "easeInOut" },
   },
-  hovering: { opacity: '100%', scale: 0.8 },
+  hovering: { opacity: "100%", scale: 0.8 },
 };
 
 const menuVariants = {
   hidden: {
-    x: '150%',
-    transition: { duration: 0.6, ease: 'easeInOut' },
+    x: "150%",
+    transition: { duration: 0.6, ease: "easeInOut" },
   },
   visible: {
     x: 0,
-    transition: { duration: 0.4, ease: 'easeInOut' },
+    transition: { duration: 0.4, ease: "easeInOut" },
   },
 };
 
@@ -47,7 +47,7 @@ const Navbar = ({ hidden, scrollProgress }) => {
     <>
       <motion.nav
         className={
-          'fixed top-0 left-0 right-0 z-50 flex justify-center mx-auto overflow-hidden border-neutral-content transition-all uppercase duration-200 '
+          "fixed top-0 left-0 right-0 z-50 flex justify-center mx-auto overflow-hidden border-neutral-content transition-all uppercase duration-200 "
         }
       >
         <div className="flex flex-row justify-between w-full px-6 py-3 border-b-2 md:hidden border-neutral-content backdrop-brightness-50 backdrop-blur-lg border-opacity-10">
@@ -67,7 +67,7 @@ const Navbar = ({ hidden, scrollProgress }) => {
                 <motion.img
                   variants={imgVariants}
                   animate={
-                    hidden || scrollProgress > 100 ? 'hidden' : 'visible'
+                    hidden || scrollProgress > 100 ? "hidden" : "visible"
                   }
                   whileHover="hovering"
                   src={logo}
@@ -81,10 +81,9 @@ const Navbar = ({ hidden, scrollProgress }) => {
           <FromTop
             delay={0.3}
             duration={1.6}
-            layout
             className={
-              'flex flex-row py-0 overflow-hidden font-semibold tracking-wide border-2  w-fit h-fit text-base-300 group lg:text-base rounded-xl border-neutral-content ' +
-              (menuOpen && ' bg-neutral-content')
+              "flex flex-row py-0 overflow-hidden font-semibold tracking-wide border-2  w-fit h-fit text-base-300 group lg:text-base rounded-xl border-neutral-content " +
+              (menuOpen && " bg-neutral-content")
             }
           >
             <AnimatePresence mode="sync">
@@ -93,21 +92,21 @@ const Navbar = ({ hidden, scrollProgress }) => {
                   key={menuOpen}
                   layout
                   variants={menuVariants}
-                  animate={!menuOpen ? 'hidden' : 'visible'}
+                  animate={!menuOpen ? "hidden" : "visible"}
                   className="flex flex-row py-4 "
                 >
                   <NavLink
                     to="#servicii"
-                    className="flex items-center h-full px-5 transition duration-300 cursor-pointer text-nowrap xl:px-10 2xl:px-16 opacity-80 hover:bg-neutral-content active:scale-95 hover:opacity-100"
+                    className="flex items-center h-full px-5 transition duration-300 cursor-pointer text-nowrap xl:px-10 2xl:px-16 opacity-65 active:scale-90 hover:opacity-100"
                   >
                     Servicii
                   </NavLink>
                   <NavLink to="#mod-de-lucru">
-                    <span className="flex items-center h-full px-5 transition duration-300 cursor-pointer text-nowrap xl:px-10 2xl:px-16 opacity-80 hover:bg-neutral-content active:scale-95 hover:opacity-100">
+                    <span className="flex items-center h-full px-5 transition duration-300 cursor-pointer text-nowrap xl:px-10 2xl:px-16 opacity-65 active:scale-90 hover:opacity-100">
                       Mod de lucru
                     </span>
                   </NavLink>
-                  <span className="flex items-center h-full px-5 transition duration-300 cursor-pointer xl:px-10 2xl:px-16 opacity-80 hover:bg-neutral-content active:scale-95 hover:opacity-100">
+                  <span className="flex items-center h-full px-5 transition duration-300 cursor-pointer xl:px-10 2xl:px-16 opacity-65 active:scale-90 hover:opacity-100">
                     Sustenabilitate
                   </span>
                 </motion.div>
@@ -116,7 +115,6 @@ const Navbar = ({ hidden, scrollProgress }) => {
             <AnimatePresence mode="sync">
               {scrollProgress > 100 && (
                 <HumburgerButton
-                  layout
                   key={hidden}
                   handleClick={() => setMenuOpen(!menuOpen)}
                   checked={menuOpen}

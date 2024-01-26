@@ -1,15 +1,15 @@
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 import {
   FadeIn,
   FromBottom,
   FromLeft,
   FromRight,
   Reveal,
-} from '../../utils/animations';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import Pricing from './Pricing';
-import { STEPS } from '../../utils/data';
-import Header from './Header';
+} from "../../utils/animations";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import Pricing from "./Pricing";
+import { STEPS } from "../../utils/data";
+import Header from "./Header";
 
 const Sustainability = () => {
   const [activeSection, setActiveSection] = useState(0);
@@ -23,22 +23,22 @@ const Sustainability = () => {
 
   const { scrollYProgress: sectionScrollProgress } = useScroll({
     target: sectionRef,
-    offset: ['start end', '0.2 1 '],
+    offset: ["start end", "0.2 1 "],
   });
   const enterSection = useTransform(
     sectionScrollProgress,
     [0.3, 1],
-    ['150px', '0px']
+    ["150px", "0px"]
   );
 
   const { scrollYProgress: scroll2 } = useScroll({
     target: elementRef,
-    offset: ['end end', 'end start'],
+    offset: ["end end", "end start"],
   });
 
-  const exitSteps = useTransform(scroll2, [0, 0.6], ['0%', '-15vh']);
-  const exitCarousel = useTransform(scroll2, [0, 0.8], ['0%', '-25vh']);
-  const exitProgressBar = useTransform(scroll2, [0, 0.25], ['100%', '0%']);
+  const exitSteps = useTransform(scroll2, [0, 0.6], ["0%", "-15vh"]);
+  const exitCarousel = useTransform(scroll2, [0, 0.8], ["0%", "-25vh"]);
+  const exitProgressBar = useTransform(scroll2, [0, 0.25], ["100%", "0%"]);
 
   const progressBar = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -76,8 +76,8 @@ const Sustainability = () => {
           <motion.div
             style={{ scaleY: progressBar, opacity: exitProgressBar }}
             className={
-              'absolute top-0 -right-0 w-1 h-full origin-top bg-neutral-content ' +
-              (finished ? ' bg-opacity-50' : ' bg-opacity-100')
+              "absolute top-0 -right-0 w-1 h-full origin-top bg-neutral-content " +
+              (finished ? " bg-opacity-50" : " bg-opacity-100")
             }
           />
           {STEPS.map((section, i) => (
@@ -96,18 +96,18 @@ const Sustainability = () => {
                 opacity: activeSection < i ? 0.15 : activeSection > i ? 0.3 : 1,
                 transition: { duration: 1 },
               }}
-              className="flex flex-col items-end justify-center w-full px-3 overflow-hidden leading-tight tracking-tighter 2xl:text-right "
+              className="flex flex-col items-end justify-center w-full px-3 overflow-hidden leading-tight tracking-tighter text-right 2xl:text-right "
             >
               <motion.span
                 className={
-                  'font-light text-md sm:text-xl 2xl:text-2xl text-neutral-content '
+                  "font-light text-md sm:text-xl 2xl:text-2xl text-neutral-content "
                 }
               >
                 Pasul {i + 1}
               </motion.span>
               <motion.h3
                 className={
-                  'text-lg leading-none md:text-xl lg:text-2xl max-w-80 xl:max-w-96 w-fit sm:text-lg 2xl:text-4xl text-neutral-content '
+                  "text-lg leading-none md:text-xl lg:text-2xl max-w-80 xl:max-w-96 w-fit sm:text-lg 2xl:text-4xl text-neutral-content "
                 }
               >
                 {section.title}
@@ -124,9 +124,9 @@ const Sustainability = () => {
             <motion.div
               key={step.title}
               className={
-                'flex flex-row transition duration-1000 items-center justify-center w-full gap-6 px-4 py-16 min-h-[40vh] overflow-hidden border-neutral-content border-opacity-15 max-w-8xl xl:py-12 sm:px-8 xl:px-12 bg-base-20 h-fit ' +
-                (activeSection !== i && ' opacity-30 ') +
-                ((activeSection > i || activeSection < i) && ' scale-95')
+                "flex flex-row transition duration-1000 items-center justify-center w-full gap-6 px-4 py-16 min-h-[40vh] overflow-hidden border-neutral-content border-opacity-15 max-w-8xl xl:py-12 sm:px-8 xl:px-12 bg-base-20 h-fit " +
+                (activeSection !== i && " opacity-30 ") +
+                ((activeSection > i || activeSection < i) && " scale-95")
               }
             >
               <FromBottom delay={0.2} duration={1}>

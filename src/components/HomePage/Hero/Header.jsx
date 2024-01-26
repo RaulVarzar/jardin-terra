@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
-import { FromLeft, LetterReveal, Reveal } from '../../utils/animations.jsx';
-import { motion } from 'framer-motion';
-import Socials from './Socials.jsx';
+import { Link } from "react-router-dom";
+import { FromLeft, WordReveal, Reveal } from "../../utils/animations.jsx";
+import { motion } from "framer-motion";
+import Socials from "./Socials.jsx";
 
-const HEADER = 'GRĂDINII TALE'.split('');
+const HEADER = "GRĂDINII TALE".split("");
 
 const Header = () => {
   return (
@@ -24,9 +24,9 @@ const Header = () => {
           </div>
           {/* <Reveal delay={1} duration={1.2}> */}
           <h3 className="flex flex-wrap max-w-2xl font-light leading-none opacity-50 text-neutral-content text-md sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
-            <LetterReveal offset="65" delay={1.8} duration={0.5}>
+            <WordReveal offset="65" delay={1.8} duration={0.5}>
               Proiectăm spații verzi în armonie cu natura
-            </LetterReveal>
+            </WordReveal>
           </h3>
           {/* </Reveal> */}
         </div>
@@ -34,7 +34,7 @@ const Header = () => {
           <FromLeft delay={1.4} duration={0.7}>
             <Link
               to="/contact"
-              className="py-2 pl-6 pr-2 text-sm tracking-wider xl:pl-8 xl:pr-4 xl:py-4 border-opacity-10 text-neutral-content hover:border-opacity-15 hover:bg-primary rounded-xl xl:text-md bg-base-300 mybutton hover:text-stone-100 xl:hover:pl-10 hover:pl-8 hover:backdrop-brightness-200"
+              className="py-2 pl-4 pr-2 text-sm tracking-wider xl:pl-6 xl:pr-4 xl:py-4 border-opacity-10 text-neutral-content hover:border-opacity-15 hover:bg-primary rounded-xl xl:text-md bg-base-300 mybutton hover:text-stone-100 xl:hover:pl-10 hover:pl-8 hover:backdrop-brightness-200"
             >
               Începe un proiect
               <span>

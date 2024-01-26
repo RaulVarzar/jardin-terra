@@ -1,17 +1,16 @@
-import { Blur, FromLeft, Reveal } from '../../utils/animations';
-import { motion } from 'framer-motion';
-import ExpandedProjectCard from './ExpandedProjectCard';
+import { Blur, FromLeft, Reveal } from "../../utils/animations";
+import { motion } from "framer-motion";
 
 const ProjectCard = ({ project, isVisible, colored, setSelectedId }) => {
-  const { title, photo, description } = project;
+  const { title, photo, descriptions } = project;
 
   return (
     <>
       <motion.div
         layoutId={project}
         className={
-          'grid max-xl:grid-rows-7 xl:grid-cols-7 w-[95vw] transition duration-700  h-full xl:w-[85vw] 3xl:w-[80vw] max-w-7xl p-2 md:p-4 xl:p-6 negative-shadow cursor-pointer rounded-2xl border-opacity-10 hover:border-opacity-20 ' +
-          (colored ? ' bg-primary' : ' bg-base-300 ')
+          "grid max-xl:grid-rows-7 xl:grid-cols-7 w-[95vw] transition duration-700  h-full xl:w-[85vw] 3xl:w-[80vw] max-w-7xl p-2 md:p-4 xl:p-6 negative-shadow cursor-pointer rounded-2xl border-opacity-10 hover:border-opacity-20 " +
+          (colored ? " bg-primary" : " bg-base-300 ")
         }
       >
         <div className="z-10 h-full overflow-hidden max-sm:row-span-2 sm:max-xl:row-span-3 xl:col-span-3 rounded-xl ">
@@ -38,7 +37,7 @@ const ProjectCard = ({ project, isVisible, colored, setSelectedId }) => {
               duration={0.6}
             >
               <h3 className="text-sm font-light leading-tight tracking-wide sm:text-base text-balance xl:text-md opacity-70 text-neutral-content">
-                {description}
+                {descriptions[0].content}
               </h3>
             </FromLeft>
           </div>
