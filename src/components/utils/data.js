@@ -232,7 +232,7 @@ export const SERVICES = [
             "Pentru că vizăm un acoperiș sănătos și atractiv, plantele trebuie să fie adaptate la condițiile locale de mediu, precum climatul, nivelul de expunere la soare și vânt, precum și tipul de sol disponibil pentru acoperiș",
         },
         {
-          title: "Designul stratului de so",
+          title: "Designul stratului de sol",
           content:
             "Acesta trebuie să fie adecvat pentru plantele selectate și să ofere drenaj pentru prevenirea scurgerilor de apă. În plus, este important să luăm în considerare greutatea totală a solului și a apei și să luăm măsuri adecvate pentru a preîntâmpina alunecările de teren și a menține acoperișul verde în siguranță.",
         },

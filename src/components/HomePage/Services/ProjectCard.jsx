@@ -25,28 +25,18 @@ const ProjectCard = ({ project, isVisible, colored, setSelectedId }) => {
 
         <div className="z-20 flex flex-col justify-center gap-6 px-3 py-8 mx-auto overflow-auto xl:gap-8 md:px-5 xl:px-12 max-sm:row-span-5 sm:max-xl:row-span-4 xl:col-span-4 ">
           <div className="flex flex-col gap-1 xl:gap-2">
-            <Reveal delay={0.3} repeat parentVisible={isVisible} duration={0.7}>
+            <Reveal delay={0.3} repeat parentVisible={isVisible} duration={1.2}>
               <h1 className="p-0 pb-4 my-0 text-2xl font-semibold leading-none l h-fit md:text-4xl xl:text-6xl text-neutral-content">
                 {title}
               </h1>
             </Reveal>
-            <FromLeft
-              repeat
-              parentVisible={isVisible}
-              delay={0.9}
-              duration={0.6}
-            >
+            <FromLeft repeat parentVisible={isVisible} delay={0.9} duration={1}>
               <h3 className="text-sm font-light leading-tight tracking-wide sm:text-base text-balance xl:text-md opacity-70 text-neutral-content">
                 {descriptions[0].content}
               </h3>
             </FromLeft>
           </div>
-          <FromLeft
-            delay={1.2}
-            duration={0.65}
-            repeat
-            parentVisible={isVisible}
-          >
+          <FromLeft delay={1.2} duration={0.8} repeat parentVisible={isVisible}>
             <button
               onClick={() => setSelectedId(project)}
               className="z-50 px-4 py-2 text-base font-light tracking-wider transition duration-300 rounded-md opacity-50 mybutton md:px-6 md:py-3 border-1 border-neutral-content text-neutral-content hover:opacity-100 "

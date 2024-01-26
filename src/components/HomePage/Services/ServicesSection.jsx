@@ -40,7 +40,7 @@ const ServicesSection = ({ id, setServicesInView, colored }) => {
     [0.1, 0.2],
     ["85%", "0%"]
   );
-  const scale = useTransform(scrollYProgress, [0.1, 0.2], ["100%", "70%"]);
+  const scale = useTransform(scrollYProgress, [0.1, 0.2], ["100%", "80%"]);
 
   const width = useTransform(scrollYProgress, [0.2, 1], ["0%", "100%"]);
 
@@ -76,7 +76,7 @@ const ServicesSection = ({ id, setServicesInView, colored }) => {
             </motion.h3>
           </Reveal>
           <Reveal offset="40" delay={0.5} duration={0.7}>
-            <span className="text-md text-balance opacity-80 md:tracking-wide">
+            <span className="leading-none text-md text-balance opacity-80 md:tracking-wide">
               De la grădini decorative, grădini de legume și fructe, spații
               verzi publice sau locuri de joacă pentru copii, la Jardin Terra
               îți stăm la dispoziție cu o gamă largă de opțiuni. Oferim servicii

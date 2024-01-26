@@ -132,7 +132,7 @@ const Sustainability = () => {
               <FromBottom delay={0.2} duration={1}>
                 <motion.img
                   src={`/images/how-it-works/${step.image}`}
-                  className="object-cover rounded-xl max-w-96 max-h-96 2xl:max-w-[400px] z-50"
+                  className="object-cover rounded-xl max-w-96 max-h-96 2xl:max-w-[400px] aspect-square z-50"
                   alt={step.image}
                 />
               </FromBottom>
