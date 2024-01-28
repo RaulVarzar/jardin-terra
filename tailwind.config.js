@@ -26,6 +26,7 @@ export default {
         135: '1.35',
       },
       fontSize: {
+        xs: '0.85rem',
         sm: '1rem',
         base: '1.1rem',
         md: '1.23rem',

@@ -30,10 +30,10 @@ const Header = () => {
     <motion.div
       ref={headerRef}
       style={{ scale: enterHeader, y: enterHeaderY, opacity: enterHeader }}
-      className="flex flex-col items-center max-w-4xl gap-6 mx-auto mt-[15vh] pb-12 text-center  2xl:max-w-5xl text-neutral-content"
+      className="flex flex-col items-center max-w-4xl gap-6 mx-auto mt-[15vh] pb-12 text-center px-6 2xl:max-w-5xl text-neutral-content"
     >
       <Reveal delay={0.3} duration={0.8}>
-        <h3 className="text-4xl font-bold tracking-wider uppercase xl:text-5xl">
+        <h3 className="text-3xl font-bold tracking-wider uppercase sm:text-4xl xl:text-5xl">
           Modul de lucru
         </h3>
       </Reveal>

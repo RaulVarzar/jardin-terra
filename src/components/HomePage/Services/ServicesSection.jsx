@@ -1,17 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 import {
   useScroll,
   motion,
   useTransform,
   useInView,
   AnimatePresence,
-} from "framer-motion";
+} from 'framer-motion';
 
-import { SERVICES } from "../../utils/data";
-import { Reveal } from "../../utils/animations";
-import ProjectCard from "./ProjectCard";
-import ExpandedProjectCard from "./ExpandedProjectCard";
-import ProgressBar from "./ProgressBar";
+import { SERVICES } from '../../utils/data';
+import { Reveal } from '../../utils/animations';
+import ProjectCard from './ProjectCard';
+import ExpandedProjectCard from './ExpandedProjectCard';
+import ProgressBar from './ProgressBar';
 
 const ServicesSection = ({ id, setServicesInView, colored }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,24 +34,24 @@ const ServicesSection = ({ id, setServicesInView, colored }) => {
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
-  const x = useTransform(scrollYProgress, [0.2, 1], ["5%", "-100%"]);
+  const x = useTransform(scrollYProgress, [0.2, 1], ['5%', '-100%']);
   const reverseOpacity = useTransform(
     scrollYProgress,
     [0.1, 0.2],
-    ["85%", "0%"]
+    ['90%', '0%']
   );
-  const scale = useTransform(scrollYProgress, [0.1, 0.2], ["100%", "80%"]);
+  const scale = useTransform(scrollYProgress, [0.1, 0.2], ['100%', '80%']);
 
-  const width = useTransform(scrollYProgress, [0.2, 1], ["0%", "100%"]);
+  const width = useTransform(scrollYProgress, [0.2, 1], ['0%', '100%']);
 
   const { scrollYProgress: scroll2 } = useScroll({
     target: sectionRef,
-    offset: ["start start", "start end"],
+    offset: ['start start', 'start end'],
   });
 
-  const carouselOpacity = useTransform(scroll2, [0.1, 1], ["100%", "0%"]);
-  const carouselScale = useTransform(scroll2, [0.1, 1], ["100%", "80%"]);
-  const titleY = useTransform(scroll2, [0, 0.7], ["0%", "250%"]);
+  const carouselOpacity = useTransform(scroll2, [0.1, 1], ['100%', '0%']);
+  const carouselScale = useTransform(scroll2, [0.1, 1], ['100%', '80%']);
+  const titleY = useTransform(scroll2, [0, 0.7], ['0%', '250%']);
 
   return (
     <div ref={targetRef} id={id} className=" h-[400vh] relative">
@@ -65,18 +65,18 @@ const ServicesSection = ({ id, setServicesInView, colored }) => {
             scale,
             y: titleY,
           }}
-          className="flex flex-col justify-start w-full gap-4 md:pl-48"
+          className="flex flex-col justify-start w-full gap-4 pl-4 md:pl-48"
         >
           <Reveal offset="40" delay={0.2} duration={0.7}>
             <motion.h3
               ref={ref}
-              className="text-5xl font-bold leading-none whitespace-nowrap xl:text-7xl text-neutral-content"
+              className="text-3xl font-bold leading-none md:text-3xl lg:text-4xl whitespace-nowrap xl:text-7xl text-neutral-content"
             >
               SERVICIILE NOASTRE
             </motion.h3>
           </Reveal>
           <Reveal offset="40" delay={0.5} duration={0.7}>
-            <span className="leading-none text-md text-balance opacity-80 md:tracking-wide">
+            <span className="text-base leading-none md:text-md md:leading-tight text-balance md:tracking-wide opacity-60">
               De la grădini decorative, grădini de legume și fructe, spații
               verzi publice sau locuri de joacă pentru copii, la Jardin Terra
               îți stăm la dispoziție cu o gamă largă de opțiuni. Oferim servicii

@@ -1,15 +1,16 @@
-import { useRef, useState } from "react";
+import { useRef, useState } from 'react';
 import {
   FadeIn,
   FromBottom,
   FromLeft,
   FromRight,
   Reveal,
-} from "../../utils/animations";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import Pricing from "./Pricing";
-import { STEPS } from "../../utils/data";
-import Header from "./Header";
+} from '../../utils/animations';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import Pricing from './Pricing';
+import { STEPS } from '../../utils/data';
+import Header from './Header';
+import Card from './Card';
 
 const Sustainability = () => {
   const [activeSection, setActiveSection] = useState(0);
@@ -23,22 +24,22 @@ const Sustainability = () => {
 
   const { scrollYProgress: sectionScrollProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "0.2 1 "],
+    offset: ['start end', '0.2 1 '],
   });
   const enterSection = useTransform(
     sectionScrollProgress,
     [0.3, 1],
-    ["150px", "0px"]
+    ['150px', '0px']
   );
 
   const { scrollYProgress: scroll2 } = useScroll({
     target: elementRef,
-    offset: ["end end", "end start"],
+    offset: ['end end', 'end start'],
   });
 
-  const exitSteps = useTransform(scroll2, [0, 0.6], ["0%", "-15vh"]);
-  const exitCarousel = useTransform(scroll2, [0, 0.8], ["0%", "-25vh"]);
-  const exitProgressBar = useTransform(scroll2, [0, 0.25], ["100%", "0%"]);
+  const exitSteps = useTransform(scroll2, [0, 0.6], ['0%', '-15vh']);
+  const exitCarousel = useTransform(scroll2, [0, 0.8], ['0%', '-25vh']);
+  const exitProgressBar = useTransform(scroll2, [0, 0.25], ['100%', '0%']);
 
   const progressBar = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -61,26 +62,27 @@ const Sustainability = () => {
   return (
     <div
       ref={sectionRef}
-      className="relative flex flex-col justify-center h-fit text-accent"
+      className="relative flex flex-col justify-center gap-24 h-fit text-accent"
     >
-      <Header />
-      <FadeIn delay={0.8} duration={1}>
-        <Pricing />
-      </FadeIn>
+      <div className="flex flex-col gap-1">
+        <Header />
+        <FadeIn delay={0.8} duration={1}>
+          <Pricing />
+        </FadeIn>
+      </div>
       <motion.div
-        style={{ y: enterSection }}
         ref={targetRef}
-        className="relative flex flex-row min-h-screen px-4 mx-auto lg:px-12 2xl:px-24 w-fit"
+        className="relative flex flex-col min-h-screen px-4 pb-32 mx-auto gap-y-10 md:gap-y-16 lg:px-12 2xl:px-24"
       >
-        <motion.div className="sticky justify-between  items-center px-8 my-[10vh] top-[10vh] flex flex-col w-1/4 h-[80vh]   place-content-evenly text-neutral-content">
+        {/* <motion.div className="sticky justify-between  items-center px-8 my-[10vh] top-[10vh] flex flex-col w-1/4 h-[80vh]   place-content-evenly text-neutral-content">
           <motion.div
             style={{ scaleY: progressBar, opacity: exitProgressBar }}
             className={
-              "absolute top-0 -right-0 w-1 h-full origin-top bg-neutral-content " +
-              (finished ? " bg-opacity-50" : " bg-opacity-100")
+              'absolute top-0 -right-0 w-1 h-full origin-top bg-neutral-content ' +
+              (finished ? ' bg-opacity-50' : ' bg-opacity-100')
             }
-          />
-          {STEPS.map((section, i) => (
+          /> 
+           {STEPS.map((section, i) => (
             <FromLeft
               key={section.title}
               delay={i * 0.5}
@@ -100,50 +102,36 @@ const Sustainability = () => {
             >
               <motion.span
                 className={
-                  "font-light text-md sm:text-xl 2xl:text-2xl text-neutral-content "
+                  'font-light text-md sm:text-xl 2xl:text-2xl text-neutral-content '
                 }
               >
                 Pasul {i + 1}
               </motion.span>
               <motion.h3
                 className={
-                  "text-lg leading-none md:text-xl lg:text-2xl max-w-80 xl:max-w-96 w-fit sm:text-lg 2xl:text-4xl text-neutral-content "
+                  'text-lg leading-none md:text-xl lg:text-2xl max-w-80 xl:max-w-96 w-fit sm:text-lg 2xl:text-4xl text-neutral-content '
                 }
               >
                 {section.title}
               </motion.h3>
             </FromLeft>
-          ))}
-        </motion.div>
-        <motion.div
+          ))} 
+        </motion.div> */}
+        {/* <motion.div
           ref={elementRef}
           style={{ y: exitCarousel }}
-          className="flex flex-col w-3/4 gap-12 py-[15vh]  max-w-7xl"
-        >
-          {STEPS.map((step, i) => (
-            <motion.div
-              key={step.title}
-              className={
-                "flex flex-row transition duration-1000 items-center justify-center w-full gap-6 px-4 py-16 min-h-[40vh] overflow-hidden border-neutral-content border-opacity-15 max-w-8xl xl:py-12 sm:px-8 xl:px-12 bg-base-20 h-fit " +
-                (activeSection !== i && " opacity-30 ") +
-                ((activeSection > i || activeSection < i) && " scale-95")
-              }
-            >
-              <FromBottom delay={0.2} duration={1}>
-                <motion.img
-                  src={`/images/how-it-works/${step.image}`}
-                  className="object-cover rounded-xl max-w-96 max-h-96 2xl:max-w-[400px] aspect-square z-50"
-                  alt={step.image}
-                />
-              </FromBottom>
-              <FromRight offset={10} delay={0.3} duration={0.8}>
-                <motion.p className="text-sm sm:text-md xl:text-lg text-neutral-content">
-                  {step.content}
-                </motion.p>
-              </FromRight>
-            </motion.div>
-          ))}
-        </motion.div>
+          className="flex flex-col w-full gap-12 py-[15vh]  max-w-7xl"
+        > */}
+        {STEPS.map((step, i) => (
+          <motion.div
+            key={step.title}
+            style={{ y: i * 12, scale: 1 - i * 0.012 }}
+            className=" sticky top-[10vh] md:top-[15vh]"
+          >
+            <Card step={step} i={i} />
+          </motion.div>
+        ))}
+        {/* </motion.div> */}
       </motion.div>
     </div>
   );

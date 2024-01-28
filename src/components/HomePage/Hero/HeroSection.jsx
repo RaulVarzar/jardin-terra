@@ -35,7 +35,7 @@ function HeroSection({ setHomeInView }) {
   return (
     <section
       ref={home}
-      className="relative grid items-center w-full h-screen px-4 pt-32 pb-10 mx-auto overflow-hidden grid-rows-10 gap-x-8 xl:px-12 xl:grid-cols-10 xl:grid-rows-1 snap-center 3xl:px-12"
+      className="relative grid items-center w-full h-screen px-4 pt-20 pb-10 mx-auto overflow-hidden md:pt-32 grid-rows-10 gap-x-8 xl:px-12 xl:grid-cols-10 xl:grid-rows-1 snap-center 3xl:px-12"
     >
       <motion.div
         style={{ y: headerY, opacity: mainOpacity }}

@@ -39,11 +39,11 @@ const PricingCollapse = () => {
           <input type="radio" name="my-accordion" />
           <div
             className={
-              'flex flex-row items-center justify-between gap-4 text-xl font-medium collapse-title text-neutral-content transition duration-300 ' +
+              'flex flex-row items-center justify-between gap-4 text-xl max-sm:px-1 max-sm:py-1 font-medium collapse-title text-neutral-content transition duration-300 ' +
               (selected !== i && ' opacity-50')
             }
           >
-            <h3 className="text-lg font-normal sm:text-xl grow xl:text-2xl ">
+            <h3 className="text-lg font-normal leading-tight sm:text-xl grow xl:text-2xl ">
               {category.title}
             </h3>
             <i
@@ -53,8 +53,8 @@ const PricingCollapse = () => {
               }
             />
           </div>
-          <div className="px-2 font-light opacity-75 md:px-6 xl:px-12 text-neutral-content xl:text-md collapse-content">
-            <p className="max-md:leading-tight md:py-3">
+          <div className="px-2 font-light opacity-75 md:px-6 xl:px-12 text-neutral-content collapse-content">
+            <p className="text-xs max-md:leading-tight xl:text-md md:py-3">
               {category.description}
             </p>
           </div>

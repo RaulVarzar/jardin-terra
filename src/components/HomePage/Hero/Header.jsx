@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
-import { FromLeft, WordReveal, Reveal } from "../../utils/animations.jsx";
-import { motion } from "framer-motion";
-import Socials from "./Socials.jsx";
+import { Link } from 'react-router-dom';
+import { FromLeft, WordReveal, Reveal } from '../../utils/animations.jsx';
+import { motion } from 'framer-motion';
+import Socials from './Socials.jsx';
 
-const HEADER = "GRĂDINII TALE".split("");
+const HEADER = 'GRĂDINII TALE'.split('');
 
 const Header = () => {
   return (
-    <div className="flex flex-col justify-center w-fit grow ">
+    <div className="flex flex-col justify-centerw-fit md:grow">
       <div className="flex flex-col w-full px-2 lg:flex-row xl:flex-col xl:px-8 xl:py-8 gap-y-4 md:gap-y-8 xl:gap-y-12 ">
         <div className="flex flex-col w-full gap-2 ">
           <div className="flex flex-col gap-0 text-neutral-content">

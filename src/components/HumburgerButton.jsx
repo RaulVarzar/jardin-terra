@@ -4,6 +4,7 @@ const HumburgerButton = ({
   handleClick,
   checked,
   scrollProgress,
+  color,
   ...props
 }) => {
   const variants = {
@@ -23,11 +24,15 @@ const HumburgerButton = ({
     <motion.label
       variants={variants}
       animate={scrollProgress < 100 ? 'hidden' : 'visible'}
-      // exit={{ x: 100, opacity: 0, transition: { duration: 0.3 } }}
       {...props}
       className={
-        'hamburger cursor-pointer  h-full w-full py-2 px-3 hover:bg-neutral-content border-0 border-base-content transition duration-500 ' +
-        (checked ? ' opacity-50 ' : ' border-opacity-100')
+        'hamburger cursor-pointer  h-full w-full py-2 px-3 transition duration-500 ' +
+        (color && !checked && ' stroke-gray-200 hover:stroke-accent ') +
+        (color && checked && ' stroke-base-200 ') +
+        (!color &&
+          !checked &&
+          ' stroke-neutral-content hover:stroke-base-200 ') +
+        (!color && checked && ' stroke-base-content ')
       }
     >
       <input type="checkbox" onClick={handleClick} checked={checked} />
