@@ -13,7 +13,7 @@ const SOCIALS = [
 
 const Socials = () => {
   return (
-    <div className="flex flex-row items-center justify-center w-full gap-1 text-3xl text-center xl:justify-start text-neutral-content lg:gap-2 lg:text-3xl">
+    <div className="flex flex-row items-start justify-center gap-1 text-3xl text-center w-fit xl:justify-start text-neutral-content lg:gap-2 lg:text-3xl">
       {SOCIALS.map((button, i) => (
         <FromBottom delay={1 + i * 0.25} duration={0.8} key={button.name}>
           <motion.a

@@ -35,11 +35,11 @@ function HeroSection({ setHomeInView }) {
   return (
     <section
       ref={home}
-      className="relative grid items-center w-full h-screen px-4 pt-20 pb-10 mx-auto overflow-hidden md:pt-32 grid-rows-10 gap-x-8 xl:px-12 xl:grid-cols-10 xl:grid-rows-1 snap-center 3xl:px-12"
+      className="relative grid items-center w-full h-screen px-4 pt-20 pb-10 mx-auto overflow-hidden md:pt-32 grid-rows-10 gap-x-8 xl:px-12 md:grid-cols-10 md:grid-rows-1 snap-center 3xl:px-12"
     >
       <motion.div
         style={{ y: headerY, opacity: mainOpacity }}
-        className="flex flex-col items-center w-full h-full row-span-6 gap-2 sm:row-span-5 md:row-span-4 max-xl:order-last xl:col-span-5 3xl:col-span-4 justify-evenly grow xl:gap-2 xl:py-4"
+        className="flex flex-col items-center w-full h-full row-span-6 gap-2 sm:row-span-5 md:row-span-4 max-md:order-last md:col-span-5 3xl:col-span-4 justify-evenly grow xl:gap-2 xl:py-4"
       >
         <Header />
         <motion.div
@@ -58,7 +58,7 @@ function HeroSection({ setHomeInView }) {
         delay={0.8}
         duration={1.1}
         style={{ y: carouselY, opacity: mainOpacity, scale: 1 }}
-        className="w-full h-full row-span-4 xl:col-span-5 sm:row-span-5 md:row-span-6 grow 3xl:col-span-6"
+        className="w-full h-full row-span-4 md:col-span-5 sm:row-span-5 md:row-span-6 grow 3xl:col-span-6"
       >
         <Carousel scrollYProgress={scrollYProgress} />
       </FromRight>
