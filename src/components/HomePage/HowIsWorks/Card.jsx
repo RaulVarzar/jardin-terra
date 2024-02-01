@@ -37,9 +37,7 @@ const Card = ({ step, i }) => {
     <motion.div
       style={{ scale, filter, y, borderRadius }}
       ref={sectionRef}
-      className={
-        'flex flex-col md:flex-row min-h-[80vh] md:min-h-fit bg-base-300 shadow-2xl gap-4 border-1 border-opacity-10 border-neutral-content  w-full md:gap-6 px-3 py-4 md:py-16 overflow-hidden max-w-8xl xl:py-12  xl:px-12 h-fit '
-      }
+      className="flex flex-col md:flex-row min-h-[70vh] items-center md:min-h-[60vh] bg-base-300 shadow-2xl gap-4 border-1 border-opacity-10 border-neutral-content  w-full md:gap-6 px-3 py-4 md:py-16 overflow-hidden max-w-8xl xl:py-12  xl:px-12"
     >
       <motion.img
         style={{ scale: imgScale, opacity: imgOpacity }}
@@ -48,7 +46,7 @@ const Card = ({ step, i }) => {
         alt={step.image}
       />
 
-      <div className="grid min-h-full gap-0 max-md:grid-rows-6 md:flex md:flex-col md:gap-6 grow">
+      <div className="flex flex-col h-full min-h-full gap-2 self-stetch md:gap-6 grow">
         <motion.div
           style={{
             opacity: titleOpacity,
@@ -56,7 +54,7 @@ const Card = ({ step, i }) => {
             scale: titleScale,
             originX: '400px',
           }}
-          className="flex flex-col gap-0 max-md:row-span-1 h-fit"
+          className="flex flex-col h-full gap-0 grow"
         >
           <motion.span
             className={
@@ -67,7 +65,7 @@ const Card = ({ step, i }) => {
           </motion.span>
           <motion.h3
             className={
-              'text-lg leading-none font-bold  md:text-xl lg:text-2xl w-fit sm:text-lg 2xl:text-4xl text-neutral-content '
+              'text-lg leading-none font-bold  lg:text-2xl  w-fit sm:text-lg md:text-xl  2xl:text-6xl text-neutral-content '
             }
           >
             {step.title}
@@ -76,7 +74,7 @@ const Card = ({ step, i }) => {
         <div className="flex flex-col h-full gap-2 px-2 max-md:row-span-5">
           <motion.p
             style={{ y: textY, opacity: textOpacity }}
-            className="h-full overflow-y-auto text-sm leading-none sm:text-md xl:text-lg text-neutral-content"
+            className="h-full py-2 overflow-y-auto text-sm leading-none sm:text-md xl:text-lg text-neutral-content"
           >
             {step.content}
           </motion.p>
