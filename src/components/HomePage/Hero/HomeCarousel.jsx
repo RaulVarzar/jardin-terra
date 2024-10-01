@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useTransform } from 'framer-motion';
 
-const PHOTOS = ['home1.jpg', 'home2.jpg', 'home3.jpg'];
+const PHOTOS = ['home2.jpg', 'home1.jpg', 'home3.jpg'];
 
 const Carousel = ({ scrollYProgress }) => {
   const [activePhoto, setActivePhoto] = useState(0);

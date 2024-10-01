@@ -1,9 +1,9 @@
-import logo from '/logo.png';
-import { FromLeft, Reveal } from '../utils/animations';
+import logo from "/logo.png";
+import { FromLeft, Reveal } from "../utils/animations";
 
 const ContactDetails = () => {
   return (
-    <div className="flex flex-col gap-4 sm:gap-8 w-fit">
+    <div className="flex flex-col gap-4 sm:gap-8 w-full max-lg:items-center">
       <FromLeft delay={1} duration={1}>
         <img src={logo} className="max-w-32 brightness-75" alt="" />
       </FromLeft>
