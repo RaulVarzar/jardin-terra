@@ -7,6 +7,8 @@ export const Reveal = ({
   delay,
   duration,
   repeat,
+  rotate,
+  skew,
   parentVisible,
   offset,
 }) => {
@@ -26,18 +28,30 @@ export const Reveal = ({
   }, [isInView, parentVisible]);
 
   return (
-    <div ref={ref} className="relative overflow-hidden w-fit">
+    <div ref={ref} className="relative overflow-hidden ">
       <motion.div
         variants={{
-          hidden: { opacity: 0, y: (offset && `${offset}%`) || "100%" },
-          visible: { opacity: 1, y: 0 },
+          hidden: {
+            filter: "blur(5px)",
+            rotate: rotate || 0,
+            opacity: 0,
+            skew: skew || 0,
+            y: (offset && `${offset}%`) || "100%",
+          },
+          visible: {
+            skew: 0,
+            rotate: 0,
+            filter: "blur(0px)",
+            opacity: 1,
+            y: 0,
+          },
         }}
         initial="hidden"
         animate={mainControls}
         transition={{
           duration: duration || 0.4,
           delay: delay,
-          ease: "easeInOut",
+          ease: [0.855, 0.005, 0.56, 1.0],
         }}
       >
         {children}
@@ -276,8 +290,10 @@ export const WordReveal = ({ children, delay, duration, offset }) => {
           offset={offset || "30"}
           delay={delay + i * 0.2}
           duration={duration}
+          rotate={5}
+          skew={-10}
         >
-          <span className="mx-0.5">{word}</span>
+          <span className="mx-1 tracking-wide">{word}</span>
         </Reveal>
       ))}
     </>

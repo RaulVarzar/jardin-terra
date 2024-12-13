@@ -6,12 +6,12 @@ const TextReveal = ({ progress }) => {
   const splitText = TEXT.split(" ");
 
   return (
-    <p className="flex gap-2 flex-wrap justify-center leading-none tracking-wide text-lg font-normal  sm:text-xl lg:text-3xl xl:text-4xl md:tracking-wider ">
+    <p className="flex gap-2 flex-wrap justify-center leading-none tracking-wide text-base font-normal  sm:text-xl lg:text-3xl xl:text-4xl md:tracking-wider ">
       {splitText.map((word, i) => {
         const start = i / splitText.length;
 
         const end = start + 1 / splitText.length;
-        const colored = word === "Jardin" || word === "Terra";
+        const colored = word == "Jardin" || word == "Terra";
 
         return (
           <Word

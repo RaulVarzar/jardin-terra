@@ -22,8 +22,8 @@ const RoundedBottom = ({ scrollProgress }) => {
 
   const clipPathRoundness = useTransform(
     scrollProgress,
-    [0, 0.5, 1],
-    [100, 65, 0]
+    [0, 0.4, 1],
+    [100, 35, 0]
   );
   const clipPathOffset = useTransform(scrollProgress, [0, 1], [20, 0]);
   const clipPath = useMotionTemplate`ellipse(65% ${clipPathRoundness}% at 50% ${clipPathOffset}%)`;

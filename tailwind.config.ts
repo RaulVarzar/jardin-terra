@@ -68,12 +68,13 @@ const config: Config = {
       {
         black: {
           ...require("daisyui/src/theming/themes")["black"],
-          primary: "#29332e",
+          accent: "#29332e",
+          primary: "#151917",
+          secondary: "#1a1f1c",
           "base-200": "#101010",
           "base-100": "#060605",
           "base-300": "#171717",
-          secondary: "#424138",
-          accent: "#34413d",
+
           "secondary-content": "#818177",
           "base-content": "#b3b3b3",
           error: "#602b1f",
@@ -85,6 +86,7 @@ const config: Config = {
           "base-300": "#f8f8f8",
           "neutral-content": "#0d0d0d",
           "base-content": "#1F1919",
+          secondary: "#fff",
         },
       },
     ],

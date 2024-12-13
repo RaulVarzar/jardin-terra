@@ -36,9 +36,9 @@ const Header = () => {
 
   const { scrollYProgress: exitProgress } = useScroll({
     target: scrollableRef,
-    offset: ["end center", "end start"],
+    offset: ["end center", "end -0.2"],
   });
-  const exitOpacity = useTransform(exitProgress, [0, 0.2], ["100%", "0%"]);
+  const exitOpacity = useTransform(exitProgress, [0, 1], ["100%", "0%"]);
 
   const { scrollYProgress: enterProgress } = useScroll({
     target: sectionRef,
@@ -79,7 +79,7 @@ const Header = () => {
       </div>
       <div
         ref={scrollableRef}
-        className="h-[400vh] " // SET HEADER HEIGTH FOR TEXT REVEAL ANIMATION
+        className="h-[400vh]" // SET HEADER HEIGTH FOR TEXT REVEAL ANIMATION
       />
     </div>
   );

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 import CloseButton from "../../CloseButton";
 import { StepsCard } from "./StepsCard";
+import { MdOutlineCloseFullscreen } from "react-icons/md";
 
 const ExpandedCard = ({ item, setSelectedId }) => {
   useLockBodyScroll();
@@ -13,19 +14,25 @@ const ExpandedCard = ({ item, setSelectedId }) => {
     <motion.div className="fixed top-0 bottom-0 left-0 right-0 z-50 flex p-2 sm:p-12 backdrop-blur-xl backdrop-brightness-75 lg:p-16 2xl:p-24">
       <motion.div
         layoutId={item}
-        className="relative z-50 grid  w-full h-full lg:grid-rows-1 p-4 max-lg:flex max-lg:flex-col cursor-pointer items-center rounded-2xl grid-cols-7 overflow-hidden  bg-base-300 0 negative-shadow "
+        className="relative group z-50 grid  w-full h-full lg:grid-rows-1 p-4 max-lg:flex max-lg:flex-col cursor-pointer items-center rounded-2xl grid-cols-7 overflow-hidden  bg-accent 0 negative-shadow "
       >
+        <button
+          onClick={() => setSelectedId(null)}
+          className="text-2xl md:text-3xl z-50 absolute top-4  right-4 p-3 transition duration-300 md:p-4   text-base-content brightness-85 group-hover:brightness-125 group-hover:scale-105"
+        >
+          <MdOutlineCloseFullscreen />
+        </button>
         <div className="z-10 w-full h-full col-span-3 max-lg:h-1/3 lg:row-span-1">
           <Blur delay={0.2} duration={0.8} className="w-full h-full">
             <img
               src={`/images/${photo}.jpg`}
-              className="object-cover w-full h-full rounded-lg brightness-85 group-hover:brightness-100"
+              className="object-cover w-full h-full rounded-lg "
               alt="project-img"
             />
           </Blur>
         </div>
 
-        <CloseButton action={() => setSelectedId(null)} />
+        {/* <CloseButton action={() => setSelectedId(null)} /> */}
 
         <div className="relative z-20 flex flex-col justify-center h-full col-span-4 gap-2 px-2 py-8 overflow-hidden lg:row-span-1 md:px-5 xl:px-12">
           <FromLeft

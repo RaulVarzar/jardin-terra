@@ -28,12 +28,12 @@ const ServicesSection = ({ id, colored }) => {
 
   return (
     <section>
-      <div id={id} className="relative flex flex-row flex-nowrap w-fit">
+      <div id={id} className="relative flex flex-row flex-nowrap w-fit ">
         <Header />
 
         <div
           ref={sectionRef}
-          className={`z-40 flex flex-row items-start h-[400vh] mt-[550vh]`} // mt = header heigth + 150
+          className={`z-40 flex flex-row items-start h-[400vh] mt-[600vh]`} // mt = header heigth + 150
         >
           <motion.div
             style={{ x }}
