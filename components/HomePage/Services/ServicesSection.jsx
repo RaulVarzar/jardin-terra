@@ -22,7 +22,7 @@ const ServicesSection = ({ id, colored }) => {
     target: sectionRef,
     offset: ["start end", "end"],
   });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-102%"]);
+  const x = useTransform(scrollYProgress, [0, 0.1, 1], ["0%", "-5%", "-101%"]);
 
   const width = useTransform(scrollYProgress, [0.2, 1], ["0%", "100%"]);
 
@@ -33,7 +33,7 @@ const ServicesSection = ({ id, colored }) => {
 
         <div
           ref={sectionRef}
-          className={`z-40 flex flex-row items-start h-[400vh] mt-[600vh]`} // mt = header heigth + 150
+          className={`z-40 flex flex-row items-start h-[400vh] mt-[550vh]`} // mt = header heigth + 150
         >
           <motion.div
             style={{ x }}

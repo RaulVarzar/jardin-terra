@@ -182,3 +182,19 @@ body {
   stroke-dasharray: 20 300;
   stroke-dashoffset: -32.42;
 }
+
+::-webkit-scrollbar {
+  height: 5px;
+  width: 10px;
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4c39ac;
+  border-radius: 2px;
+  width: 12px;
+}
+
+::-webkit-scrollbar-corner {
+  background: #111;
+}

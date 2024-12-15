@@ -1,37 +1,36 @@
-import { useRef } from 'react';
-import { FromBottom, FromRight } from '../../utils/animations';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const Card = ({ step, i }) => {
   const sectionRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start end', 'start 0.4 '],
+    offset: ["start end", "start 0.4 "],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], ['80%', '100%']);
-  const y = useTransform(scrollYProgress, [0, 1], ['20vh', '0vh']);
+  const scale = useTransform(scrollYProgress, [0, 1], ["80%", "100%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["20vh", "0vh"]);
   //   const blur = useTransform(scrollYProgress, [0.95, 1], ['0px', '5px']);
   const filter = useTransform(
     scrollYProgress,
     [0.99, 1],
-    ['blur(0px)', `blur(0px)`]
+    ["blur(0px)", `blur(0px)`]
   );
 
-  const textY = useTransform(scrollYProgress, [0.4, 1], ['10vh', '0vh']);
-  const textOpacity = useTransform(scrollYProgress, [0.4, 1], ['20%', '100%']);
+  const textY = useTransform(scrollYProgress, [0.4, 1], ["10vh", "0vh"]);
+  const textOpacity = useTransform(scrollYProgress, [0.4, 1], ["20%", "100%"]);
   const titleOpacity = useTransform(
     scrollYProgress,
     [0.4, 0.9],
-    ['0%', '100%']
+    ["0%", "100%"]
   );
-  const titleY = useTransform(scrollYProgress, [0.2, 0.9], ['8vh', '0vh']);
-  const titleScale = useTransform(scrollYProgress, [0.2, 0.5], ['20%', '100%']);
-  const borderRadius = useTransform(scrollYProgress, [0.6, 1], ['4px', '30px']);
+  const titleY = useTransform(scrollYProgress, [0.2, 0.9], ["8vh", "0vh"]);
+  const titleScale = useTransform(scrollYProgress, [0.2, 0.5], ["20%", "100%"]);
+  const borderRadius = useTransform(scrollYProgress, [0.6, 1], ["4px", "30px"]);
 
-  const imgScale = useTransform(scrollYProgress, [0.5, 1], ['90%', '100%']);
-  const imgOpacity = useTransform(scrollYProgress, [0.3, 0.8], ['20%', '100%']);
+  const imgScale = useTransform(scrollYProgress, [0.5, 1], ["90%", "100%"]);
+  const imgOpacity = useTransform(scrollYProgress, [0.3, 0.8], ["20%", "100%"]);
 
   return (
     <motion.div
@@ -52,20 +51,20 @@ const Card = ({ step, i }) => {
             opacity: titleOpacity,
             y: titleY,
             scale: titleScale,
-            originX: '400px',
+            originX: "400px",
           }}
           className="flex flex-col h-full gap-0 grow"
         >
           <motion.span
             className={
-              'font-semibold text-sm sm:text-base md:text-md leading-none text-neutral-content opacity-70'
+              "font-semibold text-sm sm:text-base md:text-md leading-none text-neutral-content opacity-70"
             }
           >
             Pasul {i + 1}
           </motion.span>
           <motion.h3
             className={
-              'text-lg leading-none font-bold  lg:text-2xl  w-fit sm:text-lg md:text-xl  2xl:text-6xl text-neutral-content '
+              "text-lg leading-none font-bold  lg:text-2xl  w-fit sm:text-lg md:text-xl  2xl:text-6xl text-neutral-content "
             }
           >
             {step.title}

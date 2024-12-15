@@ -30,10 +30,10 @@ const Header = () => {
     <motion.div
       ref={headerRef}
       style={{ scale: enterHeader, y: enterHeaderY, opacity: enterHeader }}
-      className="flex flex-col items-center max-w-4xl gap-2 mx-auto mt-[15vh] pb-12 text-center px-6 2xl:max-w-5xl text-neutral-content"
+      className="flex flex-col items-center  max-w-4xl  mx-auto mt-[15vh] pb-12 text-center px-6 2xl:max-w-5xl text-neutral-content"
     >
       <Reveal delay={0.3} duration={0.8}>
-        <h3 className="text-3xl font-bold tracking-wider uppercase sm:text-4xl xl:text-5xl">
+        <h3 className="text-3xl font-black tracking-wider uppercase sm:text-4xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl">
           Modul de lucru
         </h3>
       </Reveal>
@@ -41,7 +41,7 @@ const Header = () => {
       <Reveal delay={0.5} duration={0.8}>
         <motion.p
           stye={{ x: enterSubHeaderY }}
-          className="pt-2 text-sm font-light leading-snug tracking-wide opacity-50 xl:text-md text-balance"
+          className="pt-2 text-sm font-normal leading-tight tracking-wider opacity-50 max-w-3xl md:text-lg xl:text-xl text-balance 2xl:text-2xl"
         >
           Înainte de a trece la lopată și săpăligă, analizăm dimensiunile și
           forma spațiului tău verde. Apoi, ascultăm cu atenție dorințele tale și

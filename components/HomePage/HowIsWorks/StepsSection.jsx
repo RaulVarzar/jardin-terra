@@ -1,16 +1,10 @@
 import { useRef, useState } from "react";
-import {
-  FadeIn,
-  FromBottom,
-  FromLeft,
-  FromRight,
-  Reveal,
-} from "../../utils/animations";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import Pricing from "./Pricing";
 import { STEPS } from "../../utils/data";
 import Header from "./Header";
 import Card from "./Card";
+import ModalCard from "./ModalCard";
 
 const Sustainability = () => {
   const [activeSection, setActiveSection] = useState(0);
@@ -59,17 +53,21 @@ const Sustainability = () => {
     }
   });
 
+  const [expandedCard, setExpandedCard] = useState(null);
+
   return (
     <div
       ref={sectionRef}
       className="relative flex flex-col justify-center gap-24 h-fit text-accent"
     >
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col sticky top-0 gap-1  min-h-screen justify-center ">
         <Header />
-        <FadeIn delay={0.8} duration={1}>
-          <Pricing />
-        </FadeIn>
+        <Pricing
+          expanded={expandedCard}
+          setExpanded={() => setExpandedCard(true)}
+        />
       </div>
+      {expandedCard && <ModalCard closeCard={() => setExpandedCard(false)} />}
       <motion.div
         ref={targetRef}
         className="relative flex flex-col min-h-screen px-4 pb-32 mx-auto gap-y-10 md:gap-y-16 lg:px-12 2xl:px-24"
