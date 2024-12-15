@@ -69,7 +69,7 @@ const Header = () => {
                       transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
                     }
               }
-              className=" font-black text-4xl leading-none tracking-wide text-center sm:text-5xl lg:text-7xl xl:text-8xl  text-neutral-content"
+              className=" font-black text-5xl leading-none px-24 tracking-wide text-center sm:text-5xl lg:text-7xl xl:text-8xl  text-neutral-content"
             >
               SERVICIILE NOASTRE
             </motion.h3>

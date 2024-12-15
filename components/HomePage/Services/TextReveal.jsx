@@ -52,12 +52,12 @@ export const Word = ({ children, range, progress, colored }) => {
 export const Character = ({ children, range, progress }) => {
   const opacity = useTransform(progress, range, ["15%", "100%"]);
 
-  const blurRaw = useTransform(progress, range, [1, 0]);
-  const filter = useMotionTemplate`blur(${blurRaw}px)`;
+  // const blurRaw = useTransform(progress, range, [1, 0]);
+  // const filter = useMotionTemplate`blur(${blurRaw}px)`;
 
   return (
     <motion.span
-      style={{ opacity, filter }}
+      style={{ opacity }}
       transition={{ duration: 0.8, ease: [0.6, 0, 0.45, 1] }}
       className="origin-bottom-left"
     >

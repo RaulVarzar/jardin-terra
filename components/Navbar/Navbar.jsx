@@ -81,12 +81,12 @@ const Navbar = () => {
             menuOpen={menuOpen}
           />
         </div>
-        <div className="md:px-24 z-50 flex flex-col xl:px-36 2xl:px-44 gap-4 px-8 w-fit place-self-end pb-16 md:pb-20">
+        <div className="md:px-24 z-50 flex flex-col xl:px-36 2xl:px-44 gap-4 px-8 w-fit place-self-end pt-4 pb-16 md:pb-20">
           <AnimatePresence mode="sync">
             {menuOpen && (
               <motion.div
                 exit={{ opacity: 0, transition: { delay: 0.8 } }}
-                className="  flex-col border-b border-base-content border-opacity-25 w-fit flex items-end uppercase text-neutral-content   font-medium tracking-wider text-3xl gap-6 md:gap-8  md:text-4xl lg:text-4xl  h-fit  py-4   "
+                className="  flex-col border-b border-base-content border-opacity-25 sm:w-fit flex items-end justify-end w-full uppercase   font-medium tracking-wider  gap-6 md:gap-8 h-fit  py-4   "
               >
                 <NavbarLink title="Serviciile noastre" id={0} />
                 <NavbarLink title="Mod de lucru" id={1} />
@@ -131,7 +131,7 @@ import React from "react";
 export const SocialLink = ({ title, link, id }) => {
   return (
     <motion.span
-      initial={{ opacity: 0, y: "30%", filter: "blur(10px)" }}
+      initial={{ opacity: 0, y: "30%", filter: "blur(5px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       exit={{
         opacity: 0,
@@ -173,7 +173,7 @@ export const NavbarLink = ({ title, id, link }) => {
           duration: 0.9,
           ease: [0.76, 0, 0.24, 1],
         }}
-        className="flex items-center h-full leading-none  cursor-pointer  opacity-95 active:scale-90 hover:opacity-100"
+        className="flex items-center h-full leading-none text-neutral-content  cursor-pointer  opacity-95 active:scale-90 hover:opacity-100 text-2xl md:text-4xl lg:text-4xl"
       >
         {title}
       </motion.span>

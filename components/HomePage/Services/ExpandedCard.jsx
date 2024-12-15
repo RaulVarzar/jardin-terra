@@ -10,10 +10,10 @@ const ExpandedCard = ({ item, setSelectedId }) => {
   const { title, photo, descriptions, steps } = item;
 
   return (
-    <motion.div className="fixed z-[1000] top-0 bottom-0 left-0 right-0 flex p-2 sm:p-12 backdrop-blur-xl backdrop-brightness-75 lg:p-16 2xl:p-24">
+    <motion.div className="fixed z-[1000] top-0 bottom-0 left-0 right-0 flex  sm:p-12 backdrop-blur-xl backdrop-brightness-75 lg:p-16 2xl:p-24">
       <motion.div
         layoutId={item}
-        className="relative group z-50 grid  w-full h-full lg:grid-rows-1 p-4 max-lg:flex max-lg:flex-col cursor-pointer items-center rounded-2xl grid-cols-7 overflow-hidden  bg-accent 0 negative-shadow "
+        className="relative group z-50 grid  w-full h-full lg:grid-rows-1 p-4 max-lg:flex max-lg:flex-col cursor-pointer max-sm:place-self-end items-center rounded-t-2xl max-h-[95dvh] sm:rounded-2xl grid-cols-7 overflow-hidden  bg-accent negative-shadow "
       >
         <button
           onClick={() => setSelectedId(null)}
@@ -31,7 +31,7 @@ const ExpandedCard = ({ item, setSelectedId }) => {
           </Blur>
         </div>
 
-        <div className="relative z-20 flex flex-col justify-center h-full col-span-4 gap-2 px-2 py-8 overflow-hidden lg:row-span-1 md:px-5 xl:px-12">
+        <div className="relative z-20 flex flex-col justify-center h-full col-span-4 sm:gap-2 px-1 py-4 sm:py-6 md:py-8 overflow-hidden lg:row-span-1 md:px-5 xl:px-12">
           <FromLeft
             delay={0.4}
             duration={1.2}
@@ -39,7 +39,7 @@ const ExpandedCard = ({ item, setSelectedId }) => {
           >
             {title}
           </FromLeft>
-          <div className="flex flex-col gap-12 px-0 py-4 overflow-y-auto md:px-4 ">
+          <div className="flex flex-col gap-12 px-0 pt-1 pb-4 overflow-y-auto md:px-4 ">
             <div className="flex flex-col gap-4 md:gap-8 ">
               {descriptions.map((description, i) => (
                 <FromLeft

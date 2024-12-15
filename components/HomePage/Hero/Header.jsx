@@ -7,7 +7,7 @@ const HEADER = "GRĂDINII TALE".split("");
 
 const Header = () => {
   return (
-    <div className="flex flex-col  px-2  grow xl:w-fit justify-center gap-y-1.5 xl:gap-y-3 ">
+    <div className="flex flex-col  px-2  grow xl:w-fit  justify-center gap-y-1.5 xl:gap-y-3 ">
       <div className="flex flex-col w-full  max-xl:text-center gap-1 text-neutral-content ">
         <Reveal delay={0.8} duration={1.2}>
           <motion.h3 className="text-2xl  font-bold leading-none sm:text:3xl md:text-5xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl">
@@ -32,7 +32,7 @@ const Header = () => {
       <FromLeft delay={1.4} duration={0.7}>
         <a
           href="/contact"
-          className="py-2 pl-4 mt-6 flex flex-row gap-2 pr-2 text-sm tracking-wider xl:pl-6 xl:pr-4 xl:py-4  text-neutral-content  hover:backdrop-brightness-125  rounded-xl xl:text-md  mybutton hover:text-stone-100 xl:hover:pl-10 hover:pl-8 bg-secondary"
+          className="py-3 pl-5 mt-6 mx-auto flex flex-row gap-2 pr-2 text-sm tracking-wider xl:pl-6 xl:pr-4 xl:py-4  text-neutral-content  hover:backdrop-brightness-125  rounded-xl xl:text-md  mybutton hover:text-stone-100 xl:hover:pl-10 hover:pl-8 bg-secondary"
         >
           Începe un proiect
           <span className="text-lg md:text-xl xl:text-2xl">
