@@ -16,7 +16,7 @@ const ModalCard = ({ closeCard }) => {
         opacity: 1,
         transition: { duration: 0.3, ease: "easeInOut" },
       }}
-      className="fixed top-0 z-[1000] bottom-0 left-0 right-0   grid h-screen px-0 overflow-y-auto sm:px-8 place-content-end sm:place-content-center backdrop-blur-xl backdrop-brightness-75 "
+      className="fixed top-0 z-[10000] bottom-0 left-0 right-0   grid h-screen px-0 overflow-y-auto sm:px-8 place-content-end sm:place-content-center backdrop-blur-xl backdrop-brightness-75 "
     >
       <motion.div
         className="relative z-[1000] max-h-[95vh] flex h-fit flex-col justify-center items-center max-w-5xl gap-2 md:gap-8 px-8 pt-10 pb-10 md:pt-20  md:pb-16 md:px-6  bg-secondary-content  max-sm:rounded-t-2xl sm:rounded-2xl "
@@ -30,10 +30,20 @@ const ModalCard = ({ closeCard }) => {
         </div>
 
         <div className="flex flex-col items-center md:flex-row gap-x-6 gap-y-2 lg:gap-8 w-full md:w-9/12">
-          <span className="text-neutral-content py-1 text-4xl md:text-5xl xl:text-6xl">
+          <motion.span
+            initial={{ opacity: 0, scale: 0.3, y: 10, filter: "blur(5px)" }}
+            animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.9, delay: 0.4, ease: "circInOut" }}
+            className="text-neutral-content py-1 text-4xl md:text-5xl xl:text-6xl"
+          >
             <GiReceiveMoney />
-          </span>
-          <motion.h5 className="w-full md:w-11/12 text-base leading-none tracking-wide text-center md:text-left text-balanc md:leading-snug md:text-lg lg:text-xl xl:text-2xl font-semibold  text-neutral-content opacity-80">
+          </motion.span>
+          <motion.h5
+            initial={{ opacity: 0, scale: 0.95, filter: "blur(5px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="w-full md:w-11/12 text-base leading-none tracking-wide text-center md:text-left text-balanc md:leading-snug md:text-lg lg:text-xl xl:text-2xl font-semibold  text-neutral-content opacity-80"
+          >
             La Jardin Terra, fiecare proiect este unic și are o ofertă de preț
             personalizată. Costurile pentru proiectarea spațiilor verzi sunt
             stabilite în funcție de diferite elemente, precum:

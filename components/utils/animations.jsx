@@ -263,11 +263,12 @@ export const Blur = ({ children, delay, duration, ...props }) => {
   return (
     <motion.div
       variants={{
-        hidden: { filter: "blur(8px)", scale: 1.04 },
-        visible: { filter: "blur(0px)", scale: 1 },
+        hidden: { filter: "blur(8px)" },
+        visible: { filter: "blur(0px)" },
       }}
       initial="hidden"
       whileInView="visible"
+      viewport={{ once: true }}
       transition={{
         duration: duration || 0.4,
         delay: delay,

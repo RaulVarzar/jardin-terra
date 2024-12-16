@@ -1,5 +1,6 @@
 export const SERVICES = [
   {
+    id: "0",
     photo: "gradini-private",
     title: "Grădini private",
     descriptions: [
@@ -22,6 +23,8 @@ export const SERVICES = [
     steps: { title: "", description: "", steps: [] },
   },
   {
+    id: "1",
+
     photo: "spatii-verzi-cartiere",
     title: "Spații verzi pentru cartiere rezidențiale",
     descriptions: [
@@ -75,6 +78,7 @@ export const SERVICES = [
     },
   },
   {
+    id: "2",
     photo: "spatii-verzi-birouri",
     title: "Spații verzi pentru clădiri de birouri",
     descriptions: [
@@ -127,6 +131,7 @@ export const SERVICES = [
     },
   },
   {
+    id: "3",
     photo: "gradini-comerciale",
     title: "Grădini pentru spații comerciale și parcuri industriale",
     descriptions: [
@@ -169,6 +174,7 @@ export const SERVICES = [
     },
   },
   {
+    id: "4",
     photo: "gradini-verticale",
     title: "Grădini verticale exterioare și interioare",
     descriptions: [
@@ -187,6 +193,7 @@ export const SERVICES = [
   },
 
   {
+    id: "5",
     photo: "acoperisuri-verzi",
     title: "Acoperișuri verzi",
     descriptions: [

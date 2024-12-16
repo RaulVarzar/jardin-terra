@@ -1,20 +1,14 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import Pricing from "./Pricing";
+import PricingButton from "./PricingButton";
 import { STEPS } from "../../utils/data";
 import Header from "./Header";
 import Card from "./Card";
 import ModalCard from "./ModalCard";
 
 const Sustainability = () => {
-  const [activeSection, setActiveSection] = useState(0);
-  const [finished, setFinished] = useState(false);
-  const targetRef = useRef(null);
-  const elementRef = useRef(null);
+  // const elementRef = useRef(null);
   const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
 
   const { scrollYProgress: sectionScrollProgress } = useScroll({
     target: sectionRef,
@@ -26,32 +20,14 @@ const Sustainability = () => {
     ["150px", "0px"]
   );
 
-  const { scrollYProgress: scroll2 } = useScroll({
-    target: elementRef,
-    offset: ["end end", "end start"],
-  });
+  // const { scrollYProgress: scroll2 } = useScroll({
+  //   target: elementRef,
+  //   offset: ["end end", "end start"],
+  // });
 
-  const exitSteps = useTransform(scroll2, [0, 0.6], ["0%", "-15vh"]);
-  const exitCarousel = useTransform(scroll2, [0, 0.8], ["0%", "-25vh"]);
-  const exitProgressBar = useTransform(scroll2, [0, 0.25], ["100%", "0%"]);
-
-  const progressBar = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 40,
-    restDelta: 0.001,
-  });
-
-  scrollYProgress.on("change", (y) => {
-    const progress = Math.floor(y * 100);
-    if (progress === 100) {
-      setFinished(true);
-      return;
-    }
-    if (progress < 100) {
-      setFinished(false);
-      setActiveSection(Math.floor((progress / 100) * STEPS.length));
-    }
-  });
+  // const exitSteps = useTransform(scroll2, [0, 0.6], ["0%", "-15vh"]);
+  // const exitCarousel = useTransform(scroll2, [0, 0.8], ["0%", "-25vh"]);
+  // const exitProgressBar = useTransform(scroll2, [0, 0.25], ["100%", "0%"]);
 
   const [expandedCard, setExpandedCard] = useState(null);
 
@@ -62,16 +38,15 @@ const Sustainability = () => {
     >
       <div className="flex flex-col sticky top-0 gap-1  min-h-screen justify-center ">
         <Header />
-        <Pricing
+        <PricingButton
           expanded={expandedCard}
           setExpanded={() => setExpandedCard(true)}
         />
       </div>
-      {expandedCard && <ModalCard closeCard={() => setExpandedCard(false)} />}
-      <motion.div
-        ref={targetRef}
-        className="relative flex flex-col min-h-screen px-4 pb-32 mx-auto gap-y-10 md:gap-y-16 lg:px-12 2xl:px-24"
-      >
+      <div className="relative">
+        {expandedCard && <ModalCard closeCard={() => setExpandedCard(false)} />}
+      </div>
+      <motion.div className="relative flex flex-col min-h-screen px-4 pb-32 mx-auto gap-y-10 md:gap-y-16 lg:px-12 2xl:px-24">
         {/* <motion.div className="sticky justify-between  items-center px-8 my-[10vh] top-[10vh] flex flex-col w-1/4 h-[80vh]   place-content-evenly text-neutral-content">
           <motion.div
             style={{ scaleY: progressBar, opacity: exitProgressBar }}

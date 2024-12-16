@@ -34,7 +34,9 @@ export const Word = ({ children, range, progress, colored }) => {
   const step = amount / children.length;
   return (
     <span
-      className={colored && "text-accent font-bold brightness-150 saturate-150"}
+      className={
+        "" + (colored && "text-accent font-bold brightness-150 saturate-150")
+      }
     >
       {characters.map((character, i) => {
         const start = range[0] + step * i;

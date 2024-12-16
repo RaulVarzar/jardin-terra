@@ -18,13 +18,12 @@ const Footer = () => {
   return (
     <div className="flex justify-center -z-10 sticky bottom-0 overflow-hidden py-36 text-neutral-content">
       <motion.div
+        ref={ref}
         style={{ opacity, scale }}
         className="grid w-full md:grid-cols-2 max-w-8xl border-success"
       >
         <div className="flex flex-col items-center justify-start px-4 py-2">
-          <motion.h3 ref={ref} className="text-5xl ">
-            FOOTER
-          </motion.h3>
+          <motion.h3 className="text-5xl ">FOOTER</motion.h3>
         </div>
         <div className="flex flex-col gap-2">
           <div className="flex flex-row gap-4 px-4 py-2 font-light opacity-90">

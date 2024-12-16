@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { FromBottom } from "../../utils/animations";
+import { GoChevronRight, GoChevronLeft } from "react-icons/go";
 
 export const StepsCard = ({ steps }) => {
   const [selectedTopic, setSelectedTopic] = useState(0);
@@ -52,24 +52,27 @@ export const StepsCard = ({ steps }) => {
           </motion.span>
         </motion.div>
       </AnimatePresence>
-      <div className="flex flex-row items-center gap-2">
+      <div className="flex flex-row items-center gap-0.5">
         <button
-          className={"py-1.5 px-3 " + (selectedTopic === 0 && " opacity-20")}
+          className={
+            "py-1.5 px-3 text-xl md:text-2xl lg:text-3xl " +
+            (selectedTopic === 0 && " opacity-20")
+          }
           onClick={handleDecrease}
         >
-          <i className="text-2xl fa-solid fa-angle-left"></i>
+          <GoChevronLeft />
         </button>
-        <span className="px-4 py-2 backdrop-brightness-125">
+        <span className="px-4 py-2 text-lg lg:text-xl backdrop-brightness-125">
           {selectedTopic + 1}
         </span>
         <button
           className={
-            "py-1.5 px-3 " +
+            "py-1.5 px-3 text-xl md:text-2xl lg:text-3xl " +
             (selectedTopic === steps.steps.length - 1 && " opacity-30")
           }
           onClick={handleIncrease}
         >
-          <i className="text-2xl fa-solid fa-angle-right"></i>
+          <GoChevronRight />
         </button>
       </div>
     </motion.div>

@@ -62,52 +62,34 @@ const Navbar = () => {
         />
 
         <div className="flex flex-row w-full items-center 2xl:px-16 3xl:px-24  mx-auto justify-between z-50  py-2 md:py-3  xl:py-5 xl:px-12 px-4 md:px-6 lg:px-10">
-          <motion.a
-            href="/"
-            className={
-              " origin-top-left bg-red-90 transition-all delay-300 duration-700 h-10 md:h-16 hover:opacity-100  ease-[cubic-bezier(0.76,0.0,0.25,1)]" +
-              (menuOpen ? " scale-125" : "  opacity-75")
-            }
-          >
-            <Image
-              src={logo}
-              alt="Logo"
-              style={{ width: "auto", height: "100%" }}
-            />
-          </motion.a>
-
+          <Logo menuOpen={menuOpen} />
           <ToggleButton
             toggleMenu={() => setMenuOpen(!menuOpen)}
             menuOpen={menuOpen}
           />
         </div>
-        <div className="md:px-24 z-50 flex flex-col xl:px-36 2xl:px-44 gap-4 px-8 w-fit place-self-end pt-4 pb-16 md:pb-20">
-          <AnimatePresence mode="sync">
-            {menuOpen && (
-              <motion.div
-                exit={{ opacity: 0, transition: { delay: 0.8 } }}
-                className="  flex-col border-b border-base-content border-opacity-25 sm:w-fit flex items-end justify-end w-full uppercase   font-medium tracking-wider  gap-6 md:gap-8 h-fit  py-4   "
-              >
+
+        <AnimatePresence mode="sync">
+          {menuOpen && (
+            <motion.div
+              exit={{ opacity: 0, transition: { delay: 0.8 } }}
+              className="md:px-24 z-50 flex flex-col xl:px-36 2xl:px-44 gap-4 px-8 w-fit place-self-end pt-4 pb-16 md:pb-20"
+            >
+              <div className="flex-col sm:w-fit flex items-end justify-end w-full uppercase   font-medium tracking-wider  gap-6 md:gap-8 h-fit  py-4   ">
                 <NavbarLink title="Serviciile noastre" id={0} />
                 <NavbarLink title="Mod de lucru" id={1} />
-
                 <NavbarLink title="Sustenabilitate" id={2} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          <AnimatePresence mode="sync">
-            {menuOpen && (
-              <motion.div
-                exit={{ opacity: 0, transition: { delay: 0.8 } }}
-                className=" w-full text-xl opacity-50 text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2"
-              >
+              </div>
+
+              <Divider />
+              <div className="w-full text-xl opacity-60 text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
                 <SocialLink title="facebook" id={0} />
                 <SocialLink title="instagram" id={1} />
                 <SocialLink title="tiktok" id={2} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
       <AnimatePresence mode="wait">
         {menuOpen && (
@@ -126,7 +108,19 @@ const Navbar = () => {
 };
 export default Navbar;
 
-import React from "react";
+export const Logo = ({ menuOpen }) => {
+  return (
+    <motion.a
+      href="/"
+      className={
+        " origin-top-left bg-red-90 transition-all delay-300 duration-700 h-10 md:h-16 hover:opacity-100  ease-[cubic-bezier(0.76,0.0,0.25,1)]" +
+        (menuOpen ? " scale-125" : "  opacity-75")
+      }
+    >
+      <Image src={logo} alt="Logo" style={{ width: "auto", height: "100%" }} />
+    </motion.a>
+  );
+};
 
 export const SocialLink = ({ title, link, id }) => {
   return (
@@ -143,7 +137,7 @@ export const SocialLink = ({ title, link, id }) => {
         },
       }}
       transition={{
-        delay: 0.5 + id * 0.15,
+        delay: 0.8 + id * 0.15,
         duration: 0.9,
         ease: [0.76, 0, 0.24, 1],
       }}
@@ -178,5 +172,28 @@ export const NavbarLink = ({ title, id, link }) => {
         {title}
       </motion.span>
     </div>
+  );
+};
+
+export const Divider = () => {
+  return (
+    <motion.div
+      initial={{ scaleX: 0 }}
+      animate={{ scaleX: 1 }}
+      exit={{
+        scaleX: 0,
+        transition: {
+          delay: 0.1,
+          duration: 0.4,
+          ease: [0.76, 0, 0.24, 1],
+        },
+      }}
+      transition={{
+        delay: 0.6,
+        duration: 0.9,
+        ease: [0.76, 0, 0.24, 1],
+      }}
+      className="w-full h-0.5 bg-base-content opacity-10 origin-right"
+    />
   );
 };

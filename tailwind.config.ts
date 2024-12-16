@@ -78,7 +78,7 @@ const config: Config = {
           "base-300": "#171717",
           "base-content": "#b3b3b3",
           "neutral-content": "#f6fdf9",
-          error: "#602b1f",
+          error: "#84261f",
         },
       },
     ],

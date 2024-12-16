@@ -32,7 +32,7 @@ const Header = () => {
       <FromLeft delay={1.4} duration={0.7}>
         <a
           href="/contact"
-          className="py-3 pl-5 mt-6 mx-auto flex flex-row gap-2 pr-2 text-sm tracking-wider xl:pl-6 xl:pr-4 xl:py-4  text-neutral-content  hover:backdrop-brightness-125  rounded-xl xl:text-md  mybutton hover:text-stone-100 xl:hover:pl-10 hover:pl-8 bg-secondary"
+          className="py-3 pl-5 mt-6 max-xl:mx-auto flex flex-row gap-2 pr-2 text-sm tracking-wider xl:pl-6 xl:pr-4 xl:py-4  text-neutral-content  hover:backdrop-brightness-125  rounded-xl xl:text-md  mybutton hover:text-stone-100 xl:hover:pl-10 hover:pl-8 bg-secondary"
         >
           Începe un proiect
           <span className="text-lg md:text-xl xl:text-2xl">
