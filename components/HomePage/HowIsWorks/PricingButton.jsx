@@ -27,7 +27,7 @@ const PricingButton = ({ expanded, setExpanded, showHeader }) => {
       variants={buttonVariants}
       initial="hidden"
       animate={showHeader ? "visible" : "hidden"}
-      className=" text-base-content bg-accent px-8 py-3 md:px-10 overflow-hidden md:py-4 mx-auto text-base font-light rounded-lg cursor-pointer   md:text-md xl:text-lg w-fit group "
+      className=" text-base-content bg-accent px-4 sm:px-6 md:px-8 py-3 lg:px-10 overflow-hidden md:py-4 mx-auto rounded-lg cursor-pointer    group "
     >
       <motion.div
         animate={
@@ -57,7 +57,7 @@ const PricingButton = ({ expanded, setExpanded, showHeader }) => {
           variants={textVariants}
           initial="hidden"
           animate={showHeader ? "visible" : "hidden"}
-          className="text-base md:text-lg uppercase font-medium tracking-wide "
+          className="text-sm sm:text-base md:text-lg text-neutral-content uppercase font-medium tracking-wide "
         >
           Cum stabilim costurile?
         </motion.h3>

@@ -17,7 +17,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="emerald">
-      {/* <body className={inter.className}>{children}</body> */}
+      <head>
+        <meta name="theme-color" content="#db5945"></meta>
+      </head>
       <body className={`${poppins.variable}`}>
         <ScrollContext>{children}</ScrollContext>
       </body>

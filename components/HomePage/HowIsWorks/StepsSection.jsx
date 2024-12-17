@@ -27,26 +27,39 @@ const stepsVariants = {
 };
 
 const Sustainability = () => {
-  const sectionRef = useRef(null);
-  const headerHelper = useRef(null);
+  const isMobile = window.screen.width < 960;
+
   const stepsRef = useRef(null);
+  const headerHelper = useRef(null);
+  const exitOffset = isMobile ? -75 : -60;
 
   const { scrollYProgress } = useScroll({
     target: stepsRef,
-    offset: ["0.05 start", "0.95 end"],
+    offset: ["start", "0.95 end"],
   });
 
   const [expandedCard, setExpandedCard] = useState(null);
 
-  const showHeader = useInView(headerHelper, { margin: "0% 0% -65% 0%" });
+  const showHeader = useInView(headerHelper, {
+    margin: `0% 0% ${exitOffset}% 0%`,
+  });
   const showSteps = useInView(stepsRef, { margin: "1000% 0% -100% 0%" });
 
   return (
-    <div
-      ref={sectionRef}
-      className="relative flex flex-col justify-center h-fit text-accent"
-    >
-      <motion.div className="flex flex-col   sticky top-0 -mt-[100vh] gap-1  min-h-screen justify-center items-center">
+    <div className="relative flex  flex-col justify-center h-fit text-accent border- border-info">
+      <motion.div
+        initial={{ y: "100%", transition: { duration: 0.1, delay: 2 } }}
+        animate={
+          showHeader
+            ? { y: "0%", opacity: 1, transition: { duration: 0.1 } }
+            : {
+                y: "100%",
+                opacity: 0,
+                transition: { duration: 0, delay: 0.4 },
+              }
+        }
+        className="flex flex-col sticky top-0 border- border-teal-700 border-opacity-25  -mt-[130vh] gap-1 min-h-screen justify-center items-center"
+      >
         <Header showHeader={showHeader} />
         <PricingButton
           expanded={expandedCard}
@@ -58,17 +71,19 @@ const Sustainability = () => {
         {expandedCard && <ModalCard closeCard={() => setExpandedCard(false)} />}
       </div>
 
-      <div ref={headerHelper} className="h-[30vh] md:h-[40vh] " />
-
+      <div
+        ref={headerHelper}
+        className="h-1 -mt-[50vh] w-full border- border-emerald-400 border-opacity-25"
+      ></div>
       <motion.div
         variants={stepsVariants}
         animate={showSteps ? "visible" : "hidden"}
-        className="sticky overflow-hidden flex items-end md:items-end md:justify-end -mt-[100vh] top-0  h-screen "
+        className="sticky overflow-hidden  flex  -mt-[100vh] top-0  h-screen "
       >
         <Cards scrollYProgress={scrollYProgress} visible={showSteps} />
       </motion.div>
 
-      <div ref={stepsRef} className="h-[500vh]"></div>
+      <div ref={stepsRef} className="h-[500vh] border- border-red-600"></div>
     </div>
   );
 };

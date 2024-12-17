@@ -13,8 +13,8 @@ const stepsVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 1.4,
-      delay: 0.3,
+      duration: 1.2,
+      delay: 0.1,
       ease: [0.75, 0, 0.25, 1],
     },
   },
@@ -42,14 +42,14 @@ const Cards = ({ scrollYProgress, visible }) => {
   });
 
   return (
-    <motion.div className="flex flex-col md:flex-row  items-center justify-center gap-4 w-full  h-[95vh] md:gap-12 xl:gap-24 px-3 py-4 md:py-16  xl:py-12  xl:px-12">
-      <div className="w-full h-36 md:h-full  md:max-w-md lg:max-w-lg 2xl:max-w-2xl ">
+    <motion.div className="flex flex-col  md:flex-col items-center w-screen justify-start gap-4 lg:px-12  h-[95vh] md:h-screen xl:gap-6 px-3 py-4 md:py-16  xl:py-12  xl:px-12">
+      <div className="w-full h-36 md:h-60 lg:h-72 xl:h-80 2xl:h-96 ">
         <Tree activeStep={activeStep} visible={visible} progress={progress} />
       </div>
       <motion.div
         variants={stepsVariants}
         animate={visible ? "visible" : "hidden"}
-        className="flex flex-col gap-2  md:gap-4 lg:gap-6 md:w-7/12  max-w-screen-xl w-fit items-center justify-center  h-full"
+        className="flex flex-col gap-2  md:gap-4 lg:gap-6  max-w-screen-xl  w-full items-center justify-start"
       >
         {STEPS.map((step, i) => (
           <Step
@@ -77,22 +77,38 @@ export const Step = ({ step, activeStep, id, progress, numberOfSteps }) => {
   );
 
   return (
-    <div className=" flex flex-col overflow-hidden relative bg-secondary-content bg-opacity-75 gap-0 px-4 md:px-5 rounded-lg lg:px-8 xl:px-10 2xl:px-16 py-4 md:py-6 xl:py-8  w-full justify-center items-start ">
+    <div className=" flex flex-col overflow-hidden relative bg-secondary-content w-full bg-opacity-75 gap-0 px-4 md:px-5 rounded-sm md:rounded-md lg:px-8 xl:px-10 2xl:px-16 py-2.5 sm:py-3 md:py-4 xl:py-6   justify-center items-start ">
+      {/* PROGRESS BAR */}
       <motion.div
         style={{ y }}
         className="absolute top-0 left-0 w-full h-full bg-accent"
       />
-      <div className="flex z-10 flex-row items-center justify-between w-full">
-        <h3 className="text-lg uppercase leading-none font-black text-balance tracking-wide sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl text-neutral-content ">
-          {step.title}
-        </h3>
+      {/*  */}
 
-        <motion.span
-          style={activeStep > id && { opacity: 0 }}
-          className=" opacity-10 font-bold text-base-content text-5xl transition-opacity duration-300"
-        >
-          {id + 1}
-        </motion.span>
+      <div className="flex z-10 flex-row items-center justify-between w-full">
+        <div className="flex flex-row justify-between w-full items-center">
+          <h3 className="text-base uppercase leading-none font-bold text-balance tracking-wide sm:text-lg md:text-xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl text-neutral-content ">
+            {step.title}
+          </h3>
+          <div className="flex justify-center size-6 md:size-12 items-center">
+            <AnimatePresence mode="wait">
+              {activeStep > id && <CheckMark checked={activeStep > id} />}
+            </AnimatePresence>
+            <AnimatePresence mode="popLayout">
+              {activeStep <= id && (
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.2 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3, delay: 0.6 }}
+                  className="font-bold text-base-content text-xl sm:text-2xl md:text-5xl"
+                >
+                  {id + 1}
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -104,9 +120,11 @@ export const Step = ({ step, activeStep, id, progress, numberOfSteps }) => {
             exit="closed"
             variants={{ active: { height: "auto" }, closed: { height: 0 } }}
             transition={{ duration: 0.8, ease: [0.75, 0, 0.25, 1], delay: 0.1 }}
-            className="h-full  max-w-5xl pl-4 md:pl-8 xl:pl-12  overflow-hidden text-sm leading-tight tracking-wid sm:text-lg xl:text-xl text-neutral-content"
+            className="h-full  mx-auto max-w-6xl px-1.5 md:px-3 xl:px-5 font-light overflow-hidden text-xs lg:tracking-wide sm:text-lg xl:text-xl text-neutral-content"
           >
-            <p className="py-6 opacity-80">{step.content}</p>
+            <p className="py-2 text-pretty tracking-wide leading-4 sm:leading-5 md:leading-tight opacity-80">
+              {step.content}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -118,12 +136,12 @@ export const Tree = ({ activeStep, visible, progress }) => {
   const variants = {
     hidden: {
       opacity: 0.3,
-      x: "-130%",
+      y: "-130%",
       filter: "blur(10px)",
     },
     visible: {
       opacity: 1,
-      x: 0,
+      y: 0,
       filter: "blur(0px)",
       transition: { duration: 1, delay: 0.6, ease: [0.75, 0, 0.25, 1] },
     },
@@ -148,8 +166,8 @@ export const Tree = ({ activeStep, visible, progress }) => {
       xmlns="http://www.w3.org/2000/svg"
       x="0"
       y="0"
-      width="100%"
-      height="100%"
+      width="auto"
+      height="auto"
       viewBox="0 0 100 100"
       preserveAspectRatio="xMidYMid meet"
       variants={variants}
@@ -159,7 +177,7 @@ export const Tree = ({ activeStep, visible, progress }) => {
         variants={pathVariants}
         animate={activeStep > 0 ? "complete" : "incomplete"}
         d="M42.26,58.186c-.26,.34-.5,.69-.73,1.06-1.44,2.51-2.3,5.33-2.64,8.22-15.8-4.7-18.75-8.59-17.45-26.75,17.2,5.65,21.1,7.9,20.82,17.47Z"
-        className="fill-[#3d5327]"
+        className="fill-[#3d5327] "
       />
       <motion.path
         variants={pathVariants}
@@ -186,5 +204,40 @@ export const Tree = ({ activeStep, visible, progress }) => {
         className="fill-[#4D3C38]"
       />
     </motion.svg>
+  );
+};
+
+export const CheckMark = () => {
+  return (
+    <motion.span className="h-5 md:h-10">
+      <motion.svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="svg-snoweb svg-theme-light"
+        x="0"
+        y="0"
+        width="100%"
+        height="100%"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <motion.path
+          initial={{ pathLength: 0, opacity: 0 }}
+          exit={{ opacity: 0 }}
+          animate={{
+            pathLength: 1,
+            opacity: 0.8,
+            transition: {
+              duration: 0.8,
+              delay: 0.8,
+              ease: [0.75, 0, 0.25, 1],
+            },
+          }}
+          d="M12.3,55.4,33.8,76.9,87.7,23.1"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="stroke-slate-200 fill-none stroke-[12px] sm:stroke-[10px]"
+        />
+      </motion.svg>
+    </motion.span>
   );
 };

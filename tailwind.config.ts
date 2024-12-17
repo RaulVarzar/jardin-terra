@@ -40,9 +40,10 @@ const config: Config = {
         "2xl": "1.6rem",
         "3xl": "1.953rem",
         "4xl": "2.441rem",
-        "5xl": "3.2rem",
-        "6xl": "4rem",
-        "7xl": "4.6rem",
+        "5xl": "2.8rem",
+        "6xl": "3.8rem",
+        "7xl": "4.4rem",
+        "8xl": "4.8rem",
       },
       borderRadius: {
         "4xl": "40px",

@@ -16,7 +16,7 @@ const ModalCard = ({ closeCard }) => {
         opacity: 1,
         transition: { duration: 0.3, ease: "easeInOut" },
       }}
-      className="fixed top-0 z-[10000] bottom-0 left-0 right-0   grid h-screen px-0 overflow-y-auto sm:px-8 place-content-end sm:place-content-center backdrop-blur-xl backdrop-brightness-75 "
+      className="fixed  z-[1000] bottom-0 left-0 right-0   grid h-[100dvh] px-0 overflow-y-auto sm:px-8 place-content-end sm:place-content-center backdrop-blur-xl backdrop-brightness-75 "
     >
       <motion.div
         className="relative z-[1000] max-h-[95vh] flex h-fit flex-col justify-center items-center max-w-5xl gap-2 md:gap-8 px-8 pt-10 pb-10 md:pt-20  md:pb-16 md:px-6  bg-secondary-content  max-sm:rounded-t-2xl sm:rounded-2xl "
@@ -24,7 +24,7 @@ const ModalCard = ({ closeCard }) => {
       >
         <div
           onClick={closeCard}
-          className="text-2xl absolute top-4 right-4 md:top-8 transition-colors duration-300 md:right-8 text-base-content cursor-pointer lg:text-3xl p-0 hover:text-error"
+          className="text-xl absolute top-6 right-6 md:top-8 transition-colors duration-300 sm:text-2xl md:right-8 text-base-content cursor-pointer lg:text-3xl p-0 hover:text-error"
         >
           <TfiClose />
         </div>

@@ -62,7 +62,7 @@ const Navbar = () => {
           className="absolute w-full h-full bg-accent-content shadow-lg "
         />
 
-        <div className="flex flex-row w-full items-center 2xl:px-16 3xl:px-24  mx-auto justify-between z-50  py-2 md:py-3  xl:py-5 xl:px-12 px-4 md:px-6 lg:px-10">
+        <div className="flex flex-row w-full items-center 2xl:px-16 3xl:px-24  mx-auto justify-between z-50  py-0 md:py-3  xl:py-5 xl:px-12 px-4 md:px-6 lg:px-10">
           <Logo menuOpen={menuOpen} />
           <ToggleButton
             toggleMenu={() => setMenuOpen(!menuOpen)}
@@ -79,7 +79,7 @@ const Navbar = () => {
               <MainLinks />
 
               <Divider />
-              <div className="w-full text-xl opacity-60 text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
+              <div className="w-full text-base sm:text-lg lg:text-xl opacity-60 text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
                 <SocialLink title="facebook" id={0} />
                 <SocialLink title="instagram" id={1} />
                 <SocialLink title="tiktok" id={2} />

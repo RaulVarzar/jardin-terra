@@ -9,7 +9,6 @@ import {
 import { SERVICES } from "../../utils/data";
 import Card from "./Card";
 import ExpandedCard from "./ExpandedCard";
-import ProgressBar from "./ProgressBar";
 import Header from "./Header";
 
 const overlayVariants = {
@@ -18,45 +17,62 @@ const overlayVariants = {
   exit: { opacity: 0 },
 };
 
-const ServicesSection = ({ colored }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
+const ServicesSection = () => {
   const sectionRef = useRef(null);
+  // const enterRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end"],
+    offset: ["start ", "end "],
   });
-  const x = useTransform(scrollYProgress, [0, 0.1, 1], ["0%", "-5%", "-101%"]);
 
-  const width = useTransform(scrollYProgress, [0.2, 1], ["0%", "100%"]);
+  const x = useTransform(
+    scrollYProgress,
+    [0.02, 0.1, 0.98],
+    ["0", "-5%", "-101%"]
+  );
+
   const [id, setId] = useState(null);
+
+  const { scrollYProgress: enterProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "start"],
+  });
+  const y = useTransform(
+    enterProgress,
+    [0.28, 0.4, 1],
+    ["30vh", "15vh", "0vh"]
+  );
 
   return (
     <section>
-      <div id={id} className="relative flex flex-row flex-nowrap w-fit ">
+      <div id={id} className="relative flex flex-col r ">
         <Header />
 
-        <motion.div
-          ref={sectionRef}
-          className=" h-[400vh] mt-[550vh]" // mt = header heigth + 150
-        />
+        {/* <div ref={enterRef} className="h-[100vh] " /> */}
+        <div className="">
+          <motion.div
+            ref={sectionRef}
+            style={{ y }}
+            className=" h-[400vh]  z-50 flex justify-start w-fit items-start " // mt = header heigth + 150
+          >
+            <motion.div
+              style={{ x }}
+              className="flex  sticky px-[2vw] sm:px-[5vw] top-0 flex-row h-screen items-center justify-end gap-8  md:gap-12 xl:gap-20 pt-20 md:pt-28 pb-12"
+            >
+              {SERVICES.map((item) => (
+                <Card
+                  setSelectedId={setId}
+                  item={item}
+                  layoutId={item.id}
+                  key={item.id}
+                />
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
 
-        <motion.div
-          style={{ x }}
-          className="flex z-40 sticky -mt-[100vh] top-0 flex-row h-screen items-center justify-end gap-8  md:gap-12 xl:gap-20 pt-20 md:pt-28 pb-12"
-        >
-          {SERVICES.map((item) => (
-            <Card
-              className="h-48 bg-base-content w-80 cursor-pointer"
-              setSelectedId={setId}
-              item={item}
-              layoutId={item.id}
-              key={item.id}
-            />
-          ))}
-        </motion.div>
-
+        {/* EXPANDED CARD AND OVERLAY */}
         <AnimatePresence>
           {id && (
             <motion.div
@@ -74,6 +90,7 @@ const ServicesSection = ({ colored }) => {
             </motion.div>
           )}
         </AnimatePresence>
+        {/*----------*/}
       </div>
     </section>
   );
