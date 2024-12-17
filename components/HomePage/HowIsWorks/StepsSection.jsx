@@ -1,113 +1,91 @@
 import { useRef, useState } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useInView, useScroll } from "framer-motion";
 import PricingButton from "./PricingButton";
-import { STEPS } from "../../utils/data";
 import Header from "./Header";
-import Card from "./Card";
+import Cards from "./Cards";
 import ModalCard from "./ModalCard";
 
+const stepsVariants = {
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      delay: 0,
+      ease: [0.75, 0, 0.25, 1],
+    },
+  },
+  hidden: {
+    opacity: 0,
+    y: "100%",
+    transition: {
+      duration: 0.6,
+      delay: 0,
+      ease: [0.7, 0, 0.3, 1],
+    },
+  },
+};
+
 const Sustainability = () => {
-  // const elementRef = useRef(null);
   const sectionRef = useRef(null);
+  const headerHelper = useRef(null);
+  const stepsRef = useRef(null);
 
-  const { scrollYProgress: sectionScrollProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "0.2 1 "],
+  const { scrollYProgress } = useScroll({
+    target: stepsRef,
+    offset: ["0.05 start", "0.95 end"],
   });
-  const enterSection = useTransform(
-    sectionScrollProgress,
-    [0.3, 1],
-    ["150px", "0px"]
-  );
-
-  // const { scrollYProgress: scroll2 } = useScroll({
-  //   target: elementRef,
-  //   offset: ["end end", "end start"],
-  // });
-
-  // const exitSteps = useTransform(scroll2, [0, 0.6], ["0%", "-15vh"]);
-  // const exitCarousel = useTransform(scroll2, [0, 0.8], ["0%", "-25vh"]);
-  // const exitProgressBar = useTransform(scroll2, [0, 0.25], ["100%", "0%"]);
 
   const [expandedCard, setExpandedCard] = useState(null);
+
+  const showHeader = useInView(headerHelper, { margin: "0% 0% -65% 0%" });
+  const showSteps = useInView(stepsRef, { margin: "1000% 0% -100% 0%" });
 
   return (
     <div
       ref={sectionRef}
-      className="relative flex flex-col justify-center gap-24 h-fit text-accent"
+      className="relative flex flex-col justify-center h-fit text-accent"
     >
-      <div className="flex flex-col sticky top-0 gap-1  min-h-screen justify-center ">
-        <Header />
+      <motion.div className="flex flex-col   sticky top-0 -mt-[100vh] gap-1  min-h-screen justify-center items-center">
+        <Header showHeader={showHeader} />
         <PricingButton
           expanded={expandedCard}
+          showHeader={showHeader}
           setExpanded={() => setExpandedCard(true)}
         />
-      </div>
+      </motion.div>
       <div className="relative">
         {expandedCard && <ModalCard closeCard={() => setExpandedCard(false)} />}
       </div>
-      <motion.div className="relative flex flex-col min-h-screen px-4 pb-32 mx-auto gap-y-10 md:gap-y-16 lg:px-12 2xl:px-24">
-        {/* <motion.div className="sticky justify-between  items-center px-8 my-[10vh] top-[10vh] flex flex-col w-1/4 h-[80vh]   place-content-evenly text-neutral-content">
-          <motion.div
-            style={{ scaleY: progressBar, opacity: exitProgressBar }}
-            className={
-              'absolute top-0 -right-0 w-1 h-full origin-top bg-neutral-content ' +
-              (finished ? ' bg-opacity-50' : ' bg-opacity-100')
-            }
-          /> 
-           {STEPS.map((section, i) => (
-            <FromLeft
-              key={section.title}
-              delay={i * 0.5}
-              duration={0.7}
-              style={{ y: exitSteps }}
-              animate={{
-                scale:
-                  activeSection < i
-                    ? 0.9
-                    : activeSection > i
-                    ? 0.8
-                    : activeSection === i && 1,
-                opacity: activeSection < i ? 0.15 : activeSection > i ? 0.3 : 1,
-                transition: { duration: 1 },
-              }}
-              className="flex flex-col items-end justify-center w-full px-3 overflow-hidden leading-tight tracking-tighter text-right 2xl:text-right "
-            >
-              <motion.span
-                className={
-                  'font-light text-md sm:text-xl 2xl:text-2xl text-neutral-content '
-                }
-              >
-                Pasul {i + 1}
-              </motion.span>
-              <motion.h3
-                className={
-                  'text-lg leading-none md:text-xl lg:text-2xl max-w-80 xl:max-w-96 w-fit sm:text-lg 2xl:text-4xl text-neutral-content '
-                }
-              >
-                {section.title}
-              </motion.h3>
-            </FromLeft>
-          ))} 
-        </motion.div> */}
-        {/* <motion.div
-          ref={elementRef}
-          style={{ y: exitCarousel }}
-          className="flex flex-col w-full gap-12 py-[15vh]  max-w-7xl"
-        > */}
-        {STEPS.map((step, i) => (
-          <motion.div
-            key={step.title}
-            style={{ y: i * 12, scale: 1 - i * 0.012 }}
-            className=" sticky top-[10vh] md:top-[15vh]"
-          >
-            <Card step={step} i={i} />
-          </motion.div>
-        ))}
-        {/* </motion.div> */}
+
+      <div ref={headerHelper} className="h-[30vh] md:h-[40vh] " />
+
+      <motion.div
+        variants={stepsVariants}
+        animate={showSteps ? "visible" : "hidden"}
+        className="sticky overflow-hidden flex items-end md:items-end md:justify-end -mt-[100vh] top-0  h-screen "
+      >
+        <Cards scrollYProgress={scrollYProgress} visible={showSteps} />
       </motion.div>
+
+      <div ref={stepsRef} className="h-[500vh]"></div>
     </div>
   );
 };
 
 export default Sustainability;
+
+export const ProgressBar = () => {
+  return (
+    <div className="fixed flex gap-2 items-center font-medium flex-row  bottom-8 inset-x-0 mx-auto w-fit text-2xl text-base-content">
+      {STEPS.map((step) => (
+        <span
+          key={step.title}
+          className="w-12 relative md:w-20 xl:w-24 h-2 rounded-xl overflow-hidden bg-neutral-content bg-opacity-20"
+        >
+          <span className="absolute left-0 w-1/2 bg-base-content h-full top-0"></span>
+        </span>
+      ))}
+    </div>
+  );
+};

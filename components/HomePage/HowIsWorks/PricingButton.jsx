@@ -2,11 +2,31 @@ import { motion } from "framer-motion";
 
 import { LuInfo } from "react-icons/lu";
 
-const PricingButton = ({ expanded, setExpanded }) => {
+const buttonVariants = {
+  hidden: { scaleX: 0, opacity: 0 },
+  visible: {
+    scaleX: 1,
+    opacity: 1,
+    transition: { delay: 1.2, duration: 1, ease: [0.7, 0, 0.25, 1] },
+  },
+};
+
+const textVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { delay: 2, duration: 0.3, ease: [0.7, 0, 0.25, 1] },
+  },
+};
+
+const PricingButton = ({ expanded, setExpanded, showHeader }) => {
   return (
     <motion.div
       layoutId="toggle"
       onClick={setExpanded}
+      variants={buttonVariants}
+      initial="hidden"
+      animate={showHeader ? "visible" : "hidden"}
       className=" text-base-content bg-accent px-8 py-3 md:px-10 overflow-hidden md:py-4 mx-auto text-base font-light rounded-lg cursor-pointer   md:text-md xl:text-lg w-fit group "
     >
       <motion.div
@@ -25,10 +45,20 @@ const PricingButton = ({ expanded, setExpanded }) => {
         }
         className="flex flex-row items-center  gap-6"
       >
-        <span className="text-2xl md:text-3xl">
+        <motion.span
+          variants={textVariants}
+          initial="hidden"
+          animate={showHeader ? "visible" : "hidden"}
+          className="text-2xl md:text-3xl"
+        >
           <LuInfo />
-        </span>
-        <motion.h3 className="text-base md:text-lg uppercase font-medium tracking-wide ">
+        </motion.span>
+        <motion.h3
+          variants={textVariants}
+          initial="hidden"
+          animate={showHeader ? "visible" : "hidden"}
+          className="text-base md:text-lg uppercase font-medium tracking-wide "
+        >
           Cum stabilim costurile?
         </motion.h3>
       </motion.div>

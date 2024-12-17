@@ -9,7 +9,7 @@ const Card = ({ item, setSelectedId, layoutId }) => {
     <motion.div
       layoutId={layoutId}
       onClick={() => setSelectedId(item.id)}
-      className="grid relative bg-secondary hover:bg-secondary-content group  group max-lg:grid-rows-7 lg:grid-cols-7   max-h-[960px]  h-full w-[95vw] xl:w-[80vw] 3xl:w-[75vw] max-w-screen-xl p-2 md:p-4 xl:p-6  cursor-pointer rounded-2xl  "
+      className="grid relative bg-secondary transition-colors duration-300 hover:bg-secondary-content group  group max-lg:grid-rows-7 lg:grid-cols-7   max-h-[960px]  h-full w-[95vw] xl:w-[80vw] 3xl:w-[75vw] max-w-screen-xl p-2 md:p-4 xl:p-6  cursor-pointer rounded-2xl  "
     >
       <motion.span
         // layoutId={layoutId + "button"}

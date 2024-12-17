@@ -44,7 +44,7 @@ const ServicesSection = ({ colored }) => {
 
         <motion.div
           style={{ x }}
-          className="flex z-40 sticky -mt-[100vh] top-0 flex-row h-screen items-end justify-end gap-8  md:gap-12 xl:gap-20 pt-20 md:pt-28 pb-12"
+          className="flex z-40 sticky -mt-[100vh] top-0 flex-row h-screen items-center justify-end gap-8  md:gap-12 xl:gap-20 pt-20 md:pt-28 pb-12"
         >
           {SERVICES.map((item) => (
             <Card

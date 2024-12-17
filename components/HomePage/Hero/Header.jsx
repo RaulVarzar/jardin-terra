@@ -23,7 +23,7 @@ const Header = () => {
         </Reveal>
       </div>
 
-      <h3 className="flex  flex-wrap justify-center max-w-2xl font-light leading-none opacity-50 md:justify-start text-neutral-content text-md sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 3xl:text-4xl">
+      <h3 className="flex  flex-wrap justify-center max-w-2xl font-light leading-none opacity-50 xl:justify-start text-neutral-content text-md sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 3xl:text-4xl">
         <WordReveal offset="120" delay={1.6} duration={1.5}>
           Proiectăm spații verzi în armonie cu natura
         </WordReveal>
@@ -32,10 +32,12 @@ const Header = () => {
       <FromLeft delay={1.4} duration={0.7}>
         <a
           href="/contact"
-          className="py-3 pl-5 mt-6 max-xl:mx-auto flex flex-row gap-2 pr-2 text-sm tracking-wider xl:pl-6 xl:pr-4 xl:py-4  text-neutral-content  hover:backdrop-brightness-125  rounded-xl xl:text-md  mybutton hover:text-stone-100 xl:hover:pl-10 hover:pl-8 bg-secondary"
+          className="py-3 pl-8 mt-6 max-xl:mx-auto flex flex-row gap-2 pr-4  tracking-wider xl:pl-6 xl:pr-4 xl:py-4  text-neutral-content  hover:backdrop-brightness-125  rounded-xl   mybutton  xl:hover:pl-10 hover:pl-8 bg-base-content"
         >
-          Începe un proiect
-          <span className="text-lg md:text-xl xl:text-2xl">
+          <h1 className="text-md md:text-lg text-accent-content font-semibold">
+            Începe un proiect
+          </h1>
+          <span className="text-lg md:text-xl xl:text-2xl text-accent-content">
             <PiPlantDuotone />
           </span>
         </a>

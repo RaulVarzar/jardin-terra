@@ -1,0 +1,65 @@
+import { AnimatePresence, motion } from "framer-motion";
+import { LuLeaf } from "react-icons/lu";
+
+export const NavbarLink = ({ hovering, setHovering, content }) => {
+  const { title, link, id } = content;
+
+  return (
+    <motion.div
+      onMouseEnter={() => setHovering(id)}
+      onMouseLeave={() => setHovering(null)}
+      className="relative  p-1 flex flex-row items-center cursor-pointer"
+    >
+      <motion.div
+        className="overflow-hidden flex flex-row items-center gap-4 py-3 w-fit"
+        animate={
+          hovering && hovering != id
+            ? { filter: "blur(2px)", opacity: 0.6 }
+            : hovering && hovering === id
+            ? { filter: "blur(0px)", scale: 1.03, x: -48 }
+            : { filter: "blur(0px)", opacity: 1 }
+        }
+        transition={{ duration: 0.3, ease: "easeIn" }}
+      >
+        <motion.span
+          initial={{ opacity: 0, y: "100%" }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{
+            opacity: 0,
+            y: "100%",
+            transition: {
+              delay: 0.3 - id * 0.1,
+              duration: 0.5,
+              ease: [0.76, 0, 0.24, 1],
+            },
+          }}
+          transition={{
+            delay: 0.3 + id * 0.06,
+            duration: 0.9,
+            ease: [0.76, 0, 0.24, 1],
+          }}
+          className="flex items-center h-full leading-none text-neutral-content    opacity-95 active:scale-90 hover:opacity-100 text-2xl md:text-4xl lg:text-4xl"
+        >
+          {title}
+        </motion.span>
+      </motion.div>
+      <AnimatePresence mode="popLayout">
+        {hovering === id && (
+          <motion.div
+            layoutId="links"
+            exit={{ opacity: 0 }}
+            className="absolute right-0 text-xl sm:text-2xl lg:text-3xl text-base-content"
+            initial={{ x: "100%", opacity: 0 }}
+            animate={{
+              x: "0%",
+              opacity: 1,
+            }}
+            transition={{ duration: 0.3, delay: 0, ease: [0.75, 0, 0.5, 1] }}
+          >
+            <LuLeaf />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};

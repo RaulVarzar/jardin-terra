@@ -5,6 +5,7 @@ import logo from "/public/logo.png";
 import ToggleButton from "./ToggleButton";
 
 import { FaFacebook, FaInstagram, FaEnvelope, FaTiktok } from "react-icons/fa6";
+import { NavbarLink } from "./NavLink";
 
 const imgVariants = {
   visible: {
@@ -58,7 +59,7 @@ const Navbar = () => {
                 }
           }
           transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-          className="absolute w-full h-full bg-accent-content "
+          className="absolute w-full h-full bg-accent-content shadow-lg "
         />
 
         <div className="flex flex-row w-full items-center 2xl:px-16 3xl:px-24  mx-auto justify-between z-50  py-2 md:py-3  xl:py-5 xl:px-12 px-4 md:px-6 lg:px-10">
@@ -75,11 +76,7 @@ const Navbar = () => {
               exit={{ opacity: 0, transition: { delay: 0.8 } }}
               className="md:px-24 z-50 flex flex-col xl:px-36 2xl:px-44 gap-4 px-8 w-fit place-self-end pt-4 pb-16 md:pb-20"
             >
-              <div className="flex-col sm:w-fit flex items-end justify-end w-full uppercase   font-medium tracking-wider  gap-6 md:gap-8 h-fit  py-4   ">
-                <NavbarLink title="Serviciile noastre" id={0} />
-                <NavbarLink title="Mod de lucru" id={1} />
-                <NavbarLink title="Sustenabilitate" id={2} />
-              </div>
+              <MainLinks />
 
               <Divider />
               <div className="w-full text-xl opacity-60 text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
@@ -107,6 +104,32 @@ const Navbar = () => {
   );
 };
 export default Navbar;
+
+export const MainLinks = () => {
+  const LINKS = [
+    { title: "Serviciile noastre", id: 1, link: "#servicii" },
+    { title: "Mod de lucru", id: 2, link: "#mod-de-lucru" },
+    { title: "Sustenabilitate", id: 3, link: "#sustenabilitate" },
+    { title: "Contact", id: 4, link: "#contact" },
+  ];
+  const [hovering, setHovering] = useState(null);
+  return (
+    <motion.div
+      // onMouseEnter={() => setHovering(true)}
+      // onMouseLeave={() => setHovering(false)}
+      className="flex-col sm:w-fit flex items-end justify-end w-full uppercase font-medium tracking-wider h-fit  py-4   "
+    >
+      {LINKS.map((link) => (
+        <NavbarLink
+          hovering={hovering}
+          setHovering={setHovering}
+          content={link}
+          key={link.id}
+        />
+      ))}
+    </motion.div>
+  );
+};
 
 export const Logo = ({ menuOpen }) => {
   return (
@@ -144,34 +167,6 @@ export const SocialLink = ({ title, link, id }) => {
     >
       {title}
     </motion.span>
-  );
-};
-
-export const NavbarLink = ({ title, id, link }) => {
-  return (
-    <div className="overflow-hidden">
-      <motion.span
-        initial={{ opacity: 0, y: "100%" }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{
-          opacity: 0,
-          y: "100%",
-          transition: {
-            delay: 0.3 - id * 0.1,
-            duration: 0.5,
-            ease: [0.76, 0, 0.24, 1],
-          },
-        }}
-        transition={{
-          delay: 0.3 + id * 0.06,
-          duration: 0.9,
-          ease: [0.76, 0, 0.24, 1],
-        }}
-        className="flex items-center h-full leading-none text-neutral-content  cursor-pointer  opacity-95 active:scale-90 hover:opacity-100 text-2xl md:text-4xl lg:text-4xl"
-      >
-        {title}
-      </motion.span>
-    </div>
   );
 };
 

@@ -1,5 +1,6 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
+import { BiMessageSquareDots } from "react-icons/bi";
 
 const ContactCard = () => {
   const containerRef = useRef(null);
@@ -29,10 +30,12 @@ const ContactCard = () => {
       <div className="flex flex-col items-center w-full gap-y-1">
         <a
           href="/contact"
-          className="flex items-center gap-6 px-8 py-8 tracking-wide uppercase transition duration-300 rounded-full shadow-md text-md md:text-lg xl:text-2xl md:px-12 xl:px-20 bg-base-content group text-base-200 hover:scale-95"
+          className="flex items-center gap-6 px-8 py-8 tracking-wide uppercase transition duration-300 rounded-3xl shadow-md text-md md:text-lg xl:text-2xl md:px-12 xl:px-20 bg-base-content group text-base-200 hover:scale-95"
         >
           Trimite-ne un mesaj
-          <i className="fa-regular fa-message"></i>
+          <span className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl">
+            <BiMessageSquareDots />
+          </span>
         </a>
         {/* <div className=" divider divider-accent">sau</div>
         <a
