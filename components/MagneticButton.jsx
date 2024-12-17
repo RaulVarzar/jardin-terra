@@ -4,6 +4,10 @@ import { useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 
 const MagneticButton = ({ children, amount, magnify, className, ...props }) => {
+  const ref = useRef(null);
+
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
   // disable animations on mobile
   if (isMobile) {
     return <>{children}</>;
@@ -13,10 +17,6 @@ const MagneticButton = ({ children, amount, magnify, className, ...props }) => {
   const offsets = amount || [2, 2];
   const xOffset = offsets[0];
   const yOffset = offsets[1];
-
-  const ref = useRef(null);
-
-  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouse = (e) => {
     const { clientX, clientY } = e;
