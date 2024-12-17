@@ -2,6 +2,7 @@ import { FromLeft, WordReveal, Reveal } from "../../utils/animations.jsx";
 import { motion } from "framer-motion";
 import Socials from "./Socials.jsx";
 import { PiPlantDuotone } from "react-icons/pi";
+import MagneticButton from "../../MagneticButton.jsx";
 
 const HEADER = "GRĂDINII TALE".split("");
 
@@ -16,7 +17,7 @@ const Header = () => {
         </Reveal>
         <Reveal delay={1.2} duration={1.2}>
           <div className="inline-block ">
-            <h3 className="  font-black leading-tight table text-[10vw] md:text-7xl lg:text-8xl max-xl:text-center xl:text-7xl 2xl:text-8xl">
+            <h3 className="  font-black leading-tight table text-[10vw] md:text-7xl lg:text-8xl max-xl:text-center xl:text-7xl 2xl:text-8xl 3xl:text-9xl">
               GRĂDINII TALE
             </h3>
           </div>

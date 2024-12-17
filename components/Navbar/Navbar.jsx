@@ -6,6 +6,7 @@ import ToggleButton from "./ToggleButton";
 
 import { FaFacebook, FaInstagram, FaEnvelope, FaTiktok } from "react-icons/fa6";
 import { NavbarLink } from "./NavLink";
+import MagneticButton from "../MagneticButton";
 
 const imgVariants = {
   visible: {
@@ -59,7 +60,7 @@ const Navbar = () => {
                 }
           }
           transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-          className="absolute w-full h-full bg-accent-content shadow-lg "
+          className="absolute w-full h-full bg-secondary-content"
         />
 
         <div className="flex flex-row w-full items-center 2xl:px-16 3xl:px-24  mx-auto justify-between z-50  py-0 md:py-3  xl:py-5 xl:px-12 px-4 md:px-6 lg:px-10">
@@ -74,15 +75,23 @@ const Navbar = () => {
           {menuOpen && (
             <motion.div
               exit={{ opacity: 0, transition: { delay: 0.8 } }}
-              className="md:px-24 z-50 flex flex-col xl:px-36 2xl:px-44 gap-4 px-8 w-fit place-self-end pt-4 pb-16 md:pb-20"
+              className="md:px-24 z-50 flex flex-col xl:px-36 2xl:px-44 gap-4 px-8 w-fit place-self-end pb-12 md:pb-16 xl:pb-20"
             >
               <MainLinks />
 
               <Divider />
-              <div className="w-full text-base sm:text-lg lg:text-xl opacity-60 text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
-                <SocialLink title="facebook" id={0} />
-                <SocialLink title="instagram" id={1} />
-                <SocialLink title="tiktok" id={2} />
+              <div className="w-full text-base sm:text-lg lg:text-xl text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
+                <SocialLink
+                  title="facebook"
+                  id={0}
+                  link={"https://facebook.com"}
+                />
+                <SocialLink
+                  title="instagram"
+                  id={1}
+                  link={"https://instagram.com"}
+                />
+                <SocialLink title="tiktok" id={2} link={"https://tiktok.com"} />
               </div>
             </motion.div>
           )}
@@ -114,11 +123,7 @@ export const MainLinks = () => {
   ];
   const [hovering, setHovering] = useState(null);
   return (
-    <motion.div
-      // onMouseEnter={() => setHovering(true)}
-      // onMouseLeave={() => setHovering(false)}
-      className="flex-col sm:w-fit flex items-end justify-end w-full uppercase font-medium tracking-wider h-fit  py-4   "
-    >
+    <motion.div className="flex-col sm:w-fit flex items-end justify-end w-full uppercase font-medium tracking-wider h-fit  py-4   ">
       {LINKS.map((link) => (
         <NavbarLink
           hovering={hovering}
@@ -147,26 +152,30 @@ export const Logo = ({ menuOpen }) => {
 
 export const SocialLink = ({ title, link, id }) => {
   return (
-    <motion.span
-      initial={{ opacity: 0, y: "30%", filter: "blur(5px)" }}
-      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      exit={{
-        opacity: 0,
-        y: "30%",
-        transition: {
-          delay: 0.1 + id * 0.06,
-          duration: 0.4,
+    <MagneticButton amount={[5, 1.5]}>
+      <motion.a
+        initial={{ opacity: 0, y: "30%", filter: "blur(5px)" }}
+        animate={{ opacity: 0.7, y: 0, filter: "blur(0px)" }}
+        exit={{
+          opacity: 0,
+          y: "30%",
+          transition: {
+            delay: 0.1 + id * 0.06,
+            duration: 0.4,
+            ease: [0.76, 0, 0.24, 1],
+          },
+        }}
+        transition={{
+          delay: 0.8 + id * 0.15,
+          duration: 0.9,
           ease: [0.76, 0, 0.24, 1],
-        },
-      }}
-      transition={{
-        delay: 0.8 + id * 0.15,
-        duration: 0.9,
-        ease: [0.76, 0, 0.24, 1],
-      }}
-    >
-      {title}
-    </motion.span>
+        }}
+        href={link}
+        target="_blank"
+      >
+        {title}
+      </motion.a>
+    </MagneticButton>
   );
 };
 

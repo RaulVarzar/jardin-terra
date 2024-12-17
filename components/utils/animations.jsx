@@ -300,3 +300,101 @@ export const WordReveal = ({ children, delay, duration, offset }) => {
     </>
   );
 };
+
+export const TextReveal = ({ duration, children }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { amount: 0.99 });
+
+  return (
+    <div ref={ref} className="overflow-hidden">
+      <motion.div
+        initial={{ y: "120%", opacity: 0 }}
+        animate={
+          isInView
+            ? {
+                y: 0,
+                opacity: 1,
+                transition: {
+                  duration: duration || 1,
+                  delay: 0.2,
+                  ease: [0.75, 0, 0.25, 1],
+                },
+              }
+            : {
+                y: "120%",
+                opacity: 0,
+                transition: { delay: 0.5, duration: 0.8 },
+              }
+        }
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+};
+
+export const TextFadeIn = ({ duration, children }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { amount: 0.8 });
+
+  return (
+    <div ref={ref} className="overflow-hidden">
+      <motion.div
+        initial={{ y: "10px", opacity: 0, filter: "blur(2px)" }}
+        animate={
+          isInView
+            ? {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+                transition: {
+                  duration: duration || 1,
+                  delay: 0.2,
+                  ease: [0.75, 0, 0.25, 1],
+                },
+              }
+            : {
+                y: "10px",
+                opacity: 0,
+                filter: "blur(2px)",
+                transition: { delay: 0.5, duration: 0.8 },
+              }
+        }
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+};
+
+export const ScaleIn = ({ duration, children }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { amount: 0.5 });
+
+  return (
+    <div ref={ref}>
+      <motion.div
+        initial={{ scale: 0, opacity: 0 }}
+        animate={
+          isInView
+            ? {
+                scale: 1,
+                opacity: 1,
+                transition: {
+                  duration: duration || 1,
+                  delay: 0.3,
+                  ease: [0.45, 0.18, 0.1, 1],
+                },
+              }
+            : {
+                scale: 0,
+                opacity: 0,
+                transition: { delay: 0.5, duration: 0.8 },
+              }
+        }
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+};

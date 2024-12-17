@@ -7,6 +7,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { STEPS } from "../../utils/data";
+import MagneticButton from "../../MagneticButton";
 
 const stepsVariants = {
   visible: {
@@ -43,7 +44,7 @@ const Cards = ({ scrollYProgress, visible }) => {
 
   return (
     <motion.div className="flex flex-col  md:flex-col items-center w-screen justify-start gap-4 lg:px-12  h-[95vh] md:h-screen xl:gap-6 px-3 py-4 md:py-16  xl:py-12  xl:px-12">
-      <div className="w-full h-36 md:h-60 lg:h-72 xl:h-80 2xl:h-96 ">
+      <div className="w-full h-36 md:h-56 lg:h-60 xl:h-72 2xl:h-80 mt-12 sm:mt-4">
         <Tree activeStep={activeStep} visible={visible} progress={progress} />
       </div>
       <motion.div
@@ -77,11 +78,11 @@ export const Step = ({ step, activeStep, id, progress, numberOfSteps }) => {
   );
 
   return (
-    <div className=" flex flex-col overflow-hidden relative bg-secondary-content w-full bg-opacity-75 gap-0 px-4 md:px-5 rounded-sm md:rounded-md lg:px-8 xl:px-10 2xl:px-16 py-2.5 sm:py-3 md:py-4 xl:py-6   justify-center items-start ">
+    <div className=" flex flex-col overflow-hidden relative bg-base-300 w-full bg-opacity-75 gap-0 px-4 md:px-5 rounded-sm md:rounded-xl lg:px-8 xl:px-10 2xl:px-16 py-2.5 sm:py-3 md:py-4 xl:py-6   justify-center items-start ">
       {/* PROGRESS BAR */}
       <motion.div
         style={{ y }}
-        className="absolute top-0 left-0 w-full h-full bg-accent"
+        className="absolute top-0 left-0 w-full h-full bg-secondary-content"
       />
       {/*  */}
 
@@ -149,7 +150,7 @@ export const Tree = ({ activeStep, visible, progress }) => {
   const pathVariants = {
     incomplete: {
       opacity: 0.6,
-      filter: "saturate(0%)brightness(15%)",
+      filter: "saturate(0%)brightness(30%)",
       scale: 1,
       transition: { duration: 0.4, delay: 0.1, ease: "easeIn" },
     },
@@ -168,7 +169,7 @@ export const Tree = ({ activeStep, visible, progress }) => {
       y="0"
       width="auto"
       height="auto"
-      viewBox="0 0 100 100"
+      viewBox="-15 15 150 70"
       preserveAspectRatio="xMidYMid meet"
       variants={variants}
       animate={visible ? "visible" : "hidden"}
@@ -191,14 +192,12 @@ export const Tree = ({ activeStep, visible, progress }) => {
         d="M58.59,37.546c-.45,2.19-1.05,4.34-2.2,6.35-.33,.51-.66,1.03-1,1.55-15.89-4.72-18.86-8.59-17.57-26.79,18.03,5.93,21.45,8.11,20.77,18.89Z"
         className="fill-[#3e5332] "
       />
-
       <motion.path
         variants={pathVariants}
         animate={activeStep > 3 ? "complete" : "incomplete"}
         d="M82.53,24.226c-5.35,14.93-6.59,15.42-18.66,13.56l-.16-.2c.03-.16,.04-.31,.06-.47,.07-.83,.14-1.8,.23-2.81,3.35-9.53,6.49-11.26,18.53-10.08Z"
         className="fill-[#3b502b]"
       />
-
       <path
         d="M67.37,20.916c-2.18,1.86-2.32,4.92-2.79,7.58-.21,1.62-.41,3.8-.58,5.81-.09,1.01-.16,1.98-.23,2.81-.02,.16-.03,.31-.06,.47-.41,3.16-1.74,6.18-3.59,8.72-.31,.43-.64,.84-.99,1.24-2.24,2.69-5,4.82-7.88,6.79-1.79,1.24-3.63,2.41-5.43,3.61-.65,.41-1.21,.9-1.7,1.46-.93,1.05-1.6,2.32-2.14,3.62-.24,.55-.45,1.11-.65,1.67-.82,2.3-1.99,5.55-2.59,7.92-.75,2.75-1.41,5.6-2.24,8.55-.04,.23-.41,.25-.47,.02-.93-3.2-1.24-6.66-.84-10.02,.34-2.89,1.2-5.71,2.64-8.22,.23-.37,.47-.72,.73-1.06,1.7-2.28,4.07-4.07,6.5-5.26,4.65-2.29,7.6-6.91,10.33-11.18,.34-.52,.67-1.04,1-1.55,1.15-2.01,1.75-4.16,2.2-6.35,.69-3.35,1.03-6.79,2.4-10,1.22-2.83,2.85-6.54,6.24-7.08,.24,0,.36,.31,.14,.45Z"
         className="fill-[#4D3C38]"

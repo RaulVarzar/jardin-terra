@@ -37,7 +37,7 @@ const Header = ({ showHeader }) => {
           variants={titleVariants}
           initial="hidden"
           animate={showHeader ? "visible" : ""}
-          className="text-3xl font-black tracking-wider uppercase sm:text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl"
+          className="text-3xl font-bold tracking-wide uppercase sm:text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl"
         >
           Modul de lucru
         </motion.h3>

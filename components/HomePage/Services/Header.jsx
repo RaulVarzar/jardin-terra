@@ -32,7 +32,7 @@ const Header = () => {
 
   const { scrollYProgress } = useScroll({
     target: scrollableRef,
-    offset: ["start end", "end "],
+    offset: ["start end", "end 0.6"],
   });
 
   const { scrollYProgress: enterProgress } = useScroll({
@@ -50,7 +50,7 @@ const Header = () => {
   });
 
   const exitOpacity = useTransform(exitProgress, [0.4, 0.8], ["100%", "0%"]);
-  const exitY = useTransform(exitProgress, [0.15, 0.8], ["0vh", "-12vh"]);
+  const exitY = useTransform(exitProgress, [0.4, 0.8], ["0vh", "-12vh"]);
 
   return (
     <>

@@ -1,21 +1,22 @@
 import { Blur, Reveal } from "../../utils/animations";
 import { motion } from "framer-motion";
 import { BiExpandAlt } from "react-icons/bi";
+import MagneticButton from "../../MagneticButton";
 
 const Card = ({ item, setSelectedId, layoutId }) => {
   const { title, photo, descriptions } = item;
 
   return (
-    <motion.div
+    <MagneticButton
+      amount={[20, 25]}
       layoutId={layoutId}
       onClick={() => setSelectedId(item.id)}
       className="grid relative bg-secondary transition-colors duration-300 hover:bg-secondary-content group  group max-lg:grid-rows-7 lg:grid-cols-7 z-50  max-h-[960px]  h-full w-[96vw] xl:w-[80vw] 3xl:w-[75vw] max-w-screen-2xl p-2 md:p-4 xl:p-6  cursor-pointer rounded-2xl  "
     >
-      <motion.span
-        // layoutId={layoutId + "button"}
-        className="text-2xl md:text-3xl z-50 absolute max-lg:bottom-4 lg:top-4  right-4 p-3 transition duration-300 md:p-4   text-base-content brightness-85 group-hover:brightness-125 group-hover:scale-110"
-      >
-        <BiExpandAlt />
+      <motion.span className="text-2xl md:text-3xl z-50 absolute max-lg:bottom-4 lg:top-4  right-4 p-3 transition duration-300 md:p-4   text-base-content brightness-85 group-hover:brightness-125 group-hover:scale-110">
+        <MagneticButton magnify={1.1}>
+          <BiExpandAlt />
+        </MagneticButton>
       </motion.span>
 
       <div className="z-10 h-full overflow-hidden max-sm:row-span-3 sm:max-lg:row-span-4 lg:col-span-3 rounded-xl ">
@@ -34,7 +35,7 @@ const Card = ({ item, setSelectedId, layoutId }) => {
           <Reveal delay={0.3} duration={1.2}>
             <motion.h1
               layoutId={title}
-              className="p-0 pb-4 max-md:text-pretty md:text-balance uppercase my-0 text-2xl font-black leading-none md:text-3xl h-fit lg:text-4xl  2xl:text-5xl text-neutral-content"
+              className="p-0 pb-4 max-md:text-pretty md:text-balance uppercase my-0 text-2xl font-bold leading-none md:text-3xl h-fit lg:text-4xl  2xl:text-5xl text-neutral-content"
             >
               {title}
             </motion.h1>
@@ -58,7 +59,7 @@ const Card = ({ item, setSelectedId, layoutId }) => {
           </motion.div>
         </div>
       </div>
-    </motion.div>
+    </MagneticButton>
   );
 };
 

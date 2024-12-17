@@ -27,7 +27,7 @@ function HeroSection({}) {
     <div className="relative">
       <section
         ref={home}
-        className=" grid-rows-12 3xl:px-24 bg-accent w-full relative grid items-center z-40 h-screen px-4 pt-20 pb-10 mx-auto xl:grid-cols-12  overflow-hidden md:pt-28  gap-x-8 xl:px-12  xl:grid-rows-1 snap-center 2xl:px-16"
+        className=" grid-rows-12 3xl:px-24 bg-secondary-content w-full relative grid items-center z-40 h-screen px-4 pt-20 pb-10 mx-auto xl:grid-cols-12  overflow-hidden md:pt-28  gap-x-8 xl:px-12  xl:grid-rows-1 snap-center 2xl:px-16"
       >
         <motion.div
           style={{ y: headerY, opacity: mainOpacity }}

@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
-import { motion, useInView, useScroll } from "framer-motion";
+import { AnimatePresence, motion, useInView, useScroll } from "framer-motion";
 import PricingButton from "./PricingButton";
 import Header from "./Header";
 import Cards from "./Cards";
 import ModalCard from "./ModalCard";
+import { isMobile } from "react-device-detect";
 
 const stepsVariants = {
   visible: {
@@ -27,8 +28,6 @@ const stepsVariants = {
 };
 
 const Sustainability = () => {
-  const isMobile = window.screen.width < 960;
-
   const stepsRef = useRef(null);
   const headerHelper = useRef(null);
   const exitOffset = isMobile ? -75 : -60;
@@ -46,7 +45,7 @@ const Sustainability = () => {
   const showSteps = useInView(stepsRef, { margin: "1000% 0% -100% 0%" });
 
   return (
-    <div className="relative flex  flex-col justify-center h-fit text-accent border- border-info">
+    <div className="relative flex  flex-col justify-center h-fit text-accent bg-base-20">
       <motion.div
         initial={{ y: "100%", transition: { duration: 0.1, delay: 2 } }}
         animate={
@@ -58,7 +57,10 @@ const Sustainability = () => {
                 transition: { duration: 0, delay: 0.4 },
               }
         }
-        className="flex flex-col sticky top-0 border- border-teal-700 border-opacity-25  -mt-[130vh] gap-1 min-h-screen justify-center items-center"
+        className={
+          "flex flex-col sticky top-0  -mt-[130vh] transition-colors duration-1000  gap-1 min-h-screen justify-center items-center " +
+          ((showHeader || showSteps) && " bg-base-20")
+        }
       >
         <Header showHeader={showHeader} />
         <PricingButton
@@ -67,14 +69,12 @@ const Sustainability = () => {
           setExpanded={() => setExpandedCard(true)}
         />
       </motion.div>
-      <div className="relative">
-        {expandedCard && <ModalCard closeCard={() => setExpandedCard(false)} />}
-      </div>
 
-      <div
-        ref={headerHelper}
-        className="h-1 -mt-[50vh] w-full border- border-emerald-400 border-opacity-25"
-      ></div>
+      <AnimatePresence>
+        {expandedCard && <ModalCard closeCard={() => setExpandedCard(false)} />}
+      </AnimatePresence>
+
+      <div ref={headerHelper} className="h-1 -mt-[50vh] w-full "></div>
       <motion.div
         variants={stepsVariants}
         animate={showSteps ? "visible" : "hidden"}
@@ -83,7 +83,7 @@ const Sustainability = () => {
         <Cards scrollYProgress={scrollYProgress} visible={showSteps} />
       </motion.div>
 
-      <div ref={stepsRef} className="h-[500vh] border- border-red-600"></div>
+      <div ref={stepsRef} className="h-[500vh] "></div>
     </div>
   );
 };

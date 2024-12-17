@@ -27,7 +27,7 @@ const PricingButton = ({ expanded, setExpanded, showHeader }) => {
       variants={buttonVariants}
       initial="hidden"
       animate={showHeader ? "visible" : "hidden"}
-      className=" text-base-content bg-accent px-4 sm:px-6 md:px-8 py-3 lg:px-10 overflow-hidden md:py-4 mx-auto rounded-lg cursor-pointer    group "
+      className=" text-base-content  bg-primary hover:bg-secondary-content transition-colors duration-300 px-4 sm:px-6 md:px-8 py-3 lg:px-10 overflow-hidden md:py-4 mx-auto rounded-lg cursor-pointer    group "
     >
       <motion.div
         animate={

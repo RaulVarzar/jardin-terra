@@ -5,17 +5,17 @@ export const SERVICES = [
     title: "Grădini private",
     descriptions: [
       {
-        title: " ",
+        title: "",
         content:
           "Grădina este oaza noastră de relaxare, unul din cele mai importante spații asociate unei locuințe, clădiri de birouri sau spațiu public. Indiferent de dimensiunea ei, este locul perfect pentru petrecerea timpului liber și încărcarea bateriilor. De aceea, echipa Jardin Terra vine în întâmpinarea ta cu soluții complete de proiectare și amenajare peisagistică a grădinii.",
       },
       {
-        title: " ",
+        title: "",
         content:
           "Rolul nostru? Să îți îndeplinim dorințele cu privire la spațiul tău verde. Să obții mai mult de la acesta, indiferent că e o grădină mică sau un spațiu verde de mari dimensiuni. De la construirea unui gard sau a unei căsuțe, până la amenajarea întregului spațiu verde, echipa Jardin Terra oferă servicii de proiectare 2D și 3D, precum și suport în alegerea materialelor și implementare, respectiv îngrijire și întreținere după finalizarea lucrărilor.",
       },
       {
-        title: " ",
+        title: "",
         content:
           "Înainte de amenajarea unui spațiu verde, stabilim care este scopul său, motivul pentru care demarăm proiectul de amenajare sau reabilitare. Pornind de la scop, cât și de la nevoile și dorințele tale, începem să punem bazele viitorului plan computerizat care ulterior va prinde viață. Totul se va desfășura după o vizită la fața locului, pentru a studia proprietățile solului, împrejurimile, a realiza măsurătorile necesare ca să vedem ce putem pune cu adevărat în practică.",
       },
@@ -186,7 +186,12 @@ export const SERVICES = [
       {
         title: "Proiectare grădini verticale interioare",
         content:
-          "Vrei să aduci natura în interiorul spațiului tău, indiferent de dimensiunea acestuia? Alege o grădină verticală de interior. Aceasta este o modalitate excelentă de a maximiza spațiul disponibil, de a îmbunătăți calitatea aerului, a aduce lumină și culoare în interior și a crea un spațiu verde plăcut, de relaxare. Pentru a beneficia de o grădină verticală de interior, există mai multe opțiuni disponibile. De la sistemul tradițional de plante care cresc în ghivece și sunt așezate pe un perete sau raft, până la sisteme avansate care utilizează tehnologii moderne, precum irigarea automată și iluminarea LED. La Jardin Terra, pentru o grădină verticală de interior, alegem plantele adecvate condițiilor de mediu din casa sau spațiul interior ales. Anumite plante preferă lumina indirectă, în timp ce altele au nevoie de mai multă lumină naturală. De asemenea, ne asigurăm că plantele au suficientă umiditate și proiectăm sisteme de irigare în acest sens. Locul ales pentru grădina ta verticală trebuie să fie luminos dar fără expunere directă la soare. O altă opțiune este să utilizăm sisteme hidroponice, pe bază de apă și nutrienți, sau sisteme aeroponice, ce utilizează o soluție nutritivă vaporizată care hrănește rădăcinile plantelor. Apelează cu încredere la specialiștii noștri pentru consultanță și proiectare grădini verticale de interior.",
+          "Vrei să aduci natura în interiorul spațiului tău, indiferent de dimensiunea acestuia? Alege o grădină verticală de interior. Aceasta este o modalitate excelentă de a maximiza spațiul disponibil, de a îmbunătăți calitatea aerului, a aduce lumină și culoare în interior și a crea un spațiu verde plăcut, de relaxare. Pentru a beneficia de o grădină verticală de interior, există mai multe opțiuni disponibile. De la sistemul tradițional de plante care cresc în ghivece și sunt așezate pe un perete sau raft, până la sisteme avansate care utilizează tehnologii moderne, precum irigarea automată și iluminarea LED. ",
+      },
+      {
+        title: "",
+        content:
+          "La Jardin Terra, pentru o grădină verticală de interior, alegem plantele adecvate condițiilor de mediu din casa sau spațiul interior ales. Anumite plante preferă lumina indirectă, în timp ce altele au nevoie de mai multă lumină naturală. De asemenea, ne asigurăm că plantele au suficientă umiditate și proiectăm sisteme de irigare în acest sens. Locul ales pentru grădina ta verticală trebuie să fie luminos dar fără expunere directă la soare. O altă opțiune este să utilizăm sisteme hidroponice, pe bază de apă și nutrienți, sau sisteme aeroponice, ce utilizează o soluție nutritivă vaporizată care hrănește rădăcinile plantelor. Apelează cu încredere la specialiștii noștri pentru consultanță și proiectare grădini verticale de interior.",
       },
     ],
     steps: { title: "", description: "", steps: [] },
@@ -219,9 +224,9 @@ export const SERVICES = [
           "Îmbunătățirea esteticii și a calității vieții, prin crearea unui mediu mai plăcut și mai atractiv pentru oameni și animale.",
       },
       {
-        title:
+        title: " ",
+        content:
           "Există mai multe tipuri de acoperișuri verzi, inclusiv cele intensive, cu straturi mai groase de sol și plante, care necesită întreținere regulată și irigare, precum și cele extinse, cu un strat mai subțire de sol și plante care necesită mai puțină întreținere. ",
-        content: "",
       },
     ],
     steps: {

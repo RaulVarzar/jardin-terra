@@ -1,4 +1,3 @@
-import { Blur, FromLeft } from "../../utils/animations";
 import { motion } from "framer-motion";
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 import { StepsCard } from "./StepsCard";
@@ -10,8 +9,6 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
 
   const filtered = descriptions.slice(1, descriptions.length); //arrayExceptfirstValue
 
-  console.log(filtered);
-
   return (
     <motion.div
       layoutId={layoutId}
@@ -19,7 +16,7 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
     >
       <motion.span
         onClick={() => setSelectedId(null)}
-        className="text-2xl rotate-45 md:text-3xl z-50 absolute top-4 lg:text-4xl right-4 p-3  md:p-4   text-base-content brightness-85 hover:text-error hover:brightness-125 hover:scale-95"
+        className="text-2xl rotate-45 md:text-3xl z-50 absolute top-4 lg:text-4xl right-4 p-3  md:p-4  transition-colors duration-200 text-base-content  hover:text-error hover:brightness-125 hover:scale-95"
       >
         <BsChevronContract />
       </motion.span>
@@ -37,7 +34,7 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
       <div className="relative z-20 flex flex-col justify-center h-full col-span-4 sm:gap-2 px-1 py-4 sm:py-6 md:py-8 overflow-hidden lg:row-span-1 md:px-5 xl:px-12">
         <motion.h1
           layoutId={title}
-          className="p-0 pb-4 my-0 text-2xl font-semibold uppercase leading-none md:text-4xl xl:text-6xl text-neutral-content"
+          className="p-0 pb-4 my-0 text-2xl font-semibold uppercase leading-none md:text-4xl xl:text-5xl text-neutral-content"
         >
           {title}
         </motion.h1>
@@ -47,8 +44,8 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
         >
           {descriptions[0].content}
         </motion.h3>
-        <div className="flex flex-col gap-12 px-0 pt-1 pb-4 overflow-y-auto md:px-4 ">
-          <div className="flex flex-col gap-4 md:gap-8 ">
+        <div className="flex flex-col gap-12  pt-1 pb-4 overflow-y-auto ">
+          <div className="flex flex-col gap-1 md:gap-2 ">
             {filtered.map((description, i) => (
               <motion.div
                 key={description.content}
@@ -64,12 +61,17 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
                   delay: 0.25 + i * 0.15,
                   ease: "easeInOut",
                 }}
-                className="flex flex-col gap-1"
+                className="flex flex-col gap-2"
               >
                 <h3 className="text-base font-semibold leading-none tracking-wide md:text-lg xl:text-xl 2xl:text-3xl opacity-90 text-neutral-content">
                   {description.title}
                 </h3>
-                <h5 className="text-sm font-normal leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base opacity-70 text-neutral-content">
+                <h5
+                  className={
+                    "text-sm font-normal  leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base opacity-70 text-neutral-content " +
+                    (description.title.length > 0 && " pl-4")
+                  }
+                >
                   {description.content}
                 </h5>
               </motion.div>

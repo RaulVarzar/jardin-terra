@@ -1,25 +1,6 @@
-import {
-  motion,
-  useMotionTemplate,
-  useScroll,
-  useSpring,
-  useTransform,
-  useVelocity,
-} from "framer-motion";
+import { motion, useMotionTemplate, useTransform } from "framer-motion";
 
 const RoundedBottom = ({ scrollProgress }) => {
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 100,
-    stiffness: 300,
-    mass: 0.1,
-  });
-
-  //   const amount = useTransform(smoothVelocity, [-700, 0, 700], [25, 0, 35], {
-  //     clamp: true,
-  //   });
-
   const clipPathRoundness = useTransform(
     scrollProgress,
     [0, 0.4, 1],
@@ -30,7 +11,7 @@ const RoundedBottom = ({ scrollProgress }) => {
 
   return (
     <motion.div style={{ clipPath }} className="z-40 sticky -bottom-[100%] ">
-      <div className=" z-50 w-full h-32 bg-accent sm:h-72"></div>
+      <div className=" z-50 w-full h-32 bg-secondary-content sm:h-72"></div>
     </motion.div>
   );
 };

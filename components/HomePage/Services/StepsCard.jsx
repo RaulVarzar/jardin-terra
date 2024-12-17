@@ -30,9 +30,9 @@ export const StepsCard = ({ steps }) => {
       variants={cardVariants}
       initial="hidden"
       animate="visible"
-      className="flex flex-col items-center justify-center w-full max-w-4xl gap-3 px-2 py-3 mx-auto text-center md:gap-8 md:py-6 sm:px-10 backdrop-brightness-115 rounded-xl"
+      className="flex flex-col items-center justify-center w-full max-w-4xl gap-2 px-2 py-3 mx-auto  md:gap-4 md:py-4 sm:px-6 backdrop-brightness-115 rounded-xl"
     >
-      <h3 className="text-sm font-black tracking-wider uppercase opacity-25 md:text-lg xl:text-2xl text-neutral-content">
+      <h3 className="text-sm font-semibold text-center  tracking-wide uppercase opacity-35 md:text-lg xl:text-xl text-neutral-content">
         {steps.title}
       </h3>
       <AnimatePresence mode="wait">
@@ -47,7 +47,7 @@ export const StepsCard = ({ steps }) => {
           <motion.h6 className="mx-auto font-medium leading-tight tracking-wide text-md text-balance md:tracking-wider md:text-xl 2xl:text-2xl w-fit">
             {steps.steps[selectedTopic].title}
           </motion.h6>
-          <motion.span className="block pl-4 text-sm font-light leading-snug text-balance md:text-md opacity-70">
+          <motion.span className="block pl-4 text-sm font-light text-center leading-snug text-balance md:text-md opacity-70">
             {steps.steps[selectedTopic].content}
           </motion.span>
         </motion.div>
