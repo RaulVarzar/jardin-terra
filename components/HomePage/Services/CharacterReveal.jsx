@@ -1,12 +1,12 @@
 import { motion, useTransform, useMotionTemplate } from "framer-motion";
 
-const TextReveal = ({ progress }) => {
+const CharacterReveal = ({ progress }) => {
   const TEXT =
     "De la grădini decorative, grădini de legume și fructe, spații verzi publice sau locuri de joacă pentru copii, la Jardin Terra îți stăm la dispoziție cu o gamă largă de opțiuni. Oferim servicii de planificare, proiectare și reabilitare spații verzi, indiferent de destinație sau suprafață.";
   const splitText = TEXT.split(" ");
 
   return (
-    <p className="flex gap-2 flex-wrap justify-center leading-none tracking-wide text-base font-light  sm:text-xl lg:text-3xl xl:text-4xl md:tracking-wider ">
+    <p className="flex gap-2 flex-wrap justify-center leading-4 sm:leading-none tracking-wide text-base font-light  sm:text-xl lg:text-3xl xl:text-4xl md:tracking-wider ">
       {splitText.map((word, i) => {
         const start = i / splitText.length;
 
@@ -52,9 +52,9 @@ export const Word = ({ children, range, progress, colored }) => {
 };
 
 export const Character = ({ children, range, progress }) => {
-  const opacity = useTransform(progress, range, ["15%", "100%"]);
+  const opacity = useTransform(progress, range, ["20%", "100%"]);
 
-  // const blurRaw = useTransform(progress, range, [1, 0]);
+  // const blurRaw = useTransform(progress, range, [2, 0]);
   // const filter = useMotionTemplate`blur(${blurRaw}px)`;
 
   return (
@@ -68,4 +68,4 @@ export const Character = ({ children, range, progress }) => {
   );
 };
 
-export default TextReveal;
+export default CharacterReveal;

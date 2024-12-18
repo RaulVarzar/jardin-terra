@@ -65,17 +65,14 @@ const Sustainability = () => {
   const titleArray = "SUSTENABILITATE".split("");
 
   return (
-    <div ref={sectionRef}>
-      <motion.div
-        style={{ opacity: exitHeader }}
-        className="h-[75vh] sticky top-0 uppercase font-semibold grid place-content-center overflow-x-hidden"
-      >
-        <motion.h1
-          style={{ scale: enterTitle, opacity: enterTitle }}
-          className="flex flex-row text-3xl font-bold tracking-wider text-neutral-content md:text-6xl opacity-80 "
-        >
+    <div ref={sectionRef} className="flex flex-row justify-center">
+      <motion.div className="h-screen sticky top-0 uppercase font-semibold grid place-content-start pt-[25vh] overflow-x-hidden">
+        <motion.h1 className="flex flex-row text-3xl font-bold tracking-wider text-neutral-content md:text-6xl opacity-80 ">
           {titleArray.map((letter, i) => (
-            <motion.span key={i} style={{ margin: letterSpacing }}>
+            <motion.span
+              key={i}
+              // style={{ margin: letterSpacing }}
+            >
               {letter}
             </motion.span>
           ))}

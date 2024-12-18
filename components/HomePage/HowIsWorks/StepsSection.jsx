@@ -11,18 +11,15 @@ const stepsVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 1,
-      delay: 0,
-      ease: [0.75, 0, 0.25, 1],
+      duration: 0.1,
     },
   },
   hidden: {
-    opacity: 0,
+    opacity: 1,
     y: "100%",
     transition: {
-      duration: 0.6,
-      delay: 0,
-      ease: [0.7, 0, 0.3, 1],
+      duration: 0,
+      delay: 1.5,
     },
   },
 };
@@ -34,7 +31,7 @@ const Sustainability = () => {
 
   const { scrollYProgress } = useScroll({
     target: stepsRef,
-    offset: ["start", "0.95 end"],
+    offset: ["0.03 start", "1 end"],
   });
 
   const [expandedCard, setExpandedCard] = useState(null);
@@ -50,7 +47,13 @@ const Sustainability = () => {
         initial={{ y: "100%", transition: { duration: 0.1, delay: 2 } }}
         animate={
           showHeader
-            ? { y: "0%", opacity: 1, transition: { duration: 0.1 } }
+            ? { y: "0%", opacity: 1, transition: { duration: 0.7, delay: 0.2 } }
+            : showSteps
+            ? {
+                y: "-100%",
+                opacity: 1,
+                transition: { duration: 0.8, ease: [0.7, 0, 0.3, 1] },
+              }
             : {
                 y: "100%",
                 opacity: 0,
@@ -58,11 +61,11 @@ const Sustainability = () => {
               }
         }
         className={
-          "flex flex-col sticky top-0  -mt-[130vh] transition-colors duration-1000  gap-1 min-h-screen justify-center items-center " +
+          "flex flex-col sticky top-0 z-50 -mt-[130vh] transition-colors duration-1000  gap-1 min-h-screen justify-center items-center " +
           ((showHeader || showSteps) && " bg-base-20")
         }
       >
-        <Header showHeader={showHeader} />
+        <Header showHeader={showHeader} showSteps={showSteps} />
         <PricingButton
           expanded={expandedCard}
           showHeader={showHeader}
@@ -78,7 +81,8 @@ const Sustainability = () => {
       <motion.div
         variants={stepsVariants}
         animate={showSteps ? "visible" : "hidden"}
-        className="sticky overflow-hidden  flex  -mt-[100vh] top-0  h-screen "
+        initial="hidden"
+        className="sticky overflow-hidden flex -mt-[100vh] top-0 h-[100dvh]"
       >
         <Cards scrollYProgress={scrollYProgress} visible={showSteps} />
       </motion.div>

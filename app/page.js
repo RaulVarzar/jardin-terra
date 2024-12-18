@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar setDark={setDark} />
       <div
         className={
           "h-full rounded-b-3xl md:rounded-b-4xl transition-colors overflow-clip duration-700 " +

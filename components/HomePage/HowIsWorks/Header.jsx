@@ -24,7 +24,7 @@ const subTitleVariants = {
   },
 };
 
-const Header = ({ showHeader }) => {
+const Header = ({ showHeader, showSteps }) => {
   const headerRef = useRef(null);
 
   return (
@@ -36,7 +36,7 @@ const Header = ({ showHeader }) => {
         <motion.h3
           variants={titleVariants}
           initial="hidden"
-          animate={showHeader ? "visible" : ""}
+          animate={showHeader || showSteps ? "visible" : ""}
           className="text-3xl font-bold tracking-wide uppercase sm:text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl"
         >
           Modul de lucru
@@ -46,7 +46,7 @@ const Header = ({ showHeader }) => {
       <motion.p
         variants={subTitleVariants}
         initial="hidden"
-        animate={showHeader ? "visible" : "hidden"}
+        animate={showHeader || showSteps ? "visible" : "hidden"}
         className="pt-2 text-sm font-normal leading-tight tracking-wider opacity-50 max-w-3xl md:text-lg xl:text-xl text-balance 2xl:text-2xl"
       >
         Înainte de a trece la lopată și săpăligă, analizăm dimensiunile și forma

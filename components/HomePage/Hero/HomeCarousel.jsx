@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, useTransform } from 'framer-motion';
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useTransform } from "framer-motion";
 
-const PHOTOS = ['home2.jpg', 'home1.jpg', 'home3.jpg'];
+const PHOTOS = ["home2.jpg", "home1.jpg", "home3.jpg"];
 
 const Carousel = ({ scrollYProgress }) => {
   const [activePhoto, setActivePhoto] = useState(0);
@@ -21,21 +21,21 @@ const Carousel = ({ scrollYProgress }) => {
     return () => clearInterval(interval);
   }, []);
 
-  const scale = useTransform(scrollYProgress, [0, 1], ['100%', '120%']);
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+  const scale = useTransform(scrollYProgress, [0, 1], ["100%", "120%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
   return (
-    <div className="relative w-full h-full overflow-hidden group rounded-2xl">
+    <div className="relative w-full h-full overflow-hin group overflow-hidden rounded-2xl">
       <AnimatePresence mode="popLayout">
         <motion.img
           key={activePhoto}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 1.5 } }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4, ease: 'easeInOut' }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
           style={{ y }}
           src={`/${PHOTOS[activePhoto]}`}
-          className="object-cover w-full h-full brightness-75"
+          className="object-cover w-full h-full brightness-85 n"
           alt="banner-img"
         />
       </AnimatePresence>
@@ -44,11 +44,20 @@ const Carousel = ({ scrollYProgress }) => {
           <div
             key={photo}
             className={
-              'h-2 group-hover:h-3 rounded-full cursor-pointer w-10 xl:w-14 bg-neutral-content  transition-all duration-300 ' +
-              (activePhoto != i && ' opacity-40')
+              "h-8 w-8 xl:h-14 xl:w-12  rounded-md sm:rounded-lg cursor-pointer overflow-hidden bg-neutral-content  transition-all duration-300 " +
+              (activePhoto != i && " ")
             }
             onClick={() => handleSetPhoto(i)}
-          />
+          >
+            <img
+              src={`/${PHOTOS[i]}`}
+              alt="active-photo"
+              className={
+                "object-cover scale-110 origin-center h-full w-full" +
+                (activePhoto != i && " brightness-50 ")
+              }
+            />
+          </div>
         ))}
       </div>
     </div>

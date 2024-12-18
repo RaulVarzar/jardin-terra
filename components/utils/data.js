@@ -279,7 +279,7 @@ export const STEPS = [
   {
     title: "Simulare 3D",
     content:
-      "Odată ce ne-am decis împreună asupra planului 2D potrivit în funcție de nevoile, dorințele dar și bugetul tău, trecem la etapa următoare. Aceasta constă în proiectarea 3D a planului respectiv, pentru a îi da viață din punct de vedere grafic. Planul 3D reprezintă o simulare pe trei dimensiuni a obiectelor și elementelor specifice viitorului tău spațiu verde. Acesta este o machetă virtuală proiectată de designerul peisagist, care ia în calcul și următoarele aspecte: - pH-ul solului: în funcție de pH și destinația ce o va avea grădina (utilă sau decorativă), recomandăm gazonul potrivit, plantele și arbuștii necesari pentru plantare, dar și lucrările specifice de pregătire și întreținere a solului; - drenarea terenului și utilizarea apei; - sistemul de irigații; - planificarea aleilor; - iluminatul și sursa de energie electrică; - mobilierul de grădină; - alegerea gardului potrivit.",
+      "Odată ce ne-am decis împreună asupra planului 2D potrivit în funcție de nevoile, dorințele dar și bugetul tău, trecem la etapa următoare. Aceasta constă în proiectarea 3D a planului respectiv, pentru a îi da viață din punct de vedere grafic. Planul 3D reprezintă o simulare pe trei dimensiuni a obiectelor și elementelor specifice viitorului tău spațiu verde. Acesta este o machetă virtuală proiectată de designerul peisagist, care ia în calcul și următoarele aspecte: - pH-ul solului: în funcție de pH și destinația ce o va avea grădina (utilă sau decorativă), recomandăm gazonul potrivit, plantele și arbuștii necesari pentru plantare, dar și lucrările specifice de pregătire și întreținere a solului.",
     image: "step3.jpg",
   },
   {

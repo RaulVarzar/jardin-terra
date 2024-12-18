@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiPlus } from "react-icons/fi";
+
+import { RxChevronDown } from "react-icons/rx";
 
 const PRICING = [
   {
@@ -48,9 +49,9 @@ const PricingCollapse = () => {
 const AccordionItem = ({ i, item, active, setActive }) => {
   const textVariants = {
     hidden: {
-      opacity: 0,
+      opacity: 1,
       filter: "blur(2px)",
-      y: "10%",
+      y: "20%",
       height: 0,
       transition: {
         duration: 0.7,
@@ -74,12 +75,12 @@ const AccordionItem = ({ i, item, active, setActive }) => {
       initial={{ opacity: 0, filter: "blur(2px)" }}
       animate={{ opacity: 1, filter: "blur(0px)" }}
       transition={{ duration: 0.9, delay: 0.8 + i * 0.25 }}
-      className="flex flex-col gap-1 py-1.5 md:py-2 xl:py-3 border-  border-base-content border-opacity-15"
+      className="flex flex-col gap-1 py-1.5 md:py-2 xl:py-3"
     >
       <motion.div
         onClick={() => setActive(isActive ? null : i)}
         className={
-          "flex flex-row cursor-pointer items-center transition-opacity duration-300 justify-between  " +
+          "flex flex-row cursor-pointer md:hover:scale-[1.01]  items-center transition-all duration-300 justify-between  " +
           (isActive ? " opacity-100" : "opacity-50 hover:opacity-90")
         }
       >
@@ -91,7 +92,7 @@ const AccordionItem = ({ i, item, active, setActive }) => {
           animate={isActive ? "active" : "inactive"}
           variants={{
             active: {
-              rotate: 225,
+              rotate: 180,
               transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
             },
             inactive: {
@@ -99,9 +100,9 @@ const AccordionItem = ({ i, item, active, setActive }) => {
               transition: { duration: 0.5, ease: [0.32, 0, 0.655, 1] },
             },
           }}
-          className="text-3xl lg:text-4xl text-neutral-content"
+          className="text-3xl lg:text-4xl    text-neutral-content"
         >
-          <FiPlus />
+          <RxChevronDown />
         </motion.span>
       </motion.div>
       <AnimatePresence initial={false}>
@@ -111,10 +112,10 @@ const AccordionItem = ({ i, item, active, setActive }) => {
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="overflow-hidden w-11/12  md:w-10/12 pl-2 md:pl-5"
+            className="overflow-hidden w-11/12 py-0 leading-snug md:w-10/12 pl-2 md:pl-5"
             variants={textVariants}
           >
-            <motion.p className="text-sm italic  max-md:leading-tight opacity-70 sm:text-base font-light md:text-lg  md:py-3 text-neutral-content">
+            <motion.p className="text-sm italic  max-md:leading-tight opacity-70 sm:text-base font-light md:text-lg  text-neutral-content">
               {item.description}
             </motion.p>
           </motion.div>

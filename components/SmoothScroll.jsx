@@ -13,7 +13,15 @@ const ScrollContext = ({ children }) => {
   const [rafState, setRaf] = useState(null);
 
   useEffect(() => {
-    const scroller = new Lenis();
+    const scroller = new Lenis({
+      duration: 1.35,
+      wheelMultiplier: 0.65,
+      touchMultiplier: 1.2,
+      easing: (t) => 1 - Math.pow(1 - t, 4),
+      // gestureOrientation: "both",
+      syncTouch: true,
+      touchInertiaMultiplier: 3,
+    });
     let rf;
 
     function raf(time) {

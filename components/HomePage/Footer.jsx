@@ -38,7 +38,7 @@ const Footer = () => {
               <p>0737 837 383</p>
             </span>
           </div>
-          <Socials />
+          {/* <Socials /> */}
         </div>
       </motion.div>
     </div>

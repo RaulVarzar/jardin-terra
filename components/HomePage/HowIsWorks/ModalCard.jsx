@@ -22,7 +22,7 @@ export default ModalCard;
 export const Modal = ({ closeCard }) => {
   return (
     <motion.div
-      className="relative z-[1000]  max-h-[95vh] flex h-fit flex-col justify-center items-center max-w-5xl gap-2 md:gap-8 px-8 pt-10 pb-10 md:pt-20  md:pb-16 md:px-6 bg-secondary-content  max-sm:rounded-t-2xl sm:rounded-2xl "
+      className="relative z-[1000]  max-h-[95vh] flex h-fit flex-col justify-center items-center max-w-5xl gap-2 md:gap-8 px-8 pt-10 pb-10 md:pt-20  md:pb-16 md:px-6 bg-secondary  max-sm:rounded-t-2xl sm:rounded-2xl "
       layoutId="toggle"
     >
       <div

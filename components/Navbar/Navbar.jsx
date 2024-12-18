@@ -4,7 +4,6 @@ import Image from "next/image";
 import logo from "/public/logo.png";
 import ToggleButton from "./ToggleButton";
 
-import { FaFacebook, FaInstagram, FaEnvelope, FaTiktok } from "react-icons/fa6";
 import { NavbarLink } from "./NavLink";
 import MagneticButton from "../MagneticButton";
 
@@ -35,7 +34,7 @@ const menuVariants = {
   },
 };
 
-const Navbar = () => {
+const Navbar = ({ setDark }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -60,7 +59,10 @@ const Navbar = () => {
                 }
           }
           transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-          className="absolute w-full h-full bg-secondary-content"
+          className={
+            "absolute w-full h-full transition-colors duration-500 " +
+            (setDark ? " bg-primary" : " bg-secondary-content")
+          }
         />
 
         <div className="flex flex-row w-full items-center 2xl:px-16 3xl:px-24  mx-auto justify-between z-50  py-0 md:py-3  xl:py-5 xl:px-12 px-4 md:px-6 lg:px-10">
@@ -68,6 +70,7 @@ const Navbar = () => {
           <ToggleButton
             toggleMenu={() => setMenuOpen(!menuOpen)}
             menuOpen={menuOpen}
+            setDark={setDark}
           />
         </div>
 

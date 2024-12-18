@@ -10,7 +10,7 @@ const MagneticButton = ({ children, amount, magnify, className, ...props }) => {
 
   // disable animations on mobile
   if (isMobile) {
-    return <>{children}</>;
+    return <motion.div>{children}</motion.div>;
   }
   //////
 

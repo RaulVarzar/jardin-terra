@@ -7,11 +7,10 @@ const Card = ({ item, setSelectedId, layoutId }) => {
   const { title, photo, descriptions } = item;
 
   return (
-    <MagneticButton
-      amount={[20, 25]}
+    <motion.div
       layoutId={layoutId}
       onClick={() => setSelectedId(item.id)}
-      className="grid relative bg-secondary transition-colors duration-300 hover:bg-secondary-content group  group max-lg:grid-rows-7 lg:grid-cols-7 z-50  max-h-[960px]  h-full w-[96vw] xl:w-[80vw] 3xl:w-[75vw] max-w-screen-2xl p-2 md:p-4 xl:p-6  cursor-pointer rounded-2xl  "
+      className="grid relative  bg-secondary transition-colors duration-300 hover:bg-secondary-content group  group max-lg:grid-rows-7 lg:grid-cols-7 z-50    h-full w-[96vw] xl:w-[96vw] 3xl:w-[85vw] max-w-screen-2xl p-2 md:p-4 xl:p-6  cursor-pointer rounded-2xl border-opacity-15  "
     >
       <motion.span className="text-2xl md:text-3xl z-50 absolute max-lg:bottom-4 lg:top-4  right-4 p-3 transition duration-300 md:p-4   text-base-content brightness-85 group-hover:brightness-125 group-hover:scale-110">
         <MagneticButton magnify={1.1}>
@@ -59,7 +58,7 @@ const Card = ({ item, setSelectedId, layoutId }) => {
           </motion.div>
         </div>
       </div>
-    </MagneticButton>
+    </motion.div>
   );
 };
 

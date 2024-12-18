@@ -10,6 +10,7 @@ import { SERVICES } from "../../utils/data";
 import Card from "./Card";
 import ExpandedCard from "./ExpandedCard";
 import Header from "./Header";
+import { TextReveal } from "../../utils/animations";
 
 const overlayVariants = {
   hidden: { opacity: 0 },
@@ -28,7 +29,7 @@ const ServicesSection = () => {
 
   const x = useTransform(
     scrollYProgress,
-    [0.02, 0.1, 0.98],
+    [0.0, 0.1, 0.98],
     ["0", "-5%", "-101%"]
   );
 
@@ -40,25 +41,23 @@ const ServicesSection = () => {
   });
   const y = useTransform(
     enterProgress,
-    [0.28, 0.4, 1],
-    ["30vh", "15vh", "0vh"]
+    [0.1, 0.35, 1],
+    ["20vh", "10vh", "0vh"]
   );
 
   return (
     <section>
-      <div id={id} className="relative flex flex-col r ">
+      <div id={id} className="relative flex flex-col ">
         <Header />
 
-        {/* <div ref={enterRef} className="h-[100vh] " /> */}
-        <div className="">
+        <motion.div style={{ y }}>
           <motion.div
             ref={sectionRef}
-            style={{ y }}
-            className=" h-[400vh]  z-50 flex justify-start w-fit items-start " // mt = header heigth + 150
+            className="h-[400vh] relative z-50 flex justify-start w-fit items-start"
           >
             <motion.div
               style={{ x }}
-              className="flex  sticky px-[2vw] sm:px-[5vw] top-0 flex-row h-screen items-center justify-end gap-8  md:gap-12 xl:gap-20 pt-20 md:pt-28 pb-12"
+              className="gap-4 sm:gap-8 md:gap-12 xl:gap-20 pt-20 md:pt-28 pb-12 flex  sticky px-[2vw] xl:px-[5vw] 3xl:px-[7vw]   top-0 flex-row  h-screen items-center justify-end"
             >
               {SERVICES.map((item) => (
                 <Card
@@ -70,8 +69,7 @@ const ServicesSection = () => {
               ))}
             </motion.div>
           </motion.div>
-        </div>
-
+        </motion.div>
         {/* EXPANDED CARD AND OVERLAY */}
         <AnimatePresence>
           {id && (
