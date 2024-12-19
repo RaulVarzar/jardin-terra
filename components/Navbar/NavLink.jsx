@@ -1,7 +1,29 @@
+"use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { LuLeaf } from "react-icons/lu";
+import { useLenis } from "lenis/react";
 
-export const NavbarLink = ({ hovering, setHovering, content }) => {
+export const NavbarLink = ({ hovering, setHovering, content, closeNavbar }) => {
+  const lenisInstance = useLenis();
+
+  const handleClick = (targetElement) => {
+    if (targetElement) {
+      const scrollToOptions = {
+        offset: 0,
+        lerp: 0.1,
+        duration: 2,
+        easing: (t) => {
+          return t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
+        },
+        immediate: false,
+        lock: true,
+        force: false,
+      };
+      lenisInstance.scrollTo(targetElement, scrollToOptions);
+      closeNavbar();
+    }
+  };
+
   const { title, link, id } = content;
 
   const variants = {
@@ -30,7 +52,8 @@ export const NavbarLink = ({ hovering, setHovering, content }) => {
     <motion.div
       onMouseEnter={() => setHovering(id)}
       onMouseLeave={() => setHovering(null)}
-      className="relative  px-1 py-3 lg:py-4 flex flex-row items-center cursor-pointer"
+      onClick={() => handleClick(link)}
+      className="relative overflow-hidde px-1 py-3 lg:py-4 flex flex-row items-center cursor-pointer"
     >
       <motion.div
         className="overflow-hidden flex flex-row items-center gap-4  w-fit"

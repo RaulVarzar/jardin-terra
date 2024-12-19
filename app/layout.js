@@ -1,6 +1,5 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import ScrollContext from "/components/SmoothScroll";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -17,10 +16,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="emerald">
-      <head></head>
-      <body className={`${poppins.variable}`}>
-        <ScrollContext>{children}</ScrollContext>
-      </body>
+      <head>{/* <meta name="theme-color" content="#db5945"></meta> */}</head>
+      <body className={`${poppins.variable}`}>{children}</body>
     </html>
   );
 }

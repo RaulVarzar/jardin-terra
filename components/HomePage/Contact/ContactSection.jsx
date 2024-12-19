@@ -15,7 +15,10 @@ const ContactSection = () => {
   const scale = useTransform(scrollYProgress, [0, 0.8], ["93%", "100%"]);
 
   return (
-    <div className="flex flex-col items-center justify-center pt-[10vh] gap-6 ">
+    <div
+      id="contact"
+      className="flex flex-col items-center justify-center pt-[10vh] gap-6 "
+    >
       <motion.div
         ref={containerRef}
         style={{ y, scale }}

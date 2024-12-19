@@ -2,6 +2,7 @@ import { Blur, Reveal } from "../../utils/animations";
 import { motion } from "framer-motion";
 import { BiExpandAlt } from "react-icons/bi";
 import MagneticButton from "../../MagneticButton";
+import Image from "next/image";
 
 const Card = ({ item, setSelectedId, layoutId }) => {
   const { title, photo, descriptions } = item;
@@ -20,12 +21,15 @@ const Card = ({ item, setSelectedId, layoutId }) => {
 
       <div className="z-10 h-full overflow-hidden max-sm:row-span-3 sm:max-lg:row-span-4 lg:col-span-3 rounded-xl ">
         <Blur delay={0.7} duration={1.5} className="w-full h-full">
-          <motion.img
-            layoutId={photo}
-            src={`/images/${photo}.jpg`}
-            className="object-cover object-center w-full h-full"
-            alt="project-img"
-          />
+          <motion.div layoutId={photo} className="w-full h-full relative">
+            <Image
+              src={`/images/${photo}.jpg`}
+              alt="project-img"
+              fill={true}
+              style={{ objectFit: "cover" }}
+              sizes="(max-width: 768px) 80vw, 100vw"
+            />
+          </motion.div>
         </Blur>
       </div>
 

@@ -27,7 +27,7 @@ const stepsVariants = {
 const Sustainability = () => {
   const stepsRef = useRef(null);
   const headerHelper = useRef(null);
-  const exitOffset = isMobile ? -75 : -60;
+  const exitOffset = isMobile ? -75 : -50;
 
   const { scrollYProgress } = useScroll({
     target: stepsRef,
@@ -42,7 +42,10 @@ const Sustainability = () => {
   const showSteps = useInView(stepsRef, { margin: "1000% 0% -100% 0%" });
 
   return (
-    <div className="relative flex  flex-col justify-center h-fit text-accent bg-base-20">
+    <div
+      id="mod-de-lucru"
+      className="relative flex  flex-col justify-center h-fit text-accent bg-base-20"
+    >
       <motion.div
         initial={{ y: "100%", transition: { duration: 0.1, delay: 2 } }}
         animate={

@@ -1,7 +1,27 @@
 import { motion } from "framer-motion";
 import MagneticButton from "../../MagneticButton";
+import { useLenis } from "lenis/react";
 
-const ChevronButton = ({ goToSection }) => {
+const ChevronButton = () => {
+  const lenisInstance = useLenis();
+
+  const handleClick = (targetElement) => {
+    if (targetElement) {
+      const scrollToOptions = {
+        offset: 0,
+        lerp: 0.1,
+        duration: 1.5,
+        easing: (t) => {
+          return t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
+        },
+        immediate: false,
+        lock: true,
+        force: false,
+      };
+      lenisInstance.scrollTo(targetElement, scrollToOptions);
+    }
+  };
+
   return (
     <MagneticButton magnify={1.1}>
       <motion.div
@@ -15,7 +35,7 @@ const ChevronButton = ({ goToSection }) => {
           repeat: Infinity,
         }}
         className="flex justify-center w-full mx-auto cursor-pointer"
-        onClick={() => goToSection("skills")}
+        onClick={() => handleClick("#servicii")}
       >
         <svg
           height="30"

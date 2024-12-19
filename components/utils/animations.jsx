@@ -303,12 +303,13 @@ export const WordReveal = ({ children, delay, duration, offset }) => {
 
 export const TextReveal = ({ duration, children, threshold }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: threshold || 0.99 });
+  const marginBottom = threshold || 10;
+  const isInView = useInView(ref, { margin: `1000% 0% -${marginBottom}% 0%` });
 
   return (
     <motion.div ref={ref} className="overflow-hidden">
       <motion.div
-        initial={{ y: "120%", opacity: 0 }}
+        initial={{ y: "110%", opacity: 0 }}
         animate={
           isInView
             ? {
@@ -332,12 +333,14 @@ export const TextReveal = ({ duration, children, threshold }) => {
   );
 };
 
-export const TextFadeIn = ({ duration, children }) => {
+export const TextFadeIn = ({ duration, threshold, children }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.8 });
+  const marginBottom = threshold || 10;
+
+  const isInView = useInView(ref, { margin: `1000% 0% -${marginBottom}% 0%` });
 
   return (
-    <div ref={ref} className="overflow-hidden">
+    <div ref={ref}>
       <motion.div
         initial={{ y: "10px", opacity: 0, filter: "blur(2px)" }}
         animate={

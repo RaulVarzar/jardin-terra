@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 import { StepsCard } from "./StepsCard";
 import { BsChevronContract } from "react-icons/bs";
+import Image from "next/image";
 
 const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
   useLockBodyScroll();
@@ -20,16 +21,18 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
       >
         <BsChevronContract />
       </motion.span>
-      <div className="z-10 w-full h-full col-span-3 max-lg:h-1/3 lg:row-span-1">
-        {/* <Blur delay={0.2} duration={0.8} className="w-full h-full"> */}
-        <motion.img
-          layoutId={photo}
+      <motion.div
+        layoutId={photo}
+        className="z-10 w-full h-full relative col-span-3 max-lg:h-1/3 lg:row-span-1"
+      >
+        <Image
           src={`/images/${photo}.jpg`}
-          className="object-cover w-full h-full rounded-lg "
           alt="project-img"
+          fill={true}
+          style={{ objectFit: "cover" }}
+          sizes="(max-width: 768px) 80vw, 100vw"
         />
-        {/* </Blur> */}
-      </div>
+      </motion.div>
 
       <div className="relative z-20 flex flex-col justify-center h-full col-span-4 sm:gap-2 px-1 py-4 sm:py-6 md:py-8 overflow-hidden lg:row-span-1 md:px-5 xl:px-12">
         <motion.h1

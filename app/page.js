@@ -1,6 +1,8 @@
 "use client";
-
+import { useRef } from "react";
 import { useInView } from "framer-motion";
+
+import SmoothScroll from "/components/SmoothScroll";
 
 import HeroSection from "/components/HomePage/Hero/HeroSection.jsx";
 import ServicesSection from "/components/HomePage/Services/ServicesSection.jsx";
@@ -9,14 +11,13 @@ import ContactSection from "/components/HomePage/Contact/ContactSection.jsx";
 import Footer from "/components/HomePage/Footer.jsx";
 import SustainabilitySection from "/components/HomePage/Sustainability/SustainabilitySection.jsx";
 import Navbar from "/components/Navbar/Navbar.jsx";
-import { useRef } from "react";
 
 const Home = () => {
   const darkRef = useRef(null);
-  const setDark = useInView(darkRef, { margin: "0% 0% 10% 0%" });
+  const setDark = useInView(darkRef, { margin: "0% 0% 30% 0%" });
 
   return (
-    <div>
+    <SmoothScroll>
       <Navbar setDark={setDark} />
       <div
         className={
@@ -33,7 +34,7 @@ const Home = () => {
         </div>
       </div>
       <Footer />
-    </div>
+    </SmoothScroll>
   );
 };
 

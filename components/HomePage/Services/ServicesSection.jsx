@@ -4,6 +4,7 @@ import {
   motion,
   useTransform,
   AnimatePresence,
+  useInView,
 } from "framer-motion";
 
 import { SERVICES } from "../../utils/data";
@@ -20,7 +21,7 @@ const overlayVariants = {
 
 const ServicesSection = () => {
   const sectionRef = useRef(null);
-  // const enterRef = useRef(null);
+  const carouselRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -35,25 +36,20 @@ const ServicesSection = () => {
 
   const [id, setId] = useState(null);
 
-  const { scrollYProgress: enterProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "start"],
-  });
-  const y = useTransform(
-    enterProgress,
-    [0.1, 0.35, 1],
-    ["20vh", "10vh", "0vh"]
-  );
+  const carouselInView = useInView(carouselRef, { margin: "1000% 0% -20% 0%" });
 
   return (
     <section>
       <div id={id} className="relative flex flex-col ">
         <Header />
 
-        <motion.div style={{ y }}>
+        <motion.div ref={carouselRef}>
           <motion.div
             ref={sectionRef}
-            className="h-[400vh] relative z-50 flex justify-start w-fit items-start"
+            initial={{ y: "20%" }}
+            animate={carouselInView ? { y: 0 } : { y: "20%" }}
+            transition={{ duration: 1.3, ease: [0.2, 0.2, 0.4, 1] }}
+            className="h-[400vh]  relative z-50 flex justify-start w-fit items-start"
           >
             <motion.div
               style={{ x }}

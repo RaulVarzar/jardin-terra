@@ -7,7 +7,7 @@ const ToggleButton = ({ menuOpen, toggleMenu, setDark }) => {
       <div
         onClick={toggleMenu}
         className={
-          "relative max-sm:scale-[0.7] origin-right size-20 gap-3 md:px-4 py-4 md:py-8 cursor-pointer  hover:bg-opacity-65 rounded-full bg-opacity-0 transition-all duration-300 " +
+          "relative max-sm:scale-[0.7] origin-right size-20 gap-3 md:px-4 py-4 md:py-8 cursor-pointer  hover:bg-opacity-75 rounded-full bg-opacity-0 transition-all duration-300 " +
           (setDark ? " bg-secondary" : " bg-accent ")
         }
       >

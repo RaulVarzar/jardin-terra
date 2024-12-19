@@ -1,11 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import Image from "next/image";
-import logo from "/public/logo.png";
 import ToggleButton from "./ToggleButton";
 
 import { NavbarLink } from "./NavLink";
 import MagneticButton from "../MagneticButton";
+
+import Logo from "./Logo";
 
 const imgVariants = {
   visible: {
@@ -52,7 +52,7 @@ const Navbar = ({ setDark }) => {
               : {
                   y: "-100%",
                   transition: {
-                    delay: 0.2,
+                    delay: 0.1,
                     duration: 1,
                     ease: [0.76, 0, 0.24, 1],
                   },
@@ -66,7 +66,7 @@ const Navbar = ({ setDark }) => {
         />
 
         <div className="flex flex-row w-full items-center 2xl:px-16 3xl:px-24  mx-auto justify-between z-50  py-0 md:py-3  xl:py-5 xl:px-12 px-4 md:px-6 lg:px-10">
-          <Logo menuOpen={menuOpen} />
+          <Logo menuOpen={menuOpen} closeMenu={() => setMenuOpen(false)} />
           <ToggleButton
             toggleMenu={() => setMenuOpen(!menuOpen)}
             menuOpen={menuOpen}
@@ -80,7 +80,7 @@ const Navbar = ({ setDark }) => {
               exit={{ opacity: 0, transition: { delay: 0.8 } }}
               className="md:px-24 z-50 flex flex-col xl:px-36 2xl:px-44 gap-4 px-8 w-fit place-self-end pb-12 md:pb-16 xl:pb-20"
             >
-              <MainLinks />
+              <MainLinks closeNavbar={() => setMenuOpen(!menuOpen)} />
 
               <Divider />
               <div className="w-full text-base sm:text-lg lg:text-xl text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
@@ -117,18 +117,21 @@ const Navbar = ({ setDark }) => {
 };
 export default Navbar;
 
-export const MainLinks = () => {
+export const MainLinks = ({ closeNavbar }) => {
   const LINKS = [
     { title: "Serviciile noastre", id: 1, link: "#servicii" },
     { title: "Mod de lucru", id: 2, link: "#mod-de-lucru" },
     { title: "Sustenabilitate", id: 3, link: "#sustenabilitate" },
     { title: "Contact", id: 4, link: "#contact" },
   ];
+
   const [hovering, setHovering] = useState(null);
+
   return (
     <motion.div className="flex-col sm:w-fit flex items-end justify-end w-full uppercase font-medium tracking-wider h-fit  py-4   ">
       {LINKS.map((link) => (
         <NavbarLink
+          closeNavbar={closeNavbar}
           hovering={hovering}
           setHovering={setHovering}
           content={link}
@@ -136,20 +139,6 @@ export const MainLinks = () => {
         />
       ))}
     </motion.div>
-  );
-};
-
-export const Logo = ({ menuOpen }) => {
-  return (
-    <motion.a
-      href="/"
-      className={
-        " origin-top-left bg-red-90 transition-all delay-300 duration-700 h-10 md:h-16 hover:opacity-100  ease-[cubic-bezier(0.76,0.0,0.25,1)]" +
-        (menuOpen ? " scale-125" : "  opacity-75")
-      }
-    >
-      <Image src={logo} alt="Logo" style={{ width: "auto", height: "100%" }} />
-    </motion.a>
   );
 };
 

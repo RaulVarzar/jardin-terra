@@ -34,7 +34,7 @@ const Card = ({ item }) => {
   // );
 
   return (
-    <div className="flex flex-col items-center justify-center w-full max-w-5xl gap-4 mx-auto md:gap-10 h-fit">
+    <div className="flex flex-col items-center justify-center w-full px-12 max-w-5xl gap-4 mx-auto md:gap-10 h-fit">
       <motion.img
         ref={ref}
         style={{
@@ -52,7 +52,7 @@ const Card = ({ item }) => {
         <motion.h3 className="max-w-2xl text-2xl font-semibold leading-tight uppercase sm:text-3xl xl:text-4xl">
           {item.title}
         </motion.h3>
-        <motion.p className="text-base font-light max-md:leading-tight md:tracking-wide opacity-65 md:text-lg 2xl:text-2xl">
+        <motion.p className="text-base w-10/12 font-light max-md:leading-tight md:tracking-wide opacity-65 md:text-lg 2xl:text-2xl">
           {item.description}
         </motion.p>
       </div>

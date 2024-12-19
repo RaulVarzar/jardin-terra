@@ -65,7 +65,11 @@ const Sustainability = () => {
   const titleArray = "SUSTENABILITATE".split("");
 
   return (
-    <div ref={sectionRef} className="flex flex-row justify-center">
+    <div
+      ref={sectionRef}
+      id="sustenabilitate"
+      className="flex flex-row justify-center pt-[25vh]"
+    >
       <motion.div className="h-screen sticky top-0 uppercase font-semibold grid place-content-start pt-[25vh] overflow-x-hidden">
         <motion.h1 className="flex flex-row text-3xl font-bold tracking-wider text-neutral-content md:text-6xl opacity-80 ">
           {titleArray.map((letter, i) => (

@@ -30,7 +30,7 @@ const Header = ({ showHeader, showSteps }) => {
   return (
     <motion.div
       ref={headerRef}
-      className="flex flex-col items-center max-w-4xl  mx-auto   pb-12 text-center px-6 2xl:max-w-5xl text-neutral-content"
+      className="flex  flex-col items-center max-w-4xl  mx-auto   pb-12 text-center px-6 2xl:max-w-5xl text-neutral-content"
     >
       <div className="overflow-hidden">
         <motion.h3

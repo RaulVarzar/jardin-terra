@@ -32,7 +32,7 @@ const PricingCollapse = () => {
   }
 
   return (
-    <motion.div className="mx-auto w-full gap-0.5 flex flex-col md:w-8/12 overflow-hidde">
+    <motion.div className="mx-auto w-full gap-0.5 flex flex-col md:w-7/12 ">
       {PRICING.map((item, i) => (
         <AccordionItem
           key={item.title}
@@ -75,7 +75,7 @@ const AccordionItem = ({ i, item, active, setActive }) => {
       initial={{ opacity: 0, filter: "blur(2px)" }}
       animate={{ opacity: 1, filter: "blur(0px)" }}
       transition={{ duration: 0.9, delay: 0.8 + i * 0.25 }}
-      className="flex flex-col gap-1 py-1.5 md:py-2 xl:py-3"
+      className="flex flex-col gap-1 py-1.5 md:py-2 xl:py-3 "
     >
       <motion.div
         onClick={() => setActive(isActive ? null : i)}

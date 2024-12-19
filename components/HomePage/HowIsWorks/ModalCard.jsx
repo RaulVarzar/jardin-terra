@@ -37,7 +37,7 @@ export const Modal = ({ closeCard }) => {
           initial={{ opacity: 0, scale: 0.3, y: 10, filter: "blur(5px)" }}
           animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.9, delay: 0.4, ease: "circInOut" }}
-          className="text-neutral-content py-1 text-4xl md:text-5xl xl:text-6xl"
+          className="text-neutral-content py-1 text-6xl md:text-6xl xl:text-8xl"
         >
           <GiReceiveMoney />
         </motion.span>
@@ -45,7 +45,7 @@ export const Modal = ({ closeCard }) => {
           initial={{ opacity: 0, scale: 0.95, filter: "blur(5px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="w-full md:w-11/12 text-base leading-none tracking-wide text-center md:text-left text-balanc md:leading-snug md:text-lg lg:text-xl xl:text-2xl font-semibold  text-neutral-content opacity-80"
+          className="w-full  text-base leading-none tracking-wide text-center md:text-left text-balanc md:leading-snug md:text-lg lg:text-xl xl:text-2xl font-semibold  text-neutral-content opacity-80"
         >
           La Jardin Terra, fiecare proiect este unic și are o ofertă de preț
           personalizată. Costurile pentru proiectarea spațiilor verzi sunt
