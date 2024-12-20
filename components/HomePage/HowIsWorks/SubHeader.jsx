@@ -4,7 +4,7 @@ import { useRef } from "react";
 
 const SubHeader = ({ expandedCard, openModal, showSteps }) => {
   return (
-    <motion.div className="flex flex-col justify-start px-2 md:px-4 xl:px-6 md:gap-1 xl:gap-2">
+    <motion.div className="flex flex-col justify-start px-1  md:gap-1 xl:gap-2">
       <SubTitle showSteps={showSteps} />
       <PricingButton
         expanded={expandedCard}
@@ -47,7 +47,7 @@ const SubTitle = ({ showSteps }) => {
       variants={subTitleVariants}
       initial="hidden"
       animate={isInView && !showSteps ? "visible" : "exit"}
-      className="pb-4 text-sm text-left text-neutral-content font-light leading-normal tracking-wider opacity-70 max-w-3xl md:text-base xl:text-md text-balance 2xl:text-lg"
+      className="pb-4 text-sm text-left text-neutral-content font-light leading-normal tracking-wider px-0  opacity-70 max-w-3xl md:text-base xl:text-md text-balance 2xl:text-lg"
     >
       Înainte de a trece la lopată și săpăligă, analizăm dimensiunile și forma
       spațiului tău verde. Apoi, ascultăm cu atenție dorințele tale și începem

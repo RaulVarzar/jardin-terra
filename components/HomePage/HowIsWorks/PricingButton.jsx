@@ -36,13 +36,13 @@ const PricingButton = ({ expanded, setExpanded, showSteps }) => {
       initial="hidden"
       animate={isInView && !showSteps ? "visible" : "exit"}
       ref={ref}
-      className=" text-base-content origin-left w-fit bg-primary hover:bg-secondary-content transition-colors duration-300 px-4 sm:px-6 md:px-8 py-3 lg:px-10 overflow-hidden md:py-4 rounded-lg cursor-pointer    group "
+      className=" text-base-content origin-left w-fit bg-secondary hover:bg-secondary-content transition-colors duration-300 px-4 sm:px-6 md:px-6 py-3 lg:px-8 overflow-hidden md:py-4 rounded-lg cursor-pointer    group "
     >
       <motion.div
         animate={
           !expanded
             ? {
-                opacity: 1,
+                opacity: 0.8,
                 y: "0%",
                 transition: {
                   duration: 0.4,
@@ -52,13 +52,13 @@ const PricingButton = ({ expanded, setExpanded, showSteps }) => {
               }
             : { opacity: 0, y: "150%", transition: { duration: 0.01 } }
         }
-        className="flex flex-row items-center  gap-6"
+        className="flex flex-row items-center  gap-6 text-neutral-content"
       >
         <motion.span
           variants={textVariants}
           initial="hidden"
           animate="visible"
-          className="text-2xl md:text-3xl"
+          className="text-xl md:text-2xl "
         >
           <LuInfo />
         </motion.span>
@@ -66,7 +66,7 @@ const PricingButton = ({ expanded, setExpanded, showSteps }) => {
           variants={textVariants}
           initial="hidden"
           animate="visible"
-          className="text-sm sm:text-base md:text-lg text-neutral-content uppercase font-medium tracking-wide "
+          className="text-sm sm:text-base md:text-base uppercase font-medium tracking-wide"
         >
           Cum stabilim costurile?
         </motion.h3>

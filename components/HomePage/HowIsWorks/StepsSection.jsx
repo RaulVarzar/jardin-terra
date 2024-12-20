@@ -3,6 +3,7 @@ import {
   AnimatePresence,
   motion,
   useInView,
+  useMotionTemplate,
   useMotionValueEvent,
   useScroll,
   useTransform,
@@ -58,10 +59,12 @@ const Sustainability = () => {
 
   const { scrollYProgress: exitProgress } = useScroll({
     target: stepsRef,
-    offset: ["end", "end 0.5"],
+    offset: ["end 1.15", "end 0.65"],
   });
 
-  const scale = useTransform(exitProgress, [0, 1], ["0%", "40000%"]);
+  const circleSize = useTransform(exitProgress, [0, 0.85], [0, 125]);
+
+  const clipPath = useMotionTemplate`circle(${circleSize}% at 50% 120%)`;
 
   return (
     <>
@@ -74,7 +77,7 @@ const Sustainability = () => {
           className="flex flex-row w-fit flex-nowrap sticky top-0 -mt-[50vh] items-center  mx-auto justify-center h-fit"
         >
           <motion.div className="w-[50vw]  flex 2xl:pr-24 sticky gap-3 top-0 flex-col h-screen justify-center items-end">
-            <motion.div className="flex max-w-4xl flex-col justify-end items-end">
+            <motion.div className="flex max-w-4xl flex-col  items-start gap-2">
               <Header showSteps={showSteps} />
               <SubHeader
                 openModal={() => setExpandedCard(true)}
@@ -102,8 +105,9 @@ const Sustainability = () => {
         </AnimatePresence>
 
         <motion.div
-          style={{ scale, height: "1vh", width: "1vh", y: "25vh" }}
-          className="absolute inset-x-0  bottom-0 left-[50vw] -translate-x-1/2 rounded-full bg-secondary"
+          // style={{ scale, height: "1vh", width: "1vh", y: "25vh" }}
+          style={{ clipPath }}
+          className="absolute inset-x-0  bottom-0 h-screen w-screen left-0  bg-secondary-content "
         />
       </div>
       <div ref={stepsRef} className="h-[250vh] relative" />

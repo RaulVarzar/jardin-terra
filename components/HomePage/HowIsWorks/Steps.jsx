@@ -10,47 +10,9 @@ const Steps = ({ steps, activeStep, progress }) => {
   return (
     <motion.div className="h-screen flex flex-row  gap-x-4 kg:gap-x-8 2xl:gap-x-12 w-[48vw]  items-center justify-start sticky top-0 ">
       <motion.div className="grid max-w-5xl w-fit place-content-stretch h-full">
-        {steps.map((step, i) => {
-          const divider = 1 / steps.length;
-          const opacity = useTransform(
-            progress,
-            [
-              i * divider - 0.01,
-              i * divider + 0.02,
-              i * divider + 0.15,
-              (i + 1) * divider,
-            ],
-            [i > 0 ? 0 : 1, 1, 1, i < steps.length - 1 ? 0 : 1]
-          );
-          const blur = useTransform(
-            progress,
-            [(i + 1) * divider - 0.05, (i + 1) * divider],
-            [0, i < steps.length - 1 ? 5 : 0]
-          );
-          const y = useTransform(
-            progress,
-            [i * divider - 0.01, (i + 1) * divider],
-            ["0vh", "-3vh"]
-          );
-
-          const filter = useMotionTemplate`blur(${blur}px)`;
-
-          return (
-            <motion.div
-              className={`grid grid-rows-12 gap-4 h-full z-[${i}]`}
-              style={{
-                gridRow: 1,
-                gridColumn: 1,
-                opacity,
-                filter,
-                y,
-              }}
-            >
-              <Title text={step.title} />
-              <Description text={step.content} />
-            </motion.div>
-          );
-        })}
+        {steps.map((step, i) => (
+          <Step progress={progress} step={step} steps={steps} key={i} id={i} />
+        ))}
       </motion.div>
       <motion.div
         //   variants={ProgressBarVariants}
@@ -73,6 +35,49 @@ const Steps = ({ steps, activeStep, progress }) => {
 };
 
 export default Steps;
+
+const Step = ({ step, steps, progress, id }) => {
+  const { title, content } = step;
+  const divider = 1 / steps.length;
+  const opacity = useTransform(
+    progress,
+    [
+      id * divider - 0.01,
+      id * divider + 0.02,
+      id * divider + 0.15,
+      (id + 1) * divider,
+    ],
+    [id > 0 ? 0 : 1, 1, 1, id < steps.length - 1 ? 0 : 1]
+  );
+  const blur = useTransform(
+    progress,
+    [(id + 1) * divider - 0.05, (id + 1) * divider],
+    [0, id < steps.length - 1 ? 5 : 0]
+  );
+  const y = useTransform(
+    progress,
+    [id * divider - 0.01, (id + 1) * divider],
+    ["0vh", "-3vh"]
+  );
+
+  const filter = useMotionTemplate`blur(${blur}px)`;
+
+  return (
+    <motion.div
+      className={`grid grid-rows-12 gap-4 h-full z-[${id}]`}
+      style={{
+        gridRow: 1,
+        gridColumn: 1,
+        opacity,
+        filter,
+        y,
+      }}
+    >
+      <Title text={title} />
+      <Description text={content} />
+    </motion.div>
+  );
+};
 
 export const Title = ({ text }) => {
   const titleVariants = {
@@ -100,7 +105,7 @@ export const Title = ({ text }) => {
           variants={titleVariants}
           initial="hidden"
           animate="visible"
-          className="text-2xl text-right leading-none md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-medium tracking-wide uppercase text-base-content"
+          className="text-2xl text-right leading-none md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold tracking-wide uppercase text-base-content"
         >
           <AnimatePresence mode="wait">
             <motion.span
@@ -125,7 +130,7 @@ export const Title = ({ text }) => {
 export const Description = ({ text }) => {
   const contentVariants = {
     visible: {
-      opacity: 1,
+      opacity: 0.8,
       y: 0,
       filter: "blur(0px)",
       transition: {

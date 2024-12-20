@@ -23,7 +23,7 @@ const Header = ({ showSteps }) => {
   return (
     <div
       ref={headerRef}
-      className="overflow-hidden leading-none md:origin-left  max-w-4xl 2xl:max-w-5xl text-neutral-content"
+      className="overflow-hidden leading-none md:origin-left   max-w-4xl 2xl:max-w-5xl text-neutral-content"
     >
       <motion.h3
         variants={titleVariants}

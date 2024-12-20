@@ -25,35 +25,13 @@ const TOPICS = [
 
 const Sustainability = () => {
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
   // GENERAL SCROLL PROGRESS
   const targetRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: [" start", "end start  "],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
-
-  // TITLE ANIMATIONS
-  const { scrollYProgress: sectionScrollProgress } = useScroll({
+  const { scrollYProgress: headerProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "start"],
+    offset: [" start end", "start 0.4"],
   });
-  const enterTitle = useTransform(
-    sectionScrollProgress,
-    [0, 1],
-    ["50%", "80%"]
-  );
-
-  const { scrollYProgress: contentProgress } = useScroll({
-    target: targetRef,
-    offset: ["start end", "start start"],
-  });
-  const exitHeader = useTransform(contentProgress, [0.4, 0.6], ["100%", "0%"]);
-  const letterSpacing = useTransform(
-    contentProgress,
-    [0.4, 0.7],
-    ["1px", "10px"]
-  );
 
   // CHECK IS SECTION IS IN VIEW
   const sectionInView = useInView(sectionRef);
@@ -68,23 +46,31 @@ const Sustainability = () => {
     <div
       ref={sectionRef}
       id="sustenabilitate"
-      className="flex flex-row relative  justify-center pt-[25vh] z-[100]"
+      className="flex flex-col relative justify-center z-[100]"
     >
-      <motion.div className="h-screen sticky top-0 uppercase font-semibold grid place-content-start pt-[25vh] overflow-x-hidden">
-        <motion.h1 className="flex flex-row text-3xl font-bold tracking-wider text-neutral-content md:text-6xl opacity-80 ">
-          {titleArray.map((letter, i) => (
-            <motion.span
-              key={i}
-              // style={{ margin: letterSpacing }}
-            >
-              {letter}
-            </motion.span>
-          ))}
-        </motion.h1>
+      <motion.div
+        ref={headerRef}
+        className="h-screen sticky top-0 uppercase font-semibold flex justify-center items-start borde -mt-[80vh]"
+      >
+        <div className="h-[25vh] grid place-content-end">
+          <motion.h1 className="flex flex-row text-3xl font-semibold tracking-wide text-neutral-content md:text-9xl overflow-hidden xl:text-[6rem] opacity-80 ">
+            {titleArray.map((letter, i) => (
+              <TitleLetter
+                letter={letter}
+                id={i}
+                key={i}
+                progress={headerProgress}
+              />
+            ))}
+          </motion.h1>
+        </div>
       </motion.div>
 
-      <div ref={targetRef} className="relative h-fit">
-        <motion.div className="flex flex-col gap-16 px-6 pb-12 sm:gap-24 xl:gap-48">
+      <div
+        ref={targetRef}
+        className="relative w-full px-2 md:px-4 lg:px-6  max-w-screen-3xl mx-auto -mt-[25vh]"
+      >
+        <motion.div className="flex flex-col w-full gap-12">
           {TOPICS.map((item) => (
             <Card key={item.title} item={item} sectionInView={reset} />
           ))}
@@ -95,3 +81,9 @@ const Sustainability = () => {
 };
 
 export default Sustainability;
+
+const TitleLetter = ({ letter, id, progress }) => {
+  const y = useTransform(progress, [id * 0.04, 0.7], ["120%", "0%"]);
+
+  return <motion.span style={{ y }}>{letter}</motion.span>;
+};
