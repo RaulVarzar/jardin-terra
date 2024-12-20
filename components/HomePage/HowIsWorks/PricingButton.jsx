@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 import { LuInfo } from "react-icons/lu";
 
@@ -7,7 +8,12 @@ const buttonVariants = {
   visible: {
     scaleX: 1,
     opacity: 1,
-    transition: { delay: 1.2, duration: 1, ease: [0.7, 0, 0.25, 1] },
+    transition: { delay: 0.5, duration: 1, ease: [0.7, 0, 0.25, 1] },
+  },
+  exit: {
+    scaleX: 1,
+    opacity: 0,
+    transition: { delay: 0, duration: 0.25, ease: [0.7, 0, 0.3, 1] },
   },
 };
 
@@ -19,15 +25,18 @@ const textVariants = {
   },
 };
 
-const PricingButton = ({ expanded, setExpanded, showHeader }) => {
+const PricingButton = ({ expanded, setExpanded, showSteps }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { amount: 0.8 });
   return (
     <motion.div
       layoutId="toggle"
       onClick={setExpanded}
       variants={buttonVariants}
       initial="hidden"
-      animate={showHeader ? "visible" : "hidden"}
-      className=" text-base-content  bg-primary hover:bg-secondary-content transition-colors duration-300 px-4 sm:px-6 md:px-8 py-3 lg:px-10 overflow-hidden md:py-4 mx-auto rounded-lg cursor-pointer    group "
+      animate={isInView && !showSteps ? "visible" : "exit"}
+      ref={ref}
+      className=" text-base-content origin-left w-fit bg-primary hover:bg-secondary-content transition-colors duration-300 px-4 sm:px-6 md:px-8 py-3 lg:px-10 overflow-hidden md:py-4 rounded-lg cursor-pointer    group "
     >
       <motion.div
         animate={
@@ -48,7 +57,7 @@ const PricingButton = ({ expanded, setExpanded, showHeader }) => {
         <motion.span
           variants={textVariants}
           initial="hidden"
-          animate={showHeader ? "visible" : "hidden"}
+          animate="visible"
           className="text-2xl md:text-3xl"
         >
           <LuInfo />
@@ -56,7 +65,7 @@ const PricingButton = ({ expanded, setExpanded, showHeader }) => {
         <motion.h3
           variants={textVariants}
           initial="hidden"
-          animate={showHeader ? "visible" : "hidden"}
+          animate="visible"
           className="text-sm sm:text-base md:text-lg text-neutral-content uppercase font-medium tracking-wide "
         >
           Cum stabilim costurile?

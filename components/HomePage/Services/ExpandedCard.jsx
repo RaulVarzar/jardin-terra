@@ -3,9 +3,19 @@ import { useLockBodyScroll } from "@uidotdev/usehooks";
 import { StepsCard } from "./StepsCard";
 import { BsChevronContract } from "react-icons/bs";
 import Image from "next/image";
+import { useLenis } from "lenis/react";
+import { useEffect } from "react";
 
 const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
-  useLockBodyScroll();
+  // Pause and resume scroll
+  const lenisInstance = useLenis();
+  useEffect(() => {
+    lenisInstance.stop();
+    return () => {
+      lenisInstance.start();
+    };
+  }, []);
+
   const { title, photo, descriptions, steps } = item;
 
   const filtered = descriptions.slice(1, descriptions.length); //arrayExceptfirstValue

@@ -27,21 +27,8 @@ html.lenis {
   overflow: hidden;
 }
 
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none;
-  height: 5px;
-  width: 8px;
-  background: #222;
-  -webkit-border-radius: 1ex;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #555;
-  width: 20px;
-}
-
-::-webkit-scrollbar-corner {
-  background: #fff;
 }
 
 .vertical-text {

@@ -5,9 +5,11 @@ import PricingCollapse from "./PricingCollapse";
 
 import { TfiClose } from "react-icons/tfi";
 import { GiReceiveMoney } from "react-icons/gi";
+import { useLenis } from "lenis/react";
+import { useEffect } from "react";
 
 const ModalCard = ({ closeCard }) => {
-  useLockBodyScroll();
+  // useLockBodyScroll();
 
   return (
     <motion.div className="fixed w-full inset-0  z-[1000]  grid h-[100dvh] px-0 overflow-y-auto sm:px-8 place-content-end sm:place-content-center  ">
@@ -20,6 +22,14 @@ const ModalCard = ({ closeCard }) => {
 export default ModalCard;
 
 export const Modal = ({ closeCard }) => {
+  const lenisInstance = useLenis();
+  useEffect(() => {
+    lenisInstance.stop();
+    return () => {
+      lenisInstance.start();
+    };
+  }, []);
+
   return (
     <motion.div
       className="relative z-[1000]  max-h-[95vh] flex h-fit flex-col justify-center items-center max-w-5xl gap-2 md:gap-8 px-8 pt-10 pb-10 md:pt-20  md:pb-16 md:px-6 bg-secondary  max-sm:rounded-t-2xl sm:rounded-2xl "
@@ -27,7 +37,7 @@ export const Modal = ({ closeCard }) => {
     >
       <div
         onClick={closeCard}
-        className="text-xl absolute top-6 right-6 md:top-8 transition-colors duration-300 sm:text-2xl md:right-8 text-base-content cursor-pointer lg:text-3xl p-0 hover:text-error"
+        className="text-xl absolute z-[1001] top-6 right-6 md:top-8 transition-colors duration-300 sm:text-2xl md:right-8 text-base-content cursor-pointer lg:text-3xl p-0 hover:text-error"
       >
         <TfiClose />
       </div>

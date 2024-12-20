@@ -28,11 +28,7 @@ const ServicesSection = () => {
     offset: ["start ", "end "],
   });
 
-  const x = useTransform(
-    scrollYProgress,
-    [0.0, 0.1, 0.98],
-    ["0", "-5%", "-101%"]
-  );
+  const x = useTransform(scrollYProgress, [0.0, 1], ["0", "-100.5%"]);
 
   const [id, setId] = useState(null);
 
@@ -53,7 +49,7 @@ const ServicesSection = () => {
           >
             <motion.div
               style={{ x }}
-              className="gap-4 sm:gap-8 md:gap-12 xl:gap-20 pt-20 md:pt-28 pb-12 flex  sticky px-[2vw] xl:px-[5vw] 3xl:px-[7vw]   top-0 flex-row  h-screen items-center justify-end"
+              className="gap-4 sm:gap-8 md:gap-12 xl:gap-20 pt-20 md:pt-28 pb-12 flex  sticky pl-[2vw] xl:pl-[5vw] 3xl:pl-[7vw]  top-0 flex-row  h-screen items-center justify-end"
             >
               {SERVICES.map((item) => (
                 <Card
@@ -84,7 +80,6 @@ const ServicesSection = () => {
             </motion.div>
           )}
         </AnimatePresence>
-        {/*----------*/}
       </div>
     </section>
   );
