@@ -25,7 +25,7 @@ const ServicesSection = () => {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start ", "end "],
+    offset: ["start", "end "],
   });
 
   const x = useTransform(scrollYProgress, [0.0, 1], ["0", "-100.5%"]);

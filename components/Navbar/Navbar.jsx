@@ -83,7 +83,7 @@ const Navbar = ({ setDark }) => {
               <MainLinks closeNavbar={() => setMenuOpen(!menuOpen)} />
 
               <Divider />
-              <div className="w-full text-base sm:text-lg lg:text-xl text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
+              <div className="w-full text-base font-thin tracking-wider sm:text-lg lg:text-xl text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
                 <SocialLink
                   title="facebook"
                   id={0}

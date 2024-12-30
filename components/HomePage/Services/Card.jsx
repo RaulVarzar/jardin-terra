@@ -11,15 +11,15 @@ const Card = ({ item, setSelectedId, layoutId }) => {
     <motion.div
       layoutId={layoutId}
       onClick={() => setSelectedId(item.id)}
-      className="grid relative  bg-secondary transition-colors duration-300 hover:bg-secondary-content group  group max-lg:grid-rows-7 lg:grid-cols-7 z-50    h-full w-[96vw] xl:w-[96vw] 3xl:w-[85vw] max-w-screen-2xl p-2 md:p-4 xl:p-6  cursor-pointer rounded-2xl border-opacity-15  "
+      className="grid relative  bg-secondary transition-colors duration-300 hover:bg-secondary-content group  group max-lg:grid-rows-7 lg:grid-cols-7 z-50    h-full w-[96vw] xl:w-[96vw] 3xl:w-[85vw] max-w-screen-2xl p-2 md:p-4 lg:p-8  cursor-pointer rounded-2xl md:rounded-3xl lg:rounded-[36px] border-opacity-15  "
     >
-      <motion.span className="text-2xl md:text-3xl z-50 absolute max-lg:bottom-4 lg:top-4  right-4 p-3 transition duration-300 md:p-4   text-base-content brightness-85 group-hover:brightness-125 group-hover:scale-110">
+      <motion.span className="text-2xl md:text-3xl z-50 absolute max-lg:bottom-4 lg:top-4  right-4 p-3 transition duration-300 md:p-4   text-base-content brightness-65 group-hover:brightness-125 group-hover:scale-110">
         <MagneticButton magnify={1.1}>
           <BiExpandAlt />
         </MagneticButton>
       </motion.span>
 
-      <div className="z-10 h-full overflow-hidden max-sm:row-span-3 sm:max-lg:row-span-4 lg:col-span-3 rounded-xl ">
+      <div className="z-10 h-full overflow-hidden max-sm:row-span-3 sm:max-lg:row-span-4 lg:col-span-3 rounded-[12px]  md:rounded-[20px] lg:rounded-[26px] ">
         <Blur delay={0.7} duration={1.5} className="w-full h-full">
           <motion.div layoutId={photo} className="w-full h-full relative">
             <Image

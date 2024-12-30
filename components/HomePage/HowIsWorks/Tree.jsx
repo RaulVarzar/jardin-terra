@@ -1,25 +1,18 @@
-import { useState } from "react";
-import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useTransform,
-} from "framer-motion";
-import { STEPS } from "../../utils/data";
+import { motion, useTransform } from "framer-motion";
 
-const ProgressBarVariants = {
+const variants = {
   visible: {
     opacity: 1,
-    y: 0,
+    x: 0,
     transition: {
       duration: 0.8,
-      delay: 0.3,
+      delay: 0.1,
       ease: [0.7, 0, 0.3, 1],
     },
   },
   hidden: {
     opacity: 1,
-    y: 100,
+    x: "100%",
     transition: {
       duration: 0.3,
       delay: 0,
@@ -28,10 +21,19 @@ const ProgressBarVariants = {
   },
 };
 
-const Tree = ({ visible, activeStep }) => {
+const Tree = ({ activeStep, showSteps }) => {
   return (
-    <motion.div className="w-full max-w-2xl relative h-36 md:h-80 lg:h-96 xl:h-[80vh] 2xl:h-[75vh] ">
-      <SVG activeStep={activeStep} visible={visible} />
+    <motion.div
+      className={
+        " h-full z-50 px-8 md:px-12 w-1/2 xl:px-16 flex items-center justify-center " +
+        (showSteps
+          ? " rounded-none"
+          : " rounded-l-3xl md:rounded-l-[32px] xl:rounded-l-[44px] ")
+      }
+    >
+      <motion.div className="w-full max-w-3xl relative h-36 md:h-80 lg:h-96 xl:h-[80vh] 2xl:h-[75vh] ">
+        <SVG activeStep={activeStep} />
+      </motion.div>
     </motion.div>
   );
 };

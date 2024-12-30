@@ -1,5 +1,4 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 
 const titleVariants = {
   hidden: {
@@ -16,20 +15,14 @@ const titleVariants = {
   },
 };
 
-const Header = ({ showSteps }) => {
-  const headerRef = useRef(null);
-  const isInView = useInView(headerRef, { amount: 0.7 });
-
+const Header = ({ visible }) => {
   return (
-    <div
-      ref={headerRef}
-      className="overflow-hidden leading-none md:origin-left   max-w-4xl 2xl:max-w-5xl text-neutral-content"
-    >
+    <div className="overflow-hidden max-w-4xl 2xl:max-w-5xl text-neutral-content">
       <motion.h3
         variants={titleVariants}
         initial="hidden"
-        animate={isInView && !showSteps ? "visible" : "exit"}
-        className="text-3xl font-semibold text-left tracking-wide uppercase sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl"
+        animate={visible ? "visible" : "exit"}
+        className="text-3xl font-semibold text-center  leading-none tracking-wide uppercase sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl"
       >
         Modul de lucru
       </motion.h3>

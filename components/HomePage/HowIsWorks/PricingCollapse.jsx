@@ -84,7 +84,7 @@ const AccordionItem = ({ i, item, active, setActive }) => {
           (isActive ? " opacity-100" : "opacity-50 hover:opacity-90")
         }
       >
-        <motion.h1 className="text-lg  font-medium text-neutral-content leading-tight sm:text-xl md:text-2xl lg:text-3xl">
+        <motion.h1 className="text-md  font-medium text-neutral-content leading-tight sm:text-lg md:text-xl lg:text-2xl">
           {item.title}
         </motion.h1>
         <motion.span
@@ -115,7 +115,7 @@ const AccordionItem = ({ i, item, active, setActive }) => {
             className="overflow-hidden w-11/12 py-0 leading-snug md:w-10/12 pl-2 md:pl-5"
             variants={textVariants}
           >
-            <motion.p className="text-sm italic  max-md:leading-tight opacity-70 sm:text-base font-light md:text-lg  text-neutral-content">
+            <motion.p className="text-sm tracking-wide max-md:leading-tight opacity-70 sm:text-base font-light md:text-lg  text-neutral-content">
               {item.description}
             </motion.p>
           </motion.div>

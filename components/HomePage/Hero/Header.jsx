@@ -33,9 +33,9 @@ const Header = () => {
       <FromLeft delay={1.4} duration={0.7}>
         <a
           href="/contact"
-          className="py-3 pl-8 mt-6 max-xl:mx-auto flex flex-row gap-2 pr-4  tracking-wider xl:pl-6 xl:pr-4 xl:py-4  text-neutral-content  hover:backdrop-brightness-125  rounded-xl   mybutton  xl:hover:pl-10 hover:pl-8 bg-base-content"
+          className="py-3 pl-8 mt-6 max-xl:mx-auto flex flex-row gap-2 pr-4  tracking-wider xl:pl-8 xl:pr-4 xl:py-4  text-neutral-content  hover:backdrop-brightness-125  rounded-full  mybutton  xl:hover:pl-10 hover:pl-8 bg-base-content"
         >
-          <h1 className="text-sm  md:text-lg text-accent-content font-semibold">
+          <h1 className="text-sm  md:text-lg text-accent-content font-medium">
             Începe un proiect
           </h1>
           <span className="text-lg md:text-xl xl:text-2xl text-accent-content">

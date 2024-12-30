@@ -22,7 +22,7 @@ const Home = () => {
       <div
         className={
           "h-full rounded-b-3xl md:rounded-b-4xl transition-colors overflow-clip duration-700 " +
-          (setDark ? " bg-base-200" : " bg-primary")
+          (setDark ? " bg-base-100" : " bg-primary")
         }
       >
         <HeroSection />

@@ -78,9 +78,9 @@ const config: Config = {
           "primary-content": "#2b3630",
           "secondary-content": "#232a26",
 
-          "base-100": "#060605",
+          "base-100": "#0C0E0D",
           "base-200": "#111312",
-          "base-300": "#151916",
+          "base-300": "#131614",
           "base-content": "#d6d6d6",
           "neutral-content": "#f6fdf9",
           error: "#84261f",
