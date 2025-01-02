@@ -14,7 +14,7 @@ import Navbar from "/components/Navbar/Navbar.jsx";
 
 const Home = () => {
   const darkRef = useRef(null);
-  const setDark = useInView(darkRef, { margin: "0% 0% 1% 0%" });
+  const setDark = useInView(darkRef, { margin: "0% 0% 10% 0%" });
 
   return (
     <SmoothScroll>

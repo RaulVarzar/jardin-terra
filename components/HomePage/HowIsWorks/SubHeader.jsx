@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const SubHeader = ({ visible }) => {
+const SubHeader = ({}) => {
   const subTitleVariants = {
     hidden: {
       y: 15,
@@ -26,7 +26,8 @@ const SubHeader = ({ visible }) => {
     <motion.p
       variants={subTitleVariants}
       initial="hidden"
-      animate={visible ? "visible" : "exit"}
+      animate="visible"
+      exit="exit"
       className=" text-sm text-center  text-neutral-content font-light leading-snug tracking-wider px-0  opacity-70 max-w-3xl md:text-base xl:text-md text-balance 2xl:text-lg"
     >
       Înainte de a trece la lopată și săpăligă, analizăm dimensiunile și forma

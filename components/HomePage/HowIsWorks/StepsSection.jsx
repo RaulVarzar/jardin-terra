@@ -3,7 +3,6 @@ import {
   AnimatePresence,
   motion,
   useInView,
-  useMotionTemplate,
   useMotionValueEvent,
   useScroll,
   useTransform,
@@ -46,7 +45,7 @@ const Sustainability = () => {
   });
   const [expandedCard, setExpandedCard] = useState(null);
 
-  const showHeader = useInView(sectionRef, { margin: "1000% 0% 1% 0%" });
+  const showHeader = useInView(sectionRef, { margin: "1000% 0% 10% 0%" });
 
   const showSteps = useInView(sectionRef, { margin: "1000% 0% -60% 0%" });
 
@@ -67,20 +66,19 @@ const Sustainability = () => {
 
   const circleSize = useTransform(exitProgress, [0, 0.85], [0, 125]);
 
-  const clipPath = useMotionTemplate`circle(${circleSize}% at 50% 120%)`;
-
   const { scrollYProgress: roundedTopProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "start 0.4"],
   });
 
   return (
-    <>
+    // remove the section to make sticky
+    <section className="relative">
       <div id="mod-de-lucru" className="relative w-full h-0.5" />
 
       <motion.div
         ref={sectionRef}
-        className="sticky  top-0  h-screen flex flex-col"
+        className="sticky  top-0 z-[100] h-screen flex flex-col"
       >
         <HeaderSection
           setExpanded={() => setExpandedCard(true)}
@@ -88,41 +86,40 @@ const Sustainability = () => {
           expanded={expandedCard}
           progress={roundedTopProgress}
         />
-        <motion.div className="  w-full sticky   top-[0vh] -mt-[100vh] h-screen z-[51] border- ">
-          <motion.div
-            initial={{ marginTop: "100vh" }}
-            animate={showSteps ? { marginTop: "0vh" } : { marginTop: "100vh" }}
-            transition={{ duration: 0.8, ease: [0.7, 0, 0.3, 1] }}
-            className="bg-secondary absolute top-0 w-full"
-          >
-            <RoundedTop scrollProgress={roundedTopProgress} />
-            <div className="w-full flex xl:gap-8 2xl:gap-12 3xl:gap-24 flex-row items-center  mx-auto max-w-screen-3xl">
-              <Tree activeStep={activeStep} showSteps={showSteps} />
-              <div className="h-80 w-1 bg-primary-content "></div>
-              <Steps
+        {showHeader && (
+          <motion.div className=" sticky  w-full  top-[0vh] -mt-[100vh] h-screen -z-[50]">
+            <motion.div
+              initial={{ marginTop: "100vh" }}
+              animate={
+                showSteps ? { marginTop: "0vh" } : { marginTop: "100vh" }
+              }
+              transition={{ duration: 0.8, ease: [0.7, 0, 0.3, 1] }}
+              className="bg-secondary absolute top-0 w-full"
+            >
+              <RoundedTop scrollProgress={roundedTopProgress} />
+              <div className="w-full flex xl:gap-8 2xl:gap-12 3xl:gap-24 flex-row items-center  mx-auto max-w-screen-3xl">
+                <Tree activeStep={activeStep} showSteps={showSteps} />
+                {/* <div className="h-2 w-2 rounded-full bg-primary-content "></div> */}
+                <Steps
+                  progress={scrollYProgress}
+                  steps={STEPS}
+                  activeStep={Math.trunc(activeStep)}
+                />
+              </div>
+              <ProgressBar
                 progress={scrollYProgress}
-                steps={STEPS}
+                numberOfSteps={STEPS.length}
                 activeStep={Math.trunc(activeStep)}
               />
-            </div>
-            <ProgressBar
-              progress={scrollYProgress}
-              numberOfSteps={STEPS.length}
-              activeStep={Math.trunc(activeStep)}
-            />
+            </motion.div>
           </motion.div>
-        </motion.div>
+        )}
       </motion.div>
-      <div ref={stepsRef} className="h-[250vh] relative w-24 -mt-[35vh]" />
+      <div ref={stepsRef} className="h-[200vh] relative -mt-[35vh]" />
       <AnimatePresence>
         {expandedCard && <ModalCard closeCard={() => setExpandedCard(false)} />}
       </AnimatePresence>
-
-      {/* <motion.div
-        style={{ clipPath }}
-        className="absolute inset-x-0  bottom-0 h-screen  left-0  bg-secondary-content "
-      /> */}
-    </>
+    </section>
   );
 };
 
@@ -133,19 +130,19 @@ export const HeaderSection = ({ visible, setExpanded, expanded, progress }) => {
   const scale = useTransform(progress, [0.2, 1], [1, 0.96]);
 
   return (
-    <div className=" flex sticky gap-3 w-fit -mt-[120vh]  mx-auto inset-x-0  top-0 flex-col h-screen justify-center items-center">
-      <motion.div
-        style={{ opacity, scale }}
-        className="flex flex-col gap-2 lg:gap-3 2xl:gap-4 justify-center  items-center   relative"
-      >
-        <Header visible={visible} />
-        <SubHeader visible={visible} />
-        <PricingButton
-          visible={visible}
-          expanded={expanded}
-          setExpanded={setExpanded}
-        />
-      </motion.div>
+    <div className=" flex sticky gap-3 w-fit -mt-[120vh]  z-[10] mx-auto inset-x-0  top-0 flex-col h-screen justify-center items-center">
+      <AnimatePresence>
+        {visible && (
+          <motion.div
+            style={{ opacity, scale }}
+            className="flex flex-col gap-2 lg:gap-3 2xl:gap-4 justify-center  items-center   relative"
+          >
+            <Header />
+            <SubHeader />
+            <PricingButton expanded={expanded} setExpanded={setExpanded} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

@@ -15,18 +15,19 @@ const titleVariants = {
   },
 };
 
-const Header = ({ visible }) => {
+const Header = ({}) => {
   return (
-    <div className="overflow-hidden max-w-4xl 2xl:max-w-5xl text-neutral-content">
+    <motion.div className="overflow-hidden max-w-4xl 2xl:max-w-5xl text-neutral-content">
       <motion.h3
         variants={titleVariants}
         initial="hidden"
-        animate={visible ? "visible" : "exit"}
+        animate="visible"
+        exit="exit"
         className="text-3xl font-semibold text-center  leading-none tracking-wide uppercase sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl"
       >
         Modul de lucru
       </motion.h3>
-    </div>
+    </motion.div>
   );
 };
 

@@ -36,7 +36,7 @@ const ServicesSection = () => {
 
   return (
     <section>
-      <div id={id} className="relative flex flex-col ">
+      <div id={id} className="relative bottom-0 flex flex-col  ">
         <Header />
 
         <motion.div ref={carouselRef}>

@@ -43,8 +43,8 @@ const Step = ({ step, steps, progress, id }) => {
     progress,
     [
       id * divider - 0.01,
-      id * divider + 0.02,
-      id * divider + 0.15,
+      id * divider + 0.1,
+      id * divider + 0.2,
       (id + 1) * divider,
     ],
     [id > 0 ? 0 : 1, 1, 1, id < steps.length - 1 ? 0 : 1]

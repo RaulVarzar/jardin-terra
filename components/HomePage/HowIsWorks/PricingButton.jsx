@@ -24,14 +24,15 @@ const textVariants = {
   },
 };
 
-const PricingButton = ({ expanded, setExpanded, visible }) => {
+const PricingButton = ({ expanded, setExpanded }) => {
   return (
     <motion.div
       layoutId="toggle"
       onClick={setExpanded}
       variants={buttonVariants}
       initial="hidden"
-      animate={visible ? "visible" : "exit"}
+      animate="visible"
+      exit="exit"
       className="text-base-content origin-left w-fit my-4 bg-secondary hover:bg-secondary-content transition-colors duration-300 px-4 py-3  md:px-6   overflow-hidden lg:py-4 lg:px-8 rounded-full cursor-pointer    group "
     >
       <motion.div
