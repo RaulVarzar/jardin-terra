@@ -9,9 +9,9 @@ const Card = ({ item, id }) => {
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    offset: ["start 0.2", "end -0.3"],
+    offset: ["start 0.2", "end -0.4"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["0vh", "45vh"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0vh", "50vh"]);
   const lastY = useTransform(scrollYProgress, [0, 1], ["0vh", "25vh"]);
 
   // const textOpacity = useTransform(textScrollProgress, [0, 1], [0.6, 1]);
@@ -31,17 +31,17 @@ const Card = ({ item, id }) => {
   return (
     <motion.div
       ref={cardRef}
-      className={`relative w-full flex  justify-center items-center  z-[${id}00]`}
+      style={id < 2 ? { y } : { y: lastY }}
+      className={`relative w-full flex  justify-center items-center`}
     >
       <motion.div
-        style={id < 2 ? { y } : { y: lastY }}
-        className={`flex origin-top flex-row w-full h-[45vh] items-center justify-evenly py-12 xl:py-16 px-4 xl:px-6 2xl:px-20 gap-2 md:gap-4 xl:gap-12 3xl:gap-16 bg-${item.color} z-[${id}]`}
+        className={`flex origin-top flex-row w-full h-[45vh] min-h-[540px] items-center justify-evenly py-12 xl:py-16 px-4 xl:px-6 2xl:px-20 gap-2 md:gap-4 xl:gap-12 3xl:gap-16 bg-${item.color}`}
       >
         <div
           ref={textRef}
-          className="flex flex-col w-full max-w-5xl items-start justify-start h-full gap-3 lg:gap-6 2xl:gap-8 text-start text-neutral-content"
+          className="flex flex-col w-full max-w-5xl items-start justify-start h-full gap-3 lg:gap-6 2xl:gap-8 text-start text-neutral-content "
         >
-          <motion.h3 className=" text-xl font-bold leading-none ppercase sm:text-xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl  max-w-4xl">
+          <motion.h3 className=" text-xl font-bold leading-none tracking-wide sm:text-xl xl:text-5xl 2xl:text-6xl 3xl:text-6xl  max-w-2xl text-balance">
             {item.title}
           </motion.h3>
           <motion.p className="text-base  font-light leading-normal md:tracking-wider opacity-65 md:text-lg 2xl:text-lg max-w-4xl">

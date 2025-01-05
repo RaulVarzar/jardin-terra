@@ -2,34 +2,27 @@ import {
   AnimatePresence,
   motion,
   useMotionTemplate,
-  useScroll,
   useTransform,
 } from "framer-motion";
-import { useRef } from "react";
 
-const Steps = ({ steps, activeStep, progress }) => {
-  const ref = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.6", "start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["25vh", "0vh"]);
-
+const Steps = ({ steps, showSteps, progress }) => {
   return (
-    <motion.div
-      ref={ref}
-      className="h-screen flex flex-row  gap-x-4 kg:gap-x-8 2xl:gap-x-12 w-1/2 items-center justify-start sticky top-0 "
-    >
-      <motion.div
-        style={{ y }}
-        className="grid will-change-transform max-w-5xl w-fit place-content-center h-screen"
-      >
-        {steps.map((step, i) => (
-          <Step progress={progress} step={step} steps={steps} key={i} id={i} />
-        ))}
-      </motion.div>
+    <motion.div className="h-fit md:h-screen flex flex-row  gap-x-4 lg:gap-x-8 2xl:gap-x-12 md:w-1/2 px-3 md:px-10 2xl:px-16 items-start md:items-center">
+      <AnimatePresence>
+        {showSteps && (
+          <motion.div className="grid will-change-transform max-w-5xl w-fit place-content-center">
+            {steps.map((step, i) => (
+              <Step
+                progress={progress}
+                step={step}
+                steps={steps}
+                key={i}
+                id={i}
+              />
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
@@ -64,7 +57,7 @@ const Step = ({ step, steps, progress, id }) => {
 
   return (
     <motion.div
-      className={`flex flex-col place-self-center gap-4 h-fit z-[${id}] `}
+      className={`flex flex-col items-start  justify-start place-self-start gap-4 h-fit z-[${id}] `}
       style={{
         gridRow: 1,
         gridColumn: 1,
@@ -89,7 +82,7 @@ export const Title = ({ text }) => {
       },
     },
     hidden: {
-      y: "100%",
+      y: "120%",
       transition: {
         duration: 0.5,
         delay: 0,
@@ -98,12 +91,13 @@ export const Title = ({ text }) => {
     },
   };
   return (
-    <motion.div className="flex items-end row-span-6 w-full">
+    <motion.div className="flex items-end w-full">
       <motion.div className="overflow-hidden w-full">
         <motion.h1
           variants={titleVariants}
           initial="hidden"
           animate="visible"
+          exit="hidden"
           className="text-2xl text-left leading-none md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold tracking-wide uppercase text-base-content"
         >
           <AnimatePresence mode="wait">
@@ -151,13 +145,13 @@ export const Description = ({ text }) => {
   };
 
   return (
-    <motion.div className="row-span-6">
+    <motion.div className="">
       <motion.p
         variants={contentVariants}
         initial="hidden"
         animate="visible"
-        // style={{ y }}
-        className="text-sm pl-2 text-left flex sm:text-sm lg:text-base 2xl:text-md 3xl:text-xl  text-balance tracking-wide font-extralight text-base-content opacity-80 w-full"
+        exit="hidden"
+        className="text-sm pl-1 text-left flex sm:text-sm lg:text-base 2xl:text-md 3xl:text-xl  text-balance tracking-wide font-extralight text-base-content opacity-80 w-full"
       >
         {text}
       </motion.p>

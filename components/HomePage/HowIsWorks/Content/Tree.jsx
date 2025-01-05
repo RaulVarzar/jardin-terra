@@ -1,18 +1,18 @@
-import { motion, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useTransform } from "framer-motion";
 
 const variants = {
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: {
       duration: 0.8,
-      delay: 0.1,
+      delay: 0.3,
       ease: [0.7, 0, 0.3, 1],
     },
   },
   hidden: {
-    opacity: 1,
-    x: "100%",
+    opacity: 0,
+    y: "80%",
     transition: {
       duration: 0.3,
       delay: 0,
@@ -23,40 +23,25 @@ const variants = {
 
 const Tree = ({ activeStep, showSteps }) => {
   return (
-    <motion.div
-      className={
-        " h-full z-50 px-8 md:px-12 w-1/2 xl:px-16 flex items-center justify-center " +
-        (showSteps
-          ? " rounded-none"
-          : " rounded-l-3xl md:rounded-l-[32px] xl:rounded-l-[44px] ")
-      }
-    >
-      <motion.div className="w-full max-w-3xl relative h-36 md:h-80 lg:h-96 xl:h-[80vh] 2xl:h-[75vh] ">
-        <SVG activeStep={activeStep} />
-      </motion.div>
+    <motion.div className=" md:h-full max-md:w-full z-50 px-2 max-md:pt-12 md:px-12  md:w-1/2 xl:px-16 flex items-center justify-center ">
+      <AnimatePresence>
+        {showSteps && (
+          <motion.div
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            className="w-full max-w-3xl relative h-60   md:h-80 lg:h-96 xl:h-[80vh] 2xl:h-[75vh] "
+          >
+            <SVG activeStep={activeStep} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
 
 export default Tree;
-
-const ProgressBar = ({ id, progress, numberOfSteps }) => {
-  const divider = 1 / numberOfSteps;
-  const scaleX = useTransform(
-    progress,
-    [id * divider, (id + 1) * divider],
-    [0, 1]
-  );
-
-  return (
-    <div className="bg-base-300 overflow-hidden h-1.5 md:h-2 w-full rounded-full relative">
-      <motion.div
-        style={{ scaleX }}
-        className="w-full h-full bg-primary-content absolute left-0 top-0 origin-left"
-      />
-    </div>
-  );
-};
 
 export const SVG = ({ activeStep }) => {
   const variants = {
@@ -91,7 +76,7 @@ export const SVG = ({ activeStep }) => {
     <motion.svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="15 20 70 60"
-      className=" absolute top-0 left-0 w-full h-full"
+      className=" absolute top-0 left-0 right-0 mx-auto w-9/12  md:w-full h-full"
       preserveAspectRatio="xMidYMid meet"
     >
       <motion.path

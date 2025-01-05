@@ -74,7 +74,7 @@ const AccordionItem = ({ i, item, active, setActive }) => {
     <motion.div
       initial={{ opacity: 0, filter: "blur(2px)" }}
       animate={{ opacity: 1, filter: "blur(0px)" }}
-      transition={{ duration: 0.9, delay: 0.8 + i * 0.25 }}
+      transition={{ duration: 0.9, delay: 0.5 + i * 0.2 }}
       className="flex flex-col gap-1 py-1.5 md:py-2 xl:py-3 "
     >
       <motion.div

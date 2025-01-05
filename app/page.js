@@ -18,13 +18,8 @@ const Home = () => {
 
   return (
     <SmoothScroll>
-      <Navbar setDark={setDark} />
-      <div
-        className={
-          "h-full rounded-b-3xl md:rounded-b-4xl transition-colors overflow-clip duration-700 " +
-          (setDark ? " bg-base-100" : " bg-primary")
-        }
-      >
+      <Navbar setDark={false} />
+      <div className="h-full rounded-b-3xl md:rounded-b-4xl transition-colors overflow-clip duration-700 bg-primary ">
         <HeroSection />
         <ServicesSection />
         <div ref={darkRef}>

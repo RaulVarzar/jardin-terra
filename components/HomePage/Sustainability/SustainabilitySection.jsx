@@ -8,7 +8,7 @@ const TOPICS = [
     description:
       " Serviciile noastre de proiectare și amenajare a spațiilor verzi implică și evaluarea impactului activității noastre asupra mediului. În procesul de evaluare, ținem cont de responsabilitatea ecologică a spațiului, de biodiversitatea acestuia și compoziția materialelor utilizate.",
     image: "sustenabilitate.jpg",
-    color: "primary",
+    color: "base-300",
   },
   {
     title: "Natura este casa noastră",
@@ -49,11 +49,11 @@ const Sustainability = () => {
     <section
       ref={sectionRef}
       id="sustenabilitate"
-      className="flex flex-col relative justify-center z-[10] bg-base-200 pb-[15vh]"
+      className="flex flex-col relative border-8 border-info justify-center z-[10] bg-secondary  pb-[15vh]"
     >
       <motion.div
         ref={headerRef}
-        className="h-screen sticky top-0  uppercase font-semibold flex justify-center items-start borde -mt-[100vh] border-"
+        className="h-screen sticky bg-red-900 mt-[100vh] top-0 uppercase font-semibold flex justify-center items-start borde border-"
       >
         <div className="h-screen grid place-content-center">
           <motion.h1 className="flex flex-row text-3xl font-semibold tracking-wide text-neutral-content md:text-9xl overflow-hidden xl:text-[6rem] opacity-80 ">
@@ -69,8 +69,8 @@ const Sustainability = () => {
         </div>
       </motion.div>
 
-      <div ref={targetRef} className="relative w-full  mt-[100vh]  mx-auto ">
-        <motion.div className="flex flex-col w-full">
+      <div ref={targetRef} className="relative w-full  mt-[10vh]  mx-auto ">
+        <motion.div className="flex flex-col w-full gap-">
           {TOPICS.map((item, i) => (
             <Card key={item.title} item={item} sectionInView={reset} id={i} />
           ))}

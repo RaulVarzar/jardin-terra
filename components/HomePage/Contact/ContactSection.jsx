@@ -17,7 +17,7 @@ const ContactSection = () => {
   return (
     <div
       id="contact"
-      className="flex flex-col items-center bg-base-200 justify-center pt-[10vh] gap-6 relative z-[10] "
+      className="flex flex-col items-center bg-base-300 justify-center pt-[10vh] gap-6 relative z-[10] "
     >
       <motion.div
         ref={containerRef}
@@ -53,7 +53,7 @@ export const ContactButton = () => {
       <ScaleIn duration={1}>
         <motion.button
           href="/contact"
-          className="flex items-center gap-6 px-6 py-4 md:py-8 tracking-wide uppercase  rounded-2xl shadow-md text-md md:text-lg xl:text-2xl md:px-12 xl:px-20 font-medium bg-base-content group text-base-200 "
+          className="flex items-center gap-6 px-6 py-4 md:py-8 tracking-wide uppercase  rounded-full shadow-md text-md md:text-lg xl:text-2xl md:px-12 xl:px-20 font-medium bg-base-content group text-base-200 "
         >
           Trimite-ne un mesaj
           <span className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl">
