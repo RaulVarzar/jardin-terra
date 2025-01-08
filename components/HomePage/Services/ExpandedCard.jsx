@@ -33,14 +33,14 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
       </motion.span>
       <motion.div
         layoutId={photo}
-        className="z-10 w-full h-full relative col-span-3 max-lg:h-1/3 lg:row-span-1"
+        className="z-10 w-full h-full relative col-span-3 max-lg:h-1/3 lg:row-span-1 rounded-xl overflow-hidden"
       >
         <Image
           src={`/images/${photo}.jpg`}
           alt="project-img"
           fill={true}
           style={{ objectFit: "cover" }}
-          sizes="(max-width: 768px) 80vw, 100vw"
+          sizes="(max-width: 768px) 80vw, 100vw "
         />
       </motion.div>
 
@@ -53,7 +53,8 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
         </motion.h1>
         <motion.h3
           layoutId={descriptions[0].content}
-          className="text-sm font-normal leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base opacity-70 text-neutral-content"
+          layout="size"
+          className="text-sm font-normal leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base opacity-100 text-base-content"
         >
           {descriptions[0].content}
         </motion.h3>
@@ -76,12 +77,12 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
                 }}
                 className="flex flex-col gap-2"
               >
-                <h3 className="text-base font-semibold leading-none tracking-wide md:text-lg xl:text-xl 2xl:text-3xl opacity-90 text-neutral-content">
+                <h3 className="text-base font-semibold leading-none tracking-wide md:text-lg xl:text-xl 2xl:text-3xl text-base-content">
                   {description.title}
                 </h3>
                 <h5
                   className={
-                    "text-sm font-normal  leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base opacity-70 text-neutral-content " +
+                    "text-sm font-normal  leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base  text-base-content " +
                     (description.title.length > 0 && " pl-4")
                   }
                 >

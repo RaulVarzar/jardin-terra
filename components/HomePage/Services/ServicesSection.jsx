@@ -5,6 +5,7 @@ import {
   useTransform,
   AnimatePresence,
   useInView,
+  useDragControls,
 } from "framer-motion";
 
 import { SERVICES } from "../../utils/data";
@@ -23,12 +24,14 @@ const ServicesSection = () => {
   const sectionRef = useRef(null);
   const carouselRef = useRef(null);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start", "end "],
-  });
+  const controls = useDragControls();
 
-  const x = useTransform(scrollYProgress, [0.0, 1], ["0", "-100.5%"]);
+  // const { scrollYProgress } = useScroll({
+  //   target: sectionRef,
+  //   offset: ["start", "end "],
+  // });
+
+  // const x = useTransform(scrollYProgress, [0.0, 1], ["0", "-100.5%"]);
 
   const [id, setId] = useState(null);
 
@@ -36,7 +39,7 @@ const ServicesSection = () => {
 
   return (
     <section>
-      <div id={id} className="relative bottom-0 flex flex-col  ">
+      <div id={id} className="relative bottom-0 flex flex-col items-center ">
         <Header />
 
         <motion.div ref={carouselRef}>
@@ -45,11 +48,19 @@ const ServicesSection = () => {
             initial={{ y: "20%" }}
             animate={carouselInView ? { y: 0 } : { y: "20%" }}
             transition={{ duration: 1.3, ease: [0.2, 0.2, 0.4, 1] }}
-            className="h-[400vh]  relative z-50 flex justify-start w-fit items-start"
+            className="relative z-50 py-12 xl:py-20 flex justify-start w-screen items-start"
           >
             <motion.div
-              style={{ x }}
-              className="gap-4 sm:gap-8 md:gap-12 xl:gap-20 pt-20 md:pt-28 pb-12 flex  sticky pl-[2vw] xl:pl-[5vw] 3xl:pl-[7vw]  top-0 flex-row  h-screen items-center justify-end"
+              drag="x"
+              dragControls={controls}
+              dragMomentum={0.1}
+              dragElastic={0.6}
+              dragTransition={{ bounceDamping: 60, bounceStiffness: 300 }}
+              dragConstraints={sectionRef}
+              // onDrag={(event, info) => {
+              //   console.log(info, event);
+              // }}
+              className="gap-4 cursor-grab active:cursor-grabbing sm:gap-8 md:gap-12 xl:gap-20 pt-16 md:pt-20 pb-8 flex px-[2vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  h-[90vh] xl:h-[85vh] items-center"
             >
               {SERVICES.map((item) => (
                 <Card
@@ -62,6 +73,7 @@ const ServicesSection = () => {
             </motion.div>
           </motion.div>
         </motion.div>
+        <DragSlider />
         {/* EXPANDED CARD AND OVERLAY */}
         <AnimatePresence>
           {id && (
@@ -98,5 +110,21 @@ export const Expanded = ({ item, layoutId }) => {
         alt="project-img"
       />
     </motion.div>
+  );
+};
+
+import { IoIosArrowRoundForward, IoIosArrowRoundBack } from "react-icons/io";
+
+export const DragSlider = () => {
+  return (
+    <div className="flex flex-row gap-5 items-center justify-center opacity-40">
+      <span className="text-3xl">
+        <IoIosArrowRoundBack />
+      </span>
+      <span className="text-lg font-extralight">DRAG</span>
+      <span className="text-3xl">
+        <IoIosArrowRoundForward />
+      </span>
+    </div>
   );
 };

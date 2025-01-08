@@ -7,14 +7,13 @@ import Content from "./Content/Content";
 const Sustainability = () => {
   const sectionRef = useRef(null);
 
-  const showHeader = useInView(sectionRef, { margin: "1000% 0% 10% 0%" });
-  const hideHeader = useInView(sectionRef, { margin: "1000% 0% -50% 0%" });
+  const showHeader = useInView(sectionRef, { margin: "1000% 0% -70% 0%" });
 
   return (
     // remove the section to make sticky
     <section id="mod-de-lucru" className="relative">
-      <motion.div ref={sectionRef} className="z-[100] w-full flex flex-col">
-        <Header visible={!hideHeader && showHeader} />
+      <motion.div ref={sectionRef} className="z-[10] w-full flex flex-col ">
+        <Header visible={showHeader} />
         <Content />
       </motion.div>
     </section>

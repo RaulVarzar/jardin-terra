@@ -39,13 +39,13 @@ const Content = () => {
   });
 
   return (
-    <div className="relative -mt-[100vh]  w-full">
+    <div className="relative -mt-[100vh]  w-full ">
       <motion.div className="sticky w-full z-50 top-0">
         <motion.div
           initial={{ marginTop: "100vh" }}
           animate={visible ? { marginTop: "0vh" } : { marginTop: "100vh" }}
-          transition={{ duration: 0.8, ease: [0.7, 0, 0.3, 1] }}
-          className="bg-secondary absolute top-0 w-full"
+          transition={{ duration: 0.8, ease: [0.33, 0.01, 0.15, 1.0] }}
+          className="bg-secondary absolute top-0 w-full z-10"
         >
           <RoundedTop scrollProgress={enterProgress} />
           <div className="w-full h-screen z-[1000] flex xl:gap-8 2xl:gap-12 3xl:gap-24 flex-col md:flex-row items-center justify-evenly  mx-auto max-w-screen-3xl">

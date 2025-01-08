@@ -10,7 +10,7 @@ const RoundedTop = ({ scrollProgress }) => {
       style={{ clipPath }}
       className="z-[1000] absolute w-full top-[0%] -translate-y-full "
     >
-      <div className=" z-40 w-full h-32 bg-secondary sm:h-72"></div>
+      <div className=" z-40 w-full bg-secondary h-[20vh]"></div>
     </motion.div>
   );
 };

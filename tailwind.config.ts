@@ -48,6 +48,7 @@ const config: Config = {
       },
       borderRadius: {
         "4xl": "40px",
+        "5xl": "48px",
       },
       aspectRatio: {
         "4/5": "4 / 5",
@@ -82,6 +83,7 @@ const config: Config = {
           "base-200": "#111312",
           "base-300": "#131614",
           "base-content": "#d6d6d6",
+          neutral: "#212623",
           "neutral-content": "#f6fdf9",
           error: "#84261f",
         },

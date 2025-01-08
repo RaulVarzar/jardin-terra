@@ -60,12 +60,12 @@ const Navbar = ({ setDark }) => {
           }
           transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
           className={
-            "absolute w-full h-full transition-colors duration-500 " +
+            "absolute w-full h-full transition-colors duration-500  " +
             (setDark ? " bg-primary" : " bg-secondary-content")
           }
         />
 
-        <div className="flex flex-row w-full items-center 2xl:px-16 3xl:px-24  mx-auto justify-between z-50  py-0 md:py-3  xl:py-5 xl:px-12 px-4 md:px-6 lg:px-10">
+        <div className="flex flex-row w-full items-center  max-w-screen-3xl  mx-auto justify-between z-50  py-0 md:py-3  xl:py-5  px-4 md:px-6 lg:px-10 ">
           <Logo menuOpen={menuOpen} closeMenu={() => setMenuOpen(false)} />
           <ToggleButton
             toggleMenu={() => setMenuOpen(!menuOpen)}
@@ -76,26 +76,32 @@ const Navbar = ({ setDark }) => {
 
         <AnimatePresence mode="sync">
           {menuOpen && (
-            <motion.div
-              exit={{ opacity: 0, transition: { delay: 0.8 } }}
-              className="md:px-24 z-50 flex flex-col xl:px-36 2xl:px-44 gap-4 px-8 w-fit place-self-end pb-12 md:pb-16 xl:pb-20"
-            >
-              <MainLinks closeNavbar={() => setMenuOpen(!menuOpen)} />
+            <motion.div className="w-full  max-w-screen-3xl  place-self-center">
+              <motion.div
+                exit={{ opacity: 0, transition: { delay: 0.8 } }}
+                className="z-50 flex flex-col gap-4  w-fit  place-self-end  pb-12 md:pb-16 xl:pb-20 px-4 md:px-6 lg:px-10 "
+              >
+                <MainLinks closeNavbar={() => setMenuOpen(!menuOpen)} />
 
-              <Divider />
-              <div className="w-full text-base font-thin tracking-wider sm:text-lg lg:text-xl text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
-                <SocialLink
-                  title="facebook"
-                  id={0}
-                  link={"https://facebook.com"}
-                />
-                <SocialLink
-                  title="instagram"
-                  id={1}
-                  link={"https://instagram.com"}
-                />
-                <SocialLink title="tiktok" id={2} link={"https://tiktok.com"} />
-              </div>
+                <Divider />
+                <div className="w-full text-base font-thin tracking-wider sm:text-lg lg:text-xl text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
+                  <SocialLink
+                    title="facebook"
+                    id={0}
+                    link={"https://facebook.com"}
+                  />
+                  <SocialLink
+                    title="instagram"
+                    id={1}
+                    link={"https://instagram.com"}
+                  />
+                  <SocialLink
+                    title="tiktok"
+                    id={2}
+                    link={"https://tiktok.com"}
+                  />
+                </div>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -128,7 +134,7 @@ export const MainLinks = ({ closeNavbar }) => {
   const [hovering, setHovering] = useState(null);
 
   return (
-    <motion.div className="flex-col sm:w-fit flex items-end justify-end w-full uppercase font-medium tracking-wider h-fit  py-4   ">
+    <motion.div className="flex-col flex items-end justify-end w-full uppercase font-medium tracking-wider h-fit  py-4   ">
       {LINKS.map((link) => (
         <NavbarLink
           closeNavbar={closeNavbar}

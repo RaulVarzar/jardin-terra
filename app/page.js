@@ -1,6 +1,4 @@
 "use client";
-import { useRef } from "react";
-import { useInView } from "framer-motion";
 
 import SmoothScroll from "/components/SmoothScroll";
 
@@ -11,22 +9,20 @@ import ContactSection from "/components/HomePage/Contact/ContactSection.jsx";
 import Footer from "/components/HomePage/Footer.jsx";
 import SustainabilitySection from "/components/HomePage/Sustainability/SustainabilitySection.jsx";
 import Navbar from "/components/Navbar/Navbar.jsx";
+import ScrollBar from "/components/ScrollBar.jsx";
 
 const Home = () => {
-  const darkRef = useRef(null);
-  const setDark = useInView(darkRef, { margin: "0% 0% 10% 0%" });
-
   return (
     <SmoothScroll>
+      {/* <ScrollBar /> */}
       <Navbar setDark={false} />
       <div className="h-full rounded-b-3xl md:rounded-b-4xl transition-colors overflow-clip duration-700 bg-primary ">
         <HeroSection />
         <ServicesSection />
-        <div ref={darkRef}>
-          <StepsSection />
-          <SustainabilitySection />
-          <ContactSection />
-        </div>
+
+        <StepsSection />
+        <SustainabilitySection />
+        <ContactSection />
       </div>
       <Footer />
     </SmoothScroll>

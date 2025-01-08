@@ -24,14 +24,14 @@ function HeroSection({}) {
   const carouselScale = useTransform(scrollYProgress, [0, 1], ["100%", "90%"]);
 
   return (
-    <div className="relative" id="home">
+    <div className="relative bg-secondary-content" id="home">
       <section
         ref={home}
-        className=" grid-rows-12 3xl:px-24 bg-secondary-content w-full relative grid items-center z-40 h-screen px-4 pt-20 pb-10 mx-auto xl:grid-cols-12  overflow-hidden md:pt-28  gap-x-8 xl:px-12  xl:grid-rows-1 snap-center 2xl:px-16"
+        className=" grid-rows-12 3xl:px-24  max-w-screen-3xl bg-secondary-content w-full relative grid items-center z-40 h-screen px-4 pt-[10vh] 2xl:pt-[13vh] pb-10 2xl:pb-[7vh] mx-auto xl:grid-cols-12  overflow-hidden md:pt-28  gap-x-8 xl:px-1  xl:grid-rows-1 snap-center 2xl:px-16"
       >
         <motion.div
-          style={{ y: headerY, opacity: mainOpacity }}
-          className="flex flex-col items-center w-full h-full  gap-2 row-span-6 sm:row-span-5 xl:col-span-6 max-xl:order-last justify-between   grow xl:gap-2 xl:py-4"
+          style={{ y: headerY }}
+          className="flex flex-col items-start w-full h-full  gap-2 row-span-6 sm:row-span-5 xl:col-span-6 max-xl:order-last justify-between   grow xl:gap-2 xl:py-4"
         >
           <Header />
           <motion.div

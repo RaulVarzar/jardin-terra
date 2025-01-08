@@ -6,35 +6,22 @@ export const Reveal = ({
   children,
   delay,
   duration,
-  repeat,
   rotate,
   skew,
-  parentVisible,
+  exitDuration,
+  exitDelay,
   offset,
 }) => {
   const ref = useRef(null);
-
-  const isInView = useInView(ref, { once: !repeat || false });
-  const parentInView = parentVisible || isInView;
-
-  const mainControls = useAnimation();
-
-  useEffect(() => {
-    if (isInView && parentInView) {
-      mainControls.start("visible");
-    } else if (!parentInView) {
-      mainControls.start("hidden");
-    }
-  }, [isInView, parentVisible]);
 
   return (
     <div ref={ref} className="relative overflow-hidden ">
       <motion.div
         variants={{
           hidden: {
-            filter: "blur(5px)",
+            filter: "blur(3px)",
             rotate: rotate || 0,
-            opacity: 0,
+            opacity: 1,
             skew: skew || 0,
             y: (offset && `${offset}%`) || "100%",
           },
@@ -44,15 +31,28 @@ export const Reveal = ({
             filter: "blur(0px)",
             opacity: 1,
             y: 0,
+            transition: {
+              duration: duration || 0.4,
+              delay: delay,
+              ease: [0.33, 0.0, 0.01, 1.0],
+            },
+          },
+          exit: {
+            filter: "blur(3px)",
+            rotate: rotate || 0,
+            opacity: 1,
+            skew: skew || 0,
+            y: (offset && `${offset}%`) || "100%",
+            transition: {
+              duration: exitDuration || 0.4,
+              delay: exitDelay || 0,
+              ease: [0.33, 0.0, 0.01, 1.0],
+            },
           },
         }}
         initial="hidden"
-        animate={mainControls}
-        transition={{
-          duration: duration || 0.4,
-          delay: delay,
-          ease: [0.855, 0.005, 0.56, 1.0],
-        }}
+        animate="visible"
+        exit="exit"
       >
         {children}
       </motion.div>
