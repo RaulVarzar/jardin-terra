@@ -14,7 +14,7 @@ import ScrollBar from "/components/ScrollBar.jsx";
 const Home = () => {
   return (
     <SmoothScroll>
-      {/* <ScrollBar /> */}
+      <ScrollBar />
       <Navbar setDark={false} />
       <div className="h-full rounded-b-3xl md:rounded-b-4xl transition-colors overflow-clip duration-700 bg-primary ">
         <HeroSection />
