@@ -5,16 +5,22 @@ import { useState } from "react";
 
 const titleVariants = {
   hidden: {
-    y: "100%",
+    y: "50%",
+    filter: "blur(10px)",
+    opacity: 0,
     transition: { duration: 0.5, delay: 0, ease: [0.45, 0, 0.15, 1] },
   },
   visible: {
     y: "0%",
+    filter: "blur(0px)",
+    opacity: 1,
     transition: { duration: 0.9, delay: 0.3, ease: [0.45, 0, 0.15, 1] },
   },
   exit: {
-    y: "100%",
-    transition: { duration: 0.3, delay: 0, ease: [0.45, 0, 0.15, 1] },
+    y: "-70%",
+    filter: "blur(10px)",
+    opacity: 0,
+    transition: { duration: 0.6, delay: 0, ease: [0.45, 0, 0.15, 1] },
   },
 };
 
@@ -26,7 +32,13 @@ export const Header = ({ visible }) => {
       <div className=" flex sticky gap-3 w-fit -mt-[120vh] bg-green-95 z-50 mx-auto inset-x-0  top-0 flex-col h-screen justify-center items-center">
         <AnimatePresence>
           {visible && (
-            <motion.div className="flex flex-col gap-2 lg:gap-3 2xl:gap-4 justify-center  h-screen items-center   relative">
+            <motion.div
+              variants={titleVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="flex flex-col gap-2 lg:gap-3 2xl:gap-4 justify-center  h-screen items-center   relative"
+            >
               <Title />
               <Description />
               <PricingButton
@@ -49,10 +61,10 @@ const Title = ({}) => {
   return (
     <motion.div className="overflow-hidden max-w-4xl 2xl:max-w-5xl text-neutral-content">
       <motion.h3
-        variants={titleVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
+        // variants={titleVariants}
+        // initial="hidden"
+        // animate="visible"
+        // exit="exit"
         className="text-3xl font-semibold text-center  leading-none tracking-wide uppercase sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl"
       >
         Modul de lucru
@@ -87,10 +99,10 @@ const Description = ({}) => {
 
   return (
     <motion.p
-      variants={subTitleVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
+      // variants={subTitleVariants}
+      // initial="hidden"
+      // animate="visible"
+      // exit="exit"
       className=" text-sm text-center  text-neutral-content font-light leading-snug tracking-wider px-6  opacity-70 max-w-3xl md:text-base xl:text-md text-balance 2xl:text-lg"
     >
       Înainte de a trece la lopată și săpăligă, analizăm dimensiunile și forma
