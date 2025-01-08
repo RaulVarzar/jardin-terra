@@ -1,3 +1,4 @@
+"use client";
 import { useLenis } from "lenis/react";
 import { useEffect, useState } from "react";
 import { motion, useMotionTemplate } from "framer-motion";
@@ -12,25 +13,22 @@ const ScrollBar = () => {
   //   }, [lenisInstance.progress]);
 
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [height, setHeight] = useState(0);
   const handleScroll = () => {
     const position = window.scrollY;
+
     setScrollPosition(position);
   };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
-
+    setHeight(document.documentElement.offsetHeight - window.innerHeight);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  const y = useMotionTemplate`${
-    (
-      scrollPosition /
-      (document.documentElement.offsetHeight - window.innerHeight)
-    ).toFixed(3) * 400
-  }px`;
+  const y = useMotionTemplate`${(scrollPosition / height).toFixed(3) * 400}px`;
 
   return (
     <div className="fixed top-0 right-0 h-screen w-10 z-[100]  flex items-center justify-center">
