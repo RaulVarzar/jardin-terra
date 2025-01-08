@@ -3,6 +3,20 @@ import MagneticButton from "../../MagneticButton.jsx";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+const buttonVariants = {
+  hidden: { y: 50, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { delay: 2, duration: 1, ease: [0.5, 0, 0.2, 1] },
+  },
+  exit: {
+    y: 10,
+    opacity: 0,
+    transition: { delay: 0.2, duration: 0.35, ease: [0.5, 0, 0.2, 1] },
+  },
+};
+
 const ActionButton = () => {
   const [hovering, setHovering] = useState(false);
 
@@ -10,6 +24,9 @@ const ActionButton = () => {
     <motion.div
       onHoverEnd={() => setHovering(false)}
       onHoverStart={() => setHovering(true)}
+      initial="hidden"
+      animate="visible"
+      variants={buttonVariants}
       className="text-base-content origin-left w-fit my-4 bg-primary-content   overflow-hidden  rounded-full cursor-pointer    group "
     >
       <motion.div className="flex flex-row items-center relative text-neutral-content overflow-hidden  px-6 py-3  md:px-6 lg:py-6 lg:px-8 ">

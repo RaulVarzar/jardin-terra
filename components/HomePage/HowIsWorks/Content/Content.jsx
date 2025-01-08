@@ -48,7 +48,7 @@ const Content = () => {
           className="bg-secondary absolute top-0 w-full z-10"
         >
           <RoundedTop scrollProgress={enterProgress} />
-          <div className="w-full h-screen z-[1000] flex xl:gap-8 2xl:gap-12 3xl:gap-24 flex-col md:flex-row items-center justify-evenly  mx-auto max-w-screen-3xl">
+          <div className="w-full h-screen z-50 flex flex-col md:flex-row  items-center gap-y-4 justify-center  mx-auto max-w-screen-3xl">
             <Tree activeStep={activeStep} showSteps={visible} />
             <Steps
               progress={scrollYProgress}

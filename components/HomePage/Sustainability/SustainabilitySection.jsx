@@ -1,3 +1,5 @@
+"use client";
+
 import { useScroll, useTransform, motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Card from "./Card";

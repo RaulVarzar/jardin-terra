@@ -8,7 +8,7 @@ function SmoothScroll({ children }) {
       options={{
         lerp: 0.05,
         duration: 1.3,
-        smoothTouch: true,
+        smoothTouch: false,
         wheelMultiplier: 0.5,
         easing: (t) => 1 - Math.pow(1 - t, 3),
       }}

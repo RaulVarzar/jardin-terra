@@ -23,7 +23,7 @@ const variants = {
 
 const Tree = ({ activeStep, showSteps }) => {
   return (
-    <motion.div className=" md:h-full max-md:w-full z-50 px-2 max-md:pt-12 md:px-12  md:w-1/2 xl:px-16 flex items-center justify-center ">
+    <motion.div className=" md:h-full max-md:w-full z-50 px-2 max-md:pt-6 md:px-12 md:w-1/2 xl:px-16 flex items-center justify-center ">
       <AnimatePresence>
         {showSteps && (
           <motion.div
@@ -31,7 +31,7 @@ const Tree = ({ activeStep, showSteps }) => {
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="w-full max-w-3xl relative h-60   md:h-80 lg:h-96 xl:h-[80vh] 2xl:h-[75vh] "
+            className="w-full max-w-3xl relative h-40 md:h-80 lg:h-96 xl:h-[80vh] 2xl:h-[75vh] "
           >
             <SVG activeStep={activeStep} />
           </motion.div>

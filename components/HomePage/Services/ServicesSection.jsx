@@ -1,8 +1,8 @@
+"use client";
+
 import { useRef, useState } from "react";
 import {
-  useScroll,
   motion,
-  useTransform,
   AnimatePresence,
   useInView,
   useDragControls,
@@ -12,7 +12,6 @@ import { SERVICES } from "../../utils/data";
 import Card from "./Card";
 import ExpandedCard from "./ExpandedCard";
 import Header from "./Header";
-import { TextReveal } from "../../utils/animations";
 
 const overlayVariants = {
   hidden: { opacity: 0 },
@@ -35,7 +34,8 @@ const ServicesSection = () => {
 
   const [id, setId] = useState(null);
 
-  const carouselInView = useInView(carouselRef, { margin: "1000% 0% -20% 0%" });
+  const carouselInView = useInView(carouselRef, { margin: "1000% 0% -40% 0%" });
+  const showSlider = useInView(sectionRef, { amount: 0.75 });
 
   return (
     <section>
@@ -45,21 +45,24 @@ const ServicesSection = () => {
         <motion.div ref={carouselRef}>
           <motion.div
             ref={sectionRef}
-            initial={{ y: "20%" }}
-            animate={carouselInView ? { y: 0 } : { y: "20%" }}
+            initial={{ y: "35%" }}
+            animate={carouselInView ? { y: 0 } : { y: "35%" }}
             transition={{ duration: 1.3, ease: [0.2, 0.2, 0.4, 1] }}
-            className="relative z-50 py-12 xl:py-20 flex justify-start w-screen items-start"
+            className="relative z-50 py-12 xl:py-20 flex justify-start w-screen items-start "
+            data-lenis-prevent
           >
             <motion.div
               drag="x"
               dragControls={controls}
-              dragMomentum={0.1}
-              dragElastic={0.6}
               dragTransition={{ bounceDamping: 60, bounceStiffness: 300 }}
               dragConstraints={sectionRef}
               // onDrag={(event, info) => {
               //   console.log(info, event);
               // }}
+              // dragMomentum={10}
+              // dragElastic={0.1}
+              style={{ touchAction: "none" }}
+              data-lenis-prevent
               className="gap-4 cursor-grab active:cursor-grabbing sm:gap-8 md:gap-12 xl:gap-20 pt-16 md:pt-20 pb-8 flex px-[2vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  h-[90vh] xl:h-[85vh] items-center"
             >
               {SERVICES.map((item) => (
@@ -73,7 +76,8 @@ const ServicesSection = () => {
             </motion.div>
           </motion.div>
         </motion.div>
-        <DragSlider />
+        <AnimatePresence>{showSlider && <DragSlider />}</AnimatePresence>
+
         {/* EXPANDED CARD AND OVERLAY */}
         <AnimatePresence>
           {id && (
@@ -113,18 +117,28 @@ export const Expanded = ({ item, layoutId }) => {
   );
 };
 
-import { IoIosArrowRoundForward, IoIosArrowRoundBack } from "react-icons/io";
+import { TfiHandDrag } from "react-icons/tfi";
 
 export const DragSlider = () => {
+  const variants = {
+    hidden: { opacity: 0, filter: "blur(5px)", y: 10 },
+    visible: { opacity: 0.4, filter: "blur(0px)", y: 0 },
+    exit: { opacity: 0, filter: "blur(5px)", y: 10 },
+  };
+
   return (
-    <div className="flex flex-row gap-5 items-center justify-center opacity-40">
+    <motion.div
+      variants={variants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      transition={{ duration: 0.5, ease: [0.5, 0, 0.2, 1] }}
+      className="flex fixed bottom-4 md:bottom-10  z-50  w-fit mx-auto inset-x-0 flex-row gap-2 items-center justify-center"
+    >
+      <span className="text-2xl font-light tracking-wider">drag</span>
       <span className="text-3xl">
-        <IoIosArrowRoundBack />
+        <TfiHandDrag />
       </span>
-      <span className="text-lg font-extralight">DRAG</span>
-      <span className="text-3xl">
-        <IoIosArrowRoundForward />
-      </span>
-    </div>
+    </motion.div>
   );
 };

@@ -1,5 +1,3 @@
-"use client";
-
 import SmoothScroll from "/components/SmoothScroll";
 
 import HeroSection from "/components/HomePage/Hero/HeroSection.jsx";
@@ -15,7 +13,7 @@ const Home = () => {
   return (
     <SmoothScroll>
       <ScrollBar />
-      <Navbar setDark={false} />
+      <Navbar />
       <div className="h-full rounded-b-3xl md:rounded-b-4xl transition-colors overflow-clip duration-700 bg-primary ">
         <HeroSection />
         <ServicesSection />

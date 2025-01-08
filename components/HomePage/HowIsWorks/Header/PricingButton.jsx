@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-
+import { isMobile } from "react-device-detect";
 import { LuInfo } from "react-icons/lu";
 
 const buttonVariants = {
@@ -8,12 +8,12 @@ const buttonVariants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { delay: 1, duration: 1.2, ease: [0.7, 0, 0.25, 1] },
+    transition: { delay: 1.1, duration: 1, ease: [0.5, 0, 0.2, 1] },
   },
   exit: {
     y: 10,
     opacity: 0,
-    transition: { delay: 0, duration: 0.35, ease: [0.7, 0, 0.3, 1] },
+    transition: { delay: 0.25, duration: 0.35, ease: [0.5, 0, 0.2, 1] },
   },
 };
 
@@ -21,12 +21,12 @@ const textVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { delay: 2, duration: 0.3, ease: [0.7, 0, 0.25, 1] },
+    transition: { delay: 2, duration: 0.3, ease: [0.5, 0, 0.2, 1] },
   },
 };
 
 const PricingButton = ({ expanded, setExpanded }) => {
-  const [hovering, setHovering] = useState(false);
+  const [hovering, setHovering] = isMobile ? [true, null] : useState(false);
 
   return (
     <motion.div
@@ -36,9 +36,9 @@ const PricingButton = ({ expanded, setExpanded }) => {
       initial="hidden"
       animate="visible"
       exit="exit"
-      onHoverEnd={() => setHovering(false)}
-      onHoverStart={() => setHovering(true)}
-      className="text-base-content origin-left w-fit my-4 bg-secondary-content hover:bg-accent transition-colors duration-300   overflow-hidden  rounded-full cursor-pointer    group "
+      onHoverEnd={!isMobile && (() => setHovering(false))}
+      onHoverStart={!isMobile && (() => setHovering(true))}
+      className="text-base-content origin-left w-fit my-4 bg-secondary-content  transition-colors duration-300   overflow-hidden  rounded-full cursor-pointer group "
     >
       <motion.div
         animate={
@@ -66,7 +66,12 @@ const PricingButton = ({ expanded, setExpanded }) => {
           transition={{ duration: 0.4, delay: 0, ease: [0.5, 0, 0.15, 1] }}
           className="text-lg xl:text-xl origin-left aspect-square z-0 absolute left-6 lg:left-10"
         >
-          <span className="rounded-full bg-neutral-content w-full h-full absolute top-0 left-0"></span>
+          <span
+            className={
+              "rounded-full  w-full h-full absolute top-0 left-0 " +
+              (isMobile ? " bg-secondary" : "bg-neutral-content")
+            }
+          ></span>
         </motion.span>
 
         <motion.div
@@ -78,7 +83,11 @@ const PricingButton = ({ expanded, setExpanded }) => {
             layout
             className={
               "text-sm md:text-base 2xl:text-md font-normal tracking-wider z-10 transition-colors duration-400 delay-100 " +
-              (hovering ? " text-base-100" : " text-neutral-content")
+              (!isMobile && hovering
+                ? " text-base-100"
+                : !isMobile && !hovering
+                ? " text-neutral-content"
+                : isMobile && " text-neutral-content opacity-85")
             }
           >
             Cum stabilim costurile?
@@ -87,7 +96,10 @@ const PricingButton = ({ expanded, setExpanded }) => {
           <motion.span
             animate={hovering ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.4, delay: 0.05, ease: [0.6, 0, 0.2, 1] }}
-            className="text-lg xl:text-xl w-0 ml-4 text-base-100 z-10"
+            className={
+              "text-lg xl:text-xl w-0 ml-4 z-10 " +
+              (isMobile ? " text-neutral-content opacity-85" : " text-base-100")
+            }
           >
             <LuInfo />
           </motion.span>

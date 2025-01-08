@@ -1,3 +1,4 @@
+"use client";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
 import { BiMessageSquareDots } from "react-icons/bi";
@@ -17,7 +18,7 @@ const ContactSection = () => {
   return (
     <div
       id="contact"
-      className="flex flex-col items-center bg-base-300 justify-center pt-[10vh] gap-6 relative z-[10] "
+      className="flex flex-col items-center bg-secondary justify-center pt-[10vh] gap-6 relative -z-[0] "
     >
       <motion.div
         ref={containerRef}

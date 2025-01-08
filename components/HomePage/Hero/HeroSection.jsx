@@ -1,3 +1,5 @@
+"use client";
+
 import ChevronButton from "./ChevronButton";
 import Carousel from "./HomeCarousel";
 import Header from "./Header";
@@ -27,7 +29,7 @@ function HeroSection({}) {
     <div className="relative bg-secondary-content" id="home">
       <section
         ref={home}
-        className=" grid-rows-12 3xl:px-24  max-w-screen-3xl bg-secondary-content w-full relative grid items-center z-40 h-screen px-4 pt-[10vh] 2xl:pt-[13vh] pb-10 2xl:pb-[7vh] mx-auto xl:grid-cols-12  overflow-hidden md:pt-28  gap-x-8 xl:px-1  xl:grid-rows-1 snap-center 2xl:px-16"
+        className=" grid-rows-12 3xl:px-24  xl:max-w-screen-xl xl:max-2xl:px-6 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl bg-secondary-content w-full relative grid items-center z-40 h-screen px-4 pt-[10vh] 2xl:pt-[13vh] pb-10 2xl:pb-[7vh] mx-auto xl:grid-cols-12  overflow-hidden md:pt-28  gap-x-8 xl:px-1  xl:grid-rows-1 snap-center 2xl:px-16"
       >
         <motion.div
           style={{ y: headerY }}
@@ -42,6 +44,7 @@ function HeroSection({}) {
               transition: { delay: 1.2, duration: 1.2, ease: "easeInOut" },
             }}
             style={{ opacity: chevronOpacity }}
+            className="mx-auto"
           >
             <ChevronButton />
           </motion.div>

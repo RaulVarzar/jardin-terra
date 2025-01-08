@@ -29,7 +29,7 @@ export const Modal = ({ closeCard }) => {
 
   return (
     <motion.div
-      className="relative z-[1000]  max-h-[95vh] flex h-fit flex-col justify-center items-center max-w-5xl gap-2 md:gap-8 px-8 pt-10 pb-10 md:pt-20  md:pb-16 md:px-6 bg-secondary   rounded-4xl xl:rounded-5xl"
+      className="relative z-[1000]  max-h-[95vh] flex h-fit flex-col justify-center items-center max-w-5xl gap-2 md:gap-8 px-8 pt-10 pb-10 md:pt-20  md:pb-16 md:px-6 bg-secondary   rounded-3xl xl:rounded-5xl"
       layoutId="toggle"
     >
       <div
@@ -52,7 +52,7 @@ export const Modal = ({ closeCard }) => {
           initial={{ opacity: 0, scale: 0.95, filter: "blur(5px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 0.5, delay: 0.4, ease: [0.4, 0, 0.1, 1] }}
-          className="w-full  text-base leading-none tracking-wide text-center md:text-left text-balanc md:leading-snug md:text-lg lg:text-xl xl:text-2xl font-semibold  text-neutral-content opacity-80"
+          className="w-full  text-base leading-none my-3 tracking-wide text-center md:text-left text-balanc md:leading-snug md:text-lg lg:text-xl xl:text-2xl font-semibold  text-neutral-content opacity-80"
         >
           La Jardin Terra, fiecare proiect este unic și are o ofertă de preț
           personalizată. Costurile pentru proiectarea spațiilor verzi sunt

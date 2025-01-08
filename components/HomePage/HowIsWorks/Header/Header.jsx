@@ -2,7 +2,7 @@ import { AnimatePresence, motion, useTransform } from "framer-motion";
 import PricingButton from "./PricingButton";
 import ModalCard from "./ModalCard";
 import { useState } from "react";
-import { Reveal } from "../../../utils/animations.jsx";
+import { Reveal, WordReveal } from "../../../utils/animations.jsx";
 
 const titleVariants = {
   hidden: {
@@ -54,7 +54,13 @@ export const Header = ({ visible }) => {
 
 const Title = ({}) => {
   return (
-    <Reveal delay={0.5} duration={1.6} offset={130} exitDuration={0.5}>
+    <Reveal
+      delay={0}
+      duration={1.6}
+      offset={130}
+      exitDuration={0.5}
+      exitDelay={0}
+    >
       <motion.h3 className="text-3xl font-semibold text-center text-neutral-content  leading-none tracking-wide uppercase sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl">
         Modul de lucru
       </motion.h3>
@@ -64,41 +70,23 @@ const Title = ({}) => {
 
 export default Header;
 
-const Description = ({}) => {
-  const subTitleVariants = {
-    hidden: {
-      y: 15,
-      opacity: 0,
-      filter: "blur(5px)",
-      transition: { delay: 0.3, duration: 1.2, ease: [0.45, 0, 0.15, 1] },
-    },
-    visible: {
-      y: 0,
-      filter: "blur(0px)",
-      opacity: 0.7,
-      transition: { delay: 0.6, duration: 1.2, ease: [0.45, 0, 0.15, 1] },
-    },
-    exit: {
-      y: 15,
-      opacity: 0,
-      filter: "blur(5px)",
-      transition: { delay: 0, duration: 0.5, ease: [0.45, 0, 0.15, 1] },
-    },
-  };
-
+const Description = () => {
   return (
-    <motion.p
-      // variants={subTitleVariants}
-      // initial="hidden"
-      // animate="visible"
-      // exit="exit"
-      className=" text-sm text-center  text-neutral-content font-light leading-snug tracking-wider px-6  opacity-70 max-w-3xl md:text-base xl:text-md text-balance 2xl:text-lg"
-    >
-      Înainte de a trece la lopată și săpăligă, analizăm dimensiunile și forma
-      spațiului tău verde. Apoi, ascultăm cu atenție dorințele tale și începem
-      proiectarea grădinii. Suntem consultanții peisagiști pe care te poți baza
-      pentru a avea propriul tău colț de natură, în armonie cu nevoile tale
-      personale sau profesionale.
+    <motion.p className=" text-sm text-center  w-full flex flex-row flex-wrap justify-center text-neutral-content font-light leading-snug tracking-wider px-6  opacity-70 max-w-3xl md:text-base xl:text-md text-balance 2xl:text-lg">
+      <WordReveal
+        offset={135}
+        delay={0.35}
+        duration={1}
+        staggerDelay={0.015}
+        exitDelay={0.1}
+        exitDuration={0.7}
+      >
+        Înainte de a trece la lopată și săpăligă, analizăm dimensiunile și forma
+        spațiului tău verde. Apoi, ascultăm cu atenție dorințele tale și începem
+        proiectarea grădinii. Suntem consultanții peisagiști pe care te poți
+        baza pentru a avea propriul tău colț de natură, în armonie cu nevoile
+        tale personale sau profesionale.
+      </WordReveal>
     </motion.p>
   );
 };

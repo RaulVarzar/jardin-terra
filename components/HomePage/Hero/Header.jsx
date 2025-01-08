@@ -10,12 +10,12 @@ const Header = () => {
   return (
     <div className="flex flex-col  px-2  grow xl:w-fit  justify-center gap-y-1.5 xl:gap-y-3 ">
       <div className="flex flex-col w-full  max-xl:text-center gap-1 text-neutral-content ">
-        <Reveal delay={0.5} duration={1.6} offset={130}>
+        <Reveal delay={0.5} duration={1.4} offset={130}>
           <motion.h3 className="text-2xl  font-bold leading-none sm:text:3xl md:text-5xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl">
             Noi suntem artiștii
           </motion.h3>
         </Reveal>
-        <Reveal delay={0.7} duration={1.4} offset={130}>
+        <Reveal delay={0.5} duration={1.4} offset={130}>
           <div className="inline-block ">
             <h3 className="  font-black leading-tight table text-[10vw] md:text-7xl lg:text-8xl max-xl:text-center xl:text-7xl 2xl:text-8xl 3xl:text-9xl">
               GRĂDINII TALE
@@ -25,7 +25,7 @@ const Header = () => {
       </div>
 
       <h3 className="flex  flex-wrap justify-center max-w-2xl font-light leading-none opacity-50 xl:justify-start text-neutral-content text-md sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 3xl:text-4xl">
-        <WordReveal offset={135} delay={1.6} duration={1.5}>
+        <WordReveal offset={135} delay={1} duration={1.2}>
           Proiectăm spații verzi în armonie cu natura
         </WordReveal>
       </h3>

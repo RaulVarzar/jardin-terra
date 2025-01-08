@@ -10,7 +10,7 @@ const Steps = ({ steps, showSteps, progress }) => {
     <motion.div className="h-fit md:h-screen flex flex-row  gap-x-4 lg:gap-x-8 2xl:gap-x-12 md:w-1/2 px-3 md:px-10 2xl:px-16 items-start md:items-center">
       <AnimatePresence>
         {showSteps && (
-          <motion.div className="grid will-change-transform max-w-5xl w-fit place-content-center">
+          <motion.div className="grid will-change-transform max-w-5xl px-2 w-fit place-content-center">
             {steps.map((step, i) => (
               <Step
                 progress={progress}
@@ -57,7 +57,7 @@ const Step = ({ step, steps, progress, id }) => {
 
   return (
     <motion.div
-      className={`flex flex-col items-start  justify-start place-self-start gap-4 h-fit z-[${id}] `}
+      className={`flex flex-col items-start  justify-start place-self-start gap-2 h-fit z-[${id}] `}
       style={{
         gridRow: 1,
         gridColumn: 1,
@@ -151,7 +151,7 @@ export const Description = ({ text }) => {
         initial="hidden"
         animate="visible"
         exit="hidden"
-        className="text-sm pl-1 text-left flex sm:text-sm lg:text-base 2xl:text-md 3xl:text-xl  text-balance tracking-wide font-extralight text-base-content opacity-80 w-full"
+        className="text-sm text-left flex sm:text-sm lg:text-base 2xl:text-md 3xl:text-xl max-md:leading-tight  text-balance tracking-wide font-extralight text-base-content opacity-80 w-full"
       >
         {text}
       </motion.p>

@@ -2,7 +2,6 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 export const Reveal = ({
-  // orientation can be vertical or horizontal
   children,
   delay,
   duration,
@@ -281,7 +280,15 @@ export const Blur = ({ children, delay, duration, ...props }) => {
   );
 };
 
-export const WordReveal = ({ children, delay, duration, offset }) => {
+export const WordReveal = ({
+  children,
+  delay,
+  duration,
+  offset,
+  staggerDelay,
+  exitDelay,
+  exitDuration,
+}) => {
   const wordArray = children.split(" ");
   return (
     <>
@@ -289,10 +296,12 @@ export const WordReveal = ({ children, delay, duration, offset }) => {
         <Reveal
           key={i}
           offset={offset || "30"}
-          delay={delay + i * 0.2}
+          delay={delay + i * (staggerDelay || 0.2)}
           duration={duration}
           rotate={5}
           skew={-10}
+          exitDelay={exitDelay}
+          exitDuration={exitDuration}
         >
           <span className="mx-1 tracking-wide">{word}</span>
         </Reveal>

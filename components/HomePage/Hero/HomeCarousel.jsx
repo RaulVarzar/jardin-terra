@@ -27,7 +27,7 @@ const Carousel = ({ scrollYProgress }) => {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
   return (
-    <div className="relative w-full h-full overflow-hin group overflow-hidden rounded-2xl">
+    <div className="relative w-full h-full overflow-hin group overflow-hidden rounded-3xl 2xl:rounded-4xl">
       <AnimatePresence mode="popLayout">
         <motion.div
           key={activePhoto}

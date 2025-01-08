@@ -1,3 +1,5 @@
+"use client";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import ToggleButton from "./ToggleButton";
@@ -34,7 +36,7 @@ const menuVariants = {
   },
 };
 
-const Navbar = ({ setDark }) => {
+const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -59,10 +61,7 @@ const Navbar = ({ setDark }) => {
                 }
           }
           transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-          className={
-            "absolute w-full h-full transition-colors duration-500  " +
-            (setDark ? " bg-primary" : " bg-secondary-content")
-          }
+          className="absolute w-full h-full transition-colors duration-500  bg-secondary-content"
         />
 
         <div className="flex flex-row w-full items-center  max-w-screen-3xl  mx-auto justify-between z-50  py-0 md:py-3  xl:py-5  px-4 md:px-6 lg:px-10 ">
@@ -70,7 +69,6 @@ const Navbar = ({ setDark }) => {
           <ToggleButton
             toggleMenu={() => setMenuOpen(!menuOpen)}
             menuOpen={menuOpen}
-            setDark={setDark}
           />
         </div>
 

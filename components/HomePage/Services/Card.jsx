@@ -23,7 +23,7 @@ const Card = ({ item, setSelectedId, layoutId }) => {
         </MagneticButton>
       </motion.span>
 
-      <div className="-z-[1000] h-full overflow-hidden max-sm:row-span-3 sm:max-lg:row-span-4 lg:col-span-3 rounded-[12px]  md:rounded-[20px] lg:rounded-[26px] ">
+      <div className="-z-[10] touch-none h-full overflow-hidden max-sm:row-span-3 sm:max-lg:row-span-4 lg:col-span-3 rounded-[12px]  md:rounded-[20px] lg:rounded-[26px] ">
         <Blur delay={0.7} duration={1.5} className="w-full h-full">
           <motion.div layoutId={photo} className="w-full h-full relative">
             <Image
@@ -32,12 +32,13 @@ const Card = ({ item, setSelectedId, layoutId }) => {
               fill={true}
               style={{ objectFit: "cover" }}
               sizes="(max-width: 768px) 80vw, 100vw"
+              className="undraggable"
             />
           </motion.div>
         </Blur>
       </div>
 
-      <div className="z-20 flex flex-col justify-start lg:justify-center gap-6 px-3 py-8 mx-auto overflow-auto lg:gap-8 md:px-5 xl:px-12 max-sm:row-span-4 sm:max-lg:row-span-3 lg:col-span-4 ">
+      <div className="z-0 touch-pan-y  flex flex-col justify-start lg:justify-center gap-6 px-3 py-8 mx-auto overflow-auto lg:gap-8 md:px-5 xl:px-12 max-sm:row-span-4 sm:max-lg:row-span-3 lg:col-span-4 ">
         <div className="flex flex-col gap-1 xl:gap-2">
           <Reveal delay={0.3} duration={1.2} offset={125}>
             <motion.h1

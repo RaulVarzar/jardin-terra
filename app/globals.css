@@ -199,3 +199,12 @@ body::-webkit-scrollbar {
       16 16,
     pointer;
 }
+
+.undraggable {
+  /* user-drag: none; */
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
