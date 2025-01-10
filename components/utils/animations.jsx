@@ -303,7 +303,7 @@ export const WordReveal = ({
           exitDelay={exitDelay}
           exitDuration={exitDuration}
         >
-          <span className="mx-1 tracking-wide">{word}</span>
+          <span className="mx-0.5 tracking-wide">{word}</span>
         </Reveal>
       ))}
     </>

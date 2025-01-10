@@ -38,7 +38,7 @@ const PricingButton = ({ expanded, setExpanded }) => {
       exit="exit"
       onHoverEnd={!isMobile && (() => setHovering(false))}
       onHoverStart={!isMobile && (() => setHovering(true))}
-      className="text-base-content origin-left w-fit my-4 bg-secondary-content  transition-colors duration-300   overflow-hidden  rounded-full cursor-pointer group "
+      className="text-base-content origin-left w-fit my-4 bg-secondary-content shadow-sm transition-colors duration-300   overflow-hidden  rounded-full cursor-pointer group "
     >
       <motion.div
         animate={

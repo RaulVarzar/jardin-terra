@@ -34,22 +34,24 @@ const ServicesSection = () => {
 
   const [id, setId] = useState(null);
 
-  const carouselInView = useInView(carouselRef, { margin: "1000% 0% -40% 0%" });
+  const carouselInView = useInView(carouselRef, { margin: "1000% 0% -35% 0%" });
   const showSlider = useInView(sectionRef, { amount: 0.75 });
 
   return (
     <section>
-      <div id={id} className="relative bottom-0 flex flex-col items-center ">
+      <div
+        id={id}
+        className="relative bottom-0 flex flex-col items-start gap-12 sm:gap-16 lg:gap-20 2xl:gap-24 "
+      >
         <Header />
 
         <motion.div ref={carouselRef}>
           <motion.div
             ref={sectionRef}
-            initial={{ y: "35%" }}
-            animate={carouselInView ? { y: 0 } : { y: "35%" }}
-            transition={{ duration: 1.3, ease: [0.2, 0.2, 0.4, 1] }}
-            className="relative z-50 py-12 xl:py-20 flex justify-start w-screen items-start "
-            data-lenis-prevent
+            initial={{ y: "40%" }}
+            animate={carouselInView ? { y: 0 } : { y: "40%" }}
+            transition={{ duration: 1.3, ease: [0.7, 0, 0.4, 1] }}
+            className="relative z-50 flex justify-start w-[95vw] overflow-clip  items-start carousel-container "
           >
             <motion.div
               drag="x"
@@ -62,7 +64,6 @@ const ServicesSection = () => {
               // dragMomentum={10}
               // dragElastic={0.1}
               style={{ touchAction: "none" }}
-              data-lenis-prevent
               className="gap-4 cursor-grab active:cursor-grabbing sm:gap-8 md:gap-12 xl:gap-20 pt-16 md:pt-20 pb-8 flex px-[2vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  h-[90vh] xl:h-[85vh] items-center"
             >
               {SERVICES.map((item) => (

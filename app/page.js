@@ -14,10 +14,9 @@ const Home = () => {
     <SmoothScroll>
       <ScrollBar />
       <Navbar />
-      <div className="h-full rounded-b-3xl md:rounded-b-4xl transition-colors overflow-clip duration-700 bg-primary ">
+      <div className="h-full rounded-b-3xl md:rounded-b-4xl overflow-clip bg-primary">
         <HeroSection />
         <ServicesSection />
-
         <StepsSection />
         <SustainabilitySection />
         <ContactSection />

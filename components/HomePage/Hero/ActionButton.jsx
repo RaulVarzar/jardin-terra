@@ -27,7 +27,7 @@ const ActionButton = () => {
       initial="hidden"
       animate="visible"
       variants={buttonVariants}
-      className="text-base-content origin-left w-fit my-4 bg-primary-content   overflow-hidden  rounded-full cursor-pointer    group "
+      className="text-base-content origin-left w-fit my-4 bg-primary-content   overflow-hidden  rounded-full cursor-pointer  shadow-sm  group "
     >
       <motion.div className="flex flex-row items-center relative text-neutral-content overflow-hidden  px-6 py-3  md:px-6 lg:py-6 lg:px-8 ">
         <motion.span

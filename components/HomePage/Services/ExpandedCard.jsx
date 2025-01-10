@@ -23,7 +23,7 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
   return (
     <motion.div
       layoutId={layoutId}
-      className="relative group z-50 grid  w-full h-full lg:grid-rows-1 p-4 max-lg:flex max-lg:flex-col cursor-pointer max-sm:place-self-end items-center rounded-t-2xl max-h-[95dvh] sm:rounded-2xl grid-cols-7 overflow-hidden  bg-accent negative-shadow "
+      className="relative group z-50 grid  w-full h-full lg:grid-rows-1 p-4 max-lg:flex max-lg:flex-col cursor-pointer max-sm:place-self-end items-center rounded-t-2xl max-h-[95dvh] sm:rounded-2xl xl:rounded-3xl md:p-6 xl:p-8 grid-cols-7 overflow-hidden  bg-secondary negative-shadow "
     >
       <motion.span
         onClick={() => setSelectedId(null)}
@@ -33,7 +33,7 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
       </motion.span>
       <motion.div
         layoutId={photo}
-        className="z-10 w-full h-full relative col-span-3 max-lg:h-1/3 lg:row-span-1 rounded-xl overflow-hidden"
+        className="z-10 w-full h-full relative col-span-3 max-lg:h-1/3 lg:row-span-1 rounded-2xl lg:rounded-3xl overflow-hidden"
       >
         <Image
           src={`/images/${photo}.jpg`}
@@ -54,7 +54,7 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
         <motion.h3
           layoutId={descriptions[0].content}
           layout="size"
-          className="text-sm font-normal leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base opacity-100 text-base-content"
+          className="text-sm font-normal leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base opacity-100 text-neutral-content"
         >
           {descriptions[0].content}
         </motion.h3>
@@ -77,12 +77,12 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
                 }}
                 className="flex flex-col gap-2"
               >
-                <h3 className="text-base font-semibold leading-none tracking-wide md:text-lg xl:text-xl 2xl:text-3xl text-base-content">
+                <h3 className="text-base font-semibold leading-none tracking-wide md:text-lg xl:text-xl 2xl:text-3xl text-neutral-content">
                   {description.title}
                 </h3>
                 <h5
                   className={
-                    "text-sm font-normal  leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base  text-base-content " +
+                    "text-sm font-normal  leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base  text-neutral-content " +
                     (description.title.length > 0 && " pl-4")
                   }
                 >

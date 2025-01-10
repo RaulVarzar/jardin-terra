@@ -1,14 +1,20 @@
 import { WordReveal, Reveal } from "../../utils/animations.jsx";
-import { motion } from "framer-motion";
-import Socials from "./Socials.jsx";
+import { motion, useTransform } from "framer-motion";
 
 import ActionButton from "./ActionButton.jsx";
 
 const HEADER = "GRĂDINII TALE".split("");
 
-const Header = () => {
+const Header = ({ scrollYProgress }) => {
+  const carouselY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+  const rotate = useTransform(scrollYProgress, [0, 0.8], [0, -3]);
+  const carouselX = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+
   return (
-    <div className="flex flex-col  px-2  grow xl:w-fit  justify-center gap-y-1.5 xl:gap-y-3 ">
+    <motion.div
+      style={{ y: carouselY, rotate, x: carouselX }}
+      className="flex flex-col  px-2  grow xl:w-fit items-center xl:items-start justify-center gap-y-1.5 xl:gap-y-3 "
+    >
       <div className="flex flex-col w-full  max-xl:text-center gap-1 text-neutral-content ">
         <Reveal delay={0.5} duration={1.4} offset={130}>
           <motion.h3 className="text-2xl  font-bold leading-none sm:text:3xl md:text-5xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl">
@@ -31,7 +37,7 @@ const Header = () => {
       </h3>
 
       <ActionButton />
-    </div>
+    </motion.div>
   );
 };
 

@@ -82,7 +82,7 @@ const Navbar = () => {
                 <MainLinks closeNavbar={() => setMenuOpen(!menuOpen)} />
 
                 <Divider />
-                <div className="w-full text-base font-thin tracking-wider sm:text-lg lg:text-xl text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
+                <div className="w-full text-base font-extralight tracking-wider sm:text-lg lg:text-xl text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
                   <SocialLink
                     title="facebook"
                     id={0}
@@ -193,7 +193,7 @@ export const Divider = () => {
         duration: 0.9,
         ease: [0.76, 0, 0.24, 1],
       }}
-      className="w-full h-0.5 bg-base-content opacity-10 origin-right"
+      className="w-full h-0.5 bg-base-content opacity-40 origin-right"
     />
   );
 };

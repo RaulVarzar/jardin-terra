@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import {
+  AnimatePresence,
   motion,
   useInView,
   useMotionValueEvent,
@@ -38,6 +39,8 @@ const Content = () => {
     }
   });
 
+  const showProgressBar = useInView(stepsRef, { amount: "all" });
+
   return (
     <div className="relative -mt-[100vh]  w-full ">
       <motion.div className="sticky w-full z-50 top-0">
@@ -56,15 +59,19 @@ const Content = () => {
               showSteps={visible}
             />
           </div>
-          <ProgressBar
-            progress={scrollYProgress}
-            numberOfSteps={STEPS.length}
-            activeStep={Math.trunc(activeStep)}
-          />
+          {/* <AnimatePresence>
+            {showProgressBar && (
+              <ProgressBar
+                progress={scrollYProgress}
+                numberOfSteps={STEPS.length}
+                activeStep={Math.trunc(activeStep)}
+              />
+            )}
+          </AnimatePresence> */}
         </motion.div>
       </motion.div>
 
-      <div ref={stepsRef} className="h-[250vh] mt-[120vh] w-0" />
+      <div ref={stepsRef} className="h-[200vh] mt-[120vh] w-0" />
     </div>
   );
 };

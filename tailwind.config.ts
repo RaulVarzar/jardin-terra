@@ -82,7 +82,7 @@ const config: Config = {
           "base-100": "#0C0E0D",
           "base-200": "#111312",
           "base-300": "#131614",
-          "base-content": "#d6d6d6",
+          "base-content": "#4f564e",
           neutral: "#212623",
           "neutral-content": "#f6fdf9",
           error: "#84261f",

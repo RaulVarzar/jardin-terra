@@ -1,0 +1,33 @@
+.button {
+  @apply flex items-center gap-6 px-6 py-4 md:py-6 xl:py-8 tracking-wide uppercase  rounded-full shadow-md text-md md:text-lg xl:text-xl md:px-12 xl:px-16 font-medium bg-neutral-content text-base-200;
+}
+
+@keyframes tilt-shaking {
+  0% {
+    transform: rotate(0deg) scale(1) translateX(0px);
+  }
+  25% {
+    transform: rotate(8deg) scale(1.05) translateX(2px);
+  }
+  50% {
+    transform: rotate(0deg) scale(1) translateX(0px);
+  }
+  75% {
+    transform: rotate(-5deg) scale(1.05) translateX(-1px);
+  }
+  100% {
+    transform: rotate(0deg) scale(1) translateX(0px);
+  }
+}
+
+.button:hover span {
+  animation: tilt-shaking 0.25s ease-in-out;
+  -moz-animation: tilt-shaking 0.25s ease-in-out;
+  -webkit-animation: tilt-shaking 0.25s ease-in-out;
+  -o-animation: tilt-shaking 0.25s ease-in-out;
+}
+
+.button:hover p {
+  transition-duration: 0.3s;
+  scale: 1.05;
+}

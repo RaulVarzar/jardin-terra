@@ -208,3 +208,13 @@ body::-webkit-scrollbar {
   -webkit-user-select: none;
   -ms-user-select: none;
 }
+
+.carousel-container {
+  mask: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) 0,
+      rgba(0, 0, 0, 1) 94%,
+      rgba(0, 0, 0, 0) 100%
+    )
+    100% 50% / 100% 100% repeat-x;
+}

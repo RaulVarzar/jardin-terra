@@ -14,10 +14,10 @@ const Card = ({ item, setSelectedId, layoutId }) => {
     >
       <motion.span
         onClick={() => setSelectedId(item.id)}
-        className="text-2xl z-50  absolute max-lg:bottom-4  rounded-full right-4 lg:top-4 xl:top-6 xl:right-6  transition duration-300   text-base-content brightness-85 hover:brightness-125 2xl:scale-110"
+        className="text-2xl z-50  absolute max-lg:bottom-4  rounded-full right-4 lg:top-4 xl:top-6 xl:right-6  transition duration-300   text-base-content hover:brightness-150 2xl:scale-110"
       >
         <MagneticButton magnify={1.1}>
-          <span className="w-full h-full hover:bg-accent-content z-50 flex items-center justify-center p-3 md:p-4  rounded-full">
+          <span className="w-full h-full hover:bg-secondary z-50 flex items-center justify-center p-3 md:p-4  rounded-full">
             <BiExpandAlt />
           </span>
         </MagneticButton>
@@ -50,7 +50,7 @@ const Card = ({ item, setSelectedId, layoutId }) => {
           </Reveal>
           <motion.div
             initial={{ opacity: 0, filter: "blur(5px)" }}
-            whileInView={{ opacity: 1, filter: "blur(0px)" }}
+            whileInView={{ opacity: 0.8, filter: "blur(0px)" }}
             transition={{
               duration: 1,
               delay: 0.8,
@@ -61,7 +61,7 @@ const Card = ({ item, setSelectedId, layoutId }) => {
             <motion.h3
               layoutId={descriptions[0].content}
               layout="size"
-              className="text-sm max-sm:line-clamp-6 font-light  leading-tight tracking-wide md:tracking-wider sm:text-base text-balance md:text-md xl:text-lg opacity-100 text-base-content"
+              className="text-sm max-sm:line-clamp-6 font-light  leading-tight tracking-wide md:tracking-wider sm:text-base text-balance md:text-md xl:text-lg text-neutral-content"
             >
               {descriptions[0].content}
             </motion.h3>

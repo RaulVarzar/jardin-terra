@@ -24,24 +24,17 @@ const ScrollBar = () => {
     };
   }, []);
 
-  const y = useMotionTemplate`${(scrollPosition / height).toFixed(3) * 400}px`;
+  const y = useMotionTemplate`${(scrollPosition / height).toFixed(3) * 372}px`;
 
   return (
-    <>
-      <BrowserView>
-        <div className="fixed top-0 right-0 h-screen w-10 z-[100]  flex items-center justify-center">
-          <div className="h-[400px] w-2 relative bg-neutral rounded-full ">
-            <motion.div
-              style={{ y }}
-              className="absolute h-8 w-3 -left-0.5 top-0 bg-primary-content rounded-full"
-            ></motion.div>
-          </div>
-        </div>
-      </BrowserView>
-      <MobileView>
-        <h1>This is rendered only on mobile</h1>
-      </MobileView>
-    </>
+    <div className="fixed top-0 right-0 h-screen w-10 z-[100]  flex items-center justify-center">
+      <div className="h-[400px] w-4 py-12  relative bg-neutral rounded-full ">
+        <motion.div
+          style={{ y }}
+          className="absolute h-6 w-3 left-0.5 top-0.5 bg-primary-content rounded-full origin-center -translate-y-[50%]"
+        ></motion.div>
+      </div>
+    </div>
   );
 };
 
