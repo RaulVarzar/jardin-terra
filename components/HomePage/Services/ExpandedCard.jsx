@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useLockBodyScroll } from "@uidotdev/usehooks";
 import { StepsCard } from "./StepsCard";
 import { BsChevronContract } from "react-icons/bs";
 import Image from "next/image";
@@ -8,13 +7,13 @@ import { useEffect } from "react";
 
 const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
   // Pause and resume scroll
-  const lenisInstance = useLenis();
-  useEffect(() => {
-    lenisInstance.stop();
-    return () => {
-      lenisInstance.start();
-    };
-  }, []);
+  // const lenisInstance = useLenis();
+  // useEffect(() => {
+  //   lenisInstance.stop();
+  //   return () => {
+  //     lenisInstance.start();
+  //   };
+  // }, []);
 
   const { title, photo, descriptions, steps } = item;
 
@@ -23,11 +22,11 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
   return (
     <motion.div
       layoutId={layoutId}
-      className="relative group z-50 grid  w-full h-full lg:grid-rows-1 p-4 max-lg:flex max-lg:flex-col cursor-pointer max-sm:place-self-end items-center rounded-t-2xl max-h-[95dvh] sm:rounded-2xl xl:rounded-3xl md:p-6 xl:p-8 grid-cols-7 overflow-hidden  bg-secondary negative-shadow "
+      className="relative group z-50 grid  w-full h-full lg:grid-rows-1 p-4 max-lg:flex max-lg:flex-col  max-sm:place-self-end items-center rounded-t-2xl max-h-[95dvh] sm:rounded-2xl xl:rounded-3xl md:p-6 xl:p-8 grid-cols-7 overflow-hidden  bg-secondary negative-shadow "
     >
       <motion.span
         onClick={() => setSelectedId(null)}
-        className="text-2xl rotate-45 md:text-3xl z-50 absolute top-4 lg:text-4xl right-4 p-3  md:p-4  transition-colors duration-200 text-base-content  hover:text-error hover:brightness-125 hover:scale-95"
+        className="text-2xl rotate-45 md:text-3xl z-50 cursor-pointer absolute top-4 lg:text-4xl right-4 p-3  md:p-4  transition-colors duration-200 text-base-content  hover:text-error hover:brightness-125 hover:scale-95"
       >
         <BsChevronContract />
       </motion.span>
@@ -44,7 +43,7 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
         />
       </motion.div>
 
-      <div className="relative z-20 flex flex-col justify-center h-full col-span-4 sm:gap-2 px-1 py-4 sm:py-6 md:py-8 overflow-hidden lg:row-span-1 md:px-5 xl:px-12">
+      <div className="relative z-20 flex flex-col justify-start h-full col-span-4 sm:gap-2 px-1 py-4 sm:py-6 md:py-12 overflow-scroll  lg:row-span-1 md:px-5 xl:px-12">
         <motion.h1
           layoutId={title}
           className="p-0 pb-4 my-0 text-2xl font-semibold uppercase leading-none md:text-4xl xl:text-5xl text-neutral-content"
@@ -54,11 +53,11 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
         <motion.h3
           layoutId={descriptions[0].content}
           layout="size"
-          className="text-sm font-normal leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base opacity-100 text-neutral-content"
+          className="text-sm font-light leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base opacity-100 text-neutral-content"
         >
           {descriptions[0].content}
         </motion.h3>
-        <div className="flex flex-col gap-12  pt-1 pb-4 overflow-y-auto ">
+        <div className="flex flex-col gap-12  pt-1 pb-4 ">
           <div className="flex flex-col gap-1 md:gap-2 ">
             {filtered.map((description, i) => (
               <motion.div
@@ -82,7 +81,7 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
                 </h3>
                 <h5
                   className={
-                    "text-sm font-normal  leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base  text-neutral-content " +
+                    "text-sm font-light  leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base  text-neutral-content " +
                     (description.title.length > 0 && " pl-4")
                   }
                 >

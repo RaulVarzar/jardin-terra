@@ -26,7 +26,7 @@ const textVariants = {
 };
 
 const PricingButton = ({ expanded, setExpanded }) => {
-  const [hovering, setHovering] = isMobile ? [true, null] : useState(false);
+  const [hovering, setHovering] = useState(false);
 
   return (
     <motion.div

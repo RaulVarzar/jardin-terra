@@ -10,7 +10,7 @@ import { useEffect } from "react";
 const ModalCard = ({ closeCard }) => {
   return (
     <motion.div className="fixed w-full inset-0  z-[10000]  grid h-[100dvh] px-3 overflow-y-auto sm:px-8 place-content-center sm:place-content-center  ">
-      <Overlay />
+      <Overlay closeModal={closeCard} />
       <Modal closeCard={closeCard} />
     </motion.div>
   );
@@ -29,16 +29,9 @@ export const Modal = ({ closeCard }) => {
 
   return (
     <motion.div
-      className="relative z-[1000]  max-h-[95vh] flex h-fit flex-col justify-center items-center max-w-5xl gap-2 md:gap-8 px-8 pt-10 pb-10 md:pt-20  md:pb-16 md:px-6 bg-secondary   rounded-3xl xl:rounded-5xl"
+      className="relative z-[1000]  max-h-[95vh] flex h-fit flex-col justify-center items-center max-w-5xl gap-2 md:gap-8 px-8 py-10 md:py-16  md:px-6 bg-secondary   rounded-3xl xl:rounded-5xl"
       layoutId="toggle"
     >
-      <div
-        onClick={closeCard}
-        className="text-xl absolute z-[1001] top-6 right-6 md:top-8 transition-colors duration-300 sm:text-2xl md:right-8 xl:top-10 xl:right-12 text-base-content cursor-pointer lg:text-3xl p-0 hover:text-error"
-      >
-        <TfiClose />
-      </div>
-
       <div className="flex flex-col items-center md:flex-row gap-x-6 gap-y-2 lg:gap-8 w-full md:w-9/12">
         <motion.span
           initial={{ opacity: 0, scale: 0.3, y: 10, filter: "blur(5px)" }}
@@ -64,7 +57,7 @@ export const Modal = ({ closeCard }) => {
   );
 };
 
-const Overlay = () => {
+const Overlay = ({ closeModal }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -73,7 +66,8 @@ const Overlay = () => {
         transition: { duration: 0.5, ease: "easeInOut" },
       }}
       exit={{ opacity: 0, transition: { duration: 0.3, delay: 0.2 } }}
-      className="fixed w-full h-full top-0 left-0 backdrop-blur-xl backdrop-brightness-75"
+      className="fixed w-full h-full top-0 left-0 backdrop-blur-xl backdrop-brightness-75 cursor-pointer"
+      onClick={closeModal}
     />
   );
 };
