@@ -5,9 +5,9 @@ import { motion, useMotionTemplate } from "framer-motion";
 import { BrowserView, isMobile, MobileView } from "react-device-detect";
 
 const ScrollBar = () => {
-  if (isMobile) {
-    return null;
-  }
+  // if (isMobile) {
+  //   return null;
+  // }
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const [height, setHeight] = useState(0);
