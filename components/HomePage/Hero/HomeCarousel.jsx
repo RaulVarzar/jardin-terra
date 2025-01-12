@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useTransform } from "framer-motion";
 import Image from "next/image";
-import MagneticButton from "/components/MagneticButton";
+
 import { FromRight } from "../../utils/animations";
+import { isMobile } from "react-device-detect";
 
 const PHOTOS = ["home2.jpg", "home1.jpg", "home3.jpg"];
 
@@ -39,7 +40,7 @@ const Carousel = ({ scrollYProgress }) => {
       className="w-full h-full row-span-6 sm:row-span-7 xl:col-span-6"
     >
       <motion.div
-        style={{ y: carouselY, rotate, x: carouselX }}
+        style={isMobile ? null : { y: carouselY, rotate, x: carouselX }}
         className="relative w-full h-full  group overflow-hidden rounded-3xl 2xl:rounded-4xl"
       >
         <AnimatePresence mode="popLayout">

@@ -3,6 +3,7 @@
 import { useScroll, useTransform, motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Card from "./Card";
+import { TextReveal } from "../../utils/animations";
 
 const TOPICS = [
   {
@@ -57,7 +58,7 @@ const Sustainability = () => {
         ref={headerRef}
         className="h-fit max-sm:pt-20 sm:h-[30vh] xl:h-[40vh] grid place-content-center sticky top-0 uppercase font-semibold"
       >
-        <motion.h1 className="flex flex-row text-3xl font-semibold tracking-wide text-neutral-content md:text-9xl overflow-hidden xl:text-[6rem] opacity-80 ">
+        {/* <motion.h1 className="flex flex-row text-3xl font-semibold tracking-wide text-neutral-content md:text-9xl overflow-hidden xl:text-[6rem] opacity-80 ">
           {titleArray.map((letter, i) => (
             <TitleLetter
               letter={letter}
@@ -66,12 +67,17 @@ const Sustainability = () => {
               progress={headerProgress}
             />
           ))}
-        </motion.h1>
+        </motion.h1> */}
+        <TextReveal duration={1}>
+          <motion.h3 className=" font-bold text-5xl leading-none px-24 tracking-wide text-center sm:text-5xl lg:text-7xl xl:text-8xl  text-neutral-content">
+            Sustenabilitate
+          </motion.h3>
+        </TextReveal>
       </motion.div>
 
       <div
         ref={targetRef}
-        className="relative w-full flex flex-col mx-auto gap-24 md:gap-44 2xl:gap-64 mt-[25vh]"
+        className="relative w-full flex flex-col mx-auto gap-24 md:gap-44 2xl:gap-64 mt-[20vh]"
       >
         {TOPICS.map((item, i) => (
           <Card key={item.title} item={item} sectionInView={reset} id={i} />

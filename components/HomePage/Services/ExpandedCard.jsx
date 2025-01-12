@@ -81,7 +81,7 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
                 </h3>
                 <h5
                   className={
-                    "text-sm font-light  leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base  text-neutral-content " +
+                    "text-sm font-extralight   leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base  text-neutral-content " +
                     (description.title.length > 0 && " pl-4")
                   }
                 >

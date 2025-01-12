@@ -1,18 +1,20 @@
 import { WordReveal, Reveal } from "../../utils/animations.jsx";
 import { motion, useTransform } from "framer-motion";
-
+import { isMobile } from "react-device-detect";
 import ActionButton from "./ActionButton.jsx";
 
 const HEADER = "GRĂDINII TALE".split("");
 
 const Header = ({ scrollYProgress }) => {
-  const carouselY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+  const carouselY = isMobile
+    ? null
+    : useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
   const rotate = useTransform(scrollYProgress, [0, 0.8], [0, -3]);
   const carouselX = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
 
   return (
     <motion.div
-      style={{ y: carouselY, rotate, x: carouselX }}
+      style={isMobile ? null : { y: carouselY, rotate, x: carouselX }}
       className="flex flex-col  px-2  grow xl:w-fit items-center xl:items-start justify-center gap-y-1.5 xl:gap-y-3 "
     >
       <div className="flex flex-col w-full  max-xl:text-center gap-1 text-neutral-content ">

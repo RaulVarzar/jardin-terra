@@ -26,7 +26,7 @@ const Header = () => {
         id="servicii"
         className=" py-[5vh]  flex flex-col items-center justify-end gap-4 lg:gap-6 2xl:gap-8 mx-auto  w-screen "
       >
-        <TextReveal duration={0.8}>
+        <TextReveal duration={1}>
           <motion.h3 className=" font-bold text-5xl leading-none px-24 tracking-wide text-center sm:text-5xl lg:text-7xl xl:text-8xl  text-neutral-content">
             SERVICIILE NOASTRE
           </motion.h3>
