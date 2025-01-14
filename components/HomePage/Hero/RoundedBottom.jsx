@@ -12,9 +12,9 @@ const RoundedBottom = ({ scrollProgress }) => {
   return (
     <motion.div
       style={{ clipPath }}
-      className="z-40 absolute w-full -bottom-[0%] translate-y-full "
+      className="z-40 absolute w-full -bottom-[0%] translate-y-full  "
     >
-      <div className=" z-40 w-full h-32 bg-secondary-content sm:h-72"></div>
+      <div className=" z-40 w-full h-32 bg-primary-content sm:h-72 "></div>
     </motion.div>
   );
 };

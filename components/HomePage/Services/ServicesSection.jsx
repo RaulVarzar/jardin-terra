@@ -58,13 +58,8 @@ const ServicesSection = () => {
               dragControls={controls}
               dragTransition={{ bounceDamping: 60, bounceStiffness: 300 }}
               dragConstraints={sectionRef}
-              // onDrag={(event, info) => {
-              //   console.log(info, event);
-              // }}
-              // dragMomentum={10}
-              // dragElastic={0.1}
               style={{ touchAction: "none" }}
-              className="gap-4 cursor-grab active:cursor-grabbing sm:gap-8 md:gap-12 xl:gap-20 pt-16 md:pt-20 pb-8 flex px-[2vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  h-[90vh] xl:h-[85vh] items-center"
+              className="gap-4 cursor-grab active:cursor-grabbing sm:gap-8 md:gap-12 xl:gap-20 pt-16 md:pt-20 pb-8 flex px-[2vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  md:h-[85vh] justify-stretch items-stretch"
             >
               {SERVICES.map((item) => (
                 <Card

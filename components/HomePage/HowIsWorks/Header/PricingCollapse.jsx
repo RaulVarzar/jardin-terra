@@ -32,7 +32,7 @@ const PricingCollapse = () => {
   }
 
   return (
-    <motion.div className="mx-auto w-full gap-0.5 flex flex-col md:w-7/12 ">
+    <motion.div className="mx-auto w-full gap-1 flex flex-col md:w-7/12 ">
       {PRICING.map((item, i) => (
         <AccordionItem
           key={item.title}

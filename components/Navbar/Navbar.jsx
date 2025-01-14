@@ -61,7 +61,7 @@ const Navbar = () => {
                 }
           }
           transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-          className="absolute w-full h-full transition-colors duration-500  bg-secondary-content"
+          className="absolute w-full h-full transition-colors duration-500  bg-primary-content"
         />
 
         <div className="flex flex-row w-full items-center  max-w-screen-3xl  mx-auto justify-between z-50  py-0 md:py-3  xl:py-5  px-4 md:px-6 lg:px-10 ">

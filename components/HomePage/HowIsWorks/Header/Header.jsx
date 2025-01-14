@@ -3,6 +3,7 @@ import PricingButton from "./PricingButton";
 import ModalCard from "./ModalCard";
 import { useState } from "react";
 import { Reveal, WordReveal } from "../../../utils/animations.jsx";
+import useScreenWidth from "../../../utils/useScreenWidth";
 
 const titleVariants = {
   hidden: {
@@ -27,13 +28,20 @@ const titleVariants = {
 
 export const Header = ({ visible }) => {
   const [openModal, setOpenModal] = useState(null);
-
+  const isMobile = useScreenWidth();
   return (
     <>
-      <div className=" flex sticky gap-3 w-fit -mt-[80vh] mb-[40vh] z-20 mx-auto inset-x-0 top-0 flex-col h-screen justify-center items-center">
+      <div
+        className={
+          "flex gap-3 w-fit  z-20 mx-auto inset-x-0 top-0 flex-col  justify-center items-center " +
+          (isMobile
+            ? " mt-[30vh]  min-h-[60vh]"
+            : " sticky -mt-[80vh] mb-[40vh] min-h-screen")
+        }
+      >
         <AnimatePresence>
           {visible && (
-            <motion.div className="flex flex-col gap-2 z-[100] lg:gap-3 2xl:gap-4 justify-center  h-screen items-center   relative">
+            <motion.div className="flex flex-col gap-2 z-[100] lg:gap-3 2xl:gap-4 justify-center h-full items-center   relative">
               <Title />
               <Description />
               <PricingButton

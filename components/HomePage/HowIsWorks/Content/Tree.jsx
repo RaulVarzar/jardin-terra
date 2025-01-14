@@ -23,7 +23,7 @@ const variants = {
 
 const Tree = ({ activeStep, showSteps }) => {
   return (
-    <motion.div className=" md:h-full max-md:w-full z-50 px-2 max-md:pt-6 md:px-12 md:w-1/2 xl:px-16 flex items-center justify-center ">
+    <motion.div className=" md:h-full  max-w-3xl max-md:w-full z-50 px-2 max-md:pt-6 md:px-12 md:w-1/2 xl:px-16 flex items-center justify-center ">
       <AnimatePresence>
         {showSteps && (
           <motion.div
@@ -60,7 +60,7 @@ export const SVG = ({ activeStep }) => {
   const pathVariants = {
     incomplete: {
       opacity: 0.6,
-      filter: "saturate(0%)brightness(30%)",
+      filter: "saturate(0%)brightness(45%)",
       scale: 1,
       transition: { duration: 0.4, delay: 0.1, ease: "easeIn" },
     },

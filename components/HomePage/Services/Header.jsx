@@ -19,12 +19,12 @@ const Header = () => {
   const exitOpacity = useTransform(exitProgress, [0.7, 1], ["100%", "0%"]);
 
   return (
-    <div className="min-h-[80vh] flex items-end relative ">
+    <div className="lg:min-h-[80vh] flex items-end relative ">
       <motion.div
         style={{ opacity: exitOpacity }}
         ref={sectionRef}
         id="servicii"
-        className=" py-[5vh]  flex flex-col items-center justify-end gap-4 lg:gap-6 2xl:gap-8 mx-auto  w-screen "
+        className=" pt-[15vh] pb-[5vh]  flex flex-col items-center justify-end gap-4 lg:gap-6 2xl:gap-8 mx-auto  w-screen "
       >
         <TextReveal duration={1}>
           <motion.h3 className=" font-bold text-5xl leading-none px-24 tracking-wide text-center sm:text-5xl lg:text-7xl xl:text-8xl  text-neutral-content">

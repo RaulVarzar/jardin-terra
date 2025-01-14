@@ -1,20 +1,21 @@
 import { useRef, useState } from "react";
 import {
-  AnimatePresence,
   motion,
   useInView,
   useMotionValueEvent,
   useScroll,
 } from "framer-motion";
+import useScreenWidth from "../../../utils/useScreenWidth";
 
 import { STEPS } from "../../../utils/data";
 
 import Tree from "./Tree";
 import Steps from "./Steps";
 import RoundedTop from "./RoundedTop";
-import ProgressBar from "./ProgressBar";
 
 const Content = () => {
+  const isMobile = useScreenWidth();
+
   const stepsRef = useRef(null);
 
   const { scrollYProgress: enterProgress } = useScroll({
@@ -24,7 +25,7 @@ const Content = () => {
 
   const { scrollYProgress } = useScroll({
     target: stepsRef,
-    offset: ["start 0.5", "end start"],
+    offset: isMobile ? ["start 0.8", "end 0.65"] : ["start 0.5", "end start"],
   });
 
   const visible = useInView(stepsRef, { margin: "1000% 0% -50% 0%" });
@@ -39,39 +40,42 @@ const Content = () => {
     }
   });
 
-  const showProgressBar = useInView(stepsRef, { amount: "all" });
-
   return (
-    <div className="relative -mt-[100vh]  w-full ">
-      <motion.div className="sticky w-full z-50 top-0">
+    <div className="relative lg:-mt-[100vh] w-full ">
+      <motion.div className="lg:sticky w-full z-50 top-0">
         <motion.div
-          initial={{ marginTop: "100vh" }}
-          animate={visible ? { marginTop: "0vh" } : { marginTop: "100vh" }}
+          initial={!isMobile && { marginTop: "100vh" }}
+          animate={
+            visible || isMobile ? { marginTop: "0vh" } : { marginTop: "100vh" }
+          }
           transition={{ duration: 0.8, ease: [0.33, 0.01, 0.15, 1.0] }}
-          className="bg-secondary absolute top-0 w-full z-10"
+          className={" lg:absolute top-0 w-full z-10 " + (isMobile ? "" : "")}
         >
-          <RoundedTop scrollProgress={enterProgress} />
-          <div className="w-full h-screen z-50 flex flex-col md:flex-row  items-center gap-y-4 justify-center  mx-auto max-w-screen-3xl">
-            <Tree activeStep={activeStep} showSteps={visible} />
+          {!isMobile && <RoundedTop scrollProgress={enterProgress} />}
+          <div
+            className={
+              "w-full lg:h-screen z-50  flex flex-col md:flex-row  items-center gap-y-4 justify-center " +
+              (!isMobile && " bg-accent")
+            }
+          >
+            {!isMobile && (
+              <Tree activeStep={activeStep} showSteps={visible || isMobile} />
+            )}
             <Steps
               progress={scrollYProgress}
               steps={STEPS}
-              showSteps={visible}
+              showSteps={visible || isMobile}
             />
           </div>
-          {/* <AnimatePresence>
-            {showProgressBar && (
-              <ProgressBar
-                progress={scrollYProgress}
-                numberOfSteps={STEPS.length}
-                activeStep={Math.trunc(activeStep)}
-              />
-            )}
-          </AnimatePresence> */}
         </motion.div>
       </motion.div>
-
-      <div ref={stepsRef} className="h-[200vh] mt-[120vh] w-0" />
+      <div
+        ref={stepsRef}
+        className={
+          " w-0 " +
+          (isMobile ? " h-full absolute top-0 " : " h-[200vh] mt-[120vh]")
+        }
+      />
     </div>
   );
 };

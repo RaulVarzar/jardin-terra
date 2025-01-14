@@ -6,9 +6,7 @@ import ActionButton from "./ActionButton.jsx";
 const HEADER = "GRĂDINII TALE".split("");
 
 const Header = ({ scrollYProgress }) => {
-  const carouselY = isMobile
-    ? null
-    : useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+  const carouselY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
   const rotate = useTransform(scrollYProgress, [0, 0.8], [0, -3]);
   const carouselX = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
 

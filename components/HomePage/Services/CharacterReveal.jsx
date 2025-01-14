@@ -1,4 +1,4 @@
-import { motion, useTransform, useMotionTemplate } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
 
 const CharacterReveal = ({ progress }) => {
   const TEXT =
@@ -38,7 +38,9 @@ export const Word = ({ children, range, progress, colored }) => {
   return (
     <motion.span
       className={
-        "" + (colored && "text-accent font-bold brightness-150 saturate-150")
+        "" +
+        (colored &&
+          "text-secondary-content font-bold brightness-150 saturate-150")
       }
       style={{ opacity }}
     >

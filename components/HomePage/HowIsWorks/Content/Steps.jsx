@@ -4,10 +4,11 @@ import {
   useMotionTemplate,
   useTransform,
 } from "framer-motion";
+import useScreenWidth from "../../../utils/useScreenWidth";
 
 const Steps = ({ steps, showSteps, progress }) => {
   return (
-    <motion.div className="h-fit md:h-screen flex flex-row gap-x-4 pt-[20vh] xl:pt-[25vh] 3xl:pt-[30vh] lg:gap-x-8 2xl:gap-x-12 md:w-1/2 px-3 md:px-10 2xl:px-16 items-start md:items-start">
+    <motion.div className="h-fit md:h-screen flex flex-row gap-x-4 pt-12 lg:pt-[25vh] 3xl:pt-[30vh] lg:gap-x-8 2xl:gap-x-12 md:w-7/12 max-w-5xl px-3 md:px-10 2xl:px-16 items-start md:items-start">
       <AnimatePresence>
         {showSteps && (
           <motion.div className="flex flex-col gap-0 justify-center h-fit  max-w-5xl px-2 w-fit ">
@@ -30,59 +31,54 @@ const Steps = ({ steps, showSteps, progress }) => {
 export default Steps;
 
 const Step = ({ step, steps, progress, id }) => {
+  const isMobile = useScreenWidth();
   const { title, content } = step;
   const divider = 1 / steps.length;
   const scaleY = useTransform(
     progress,
     [id * divider, (id + 1) * divider],
-    [0, 1]
+    [100, 0]
   );
-
-  // const blur = useTransform(
-  //   progress,
-  //   [(id + 1) * divider - 0.05, (id + 1) * divider],
-  //   [0, id < steps.length - 1 ? 5 : 0]
-  // );
-  // const y = useTransform(
-  //   progress,
-  //   [id * divider - 0.01, (id + 1) * divider],
-  //   ["0vh", "-3vh"]
-  // );
-
-  const filter = useMotionTemplate`blur(${blur}px)`;
 
   const isActive =
     progress.current > id * divider && progress.current < (id + 1) * divider;
 
+  const isComplete = progress.current >= id * divider;
+
+  const clipPath = useMotionTemplate`inset(0 0 ${scaleY}% 0)`;
+
   return (
     <div className="flex flex-row gap-4 lg:gap-5 2xl:gap-6">
       <div className="flex flex-col items-center ">
-        <div className="rounded-full border-base-content border-opacity-50 relative overflow-clip border-2 size-16 aspect-square grid place-content-center text-xl transition-colors duration-500 delay-300 ">
-          <motion.div
-            style={{ scaleY }}
-            className="absolute top-0 left-0 w-full h-full bg-base-content opacity-50 origin-top "
-          />
-          <span className="tabular-nums  text-neutral-content opacity-60">
+        <div className="relative size-10 sm:size-12 xl:size-16 border-2 border-base-content border-opacity-50 aspect-square rounded-full overflow-clip grid place-content-center text-xl transition-colors duration-500 delay-300 ">
+          <motion.span
+            style={{ clipPath }}
+            className=" text-center absolute inset-0 bg-base-content opacity-50"
+          ></motion.span>
+          <span className="tabular-nums text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl font-medium text-neutral-content opacity-70">
             {id + 1}
           </span>
         </div>
         {id < steps.length - 1 && (
-          <div className="w-0.5 h-full grow bg-base-content" />
+          <div className="w-0.5 h-full grow bg-base-content opacity-50" />
         )}
       </div>
       <motion.div
-        className={`flex flex-col items-start  justify-start place-self-start gap-2 h-fit pb-8 pt-4 z-[${id}] `}
+        className={
+          "flex flex-col items-start transition-opacity duration-500 justify-start place-self-start gap-0 h-fit pb-8 pt-4 " +
+          (isMobile && !isActive && " opacity-30 ")
+        }
       >
-        <Title text={title} isActive={isActive} />
+        <Title text={title} isComplete={isComplete} />
         <AnimatePresence mode="popLayout">
-          {isActive && <Description text={content} />}
+          {(isActive || isMobile) && <Description text={content} />}
         </AnimatePresence>
       </motion.div>
     </div>
   );
 };
 
-export const Title = ({ text, isActive }) => {
+export const Title = ({ text, isComplete }) => {
   const titleVariants = {
     visible: {
       y: 0,
@@ -105,7 +101,7 @@ export const Title = ({ text, isActive }) => {
     <motion.div
       className={
         "overflow-hidden w-full transition-all duration-500 " +
-        (!isActive && " opacity-75 brightness-50")
+        (!isComplete && " opacity-75 brightness-50")
       }
     >
       <motion.h1
@@ -113,7 +109,7 @@ export const Title = ({ text, isActive }) => {
         initial="hidden"
         animate="visible"
         exit="hidden"
-        className="text-lg text-left leading-none md:text-xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-medium tracking-wide uppercase text-neutral-content"
+        className="text-lg text-left leading-none md:text-xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-medium tracking-wide uppercase text-neutral-content"
       >
         <AnimatePresence mode="wait">
           <motion.span
@@ -147,7 +143,7 @@ export const Description = ({ text }) => {
     hidden: {
       height: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
         delay: 0,
         ease: [0.7, 0, 0.3, 1],
       },
@@ -168,7 +164,7 @@ export const Description = ({ text }) => {
       opacity: 0,
       filter: "blur(5px)",
       transition: {
-        duration: 0.7,
+        duration: 0.8,
         delay: 0,
         ease: [0.7, 0, 0.3, 1],
       },
@@ -181,14 +177,14 @@ export const Description = ({ text }) => {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      className="overflow-clip p-0"
+      className="overflow-clip "
     >
       <motion.p
         variants={textVariants}
         initial="hidden"
         animate="visible"
         exit="hidden"
-        className="text-sm text-left flex sm:text-sm lg:text-base 2xl:text-md 3xl:text-lg leading-tight text-balance  tracking-wide font-extralight text-neutral-content opacity-65 w-full"
+        className="text-sm text-left mt-2 md:mt-3 xl:mt-4 flex sm:text-sm lg:text-base 2xl:text-md 3xl:text-lg leading-tight text-balance  tracking-wide font-extralight text-neutral-content opacity-65 w-full"
       >
         {text}
       </motion.p>

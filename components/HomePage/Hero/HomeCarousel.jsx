@@ -41,7 +41,7 @@ const Carousel = ({ scrollYProgress }) => {
     >
       <motion.div
         style={isMobile ? null : { y: carouselY, rotate, x: carouselX }}
-        className="relative w-full h-full  group overflow-hidden rounded-3xl 2xl:rounded-4xl"
+        className="relative w-full h-full  group overflow-hidden rounded-3xl 2xl:rounded-4xl shadow-md"
       >
         <AnimatePresence mode="popLayout">
           <motion.div
