@@ -1,17 +1,21 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   AnimatePresence,
   useInView,
   useDragControls,
+  useMotionValue,
+  useTransform,
 } from "framer-motion";
+import useWindowDimensions from "../../utils/useScreenDimensions";
 
 import { SERVICES } from "../../utils/data";
 import Card from "./Card";
 import ExpandedCard from "./ExpandedCard";
 import Header from "./Header";
+import { TfiHandDrag } from "react-icons/tfi";
 
 const overlayVariants = {
   hidden: { opacity: 0 },
@@ -22,8 +26,12 @@ const overlayVariants = {
 const ServicesSection = () => {
   const sectionRef = useRef(null);
   const carouselRef = useRef(null);
+  const draggableRef = useRef(null);
 
   const controls = useDragControls();
+  const [width, setWidth] = useState(null);
+
+  const { width: screenWidth } = useWindowDimensions();
 
   // const { scrollYProgress } = useScroll({
   //   target: sectionRef,
@@ -36,12 +44,20 @@ const ServicesSection = () => {
 
   const carouselInView = useInView(carouselRef, { margin: "1000% 0% -35% 0%" });
   const showSlider = useInView(sectionRef, { amount: 0.75 });
+  const offset = useMotionValue(0);
+
+  useEffect(() => {
+    setWidth(draggableRef.current.offsetWidth - screenWidth);
+    console.log(width, screenWidth);
+  }, []);
+
+  const scaleX = useTransform(offset, [0, -width], [0, 1]);
 
   return (
     <section>
       <div
         id={id}
-        className="relative bottom-0 flex flex-col items-start gap-12 sm:gap-16 lg:gap-20 2xl:gap-24 "
+        className="relative bottom-0 flex flex-col items-start gap-4 sm:gap-8 lg:gap-10 2xl:gap-12 "
       >
         <Header />
 
@@ -51,15 +67,16 @@ const ServicesSection = () => {
             initial={{ y: "40%" }}
             animate={carouselInView ? { y: 0 } : { y: "40%" }}
             transition={{ duration: 1.3, ease: [0.7, 0, 0.4, 1] }}
-            className="relative z-50 flex justify-start w-[95vw] overflow-clip  items-start carousel-container "
+            className="relative z-50 flex justify-start w-[95vw] overflow-clip items-start carousel-container "
           >
             <motion.div
               drag="x"
               dragControls={controls}
               dragTransition={{ bounceDamping: 60, bounceStiffness: 300 }}
               dragConstraints={sectionRef}
-              style={{ touchAction: "none" }}
-              className="gap-4 cursor-grab active:cursor-grabbing sm:gap-8 md:gap-12 xl:gap-20 pt-16 md:pt-20 pb-8 flex px-[2vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  md:h-[85vh] justify-stretch items-stretch"
+              style={{ touchAction: "none", x: offset }}
+              ref={draggableRef}
+              className="gap-4 cursor-grab active:cursor-grabbing sm:gap-8 md:gap-12 xl:gap-20 pt-16 md:pt-20 pb-2 flex px-[2vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  md:h-[85vh] justify-stretch items-stretch"
             >
               {SERVICES.map((item) => (
                 <Card
@@ -72,7 +89,13 @@ const ServicesSection = () => {
             </motion.div>
           </motion.div>
         </motion.div>
-        <AnimatePresence>{showSlider && <DragSlider />}</AnimatePresence>
+
+        <div className="relative w-80 mx-auto h-3 rounded-2xl overflow-hidden border border-neutral">
+          <motion.div
+            style={{ scaleX }}
+            className="absolute inset-0 border border-base-300 h-full rounded-full w-full   bg-neutral z-[9999] origin-left"
+          ></motion.div>
+        </div>
 
         {/* EXPANDED CARD AND OVERLAY */}
         <AnimatePresence>
@@ -93,6 +116,13 @@ const ServicesSection = () => {
           )}
         </AnimatePresence>
       </div>
+      <AnimatePresence>
+        {showSlider && (
+          <motion.div>
+            <DragSlider />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
@@ -112,8 +142,6 @@ export const Expanded = ({ item, layoutId }) => {
     </motion.div>
   );
 };
-
-import { TfiHandDrag } from "react-icons/tfi";
 
 export const DragSlider = () => {
   const variants = {
