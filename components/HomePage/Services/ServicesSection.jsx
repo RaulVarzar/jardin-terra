@@ -67,7 +67,7 @@ const ServicesSection = () => {
             initial={{ y: "40%" }}
             animate={carouselInView ? { y: 0 } : { y: "40%" }}
             transition={{ duration: 1.3, ease: [0.7, 0, 0.4, 1] }}
-            className="relative z-50 flex justify-start w-[95vw] overflow-clip items-start carousel-container "
+            className="relative z-50 flex  justify-start w-[95vw] pt-16 md:pt-24 xl:pt-36 overflow-clip items-start carousel-container "
           >
             <motion.div
               drag="x"
@@ -76,7 +76,7 @@ const ServicesSection = () => {
               dragConstraints={sectionRef}
               style={{ touchAction: "none", x: offset }}
               ref={draggableRef}
-              className="gap-4 cursor-grab active:cursor-grabbing sm:gap-8 md:gap-12 xl:gap-20 pt-16 md:pt-20 pb-2 flex px-[2vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  md:h-[85vh] justify-stretch items-stretch"
+              className="gap-4 cursor-grab  active:cursor-grabbing sm:gap-8 md:gap-12 xl:gap-20 flex px-[2vw] xl:px-[5vw] 3xl:px-[7vw] flex-row max-md:min-h-screen md:h-[85vh] max-h-[960px] justify-stretch items-stretch"
             >
               {SERVICES.map((item) => (
                 <Card

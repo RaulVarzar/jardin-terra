@@ -10,7 +10,7 @@ const Card = ({ item, setSelectedId, layoutId }) => {
   return (
     <motion.div
       layoutId={layoutId}
-      className="grid relative  bg-accent transition-colors duration-300  group  group max-lg:grid-rows-7 lg:grid-cols-7 z-50 min-h-[480px] h-full max-h-[800px] w-[90vw] xl:w-[85vw] 3xl:w-[80vw] max-w-screen-xl p-2 md:p-4 lg:p-8  rounded-2xl md:rounded-3xl lg:rounded-[36px] "
+      className="grid relative  bg-accent transition-colors duration-300  group  group max-lg:grid-rows-7 lg:grid-cols-7 z-50 h-full w-[90vw] xl:w-[85vw] 3xl:w-[80vw] max-w-screen-xl p-2 md:p-4 lg:p-8  rounded-2xl md:rounded-3xl lg:rounded-[36px] "
     >
       <motion.span
         onClick={() => setSelectedId(item.id)}

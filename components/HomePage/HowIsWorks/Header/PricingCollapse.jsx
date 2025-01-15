@@ -32,7 +32,7 @@ const PricingCollapse = () => {
   }
 
   return (
-    <motion.div className="mx-auto w-full gap-1 flex flex-col md:w-7/12 ">
+    <motion.div className="mx-auto w-full gap-1 flex flex-col md:w-8/12 ">
       {PRICING.map((item, i) => (
         <AccordionItem
           key={item.title}
@@ -75,7 +75,7 @@ const AccordionItem = ({ i, item, active, setActive }) => {
       initial={{ opacity: 0, filter: "blur(2px)" }}
       animate={{ opacity: 1, filter: "blur(0px)" }}
       transition={{ duration: 0.9, delay: 0.5 + i * 0.2 }}
-      className="flex flex-col gap-1 py-1.5 md:py-2 xl:py-3 "
+      className="flex flex-col py-1.5 md:py-2 xl:py-3 2xl:py-3.5"
     >
       <motion.div
         onClick={() => setActive(isActive ? null : i)}
@@ -84,7 +84,7 @@ const AccordionItem = ({ i, item, active, setActive }) => {
           (isActive ? " opacity-100" : "opacity-50 hover:opacity-90")
         }
       >
-        <motion.h1 className="text-md  font-medium text-neutral-content leading-tight sm:text-lg md:text-xl lg:text-2xl">
+        <motion.h1 className="text-md  font-medium text-neutral-content leading-tight sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl">
           {item.title}
         </motion.h1>
         <motion.span
@@ -112,10 +112,10 @@ const AccordionItem = ({ i, item, active, setActive }) => {
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="overflow-hidden w-11/12 py-0 leading-snug md:w-10/12 pl-2 md:pl-5"
+            className="overflow-hidden w-11/12 leading-snug pl-2 md:pl-5"
             variants={textVariants}
           >
-            <motion.p className="text-sm tracking-wide max-md:leading-tight opacity-70 sm:text-base font-light md:text-lg  text-neutral-content">
+            <motion.p className="text-sm tracking-wide pt-2 max-md:leading-tight opacity-70 sm:text-base font-light md:text-lg  text-neutral-content">
               {item.description}
             </motion.p>
           </motion.div>

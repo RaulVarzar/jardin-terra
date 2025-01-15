@@ -5,17 +5,18 @@ import {
   useTransform,
 } from "framer-motion";
 
-const Steps = ({ steps, showSteps, progress }) => {
+const Steps = ({ steps, showSteps, progress, activeStep }) => {
   return (
-    <motion.div className="h-fit md:h-screen flex flex-row  gap-x-4 lg:gap-x-8 2xl:gap-x-12 md:w-1/2 px-3 md:px-10 2xl:px-16 items-start md:items-center">
+    <motion.div className="h-fit   flex flex-row  gap-x-4 lg:gap-x-8 2xl:gap-x-12 md:w-1/2 px-3 md:px-10 2xl:px-16 items-start">
       <AnimatePresence>
         {showSteps && (
-          <motion.div className="grid will-change-transform max-w-5xl px-2 w-fit place-content-center">
+          <motion.div className="grid place-content-center h-screen sticky top-0 will-change-transform max-w-5xl px-2 w-fit ">
             {steps.map((step, i) => (
               <Step
                 progress={progress}
                 step={step}
                 steps={steps}
+                activeStep={activeStep}
                 key={i}
                 id={i}
               />
@@ -29,41 +30,51 @@ const Steps = ({ steps, showSteps, progress }) => {
 
 export default Steps;
 
-const Step = ({ step, steps, progress, id }) => {
+const Step = ({ step, steps, progress, id, activeStep }) => {
   const { title, content } = step;
   const divider = 1 / steps.length;
-  const opacity = useTransform(
-    progress,
-    [
-      id * divider - 0.01,
-      id * divider + 0.1,
-      id * divider + 0.2,
-      (id + 1) * divider,
-    ],
-    [id > 0 ? 0 : 1, 1, 1, id < steps.length - 1 ? 0 : 1]
-  );
-  const blur = useTransform(
-    progress,
-    [(id + 1) * divider - 0.05, (id + 1) * divider],
-    [0, id < steps.length - 1 ? 5 : 0]
-  );
-  const y = useTransform(
-    progress,
-    [id * divider - 0.01, (id + 1) * divider],
-    ["0vh", "-3vh"]
-  );
+  // const opacity = useTransform(
+  //   progress,
+  //   [
+  //     id * divider - 0.01,
+  //     id * divider + 0.1,
+  //     id * divider + 0.2,
+  //     (id + 1) * divider,
+  //   ],
+  //   [id > 0 ? 0 : 1, 1, 1, id < steps.length - 1 ? 0 : 1]
+  // );
+  // const blur = useTransform(
+  //   progress,
+  //   [(id + 1) * divider - 0.05, (id + 1) * divider],
+  //   [0, id < steps.length - 1 ? 5 : 0]
+  // );
+  // const y = useTransform(
+  //   progress,
+  //   [id * divider - 0.01, (id + 1) * divider],
+  //   ["0vh", "-3vh"]
+  // );
 
-  const filter = useMotionTemplate`blur(${blur}px)`;
+  // const filter = useMotionTemplate`blur(${blur}px)`;
 
   return (
     <motion.div
-      className={`flex flex-col items-start  justify-start place-self-start gap-2 h-fit z-[${id}] `}
+      className={`flex flex-col origin-top-left items-start min-h-[70vh] justify-start place-self-start gap-2 md:gap-6 xl:gap-12 h-fit pt-24 z-[${id}] border-t-2 border-base-content border-opacity-40`}
       style={{
         gridRow: 1,
         gridColumn: 1,
-        opacity,
-        filter,
+        // opacity,
+        // filter,
       }}
+      animate={
+        Math.floor(activeStep) === id
+          ? { y: "0%", opacity: 1, scale: 1 }
+          : {
+              y: `${(id - Math.floor(activeStep)) * 100}%`,
+              opacity: 0.5,
+              scale: 0.96,
+            }
+      }
+      transition={{ duration: 1.2, ease: [0.7, 0, 0.2, 1] }}
     >
       <Title text={title} />
       <Description text={content} />
@@ -98,7 +109,7 @@ export const Title = ({ text }) => {
           initial="hidden"
           animate="visible"
           exit="hidden"
-          className="text-2xl text-left leading-none md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold tracking-wide uppercase text-neutral-content"
+          className="text-2xl text-left leading-none md:text-3xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-medium tracking-wide uppercase text-neutral-content"
         >
           <AnimatePresence mode="wait">
             <motion.span
@@ -151,7 +162,7 @@ export const Description = ({ text }) => {
         initial="hidden"
         animate="visible"
         exit="hidden"
-        className="text-sm text-left flex sm:text-sm lg:text-base 2xl:text-md 3xl:text-xl max-md:leading-tight  text-balance tracking-wide font-extralight text-neutral-content w-full"
+        className="text-sm text-left flex sm:text-sm lg:text-base 2xl:text-md 3xl:text-xl max-md:leading-tight max-w-4xl  text-balance tracking-wide font-extralight text-neutral-content w-full"
       >
         {text}
       </motion.p>

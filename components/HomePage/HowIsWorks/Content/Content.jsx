@@ -10,7 +10,7 @@ import useScreenWidth from "../../../utils/useScreenWidth";
 import { STEPS } from "../../../utils/data";
 
 import Tree from "./Tree";
-import Steps from "./Steps";
+import Steps from "./StepsMobile";
 import RoundedTop from "./RoundedTop";
 
 const Content = () => {
@@ -63,6 +63,7 @@ const Content = () => {
             )}
             <Steps
               progress={scrollYProgress}
+              activeStep={activeStep}
               steps={STEPS}
               showSteps={visible || isMobile}
             />
@@ -72,8 +73,8 @@ const Content = () => {
       <div
         ref={stepsRef}
         className={
-          " w-0 " +
-          (isMobile ? " h-full absolute top-0 " : " h-[200vh] mt-[120vh]")
+          "w-0 " +
+          (isMobile ? " h-full absolute top-0 " : " h-[100vh] mt-[120vh]")
         }
       />
     </div>
