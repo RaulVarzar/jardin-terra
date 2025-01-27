@@ -108,7 +108,7 @@ export const Title = ({ text, isComplete }) => {
         initial="hidden"
         animate="visible"
         exit="hidden"
-        className="text-lg text-left leading-none md:text-xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-medium tracking-wide uppercase text-neutral-content"
+        className="text-lg text-left leading-none md:text-xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-medium tracking-wide uppercase text-neutral-content"
       >
         <AnimatePresence mode="wait">
           <motion.span

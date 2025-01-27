@@ -10,7 +10,7 @@ const Card = ({ item, setSelectedId, layoutId }) => {
   return (
     <motion.div
       layoutId={layoutId}
-      className="grid relative  bg-accent transition-colors duration-300  group  group max-lg:grid-rows-7 lg:grid-cols-7 z-50 h-full w-[90vw] xl:w-[85vw] 3xl:w-[80vw] max-w-screen-xl p-2 md:p-4 lg:p-8  rounded-2xl md:rounded-3xl lg:rounded-[36px] "
+      className="grid relative  bg-primary transition-colors duration-300  group  group max-lg:grid-rows-7 lg:grid-cols-7 z-50 h-full w-[90vw] xl:w-[85vw] 3xl:w-[80vw]  max-w-screen-xl p-2 md:p-4 lg:p-8  rounded-2xl lg:rounded-3xl "
     >
       <motion.span
         onClick={() => setSelectedId(item.id)}
@@ -23,7 +23,7 @@ const Card = ({ item, setSelectedId, layoutId }) => {
         </MagneticButton>
       </motion.span>
 
-      <div className="-z-[10] touch-none h-full overflow-hidden max-sm:row-span-3 sm:max-lg:row-span-4 lg:col-span-3 rounded-[12px]  md:rounded-[20px] lg:rounded-[26px] ">
+      <div className="-z-[10] touch-none h-full overflow-hidden max-sm:row-span-3 sm:max-lg:row-span-4 lg:col-span-3 rounded-[12px]  md:rounded-[20px] lg:rounded-[16px] ">
         <Blur delay={0.7} duration={1.5} className="w-full h-full">
           <motion.div layoutId={photo} className="w-full h-full relative">
             <Image

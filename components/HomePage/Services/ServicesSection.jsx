@@ -48,7 +48,6 @@ const ServicesSection = () => {
 
   useEffect(() => {
     setWidth(draggableRef.current.offsetWidth - screenWidth);
-    console.log(width, screenWidth);
   }, []);
 
   const scaleX = useTransform(offset, [0, -width], [0, 1]);
@@ -57,7 +56,7 @@ const ServicesSection = () => {
     <section>
       <div
         id={id}
-        className="relative bottom-0 flex flex-col items-start gap-4 sm:gap-8 lg:gap-10 2xl:gap-12 "
+        className="relative bottom-0 flex flex-col items-start gap-3 sm:gap-4 lg:gap-6 2xl:gap-8"
       >
         <Header />
 
@@ -67,7 +66,7 @@ const ServicesSection = () => {
             initial={{ y: "40%" }}
             animate={carouselInView ? { y: 0 } : { y: "40%" }}
             transition={{ duration: 1.3, ease: [0.7, 0, 0.4, 1] }}
-            className="relative z-50 flex  justify-start w-[95vw] pt-16 md:pt-24 xl:pt-36 overflow-clip items-start carousel-container "
+            className="relative z-50 flex justify-start w-[95vw] pt-16 md:pt-24 xl:pt-32 overflow-clip items-start carousel-container "
           >
             <motion.div
               drag="x"
@@ -76,7 +75,7 @@ const ServicesSection = () => {
               dragConstraints={sectionRef}
               style={{ touchAction: "none", x: offset }}
               ref={draggableRef}
-              className="gap-4 cursor-grab  active:cursor-grabbing sm:gap-8 md:gap-12 xl:gap-20 flex px-[2vw] xl:px-[5vw] 3xl:px-[7vw] flex-row max-md:min-h-screen md:h-[85vh] max-h-[960px] justify-stretch items-stretch"
+              className="gap-4 cursor-grab active:cursor-grabbing sm:gap-8 md:gap-10 xl:gap-12 flex px-[2vw] xl:px-[5vw] 3xl:px-[7vw] flex-row max-md:min-h-screen md:h-[85vh] max-h-[800px] justify-stretch items-stretch"
             >
               {SERVICES.map((item) => (
                 <Card
@@ -90,10 +89,10 @@ const ServicesSection = () => {
           </motion.div>
         </motion.div>
 
-        <div className="relative w-80 mx-auto h-3 rounded-2xl overflow-hidden border border-neutral">
+        <div className="relative w-11/12 max-w-xl mt-16 mx-auto h-1.5 rounded-sm overflow-hidden bg-neutral">
           <motion.div
             style={{ scaleX }}
-            className="absolute inset-0 border border-base-300 h-full rounded-full w-full   bg-neutral z-[9999] origin-left"
+            className="absolute inset-0 border border-base-300 h-full rounded-full w-full   bg-base-content z-[9999] origin-left"
           ></motion.div>
         </div>
 

@@ -1,4 +1,5 @@
 import { AnimatePresence, motion, useTransform } from "framer-motion";
+import ProgressBar from "./ProgressBar";
 
 const variants = {
   visible: {
@@ -21,9 +22,9 @@ const variants = {
   },
 };
 
-const Tree = ({ activeStep, showSteps }) => {
+const Tree = ({ activeStep, showSteps, children }) => {
   return (
-    <motion.div className=" md:h-full  max-w-3xl max-md:w-full z-50 px-2 max-md:pt-6 md:px-12 md:w-1/2 xl:px-16 flex items-center justify-center ">
+    <motion.div className=" md:h-full  max-w-3xl flex flex-col gap-12 max-md:w-full z-50 px-2 max-md:pt-6 md:px-12 md:w-1/2 xl:px-16  items-center justify-center ">
       <AnimatePresence>
         {showSteps && (
           <motion.div
@@ -37,6 +38,7 @@ const Tree = ({ activeStep, showSteps }) => {
           </motion.div>
         )}
       </AnimatePresence>
+      {children}
     </motion.div>
   );
 };

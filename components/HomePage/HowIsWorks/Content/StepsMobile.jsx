@@ -58,7 +58,7 @@ const Step = ({ step, steps, progress, id, activeStep }) => {
 
   return (
     <motion.div
-      className={`flex flex-col origin-top-left items-start min-h-[70vh] justify-start place-self-start gap-2 md:gap-6 xl:gap-12 h-fit pt-24 z-[${id}] border-t-2 border-base-content border-opacity-40`}
+      className={`flex flex-col will-change-transform origin-top-left items-start min-h-[50vh] justify-start place-self-start  h-fit pt-24 z-[${id}] border-t- border-base-content border-opacity-40`}
       style={{
         gridRow: 1,
         gridColumn: 1,
@@ -76,8 +76,15 @@ const Step = ({ step, steps, progress, id, activeStep }) => {
       }
       transition={{ duration: 1.2, ease: [0.7, 0, 0.2, 1] }}
     >
-      <Title text={title} />
-      <Description text={content} />
+      <div className="flex flex-row gap-x-4">
+        <span className=" text-7xl font-light leading-none mt-1 opacity-60">
+          0{id + 1}
+        </span>
+        <div className="flex-col flex gap-2 md:gap-3 xl:gap-4">
+          <Title text={title} />
+          <Description text={content} />
+        </div>
+      </div>
     </motion.div>
   );
 };

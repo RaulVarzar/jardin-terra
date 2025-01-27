@@ -1,3 +1,5 @@
+"use client";
+
 import { AnimatePresence, motion, useTransform } from "framer-motion";
 import PricingButton from "./PricingButton";
 import ModalCard from "./ModalCard";
@@ -32,24 +34,21 @@ export const Header = ({ visible }) => {
   return (
     <>
       <div
+        id="mod-de-lucru"
         className={
-          "flex gap-3 w-fit  z-20 mx-auto inset-x-0 top-0 flex-col  justify-center items-center " +
-          (isMobile
-            ? " mt-[30vh]  min-h-[60vh]"
-            : " sticky -mt-[80vh] mb-[40vh] min-h-screen")
+          "flex gap-3 w-fit relative z-20 mx-auto inset-x-0 top-0 flex-col  justify-center items-center " +
+          (isMobile ? " pt-[30vh]  min-h-[60vh]" : " pt-[40vh] ")
         }
       >
         <AnimatePresence>
-          {visible && (
-            <motion.div className="flex flex-col gap-2 z-[100] lg:gap-3 2xl:gap-4 justify-center h-full items-center   relative">
-              <Title />
-              <Description />
-              <PricingButton
-                opened={openModal}
-                setExpanded={() => setOpenModal(true)}
-              />
-            </motion.div>
-          )}
+          <motion.div className="flex flex-col gap-2 z-[100] lg:gap-3 2xl:gap-4 justify-center h-full items-center   relative">
+            <Title />
+            <Description />
+            <PricingButton
+              opened={openModal}
+              setExpanded={() => setOpenModal(true)}
+            />
+          </motion.div>
         </AnimatePresence>
       </div>
 
@@ -80,7 +79,7 @@ export default Header;
 
 const Description = () => {
   return (
-    <motion.p className=" text-sm text-center  w-full flex flex-row flex-wrap justify-center text-neutral-content font-light leading-snug tracking-wider px-6  opacity-70 max-w-3xl md:text-base xl:text-md text-balance 2xl:text-lg">
+    <motion.span className=" text-sm text-center  w-full flex flex-row flex-wrap justify-center text-neutral-content font-light leading-snug tracking-wider px-6  opacity-70 max-w-3xl md:text-base xl:text-md text-balance 2xl:text-lg">
       <WordReveal
         offset={135}
         delay={0.35}
@@ -95,6 +94,6 @@ const Description = () => {
         baza pentru a avea propriul tău colț de natură, în armonie cu nevoile
         tale personale sau profesionale.
       </WordReveal>
-    </motion.p>
+    </motion.span>
   );
 };

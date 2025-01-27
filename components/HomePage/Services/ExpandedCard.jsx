@@ -22,7 +22,7 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
   return (
     <motion.div
       layoutId={layoutId}
-      className="relative group z-50 grid  w-full h-full lg:grid-rows-1 p-4 max-lg:flex max-lg:flex-col  max-sm:place-self-end items-center rounded-t-2xl max-h-[95dvh] sm:rounded-2xl xl:rounded-3xl md:p-6 xl:p-8 grid-cols-7 overflow-hidden  bg-secondary negative-shadow "
+      className="relative group z-50 grid  w-full h-full lg:grid-rows-1 p-4 max-lg:flex max-lg:flex-col  max-sm:place-self-end items-center rounded-t-2xl max-h-[95dvh] sm:rounded-2xl xl:rounded-3xl md:p-6 xl:p-8 grid-cols-7 overflow-hidden  bg-secondary"
     >
       <motion.span
         onClick={() => setSelectedId(null)}

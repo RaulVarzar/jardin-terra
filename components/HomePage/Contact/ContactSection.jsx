@@ -18,7 +18,7 @@ const ContactSection = () => {
   return (
     <div
       id="contact"
-      className="flex flex-col items-center bg-accent justify-center pt-[10vh] gap-6 relative -z-[0] "
+      className="flex flex-col items-center bg-primary justify-center pt-[10vh] gap-6 relative z-10 "
     >
       <motion.div
         ref={containerRef}

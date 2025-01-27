@@ -24,7 +24,7 @@ const ProgressBar = ({ progress, numberOfSteps, activeStep }) => {
       initial="exit"
       exit="exit"
       animate="visible"
-      className=" w-60 2xl:w-80 absolute mx-auto bottom-8 inset-x-0 justify-center flex flex-row gap-2 sm:gap-1 lg:gap-2 xl:gap-3 2xl:gap-3"
+      className=" mx-auto justify-center flex flex-row gap-2 sm:gap-1 lg:gap-2 xl:gap-3 2xl:gap-3 w-60 md:w-80 xl:w-96"
     >
       {Array(numberOfSteps)
         .fill("")
@@ -50,10 +50,7 @@ const ProgressBarDot = ({ i, divider, activeStep, progress }) => {
   return (
     <div
       key={i}
-      className={
-        "bg-base-300 overflow-hidden h-2.5 rounded-full relative transition-all duration-500 " +
-        (activeStep === i ? " w-28" : " w-2.5")
-      }
+      className="bg-base-300 overflow-hidden h-1.5 rounded-full relative w-full"
     >
       <motion.div
         style={{ scaleX }}
