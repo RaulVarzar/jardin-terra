@@ -12,7 +12,7 @@ const Header = ({ scrollYProgress }) => {
 
   return (
     <motion.div
-      style={isMobile ? null : { y: carouselY, rotate, x: carouselX }}
+      // style={isMobile ? null : { y: carouselY, rotate, x: carouselX }}
       className="flex flex-col  px-2  grow xl:w-fit items-center xl:items-start justify-center gap-y-1.5 xl:gap-y-3 "
     >
       <div className="flex flex-col w-full  max-xl:text-center gap-1 text-neutral-content ">

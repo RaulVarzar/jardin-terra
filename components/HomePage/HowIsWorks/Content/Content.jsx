@@ -27,7 +27,7 @@ const Content = () => {
 
   const { scrollYProgress } = useScroll({
     target: stepsRef,
-    offset: isMobile ? ["start end", "end 0.8"] : ["start end", "end 0.9"],
+    offset: ["start", "end"],
   });
 
   const { scrollYProgress: exitProgress } = useScroll({
@@ -35,7 +35,7 @@ const Content = () => {
     offset: ["end", "end 0.2"],
   });
 
-  const sectionScale = useTransform(exitProgress, [0, 1], ["100%", "90%"]);
+  const opacity = useTransform(exitProgress, [0, 1], [1, 0]);
 
   // const visible = useInView(stepsRef, { margin: "1000% 0% -50% 0%" });
   const visible = true;
@@ -52,34 +52,25 @@ const Content = () => {
   return (
     <>
       <motion.div
-        style={{ scale: sectionScale }}
-        className="w-full sticky top-0 lg:h-screen z-10 overflow-clip flex flex-col md:flex-row  items-center gap-y-4 justify-center "
+        style={{ opacity }}
+        className="w-full sticky bottom-0 mt-[60vh] origin-bottom max-w-screen-3xl mx-auto flex flex-col md:flex-row  items-start justify-center"
       >
-        {!isMobile && (
-          <Tree
-            activeStep={activeStep}
-            showSteps={visible || isMobile}
-            progress={scrollYProgress}
-          >
-            <ProgressBar
-              progress={scrollYProgress}
-              numberOfSteps={STEPS.length}
-              activeStep={Math.floor(activeStep)}
-            />
-          </Tree>
-        )}
-        <Steps
-          progress={scrollYProgress}
+        <Tree
           activeStep={activeStep}
-          steps={STEPS}
           showSteps={visible || isMobile}
-        />
-      </motion.div>
+          progress={scrollYProgress}
+        >
+          <ProgressBar
+            progress={scrollYProgress}
+            numberOfSteps={STEPS.length}
+            activeStep={Math.floor(activeStep)}
+          />
+        </Tree>
 
-      <div
-        ref={stepsRef}
-        className={"w-0 " + (isMobile ? " h-full" : " h-[150vh]")}
-      />
+        <div ref={stepsRef} className="mt-24 md:mt-[30vh]">
+          <Steps progress={scrollYProgress} steps={STEPS} />
+        </div>
+      </motion.div>
     </>
   );
 };

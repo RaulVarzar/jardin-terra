@@ -40,7 +40,7 @@ const Carousel = ({ scrollYProgress }) => {
       className="w-full h-full row-span-6 sm:row-span-7 xl:col-span-6"
     >
       <motion.div
-        style={isMobile ? null : { y: carouselY, rotate, x: carouselX }}
+        // style={isMobile ? null : { y: carouselY, rotate, x: carouselX }}
         className="relative w-full h-full  group overflow-hidden rounded-3xl 2xl:rounded-4xl shadow-md"
       >
         <AnimatePresence mode="popLayout">

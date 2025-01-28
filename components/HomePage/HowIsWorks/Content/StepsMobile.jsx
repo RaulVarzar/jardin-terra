@@ -2,37 +2,32 @@ import {
   AnimatePresence,
   motion,
   useMotionTemplate,
+  useScroll,
   useTransform,
 } from "framer-motion";
+import { useRef } from "react";
 
-const Steps = ({ steps, showSteps, progress, activeStep }) => {
+const Steps = ({ steps }) => {
   return (
-    <motion.div className="h-fit   flex flex-row  gap-x-4 lg:gap-x-8 2xl:gap-x-12 md:w-1/2 px-3 md:px-10 2xl:px-16 items-start">
-      <AnimatePresence>
-        {showSteps && (
-          <motion.div className="grid place-content-center h-screen sticky top-0 will-change-transform max-w-5xl px-2 w-fit ">
-            {steps.map((step, i) => (
-              <Step
-                progress={progress}
-                step={step}
-                steps={steps}
-                activeStep={activeStep}
-                key={i}
-                id={i}
-              />
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <motion.div className="flex flex-col max-w-5xl grow  gap-8 px-3 md:px-18 2xl:px-12 items-start">
+      {steps.map((step, i) => (
+        <Step
+          // progress={progress}
+          step={step}
+          steps={steps}
+          key={i}
+          id={i}
+        />
+      ))}
     </motion.div>
   );
 };
 
 export default Steps;
 
-const Step = ({ step, steps, progress, id, activeStep }) => {
+const Step = ({ step, steps, id, activeStep }) => {
   const { title, content } = step;
-  const divider = 1 / steps.length;
+  // const divider = 1 / steps.length;
   // const opacity = useTransform(
   //   progress,
   //   [
@@ -54,27 +49,37 @@ const Step = ({ step, steps, progress, id, activeStep }) => {
   //   ["0vh", "-3vh"]
   // );
 
-  // const filter = useMotionTemplate`blur(${blur}px)`;
+  const elementRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: elementRef,
+    offset: ["start end", "end start"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.25], [0, 1]);
+  const blur = useTransform(scrollYProgress, [0, 0.2, 0.7, 1], [4, 0, 0, 7]);
+  const filter = useMotionTemplate`blur(${blur}px)`;
 
   return (
     <motion.div
-      className={`flex flex-col will-change-transform origin-top-left items-start min-h-[50vh] justify-start place-self-start  h-fit pt-24 z-[${id}] border-t- border-base-content border-opacity-40`}
+      ref={elementRef}
+      className="flex flex-col will-change-transform origin-top-left items-start min-h-[60vh] justify-start place-self-start  h-fit pt-24"
       style={{
-        gridRow: 1,
-        gridColumn: 1,
-        // opacity,
-        // filter,
+        // gridRow: 1,
+        // gridColumn: 1,
+        opacity,
+        filter,
       }}
-      animate={
-        Math.floor(activeStep) === id
-          ? { y: "0%", opacity: 1, scale: 1 }
-          : {
-              y: `${(id - Math.floor(activeStep)) * 100}%`,
-              opacity: 0.5,
-              scale: 0.96,
-            }
-      }
-      transition={{ duration: 1.2, ease: [0.7, 0, 0.2, 1] }}
+      // animate={
+      //   Math.floor(activeStep) === id
+      //     ? { y: "0%", opacity: 1, scale: 1 }
+      //     : {
+      //         y: `${(id - Math.floor(activeStep)) * 100}%`,
+      //         opacity: 0.5,
+      //         scale: 0.96,
+      //       }
+      // }
+      // transition={{ duration: 1.2, ease: [0.7, 0, 0.2, 1] }}
     >
       <div className="flex flex-row gap-x-4">
         <span className=" text-7xl font-light leading-none mt-1 opacity-60">

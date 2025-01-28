@@ -82,7 +82,7 @@ const Navbar = () => {
                 <MainLinks closeNavbar={() => setMenuOpen(!menuOpen)} />
 
                 <Divider />
-                <div className="w-full text-base font-extralight tracking-wider sm:text-lg lg:text-xl text-neutral-content flex flex-row items-center justify-end gap-4 md:gap-10 px-2">
+                <div className="w-full  flex flex-row items-center justify-end gap-4 md:gap-10 2xl:gap-12 px-2">
                   <SocialLink
                     title="facebook"
                     id={0}
@@ -150,8 +150,9 @@ export const SocialLink = ({ title, link, id }) => {
   return (
     <MagneticButton amount={[5, 1.5]}>
       <motion.a
+        className="text-xl md:text-2xl 2xl:text-3xl font-light tracking-wider text-neutral-content "
         initial={{ opacity: 0, y: "30%", filter: "blur(5px)" }}
-        animate={{ opacity: 0.7, y: 0, filter: "blur(0px)" }}
+        animate={{ opacity: 0.65, y: 0, filter: "blur(0px)" }}
         exit={{
           opacity: 0,
           y: "30%",

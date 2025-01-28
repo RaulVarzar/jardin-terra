@@ -36,25 +36,18 @@ const Sustainability = () => {
   const headerRef = useRef(null);
   // GENERAL SCROLL PROGRESS
   const cardsRef = useRef(null);
-  // const { scrollYProgress: headerProgress } = useScroll({
-  //   target: sectionRef,
-  //   offset: [" start 0.75", "start 0.45"],
-  // });
-
-  // CHECK IS SECTION IS IN VIEW
-  const sectionInView = useInView(sectionRef);
-  // const [reset, setReset] = useState(false);
-  // useEffect(() => {
-  //   setReset(sectionInView);
-  // }, [sectionInView]);
+  const { scrollYProgress: headerProgress } = useScroll({
+    target: sectionRef,
+    offset: [" start 0.75", "start 0.45"],
+  });
 
   const { scrollYProgress: sectionEnter } = useScroll({
     target: sectionRef,
-    offset: [" 0.05 0.5", "start"],
+    offset: ["start 0.9", "start"],
   });
 
   const sectionY = useTransform(sectionEnter, [0, 1], ["60vh", "0vh"]);
-  const sectionScale = useTransform(sectionEnter, [0, 0.85], ["90%", "100%"]);
+  const sectionScale = useTransform(sectionEnter, [0, 0.85], ["75%", "100%"]);
 
   const titleArray = "SUSTENABILITATE".split("");
 
@@ -64,7 +57,7 @@ const Sustainability = () => {
   });
 
   return (
-    <section ref={sectionRef} className="-mt-[50vh] borde">
+    <section ref={sectionRef} className="-mt-[110vh] ">
       <motion.div
         style={{ y: sectionY }}
         id="sustenabilitate"
@@ -75,25 +68,25 @@ const Sustainability = () => {
       >
         <motion.div
           style={{ scaleX: sectionScale }}
-          className="absolute w-full h-full inset-0 bg-primary  rounded-t-3xl"
+          className="absolute w-full h-full inset-0 bg-primary overflow-hidden rounded-t-3xl"
         />
 
         <motion.div
           ref={headerRef}
-          className="h-fit max-sm:pt-20 sm:h-[20vh] xl:h-[30vh]  grid place-content-center sticky top-0 uppercase font-semibold"
+          className="max-sm:py-20 h-screen -mt-[0vh] border-  sm:py-36 lg:py-64 z-10  grid place-content-center sticky  top-0 uppercase font-semibold"
         >
           {/* <motion.h1 className="flex flex-row text-3xl font-semibold tracking-wide text-neutral-content md:text-9xl overflow-hidden xl:text-[6rem] opacity-80 ">
-          {titleArray.map((letter, i) => (
-            <TitleLetter
-              letter={letter}
-              id={i}
-              key={i}
-              progress={headerProgress}
-            />
-          ))}
-        </motion.h1> */}
+            {titleArray.map((letter, i) => (
+              <TitleLetter
+                letter={letter}
+                id={i}
+                key={i}
+                progress={headerProgress}
+              />
+            ))}
+          </motion.h1> */}
           <TextReveal duration={1}>
-            <motion.h3 className=" font-bold text-5xl leading-none px-24 tracking-wide text-center sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-neutral-content">
+            <motion.h3 className=" font-bold text-5xl leading-none px-24 tracking-wide text-center sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl  text-neutral-content">
               Sustenabilitate
             </motion.h3>
           </TextReveal>
@@ -101,7 +94,7 @@ const Sustainability = () => {
 
         <div
           ref={cardsRef}
-          className="relative w-full flex flex-col mx-auto sm:pt-[15vh] xl:pt-[20vh] "
+          className="relative w-full flex flex-col z-20 mx-auto sm:pt-[5vh] xl:pt-[10vh] "
         >
           {TOPICS.map((item, i) => (
             <Card

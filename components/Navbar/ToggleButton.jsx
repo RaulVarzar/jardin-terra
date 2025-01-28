@@ -1,14 +1,16 @@
 import { motion } from "framer-motion";
 import MagneticButton from "../MagneticButton";
 
-const ToggleButton = ({ menuOpen, toggleMenu, setDark }) => {
+const ToggleButton = ({ menuOpen, toggleMenu }) => {
   return (
     <MagneticButton>
       <div
         onClick={toggleMenu}
         className={
-          "relative max-sm:scale-[0.7] origin-right size-20 gap-3 md:px-4 py-4 md:py-8 cursor-pointer  hover:bg-opacity-75 rounded-full bg-opacity-0 transition-all duration-300 " +
-          (setDark ? " bg-secondary" : " bg-accent ")
+          "relative max-sm:scale-[0.7] origin-right size-20 gap-3 md:px-4 py-4 md:py-8 cursor-pointer   rounded-full  transition-all duration-300  " +
+          (menuOpen
+            ? " bg-secondary bg-opacity-100"
+            : " bg-opacity-0 hover:bg-opacity-100 bg-secondary")
         }
       >
         <motion.span

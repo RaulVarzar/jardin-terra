@@ -19,7 +19,7 @@ const Header = () => {
   const exitOpacity = useTransform(exitProgress, [0.7, 1], ["100%", "0%"]);
 
   return (
-    <div className="lg:min-h-[80vh] flex items-end relative ">
+    <div className="lg:min-h-[65vh] flex items-end relative ">
       <motion.div
         style={{ opacity: exitOpacity }}
         ref={sectionRef}

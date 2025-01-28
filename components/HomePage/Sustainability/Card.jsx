@@ -39,24 +39,31 @@ const Card = ({ item, id, numberOfCards, scrollYProgress }) => {
     [1, 1 - 0.05 * (numberOfCards - id - 1)]
   );
 
+  const moveUp = useTransform(
+    scrollYProgress,
+    [start, end + 0.1],
+    ["0vh", "-15vh"]
+  );
+
   // console.log(id, 1 - 0.06 * (numberOfCards - id - 1), numberOfCards - id - 1);
   // console.log(scrollYProgress.current);
 
   return (
     <motion.div
       // style={{ paddingTop: id * 50 }}
-      className="sticky top-[20vh] origin-top xl:top-[30vh] h-fit px-4 sm:px-6 lg:px-10 min-h-[60vh] grid place-content-center "
+      className={`sticky h-screen origin-top top-0 px-4 sm:px-6  lg:px-10 grid place-content-center w-full mx-auto ${color}`}
     >
       <motion.div
-        style={{ scale, translateY: id * 30 }}
-        className={`flex origin-top relative max-w-screen-2xl flex-col lg:flex-row w-full mx-auto h-full min-h-[60vh] rounded-2xl xl:rounded-3xl shadow-lg  items-center justify-evenly py-6 xl:py-16 px-6 xl:px-6 2xl:px-20 gap-2 md:gap-4 xl:gap-12 3xl:gap-16 translate-y-8 ${color}`}
+        // style={{ scale, translateY: id * 30 }}
+        style={{ y: moveUp }}
+        className={`flex origin-top relative flex-col lg:flex-row w-full mx-auto h-full rounded-2xl xl:rounded-3xl shadow-l   py-6 xl:py-16 px-6 xl:px-6 2xl:px-20 gap-2 md:gap-4 xl:gap-12 3xl:gap-16  `}
       >
         <CardImage link={image} />
         <div
           ref={textRef}
-          className="flex flex-col w-full max-w-5xl items-start justify-center h-full gap-3 lg:gap-6 2xl:gap-8  text-neutral-content "
+          className="flex flex-col w-full max-w-5xl items-center justify-center h-full gap-3 lg:gap-6 2xl:gap-8  text-neutral-content "
         >
-          <motion.h3 className=" text-xl font-bold uppercase leading-none tracking-wide sm:text-xl xl:text-5xl 2xl:text-6xl 3xl:text-6xl text-center md:text-start max-w-3xl text-balance">
+          <motion.h3 className=" text-xl font-bold uppercase leading-none tracking-wide sm:text-xl xl:text-3xl 2xl:text-4xl 3xl:text-5xl text-center md:text-start  text-balance">
             {title}
           </motion.h3>
           <motion.p className="text-sm  font-light leading-normal md:tracking-wider lg:text-left text-center text-balance  opacity-65 md:text-lg 2xl:text-lg max-w-4xl">
@@ -96,14 +103,14 @@ export const CardImage = ({ link }) => {
   return (
     <div
       ref={imageRef}
-      className="aspect-5/4 2xl:aspect-video  w-full h-full max-w-xl rounded-2xl overflow-hidden"
+      className="aspect-square md:aspect-5/4  w-full h-full max-w-5xl mx-auto rounded-2xl overflow-hidden"
     >
       <motion.img
         variants={variants}
         initial="hidden"
         animate={imageInView ? "visible" : "hidden"}
         src={`images/sustenabilitate/${link}`}
-        className="object-cover  h-full "
+        className="object-cover  h-full w-full"
       />
     </div>
   );
