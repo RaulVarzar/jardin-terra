@@ -11,7 +11,7 @@ const Steps = ({ steps, showSteps, progress }) => {
     <motion.div className="h-fit md:h-screen  flex flex-row gap-x-4 pt-12 lg:pt-[25vh] 3xl:pt-[30vh] lg:gap-x-8 2xl:gap-x-12 md:w-7/12 max-w-5xl px-3 md:px-10 2xl:px-16 items-start md:items-start">
       <AnimatePresence>
         {showSteps && (
-          <motion.div className="flex flex-col  gap-0 justify-center h-fit  max-w-5xl px-2 w-fit ">
+          <motion.div className="flex flex-col   gap-0 justify-center h-fit  max-w-5xl px-2 w-fit ">
             {steps.map((step, i) => (
               <Step
                 progress={progress}

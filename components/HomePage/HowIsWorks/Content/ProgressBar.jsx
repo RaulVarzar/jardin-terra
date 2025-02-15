@@ -50,11 +50,11 @@ const ProgressBarDot = ({ i, divider, activeStep, progress }) => {
   return (
     <div
       key={i}
-      className="bg-base-300 overflow-hidden h-1.5 rounded-full relative w-full"
+      className="bg-neutral overflow-hidden h-1.5 rounded-full relative w-full"
     >
       <motion.div
         style={{ scaleX }}
-        className="w-full h-full bg-primary-content absolute left-0 top-0 origin-left"
+        className="w-full h-full bg-secondary-content absolute left-0 top-0 origin-left"
       />
     </div>
   );

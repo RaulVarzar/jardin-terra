@@ -1,6 +1,14 @@
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useInView,
+  useMotionTemplate,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { useRef } from "react";
 import { RiEarthLine } from "react-icons/ri";
+import { TextFadeIn, TextReveal } from "../../utils/animations";
+import { isMobile } from "react-device-detect";
 
 const Card = ({ item, id, numberOfCards, scrollYProgress }) => {
   const { title, description, image, color } = item;
@@ -42,7 +50,7 @@ const Card = ({ item, id, numberOfCards, scrollYProgress }) => {
   const moveUp = useTransform(
     scrollYProgress,
     [start, end + 0.1],
-    ["0vh", "-15vh"]
+    ["0vh", "-25vh"]
   );
 
   // console.log(id, 1 - 0.06 * (numberOfCards - id - 1), numberOfCards - id - 1);
@@ -50,25 +58,28 @@ const Card = ({ item, id, numberOfCards, scrollYProgress }) => {
 
   return (
     <motion.div
-      // style={{ paddingTop: id * 50 }}
-      className={`sticky h-screen origin-top top-0 px-4 sm:px-6  lg:px-10 grid place-content-center w-full mx-auto ${color}`}
+      className={`sticky h-screen origin-top top-0 px-2 sm:px-6  lg:px-10 grid place-content-center w-full mx-auto  ${color}`}
     >
       <motion.div
-        // style={{ scale, translateY: id * 30 }}
         style={{ y: moveUp }}
-        className={`flex origin-top relative flex-col lg:flex-row w-full mx-auto h-full rounded-2xl xl:rounded-3xl shadow-l   py-6 xl:py-16 px-6 xl:px-6 2xl:px-20 gap-2 md:gap-4 xl:gap-12 3xl:gap-16  `}
+        className={`flex origin-top relative flex-col gap-y-6 lg:flex-row w-full items-center
+           mx-auto h-full rounded-2xl xl:rounded-3xl   py-6 xl:py-16 px-2 md:px-4 xl:px-6 2xl:px-20 gap-2 md:gap-4 xl:gap-12 3xl:gap-16  `}
       >
         <CardImage link={image} />
         <div
           ref={textRef}
-          className="flex flex-col w-full max-w-5xl items-center justify-center h-full gap-3 lg:gap-6 2xl:gap-8  text-neutral-content "
+          className="flex flex-col w-full max-w-5xl items-start justify-center gap-3 lg:gap-4 2xl:gap-5  text-neutral-content "
         >
-          <motion.h3 className=" text-xl font-bold uppercase leading-none tracking-wide sm:text-xl xl:text-3xl 2xl:text-4xl 3xl:text-5xl text-center md:text-start  text-balance">
-            {title}
-          </motion.h3>
-          <motion.p className="text-sm  font-light leading-normal md:tracking-wider lg:text-left text-center text-balance  opacity-65 md:text-lg 2xl:text-lg max-w-4xl">
-            {description}
-          </motion.p>
+          <TextReveal duration={1.5} threshold={12}>
+            <motion.h3 className=" text-xl  font-bold uppercase leading-none tracking-wide sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl text-center  lg:text-start  w-full text-balance">
+              {title}
+            </motion.h3>
+          </TextReveal>
+          <TextFadeIn duration={1.3} threshold={12}>
+            <motion.p className="text-sm  font-light leading-normal md:tracking-wider lg:text-left text-center text-balance  opacity-65 md:text-xl 2xl:text-2xl max-w-4xl">
+              {description}
+            </motion.p>
+          </TextFadeIn>
         </div>
 
         {/* <span className="text-8xl">
@@ -85,33 +96,46 @@ export const CardImage = ({ link }) => {
   const variants = {
     visible: {
       filter: "blur(0px)",
-      scale: 1,
-      y: 0,
-      transition: { duration: 1.2, delay: 0, ease: [0.45, 0, 0.15, 1] },
+      transition: { duration: 1.2, delay: 0, ease: [0.65, 0, 0.25, 1] },
     },
     hidden: {
-      filter: "blur(12px)",
-      scale: 1.05,
-      y: 15,
-      transition: { duration: 1.4, delay: 0, ease: [0.45, 0, 0.15, 1] },
+      filter: "blur(8px)",
+      transition: { duration: 1.4, delay: 0, ease: [0.65, 0, 0.25, 1] },
     },
   };
 
   const imageRef = useRef(null);
-  const imageInView = useInView(imageRef, { amount: 0.8 });
+  const imageInView = useInView(imageRef, { amount: 0.55 });
+
+  const { scrollYProgress } = useScroll({
+    target: imageRef,
+    offset: ["start end", "0.8 end"],
+  });
+
+  const clipPathLeftRight = useTransform(
+    scrollYProgress,
+    [0, 1],
+    isMobile ? [15, 0] : [10, 0]
+  );
+  const clipPathTopBottom = useTransform(scrollYProgress, [0, 1], [5, 0]);
+
+  const borderRadius = isMobile ? 20 : 32;
+
+  const clipPath = useMotionTemplate`inset(${clipPathTopBottom}% ${clipPathLeftRight}% ${clipPathTopBottom}% ${clipPathLeftRight}% round ${borderRadius}px)`;
 
   return (
-    <div
+    <motion.div
       ref={imageRef}
-      className="aspect-square md:aspect-5/4  w-full h-full max-w-5xl mx-auto rounded-2xl overflow-hidden"
+      className="aspect-square md:aspect-5/4  w-full h-fit max-w-5xl mx-auto  overflow-hidden"
     >
       <motion.img
         variants={variants}
         initial="hidden"
+        style={{ clipPath }}
         animate={imageInView ? "visible" : "hidden"}
         src={`images/sustenabilitate/${link}`}
         className="object-cover  h-full w-full"
       />
-    </div>
+    </motion.div>
   );
 };

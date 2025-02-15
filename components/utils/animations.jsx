@@ -310,13 +310,13 @@ export const WordReveal = ({
   );
 };
 
-export const TextReveal = ({ duration, children, threshold }) => {
+export const TextReveal = ({ duration = 1, children, threshold }) => {
   const ref = useRef(null);
   const marginBottom = threshold || 10;
   const isInView = useInView(ref, { margin: `1000% 0% -${marginBottom}% 0%` });
 
   return (
-    <motion.div ref={ref} className="overflow-hidden">
+    <motion.div ref={ref} className="overflow-hidden w-full">
       <motion.div
         initial={{ y: "110%", opacity: 0 }}
         animate={
@@ -325,14 +325,18 @@ export const TextReveal = ({ duration, children, threshold }) => {
                 y: 0,
                 opacity: 1,
                 transition: {
-                  duration: duration || 1,
-                  ease: [0.3, 0, 0.1, 1],
+                  duration,
+                  ease: [0.65, 0, 0.3, 1],
                 },
               }
             : {
                 y: "110%",
                 opacity: 0,
-                transition: { delay: 0.2, duration: 0.6 },
+                transition: {
+                  duration: duration * 0.8,
+                  delay: 0,
+                  ease: [0.65, 0, 0.3, 1],
+                },
               }
         }
       >
@@ -342,7 +346,7 @@ export const TextReveal = ({ duration, children, threshold }) => {
   );
 };
 
-export const TextFadeIn = ({ duration, threshold, children }) => {
+export const TextFadeIn = ({ duration = 1, threshold, children }) => {
   const ref = useRef(null);
   const marginBottom = threshold || 10;
 
@@ -359,7 +363,7 @@ export const TextFadeIn = ({ duration, threshold, children }) => {
                 opacity: 1,
                 filter: "blur(0px)",
                 transition: {
-                  duration: duration || 1,
+                  duration,
                   delay: 0.2,
                   ease: [0.75, 0, 0.25, 1],
                 },
@@ -368,7 +372,11 @@ export const TextFadeIn = ({ duration, threshold, children }) => {
                 y: "10px",
                 opacity: 0,
                 filter: "blur(2px)",
-                transition: { delay: 0.5, duration: 0.8 },
+                transition: {
+                  delay: 0,
+                  duration: duration * 0.8,
+                  ease: [0.75, 0, 0.25, 1],
+                },
               }
         }
       >

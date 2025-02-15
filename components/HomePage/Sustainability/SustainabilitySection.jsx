@@ -19,14 +19,14 @@ const TOPICS = [
     description:
       "Ne iubim munca la fel de mult cum iubim și mediul care ne înconjoară. De aceea, îl ocrotim și îl cinstim prin tot ceea ce facem, de la tehnologiile utilizate în procesul de proiectare, la materialele naturale folosite și impactul lucrărilor noastre asupra naturii. Ne asigurăm că fiecare spațiu verde pe care îl proiectăm și amenajăm este ecologic și sănătos atât pentru oamenii care beneficiază de el, cât și pentru celelalte viețuitoare, precum insecte sau animale.",
     image: "natura.jpg",
-    color: "bg-accent-content",
+    color: "bg-primary-content",
   },
   {
     title: "Spații verzi si grădini sustenabile",
     description:
       "Spațiile verzi și grădinile sustenabile necesită o proiectare și o întreținere realizate într-un mod ecologic. Acest lucru înseamnă că ele sunt gestionate astfel încât să minimizeze impactul negativ asupra mediului înconjurător și să contribuie la protejarea și îmbunătățirea sănătății, bunăstării oamenilor și a ecosistemelor. La Jardin Terra, credem că o grădina sustenabilă trebuie proiectată și gestionată astfel încât să fie eficientă din punct de vedere al utilizării resurselor și să minimizeze impactul asupra mediului sau asupra siguranței generațiilor viitoare.",
     image: "spatii-sustenabile.jpg",
-    color: "bg-primary-content",
+    color: "bg-secondary-content",
   },
 ];
 
@@ -56,13 +56,24 @@ const Sustainability = () => {
     offset: [" start", "end 0.3"],
   });
 
+  const { scrollYProgress: titleYProgress } = useScroll({
+    target: cardsRef,
+    offset: ["start end", "start"],
+  });
+  const titleY = useTransform(titleYProgress, [0, 1], ["0vh", "-20vh"]);
+  const titleOpacity = useTransform(
+    titleYProgress,
+    [0.3, 0.65],
+    ["100%", "0%"]
+  );
+
   return (
     <section ref={sectionRef} className="-mt-[110vh] ">
       <motion.div
         style={{ y: sectionY }}
         id="sustenabilitate"
         className={
-          "flex flex-col relative will-change-transform borde justify-center z-[10]  pb-[15vh]  " +
+          "flex flex-col relative will-change-transform  justify-center z-[10]  pb-[15vh]  " +
           (isMobile ? " mt-36" : " ")
         }
       >
@@ -73,7 +84,8 @@ const Sustainability = () => {
 
         <motion.div
           ref={headerRef}
-          className="max-sm:py-20 h-screen -mt-[0vh] border-  sm:py-36 lg:py-64 z-10  grid place-content-center sticky  top-0 uppercase font-semibold"
+          style={{ y: titleY, opacity: titleOpacity }}
+          className="max-sm:py-20 h-screen -mt-[0vh]  sm:py-36 lg:py-64 z-10  grid place-content-center sticky  top-0 uppercase font-semibold"
         >
           {/* <motion.h1 className="flex flex-row text-3xl font-semibold tracking-wide text-neutral-content md:text-9xl overflow-hidden xl:text-[6rem] opacity-80 ">
             {titleArray.map((letter, i) => (
@@ -86,7 +98,7 @@ const Sustainability = () => {
             ))}
           </motion.h1> */}
           <TextReveal duration={1}>
-            <motion.h3 className=" font-bold text-5xl leading-none px-24 tracking-wide text-center sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl  text-neutral-content">
+            <motion.h3 className=" font-bold text-4xl leading-none lg:px-24 tracking-wide text-center sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-10xl 3xl:text-xxl text-neutral-content">
               Sustenabilitate
             </motion.h3>
           </TextReveal>

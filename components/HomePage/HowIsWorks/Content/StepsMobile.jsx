@@ -9,7 +9,7 @@ import { useRef } from "react";
 
 const Steps = ({ steps }) => {
   return (
-    <motion.div className="flex flex-col max-w-5xl grow  gap-8 px-3 md:px-18 2xl:px-12 items-start">
+    <motion.div className="flex flex-col max-w-5xl grow  gap-8 px-3 md:px-10 2xl:px-12  items-start">
       {steps.map((step, i) => (
         <Step
           // progress={progress}
@@ -25,7 +25,7 @@ const Steps = ({ steps }) => {
 
 export default Steps;
 
-const Step = ({ step, steps, id, activeStep }) => {
+const Step = ({ step, id }) => {
   const { title, content } = step;
   // const divider = 1 / steps.length;
   // const opacity = useTransform(

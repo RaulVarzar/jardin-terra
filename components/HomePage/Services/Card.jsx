@@ -27,12 +27,13 @@ const Card = ({ item, setSelectedId, layoutId }) => {
         <Blur delay={0.7} duration={1.5} className="w-full h-full">
           <motion.div layoutId={photo} className="w-full h-full relative">
             <Image
-              src={`/images/${photo}.jpg`}
+              src={`/images/${photo}.webp`}
               alt="project-img"
               fill={true}
               style={{ objectFit: "cover" }}
               sizes="(max-width: 768px) 80vw, 100vw"
               className="undraggable"
+              loading="lazy"
             />
           </motion.div>
         </Blur>
