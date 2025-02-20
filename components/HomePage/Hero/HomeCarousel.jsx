@@ -57,9 +57,9 @@ const Carousel = ({ scrollYProgress }) => {
               src={`/${PHOTOS[activePhoto]}`}
               alt="banner-img"
               fill={true}
-              loading="eager"
               style={{ objectFit: "cover" }}
-              sizes="(max-width: 768px) 90vw, 60vw"
+              quality={100}
+              loading="eager"
             />
           </motion.div>
         </AnimatePresence>

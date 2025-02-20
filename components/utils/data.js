@@ -265,7 +265,7 @@ export const SERVICES = [
 
 export const STEPS = [
   {
-    title: "Identificare și măsurare",
+    title: "Identificare \nși măsurare",
     content:
       "În urma primei discuții pe baza informațiilor primite online, un reprezentant Jardin Terra se deplasează la domiciliul sau sediul tău, pentru a identifica terenul ce necesită amenajare, reamenajare sau retușuri. La fața locului, măsurăm terenul, facem poze, luăm probe de sol și în funcție de nevoile și dorințele tale, facem schița preliminară.",
     image: "step1.jpg",
@@ -283,7 +283,7 @@ export const STEPS = [
     image: "step3.jpg",
   },
   {
-    title: "Aprovizionare și amenajare",
+    title: "Aprovizionare \nși amenajare",
     content:
       "Odată cu finalizarea proiectării și înainte de a începe lucrările, echipa noastră poate asigura, prin intermediul partenerilor noștri, aprovizionarea de materiale și produse necesare amenajării. Cu ajutorul partenerilor noștri locali, putem oferi și lucrări de amenajare a spațiului verde. Astfel, ne asigurăm de buna implementare a proiectului nostru și de respectarea cerințelor tehnice ale acestuia. La finalizarea lucrărilor de amenajare, îți oferim și un plan cu lucrări specifice de întreținere a spațiului tău verde.",
     image: "step4.jpg",

@@ -2,6 +2,7 @@ import { WordReveal, Reveal } from "../../utils/animations.jsx";
 import { motion, useTransform } from "framer-motion";
 import { isMobile } from "react-device-detect";
 import ActionButton from "./ActionButton.jsx";
+import Link from "next/link.js";
 
 const HEADER = "GRĂDINII TALE".split("");
 
@@ -36,7 +37,9 @@ const Header = ({ scrollYProgress }) => {
         </WordReveal>
       </div>
 
-      <ActionButton />
+      <Link href="/contact">
+        <ActionButton />
+      </Link>
     </motion.div>
   );
 };
