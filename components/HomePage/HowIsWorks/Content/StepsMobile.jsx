@@ -121,7 +121,7 @@ export const Title = ({ text, visible }) => {
   return (
     <motion.div className="text-4xl flex flex-col gap-x-2 leading-none  md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-medium tracking-wide uppercase text-neutral-content">
       {text.split("\n").map((line, index) => (
-        <div className="overflow-hidden ">
+        <div key={index} className="overflow-hidden ">
           <motion.p
             variants={titleVariants}
             initial="hidden"
