@@ -36,10 +36,6 @@ const Sustainability = () => {
   const headerRef = useRef(null);
   // GENERAL SCROLL PROGRESS
   const cardsRef = useRef(null);
-  const { scrollYProgress: headerProgress } = useScroll({
-    target: sectionRef,
-    offset: [" start 0.75", "start 0.45"],
-  });
 
   const { scrollYProgress: sectionEnter } = useScroll({
     target: sectionRef,
@@ -48,8 +44,6 @@ const Sustainability = () => {
 
   const sectionY = useTransform(sectionEnter, [0, 1], ["60vh", "0vh"]);
   const sectionScale = useTransform(sectionEnter, [0, 0.85], ["75%", "100%"]);
-
-  const titleArray = "SUSTENABILITATE".split("");
 
   const { scrollYProgress } = useScroll({
     target: cardsRef,
@@ -68,7 +62,7 @@ const Sustainability = () => {
   );
 
   return (
-    <section ref={sectionRef} className="-mt-[110vh] ">
+    <section ref={sectionRef} className="-mt-[30vh] ">
       <motion.div
         style={{ y: sectionY }}
         id="sustenabilitate"

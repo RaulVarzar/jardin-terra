@@ -9,7 +9,7 @@ import { useRef } from "react";
 
 const Steps = ({ steps }) => {
   return (
-    <motion.div className="flex flex-col max-w-5xl grow  gap-8 px-3 md:px-10 2xl:px-12  items-start">
+    <motion.div className="flex flex-col max-w-5xl grow  gap-8 px-3 md:px-10 2xl:px-12  items-start pb-[12vh]">
       {steps.map((step, i) => (
         <Step
           // progress={progress}
@@ -49,7 +49,7 @@ const Step = ({ step, id }) => {
   //   ["0vh", "-3vh"]
   // );
   const ref = useRef(null);
-  const visible = useInView(ref, { margin: "1000% 0% -14% 0%" });
+  const visible = useInView(ref, { margin: "1000% 0% -7% 0%" });
   const elementRef = useRef(null);
 
   const { scrollYProgress } = useScroll({

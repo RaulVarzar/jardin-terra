@@ -27,7 +27,11 @@ const ActionButton = () => {
       initial="hidden"
       animate="visible"
       variants={buttonVariants}
-      className="text-base-content origin-left w-fit my-4 bg-secondary-content   overflow-hidden  rounded-full cursor-pointer  shadow-sm  group "
+      whileHover={{
+        scale: 1.1,
+        transition: { duration: 1, delay: 1, ease: [0.7, 0, 0.35, 1] },
+      }}
+      className="text-base-content origin-center w-fit my-4 bg-secondary-content   overflow-hidden  rounded-full cursor-pointer  shadow-sm  group "
     >
       <motion.div className="flex flex-row items-center relative text-neutral-content overflow-hidden  px-6 py-3  md:px-6 lg:py-6 lg:px-8 ">
         <motion.span
@@ -58,7 +62,7 @@ const ActionButton = () => {
           </motion.h3>
 
           <motion.span
-            animate={hovering ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            animate={hovering ? { opacity: 1, x: 0 } : { opacity: 0, x: 15 }}
             transition={{ duration: 0.4, delay: 0.05, ease: [0.6, 0, 0.2, 1] }}
             className="text-lg xl:text-xl w-0 ml-4 text-base-100 z-10"
           >

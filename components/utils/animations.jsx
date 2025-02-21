@@ -320,24 +320,23 @@ export const TextReveal = ({ duration = 1, children, threshold }) => {
       <motion.div
         initial={{ y: "110%", opacity: 0 }}
         animate={
-          isInView
-            ? {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  duration,
-                  ease: [0.65, 0, 0.3, 1],
-                },
-              }
-            : {
-                y: "110%",
-                opacity: 0,
-                transition: {
-                  duration: duration * 0.8,
-                  delay: 0,
-                  ease: [0.65, 0, 0.3, 1],
-                },
-              }
+          isInView && {
+            y: 0,
+            opacity: 1,
+            transition: {
+              duration,
+              ease: [0.65, 0, 0.3, 1],
+            },
+          }
+          // : {
+          //     y: "110%",
+          //     opacity: 0,
+          //     transition: {
+          //       duration: duration * 0.8,
+          //       delay: 0,
+          //       ease: [0.65, 0, 0.3, 1],
+          //     },
+          //   }
         }
       >
         {children}
@@ -357,27 +356,26 @@ export const TextFadeIn = ({ duration = 1, threshold, children }) => {
       <motion.div
         initial={{ y: "10px", opacity: 0, filter: "blur(2px)" }}
         animate={
-          isInView
-            ? {
-                y: 0,
-                opacity: 1,
-                filter: "blur(0px)",
-                transition: {
-                  duration,
-                  delay: 0.2,
-                  ease: [0.75, 0, 0.25, 1],
-                },
-              }
-            : {
-                y: "10px",
-                opacity: 0,
-                filter: "blur(2px)",
-                transition: {
-                  delay: 0,
-                  duration: duration * 0.8,
-                  ease: [0.75, 0, 0.25, 1],
-                },
-              }
+          isInView && {
+            y: 0,
+            opacity: 1,
+            filter: "blur(0px)",
+            transition: {
+              duration,
+              delay: 0.2,
+              ease: [0.75, 0, 0.25, 1],
+            },
+          }
+          // : {
+          //     y: "10px",
+          //     opacity: 0,
+          //     filter: "blur(2px)",
+          //     transition: {
+          //       delay: 0,
+          //       duration: duration * 0.8,
+          //       ease: [0.75, 0, 0.25, 1],
+          //     },
+          //   }
         }
       >
         {children}

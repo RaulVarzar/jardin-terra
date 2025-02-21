@@ -29,6 +29,9 @@ const ServicesSection = () => {
   const draggableRef = useRef(null);
 
   const controls = useDragControls();
+
+  const [hidden, setHidden] = useState(false);
+
   const [width, setWidth] = useState(null);
 
   const { width: screenWidth } = useWindowDimensions();
@@ -46,12 +49,11 @@ const ServicesSection = () => {
   const showSlider = useInView(sectionRef, { amount: 0.75 });
   const offset = useMotionValue(0);
 
-  useEffect(() => {
-    setWidth(draggableRef.current.offsetWidth - screenWidth);
-  }, []);
+  // useEffect(() => {
+  //   setWidth(draggableRef.current.offsetWidth - screenWidth);
+  // }, []);
 
-  const scaleX = useTransform(offset, [0, -width], [0, 1]);
-
+  // const x = useTransform(offset, [0, -width], ["0%", "100%"]);
   return (
     <section>
       <div
@@ -73,6 +75,11 @@ const ServicesSection = () => {
               dragControls={controls}
               dragTransition={{ bounceDamping: 60, bounceStiffness: 300 }}
               dragConstraints={sectionRef}
+              onDragEnd={() => {
+                if (!hidden && offset.current < -700) {
+                  setHidden(true);
+                }
+              }}
               style={{ touchAction: "none", x: offset }}
               ref={draggableRef}
               className="gap-4 cursor-grab active:cursor-grabbing sm:gap-8 md:gap-10 xl:gap-12 flex px-[2vw] xl:px-[5vw] 3xl:px-[7vw] flex-row max-md:min-h-screen md:h-[85vh] max-h-[800px] justify-stretch items-stretch"
@@ -89,12 +96,14 @@ const ServicesSection = () => {
           </motion.div>
         </motion.div>
 
-        <div className="relative w-11/12 max-w-xl mt-16 mx-auto h-1.5 rounded-sm overflow-hidden bg-neutral">
+        {/* <div className="relative w-11/12 max-w-xl mt-16 mx-auto h-1.5 rounded-sm  bg-neutral">
           <motion.div
-            style={{ scaleX }}
-            className="absolute inset-0 border border-base-300 h-full rounded-full w-full   bg-base-content z-[9999] origin-left"
-          ></motion.div>
-        </div>
+            style={{ x }}
+            className="absolute inset-0 -top-0.5 h-2.5  rounded-full   w-[calc(100%-1rem)] z-[9999] origin-left"
+          >
+            <span className="bg-base-content w-4 h-full rounded-full absolute left-0"></span>
+          </motion.div>
+        </div> */}
 
         {/* EXPANDED CARD AND OVERLAY */}
         <AnimatePresence>
@@ -116,7 +125,7 @@ const ServicesSection = () => {
         </AnimatePresence>
       </div>
       <AnimatePresence>
-        {showSlider && (
+        {showSlider && !hidden && (
           <motion.div>
             <DragSlider />
           </motion.div>
@@ -141,11 +150,12 @@ export const Expanded = ({ item, layoutId }) => {
     </motion.div>
   );
 };
+import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 
 export const DragSlider = () => {
   const variants = {
     hidden: { opacity: 0, filter: "blur(5px)", y: 10 },
-    visible: { opacity: 0.4, filter: "blur(0px)", y: 0 },
+    visible: { opacity: 0.6, filter: "blur(0px)", y: 0 },
     exit: { opacity: 0, filter: "blur(5px)", y: 10 },
   };
 
@@ -158,9 +168,15 @@ export const DragSlider = () => {
       transition={{ duration: 0.5, ease: [0.5, 0, 0.2, 1] }}
       className="flex fixed bottom-4 md:bottom-10  z-50  w-fit mx-auto inset-x-0 flex-row gap-2 items-center justify-center"
     >
-      <span className="text-2xl font-light tracking-wider">drag</span>
-      <span className="text-3xl">
+      {/* <span className="text-2xl font-light tracking-wider">drag</span> */}
+      <span className="text-2xl xl:text-3xl">
+        <IoMdArrowBack />
+      </span>
+      <span className="text-3xl xl:text-4xl">
         <TfiHandDrag />
+      </span>
+      <span className="text-2xl xl:text-3xl">
+        <IoMdArrowForward />
       </span>
     </motion.div>
   );

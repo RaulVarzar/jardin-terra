@@ -53,7 +53,7 @@ const Content = () => {
     <>
       <motion.div
         style={{ opacity }}
-        className="w-full sticky bottom-0 mt-[60vh] origin-bottom max-w-screen-3xl mx-auto flex flex-col md:flex-row  items-start justify-center"
+        className="w-full  origin-bottom max-w-screen-3xl mx-auto flex flex-col md:flex-row  items-start justify-center"
       >
         <Tree
           activeStep={activeStep}

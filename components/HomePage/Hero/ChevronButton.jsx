@@ -50,7 +50,7 @@ const ChevronButton = ({ opacity }) => {
           <svg
             height="30"
             width="50"
-            className="scale-75 opacity-40 w-fit md:scale-100"
+            className="scale-75 opacity-80 w-fit md:scale-100"
           >
             <line
               x1="0"
@@ -58,7 +58,7 @@ const ChevronButton = ({ opacity }) => {
               x2="25"
               y2="17"
               // strokeLinecap="round"
-              className="stroke-[4px]  stroke-base-content"
+              className="stroke-[4px] stroke-base-content"
             />
             <line
               x1="23"

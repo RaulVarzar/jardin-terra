@@ -13,17 +13,16 @@ const ContactSection = () => {
     offset: ["0.2 end", "0.9 end"],
   });
   const y = useTransform(scrollYProgress, [0, 0.8], ["10vh", "0vh"]);
-  const scale = useTransform(scrollYProgress, [0, 0.8], ["93%", "100%"]);
 
   return (
     <div
       id="contact"
-      className="flex flex-col items-center bg-primary justify-center pt-[10vh] gap-6 relative z-10 "
+      className="flex flex-col items-center bg-primary justify-center gap-6 relative z-10 pb-[20vh] -mt-[25vh]"
     >
       <motion.div
         ref={containerRef}
         style={{ y }}
-        className="flex items-center justify-center w-full min-h-[75vh] md:min-h-[65vh] px-2 md:px-4 lg:px-8 py-8 md:py-20 gap-y-10 gap-x-8 flex-col lg:grid-cols-2  md:gap-x-12 xl:gap-16  rounded-3xl md:rounded-4xl overflow-hidden "
+        className="flex items-center justify-center w-full min-h-[75vh] md:min-h-[50vh] px-2 md:px-4 lg:px-8 py-8 md:py-20 gap-y-10 gap-x-8 flex-col lg:grid-cols-2  md:gap-x-12 xl:gap-16  rounded-3xl md:rounded-4xl overflow-hidden "
       >
         <div className="flex flex-col justify-center gap-4">
           <TextReveal duration={1.3}>
