@@ -218,3 +218,14 @@ body::-webkit-scrollbar {
     )
     100% 50% / 100% 100% repeat-x;
 }
+
+.fade-edge {
+  mask: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0) 0,
+      rgba(0, 0, 0, 1) 5%,
+      rgba(0, 0, 0, 1) 95%,
+      rgba(0, 0, 0, 0) 100%
+    )
+    100% 50% / 100% 100% repeat-x;
+}

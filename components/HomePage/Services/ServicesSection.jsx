@@ -1,19 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   motion,
   AnimatePresence,
   useInView,
   useDragControls,
   useMotionValue,
-  useTransform,
 } from "framer-motion";
 import useWindowDimensions from "../../utils/useScreenDimensions";
 
 import { SERVICES } from "../../utils/data";
 import Card from "./Card";
 import ExpandedCard from "./ExpandedCard";
+import ExpandedCardMobile from "./ExpandedCardMobile";
+
 import Header from "./Header";
 import { TfiHandDrag } from "react-icons/tfi";
 
@@ -82,7 +83,7 @@ const ServicesSection = () => {
               }}
               style={{ touchAction: "none", x: offset }}
               ref={draggableRef}
-              className="gap-4 cursor-grab active:cursor-grabbing sm:gap-8 md:gap-10 xl:gap-12 flex px-[2vw] xl:px-[5vw] 3xl:px-[7vw] flex-row max-md:min-h-screen md:h-[85vh] max-h-[800px] justify-stretch items-stretch"
+              className="gap-4 cursor-grab justify-stretch items-stretch active:cursor-grabbing sm:gap-8 md:gap-10 xl:gap-12 flex px-[5vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  max-md:min-h-[80vh] md:min-h-[70vh] 2xl:min-h-[65vh]"
             >
               {SERVICES.map((item) => (
                 <Card
@@ -96,26 +97,16 @@ const ServicesSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* <div className="relative w-11/12 max-w-xl mt-16 mx-auto h-1.5 rounded-sm  bg-neutral">
-          <motion.div
-            style={{ x }}
-            className="absolute inset-0 -top-0.5 h-2.5  rounded-full   w-[calc(100%-1rem)] z-[9999] origin-left"
-          >
-            <span className="bg-base-content w-4 h-full rounded-full absolute left-0"></span>
-          </motion.div>
-        </div> */}
-
-        {/* EXPANDED CARD AND OVERLAY */}
         <AnimatePresence>
           {id && (
             <motion.div
-              className="fixed inset-0 w-screen top-0 left-0 h-screen z-[1000] flex sm:p-12 backdrop-blur-xl backdrop-brightness-75 lg:p-16 2xl:p-24"
+              className="fixed inset-0 w-screen top-0 left-0 h-screen z-[1000] flex p-4 sm:p-12 backdrop-blur-xl backdrop-brightness-75 lg:p-16 2xl:p-24"
               variants={overlayVariants}
               initial="hidden"
               animate="visible"
               exit="exit"
             >
-              <ExpandedCard
+              <ExpandedCardMobile
                 layoutId={id}
                 setSelectedId={setId}
                 item={SERVICES.find((service) => service.id === id)}

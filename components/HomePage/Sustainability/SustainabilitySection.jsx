@@ -47,17 +47,17 @@ const Sustainability = () => {
 
   const { scrollYProgress } = useScroll({
     target: cardsRef,
-    offset: [" start", "end 0.3"],
+    offset: ["start 0.15", "end 0.15"],
   });
 
   const { scrollYProgress: titleYProgress } = useScroll({
     target: cardsRef,
     offset: ["start end", "start"],
   });
-  const titleY = useTransform(titleYProgress, [0, 1], ["0vh", "-20vh"]);
+  const titleY = useTransform(titleYProgress, [0.5, 0.8], ["0vh", "0vh"]);
   const titleOpacity = useTransform(
     titleYProgress,
-    [0.3, 0.65],
+    [0.5, 0.65],
     ["100%", "0%"]
   );
 
@@ -79,7 +79,7 @@ const Sustainability = () => {
         <motion.div
           ref={headerRef}
           style={{ y: titleY, opacity: titleOpacity }}
-          className="max-sm:py-20 h-screen -mt-[0vh]  sm:py-36 lg:py-64 z-10  grid place-content-center sticky  top-0 uppercase font-semibold"
+          className="max-sm:py-20 min-h-[60vh] sm:py-36 lg:py-64 z-10  grid place-content-center sticky  top-0 uppercase font-semibold"
         >
           {/* <motion.h1 className="flex flex-row text-3xl font-semibold tracking-wide text-neutral-content md:text-9xl overflow-hidden xl:text-[6rem] opacity-80 ">
             {titleArray.map((letter, i) => (
@@ -100,7 +100,7 @@ const Sustainability = () => {
 
         <div
           ref={cardsRef}
-          className="relative w-full flex flex-col z-20 mx-auto sm:pt-[5vh] xl:pt-[10vh] "
+          className="relative w-full flex flex-col z-20 mx-auto"
         >
           {TOPICS.map((item, i) => (
             <Card

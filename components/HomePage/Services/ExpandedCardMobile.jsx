@@ -6,8 +6,7 @@ import { useLenis } from "lenis/react";
 import { useEffect } from "react";
 
 const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
-  // Pause and resume scroll
-  // const lenisInstance = useLenis();
+  const lenisInstance = useLenis();
   // useEffect(() => {
   //   lenisInstance.stop();
   //   return () => {
@@ -22,17 +21,13 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
   return (
     <motion.div
       layoutId={layoutId}
-      className="relative group z-50 flex flex-row  w-full h-full lg:grid-rows-1 p-4 max-lg:flex max-lg:flex-col  max-sm:place-self-end items-center rounded-t-2xl max-h-[95dvh] sm:rounded-2xl xl:rounded-3xl max-w-screen-3xl mx-auto md:p-6 xl:p-8 grid-cols-7  bg-secondary"
+      className="relative group z-50 grid grid-rows-7 w-full h-full  p-4 grid-cols-1 rounded-2xl bg-secondary "
     >
-      {/* <motion.span
-        onClick={() => setSelectedId(null)}
-        className="text-2xl rotate-45 md:text-3xl z-50 cursor-pointer absolute top-4 lg:text-4xl right-4 p-3  md:p-4  transition-colors duration-200 text-base-content  hover:text-error hover:brightness-125 hover:scale-95"
-      >
-        <BsChevronContract />
-      </motion.span> */}
+      <CloseButton closeCard={() => setSelectedId(null)} />
+
       <motion.div
         layoutId={photo}
-        className="z-10 w-full lg:h-full relative col-span-3 max-lg:h-60 border-2  lg:row-span-1 rounded-2xl lg:rounded-3xl overflow-hidden"
+        className="z-10 w-full  relative  row-span-2  rounded-2xl lg:rounded-3xl overflow-hidden"
       >
         <Image
           src={`/images/${photo}.webp`}
@@ -43,7 +38,7 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
         />
       </motion.div>
 
-      <div className="relative z-20 flex flex-col  sm:gap-2 px-1 py-4 sm:py-6 md:py-12  w-full border-2  lg:row-span-1 md:px-5 xl:px-12">
+      <div className="relative fade-edge z-20 flex flex-col  sm:gap-2 px-2 pt-8 pb-4 sm:py-6 md:py-12  w-full  row-span-5 md:px-5 xl:px-12 overflow-y-auto">
         <motion.h1
           layoutId={title}
           className="p-0 pb-4 my-0 text-2xl font-semibold uppercase leading-none md:text-4xl xl:text-5xl text-neutral-content"
@@ -53,7 +48,7 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
         <motion.h3
           layoutId={descriptions[0].content}
           layout="size"
-          className="text-sm font-light leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base opacity-100 text-neutral-content"
+          className="text-sm font-light leading-tight tracking-tight md:leading-tight md:tracking-wider xl:text-base opacity-100 text-neutral-content"
         >
           {descriptions[0].content}
         </motion.h3>
@@ -81,8 +76,8 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
                 </h3>
                 <h5
                   className={
-                    "text-sm font-extralight   leading-none tracking-tight md:leading-tight md:tracking-wider xl:text-base  text-neutral-content " +
-                    (description.title.length > 0 && " pl-4")
+                    "text-sm font-extralight   leading-tight tracking-tight md:leading-tight md:tracking-wider xl:text-base  text-neutral-content " +
+                    (description.title.length > 0 && " pl-2")
                   }
                 >
                   {description.content}
@@ -99,3 +94,14 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
 };
 
 export default ExpandedCard;
+
+export const CloseButton = ({ closeCard }) => {
+  return (
+    <motion.span
+      onClick={closeCard}
+      className="text-3xl rotate-45 md:text-3xl z-50 cursor-pointer absolute top-4 lg:text-4xl right-4 p-3  md:p-4  transition-colors duration-200 text-base-content  hover:text-error hover:brightness-125 hover:scale-95"
+    >
+      <BsChevronContract />
+    </motion.span>
+  );
+};

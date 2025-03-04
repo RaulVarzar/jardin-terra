@@ -15,42 +15,44 @@ export const Reveal = ({
 }) => {
   const ref = useRef(null);
 
+  const variants = {
+    hidden: {
+      filter: "blur(3px)",
+      rotate: rotate || 0,
+      opacity: 1,
+      skew: skew || 0,
+      y: (offset && `${offset}%`) || "100%",
+    },
+    visible: {
+      skew: 0,
+      rotate: 0,
+      filter: "blur(0px)",
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: duration || 0.4,
+        delay: delay,
+        ease: [0.33, 0.0, 0.01, 1.0],
+      },
+    },
+    exit: {
+      filter: "blur(3px)",
+      rotate: rotate || 0,
+      opacity: 1,
+      skew: skew || 0,
+      y: (offset && `${offset}%`) || "100%",
+      transition: {
+        duration: exitDuration || 0.4,
+        delay: exitDelay || 0,
+        ease: [0.33, 0.0, 0.01, 1.0],
+      },
+    },
+  };
+
   return (
     <div ref={ref} className="relative overflow-hidden ">
       <motion.div
-        variants={{
-          hidden: {
-            filter: "blur(3px)",
-            rotate: rotate || 0,
-            opacity: 1,
-            skew: skew || 0,
-            y: (offset && `${offset}%`) || "100%",
-          },
-          visible: {
-            skew: 0,
-            rotate: 0,
-            filter: "blur(0px)",
-            opacity: 1,
-            y: 0,
-            transition: {
-              duration: duration || 0.4,
-              delay: delay,
-              ease: [0.33, 0.0, 0.01, 1.0],
-            },
-          },
-          exit: {
-            filter: "blur(3px)",
-            rotate: rotate || 0,
-            opacity: 1,
-            skew: skew || 0,
-            y: (offset && `${offset}%`) || "100%",
-            transition: {
-              duration: exitDuration || 0.4,
-              delay: exitDelay || 0,
-              ease: [0.33, 0.0, 0.01, 1.0],
-            },
-          },
-        }}
+        variants={variants}
         initial="hidden"
         animate="visible"
         exit="exit"
@@ -284,29 +286,61 @@ export const Blur = ({ children, delay, duration, ...props }) => {
 
 export const WordReveal = ({
   children,
-  delay,
-  duration,
-  offset,
-  staggerDelay,
-  exitDelay,
-  exitDuration,
+  delay = 0,
+  duration = 1,
+  offset = 130,
+  staggerDelay = 0.01,
 }) => {
   const wordArray = children.split(" ");
+
+  const variants = {
+    hidden: {
+      // filter: "blur(2px)",
+      rotate: 5,
+      opacity: 0,
+      skew: -10,
+      y: "100%",
+    },
+    visible: (custom) => ({
+      skew: 0,
+      rotate: 0,
+      filter: "blur(0px)",
+      opacity: 1,
+      y: 50,
+      transition: {
+        duration: duration,
+        delay: delay + custom * staggerDelay,
+        ease: [0.33, 0.0, 0.01, 1.0],
+      },
+    }),
+    // exit: {
+    //   filter: "blur(3px)",
+    //   rotate: 5,
+    //   opacity: 1,
+    //   skew: -10,
+    //   y: (offset && `${offset}%`) || "100%",
+    //   transition: {
+    //     duration: exitDuration,
+    //     delay: exitDelay,
+    //     ease: [0.33, 0.0, 0.01, 1.0],
+    //   },
+    // },
+  };
   return (
     <>
       {wordArray.map((word, i) => (
-        <Reveal
-          key={i}
-          offset={offset || "30"}
-          delay={delay + i * (staggerDelay || 0.2)}
-          duration={duration}
-          rotate={5}
-          skew={-10}
-          exitDelay={exitDelay}
-          exitDuration={exitDuration}
-        >
-          <span className="mx-0.5 tracking-wide">{word}</span>
-        </Reveal>
+        <motion.div key={i} className="border relative">
+          <motion.span
+            variants={variants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false }}
+            custom={i}
+            className="mx-0.5 tracking-wide"
+          >
+            {word}
+          </motion.span>
+        </motion.div>
       ))}
     </>
   );

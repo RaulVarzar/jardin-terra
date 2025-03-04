@@ -22,7 +22,7 @@ export const StepsCard = ({ steps }) => {
 
   const cardVariants = {
     hidden: { opacity: 0, y: "0" },
-    visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 1.5 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.5 } },
   };
 
   console.log(selectedTopic * (100 / steps.steps.length));

@@ -53,7 +53,7 @@ const Content = () => {
     <>
       <motion.div
         style={{ opacity }}
-        className="w-full  origin-bottom max-w-screen-3xl mx-auto flex flex-col md:flex-row  items-start justify-center"
+        className="w-full origin-bottom max-w-screen-3xl mx-auto flex flex-col md:flex-row  items-start justify-center"
       >
         <Tree
           activeStep={activeStep}
@@ -67,7 +67,7 @@ const Content = () => {
           />
         </Tree>
 
-        <div ref={stepsRef} className="mt-24 md:mt-[30vh]">
+        <div ref={stepsRef} className="mt-24 md:mt-[20vh]">
           <Steps progress={scrollYProgress} steps={STEPS} />
         </div>
       </motion.div>
