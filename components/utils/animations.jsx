@@ -289,13 +289,14 @@ export const WordReveal = ({
   delay = 0,
   duration = 1,
   offset = 130,
-  staggerDelay = 0.01,
+  staggerDelay = 0.1,
+  once = true,
 }) => {
   const wordArray = children.split(" ");
 
   const variants = {
     hidden: {
-      // filter: "blur(2px)",
+      filter: "blur(2px)",
       rotate: 5,
       opacity: 0,
       skew: -10,
@@ -306,35 +307,24 @@ export const WordReveal = ({
       rotate: 0,
       filter: "blur(0px)",
       opacity: 1,
-      y: 50,
+      y: "0%",
       transition: {
         duration: duration,
         delay: delay + custom * staggerDelay,
         ease: [0.33, 0.0, 0.01, 1.0],
       },
     }),
-    // exit: {
-    //   filter: "blur(3px)",
-    //   rotate: 5,
-    //   opacity: 1,
-    //   skew: -10,
-    //   y: (offset && `${offset}%`) || "100%",
-    //   transition: {
-    //     duration: exitDuration,
-    //     delay: exitDelay,
-    //     ease: [0.33, 0.0, 0.01, 1.0],
-    //   },
-    // },
   };
+
   return (
     <>
       {wordArray.map((word, i) => (
-        <motion.div key={i} className="border relative">
+        <motion.div key={i} className=" relative">
           <motion.span
             variants={variants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false }}
+            viewport={{ once }}
             custom={i}
             className="mx-0.5 tracking-wide"
           >
@@ -346,7 +336,12 @@ export const WordReveal = ({
   );
 };
 
-export const TextReveal = ({ duration = 1, children, threshold }) => {
+export const TextReveal = ({
+  duration = 1,
+  delay = 0,
+  children,
+  threshold,
+}) => {
   const ref = useRef(null);
   const marginBottom = threshold || 10;
   const isInView = useInView(ref, { margin: `1000% 0% -${marginBottom}% 0%` });
@@ -361,6 +356,7 @@ export const TextReveal = ({ duration = 1, children, threshold }) => {
             opacity: 1,
             transition: {
               duration,
+              delay,
               ease: [0.65, 0, 0.3, 1],
             },
           }
@@ -381,7 +377,12 @@ export const TextReveal = ({ duration = 1, children, threshold }) => {
   );
 };
 
-export const TextFadeIn = ({ duration = 1, threshold, children }) => {
+export const TextFadeIn = ({
+  duration = 1,
+  delay = 0,
+  threshold,
+  children,
+}) => {
   const ref = useRef(null);
   const marginBottom = threshold || 10;
 
@@ -398,7 +399,7 @@ export const TextFadeIn = ({ duration = 1, threshold, children }) => {
             filter: "blur(0px)",
             transition: {
               duration,
-              delay: 0.2,
+              delay,
               ease: [0.75, 0, 0.25, 1],
             },
           }
@@ -420,34 +421,22 @@ export const TextFadeIn = ({ duration = 1, threshold, children }) => {
   );
 };
 
-export const ScaleIn = ({ duration, children }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.5 });
-
+export const ScaleIn = ({ duration = 1, delay = 0.3, children }) => {
   return (
-    <div ref={ref}>
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={
-          isInView
-            ? {
-                scale: 1,
-                opacity: 1,
-                transition: {
-                  duration: duration || 1,
-                  delay: 0.3,
-                  ease: [0.45, 0.18, 0.1, 1],
-                },
-              }
-            : {
-                scale: 0,
-                opacity: 0,
-                transition: { delay: 0.5, duration: 0.8 },
-              }
-        }
-      >
-        {children}
-      </motion.div>
-    </div>
+    <motion.div
+      initial={{ scale: 0.7, opacity: 0 }}
+      whileInView={{
+        scale: 1,
+        opacity: 1,
+        transition: {
+          duration,
+          delay,
+          ease: [0.65, 0, 0.3, 1],
+        },
+      }}
+      viewport={{ once: true }}
+    >
+      {children}
+    </motion.div>
   );
 };

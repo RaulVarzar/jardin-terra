@@ -43,7 +43,7 @@ const Sustainability = () => {
   });
 
   const sectionY = useTransform(sectionEnter, [0, 1], ["60vh", "0vh"]);
-  const sectionScale = useTransform(sectionEnter, [0, 0.85], ["75%", "100%"]);
+  const sectionScale = useTransform(sectionEnter, [0, 0.96], ["75%", "100%"]);
 
   const { scrollYProgress } = useScroll({
     target: cardsRef,
@@ -73,7 +73,7 @@ const Sustainability = () => {
       >
         <motion.div
           style={{ scaleX: sectionScale }}
-          className="absolute w-full h-full inset-0 bg-primary overflow-hidden rounded-t-3xl"
+          className="absolute w-full  h-full inset-0 bg-primary overflow-hidden rounded-t-3xl"
         />
 
         <motion.div
@@ -81,16 +81,6 @@ const Sustainability = () => {
           style={{ y: titleY, opacity: titleOpacity }}
           className="max-sm:py-20 min-h-[60vh] sm:py-36 lg:py-64 z-10  grid place-content-center sticky  top-0 uppercase font-semibold"
         >
-          {/* <motion.h1 className="flex flex-row text-3xl font-semibold tracking-wide text-neutral-content md:text-9xl overflow-hidden xl:text-[6rem] opacity-80 ">
-            {titleArray.map((letter, i) => (
-              <TitleLetter
-                letter={letter}
-                id={i}
-                key={i}
-                progress={headerProgress}
-              />
-            ))}
-          </motion.h1> */}
           <TextReveal duration={1}>
             <motion.h3 className=" font-bold text-4xl leading-none lg:px-24 tracking-wide text-center sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-10xl 3xl:text-xxl text-neutral-content">
               Sustenabilitate

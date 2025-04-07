@@ -12,8 +12,8 @@ import useWindowDimensions from "../../utils/useScreenDimensions";
 
 import { SERVICES } from "../../utils/data";
 import Card from "./Card";
-import ExpandedCard from "./ExpandedCard";
-import ExpandedCardMobile from "./ExpandedCardMobile";
+import ExpandedCard from "./ExpandedCard/ExpandedCard";
+import ExpandedCardMobile from "./ExpandedCard/ExpandedCardMobile";
 
 import Header from "./Header";
 import { TfiHandDrag } from "react-icons/tfi";
@@ -69,7 +69,7 @@ const ServicesSection = () => {
             initial={{ y: "40%" }}
             animate={carouselInView ? { y: 0 } : { y: "40%" }}
             transition={{ duration: 1.3, ease: [0.7, 0, 0.4, 1] }}
-            className="relative z-50 flex justify-start w-[95vw] pt-16 md:pt-24 xl:pt-32 overflow-clip items-start carousel-container "
+            className="relative z-50 flex justify-start w-[95vw] pt-16 md:pt-24 xl:pt-32 overflow-clip items-start fade-horizontal "
           >
             <motion.div
               drag="x"
@@ -100,7 +100,7 @@ const ServicesSection = () => {
         <AnimatePresence>
           {id && (
             <motion.div
-              className="fixed inset-0 w-screen top-0 left-0 h-screen z-[1000] flex p-4 sm:p-12 backdrop-blur-xl backdrop-brightness-75 lg:p-16 2xl:p-24"
+              className="fixed flex justify-center inset-0 w-screen top-0 left-0 h-screen z-[1000]  p-4 sm:p-12 backdrop-blur-xl backdrop-brightness-75 lg:p-16 2xl:p-24"
               variants={overlayVariants}
               initial="hidden"
               animate="visible"

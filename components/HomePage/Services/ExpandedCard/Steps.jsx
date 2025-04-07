@@ -1,8 +1,8 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { GoChevronRight, GoChevronLeft } from "react-icons/go";
 
-export const StepsCard = ({ steps }) => {
+export const Steps = ({ steps }) => {
   const [selectedTopic, setSelectedTopic] = useState(0);
 
   function handleDecrease() {
@@ -25,14 +25,12 @@ export const StepsCard = ({ steps }) => {
     visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.5 } },
   };
 
-  console.log(selectedTopic * (100 / steps.steps.length));
-
   return (
     <motion.div
       variants={cardVariants}
       initial="hidden"
       animate="visible"
-      className="flex flex-col items-center justify-center w-full gap-2 mt-10"
+      className="flex flex-col items-center justify-center w-full gap-2 mt-10 fade-horizontal"
     >
       {/* <h3 className="text-sm font-semibold text-center  tracking-wide uppercase opacity-35 md:text-lg xl:text-xl text-neutral-content">
         {steps.title}

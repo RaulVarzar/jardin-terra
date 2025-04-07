@@ -2,6 +2,7 @@
 import { useRef, useState } from "react";
 import {
   motion,
+  useInView,
   useMotionValueEvent,
   useScroll,
   useTransform,
@@ -27,7 +28,7 @@ const Content = () => {
 
   const { scrollYProgress } = useScroll({
     target: stepsRef,
-    offset: ["start", "end"],
+    offset: ["start 0.25", "0.96 end "],
   });
 
   const { scrollYProgress: exitProgress } = useScroll({
@@ -37,14 +38,15 @@ const Content = () => {
 
   const opacity = useTransform(exitProgress, [0, 1], [1, 0]);
 
-  // const visible = useInView(stepsRef, { margin: "1000% 0% -50% 0%" });
-  const visible = true;
+  const visible = useInView(stepsRef, { margin: "1000% 0% -70% 0%" });
+
   const [activeStep, setActiveStep] = useState(0);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     const stepValue = 1 / STEPS.length;
-    const newStep = (latest / stepValue).toFixed(1);
-    if (activeStep != newStep && newStep < STEPS.length) {
+    const newStep = Math.floor(latest / stepValue);
+
+    if (activeStep != newStep) {
       setActiveStep(newStep);
     }
   });
@@ -53,24 +55,25 @@ const Content = () => {
     <>
       <motion.div
         style={{ opacity }}
-        className="w-full origin-bottom max-w-screen-3xl mx-auto flex flex-col md:flex-row  items-start justify-center"
+        className="w-full origin-bottom max-w-screen-3xl  mx-auto flex flex-col md:flex-row  items-start justify-center"
       >
         <Tree
           activeStep={activeStep}
           showSteps={visible || isMobile}
           progress={scrollYProgress}
-        >
-          <ProgressBar
-            progress={scrollYProgress}
-            numberOfSteps={STEPS.length}
-            activeStep={Math.floor(activeStep)}
-          />
-        </Tree>
+        ></Tree>
 
-        <div ref={stepsRef} className="mt-24 md:mt-[20vh]">
+        <div ref={stepsRef} className="mt-[15vh] pt-[10vh] ">
           <Steps progress={scrollYProgress} steps={STEPS} />
         </div>
       </motion.div>
+      {visible && (
+        <ProgressBar
+          progress={scrollYProgress}
+          numberOfSteps={STEPS.length}
+          activeStep={Math.floor(activeStep)}
+        />
+      )}
     </>
   );
 };

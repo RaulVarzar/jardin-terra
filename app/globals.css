@@ -1,10 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;500;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gidole&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -12,6 +7,13 @@
 
 html,
 body {
+  font-family: "Gidole", sans-serif;
+}
+
+h1,
+h2,
+h3,
+.kanit {
   font-family: "Kanit", sans-serif;
 }
 
@@ -209,7 +211,7 @@ body::-webkit-scrollbar {
   -ms-user-select: none;
 }
 
-.carousel-container {
+.fade-horizontal {
   mask: linear-gradient(
       to right,
       rgba(0, 0, 0, 1) 0,
@@ -219,7 +221,7 @@ body::-webkit-scrollbar {
     100% 50% / 100% 100% repeat-x;
 }
 
-.fade-edge {
+.fade-vertical {
   mask: linear-gradient(
       to top,
       rgba(0, 0, 0, 0) 0,

@@ -72,7 +72,7 @@ export const NavbarLink = ({ hovering, setHovering, content, closeNavbar }) => {
           animate="animate"
           exit="exit"
           custom={id}
-          className="flex items-center h-full leading-none text-neutral-content    opacity-95 active:scale-90 hover:opacity-100  tracking-wider text-2xl md:text-4xl lg:text-6xl"
+          className="flex items-center h-full leading-none text-neutral-content kanit opacity-95 active:scale-90 hover:opacity-100  tracking-wider text-2xl md:text-4xl lg:text-6xl"
         >
           {title}
         </motion.span>

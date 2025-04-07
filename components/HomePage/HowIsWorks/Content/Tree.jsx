@@ -4,18 +4,18 @@ import ProgressBar from "./ProgressBar";
 const variants = {
   visible: {
     opacity: 1,
-    y: 0,
+    scale: 1,
     transition: {
-      duration: 0.8,
-      delay: 0.3,
+      duration: 1.2,
+      delay: 0,
       ease: [0.7, 0, 0.3, 1],
     },
   },
   hidden: {
     opacity: 0,
-    y: "80%",
+    scale: 0.95,
     transition: {
-      duration: 0.3,
+      duration: 0.5,
       delay: 0,
       ease: [0.7, 0, 0.3, 1],
     },
@@ -24,7 +24,7 @@ const variants = {
 
 const Tree = ({ activeStep, showSteps, children }) => {
   return (
-    <motion.div className="sticky top-0 md:h-screen max-w-3xl flex flex-col gap-12 max-md:w-full  px-2 max-md:pt-6 md:px-12 md:w-1/2 xl:px-16  items-center justify-center ">
+    <motion.div className="sticky top-0 md:-mt-[45vh] md:h-screen max-w-3xl flex flex-col gap-12 max-md:w-full  px-2 max-md:pt-6 md:px-12 md:w-1/2 xl:px-16  items-center justify-center ">
       <AnimatePresence>
         {showSteps && (
           <motion.div
