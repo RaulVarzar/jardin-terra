@@ -22,7 +22,7 @@ function HeroSection({}) {
   );
 
   return (
-    <div className="relative bg-primary-content" id="home">
+    <div className="relative bg-primary-content z-10" id="home">
       <section
         ref={home}
         className="xl:px-12 3xl:max-w-screen-3xl  w-full relative border- border-info items-center min-h-screen px-4 sm:px-6 md:px-10 pt-[10vh] 2xl:pt-[12vh] pb-10 mx-auto  md:pt-28  "

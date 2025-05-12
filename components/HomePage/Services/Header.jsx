@@ -6,34 +6,47 @@ import CharacterReveal from "./CharacterReveal";
 const Header = () => {
   const sectionRef = useRef(null);
 
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: totalProgress } = useScroll({
     target: sectionRef,
-    offset: ["0.45 end", "start"],
+    offset: ["start 0.85", "0.95 end"],
+  });
+
+  const { scrollYProgress: revealProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start center", "0.8 end"],
   });
 
   const { scrollYProgress: exitProgress } = useScroll({
     target: sectionRef,
-    offset: ["start", "0.8 start"],
+    offset: ["0.85 end", "0.95 end"],
   });
 
-  const exitOpacity = useTransform(exitProgress, [0.7, 1], ["100%", "0%"]);
+  const exitOpacity = useTransform(exitProgress, [0, 1], ["100%", "0%"]);
+  const exitScale = useTransform(exitProgress, [0, 1], ["100%", "96%"]);
+  const exitY = useTransform(
+    totalProgress,
+    [0, 0.9, 1],
+    ["10vh", "-3vh", "-8vh"]
+  );
 
   return (
-    <div className="lg:min-h-[65vh] flex items-end relative ">
+    <div
+      ref={sectionRef}
+      className="lg:min-h-[180vh] border- border-warning flex items-start relative "
+    >
       <motion.div
-        style={{ opacity: exitOpacity }}
-        ref={sectionRef}
+        style={{ opacity: exitOpacity, scale: exitScale, y: exitY }}
         id="servicii"
-        className=" pt-[15vh] pb-[5vh]  flex flex-col items-center justify-end gap-4 lg:gap-6 2xl:gap-8 mx-auto  w-screen "
+        className=" pt-[5vh] pb-[5vh] min-h-screen -mt-[65vh] sticky top-0 flex flex-col items-center justify-center gap-4 lg:gap-6 2xl:gap-8 mx-auto -z-0 w-screen "
       >
         <TextReveal duration={1}>
-          <motion.h3 className=" font-bold text-5xl leading-none px-24 tracking-wide text-center sm:text-5xl lg:text-7xl xl:text-8xl  text-neutral-content">
+          <motion.h3 className=" font-bold text-5xl leading-none px-24 tracking-wide text-center sm:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-neutral-content">
             SERVICIILE NOASTRE
           </motion.h3>
         </TextReveal>
         <TextFadeIn duration={0.8} threshold={5}>
           <motion.div className="max-w-sm sm:max-w-lg md:max-w-3xl lg:max-w-4xl xl:max-w-5xl px-8 z-10 ">
-            <CharacterReveal progress={scrollYProgress} />
+            <CharacterReveal progress={revealProgress} />
           </motion.div>
         </TextFadeIn>
       </motion.div>

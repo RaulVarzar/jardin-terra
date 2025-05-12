@@ -77,7 +77,7 @@ const Step = ({ step, id }) => {
         className="flex flex-col sm:flex-row gap-x-4 text-center sm:text-left "
       >
         <Index id={id} visible={visible} />
-        <div className="flex-col flex gap-2 md:gap-3 xl:gap-4">
+        <div className="flex-col flex gap-2 md:gap-3 lg:gap-6 xl:gap-10">
           <Title text={title} visible={visible} />
           <Description text={content} visible={visible} />
         </div>
@@ -96,7 +96,7 @@ export const Index = ({ id, visible }) => {
         delay: 0.2,
         ease: [0.7, 0, 0.3, 1],
       }}
-      className=" text-7xl font-light leading-none mt-1 opacity-60"
+      className=" text-6xl font-light leading-none mt-1 opacity-60"
     >
       0{id + 1}
     </motion.span>
@@ -119,7 +119,7 @@ export const Title = ({ text, visible }) => {
   };
 
   return (
-    <motion.div className="text-4xl flex flex-col gap-x-2 leading-none  md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-medium tracking-wide uppercase text-neutral-content">
+    <motion.div className="text-3xl flex flex-col gap-x-2 leading-none  md:text-4xl xl:text-5xl 2xl:text-6xl font-bold tracking-wide uppercase text-neutral-content">
       {text.split("\n").map((line, index) => (
         <div key={index} className="overflow-hidden ">
           <motion.p
@@ -168,7 +168,7 @@ export const Description = ({ text, visible }) => {
         variants={contentVariants}
         initial="hidden"
         animate={visible && "visible"}
-        className="text-sm px-4 sm:px-0 flex sm:text-sm lg:text-base 2xl:text-md 3xl:text-xl max-md:leading-tight max-w-4xl  text-balance tracking-wide font-extralight text-neutral-content w-full"
+        className="text-sm px-4 sm:px-0 flex sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl leading-tight max-w-4xl  text-balance tracking-wide font-extralight text-neutral-content w-full"
       >
         {text}
       </motion.p>

@@ -11,7 +11,7 @@ const Button = () => {
     <MagneticButton magnify={1.05} amount={[8, 4]}>
       <ScaleIn duration={1.3} delay={1}>
         <Link href="/contact" className={styles.button}>
-          <p>Trimite-ne un mesaj</p>
+          <p className="font-bold">Trimite-ne un mesaj</p>
           <motion.span className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl">
             <BiMessageSquareDots />
           </motion.span>

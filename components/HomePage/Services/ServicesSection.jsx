@@ -46,7 +46,7 @@ const ServicesSection = () => {
 
   const [id, setId] = useState(null);
 
-  const carouselInView = useInView(carouselRef, { margin: "1000% 0% -35% 0%" });
+  // const carouselInView = useInView(carouselRef, { margin: "1000% 0% -35% 0%" });
   const showSlider = useInView(sectionRef, { amount: 0.75 });
   const offset = useMotionValue(0);
 
@@ -59,17 +59,17 @@ const ServicesSection = () => {
     <section>
       <div
         id={id}
-        className="relative bottom-0 flex flex-col items-start gap-3 sm:gap-4 lg:gap-6 2xl:gap-8"
+        className="relative bottom-0 flex flex-col items-start gap-3 sm:gap-4 lg:gap-6 2xl:gap-8 "
       >
         <Header />
 
-        <motion.div ref={carouselRef}>
+        <motion.div ref={carouselRef} className=" -mt-[40vh]">
           <motion.div
             ref={sectionRef}
-            initial={{ y: "40%" }}
-            animate={carouselInView ? { y: 0 } : { y: "40%" }}
-            transition={{ duration: 1.3, ease: [0.7, 0, 0.4, 1] }}
-            className="relative z-50 flex justify-start w-[95vw] pt-16 md:pt-24 xl:pt-32 overflow-clip items-start fade-horizontal "
+            // initial={{ y: "0%" }}
+            // animate={carouselInView ? { y: 0 } : { y: "0%" }}
+            // transition={{ duration: 1.3, ease: [0.7, 0, 0.4, 1] }}
+            className="relative z-50 flex justify-start w-[95vw] pt-16 md:pt-0 overflow-clip items-start fade-horizontal "
           >
             <motion.div
               drag="x"
@@ -83,7 +83,7 @@ const ServicesSection = () => {
               }}
               style={{ touchAction: "none", x: offset }}
               ref={draggableRef}
-              className="gap-4 cursor-grab justify-stretch items-stretch active:cursor-grabbing sm:gap-8 md:gap-10 xl:gap-12 flex px-[5vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  max-md:min-h-[80vh] md:min-h-[70vh] 2xl:min-h-[65vh]"
+              className="gap-4 cursor-grab justify-stretch items-stretch active:cursor-grabbing sm:gap-8 md:gap-10 xl:gap-12 flex px-[5vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  max-md:min-h-[80vh] md:min-h-[75vh] 2xl:min-h-[70vh]"
             >
               {SERVICES.map((item) => (
                 <Card
