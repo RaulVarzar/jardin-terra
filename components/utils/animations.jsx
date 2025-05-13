@@ -347,7 +347,7 @@ export const TextReveal = ({
   const isInView = useInView(ref, { margin: `1000% 0% -${marginBottom}% 0%` });
 
   return (
-    <motion.div ref={ref} className="overflow-hidden w-full">
+    <motion.div ref={ref} className="overflow-hidden ">
       <motion.div
         initial={{ y: "110%", opacity: 0 }}
         animate={

@@ -33,7 +33,7 @@ const Content = () => {
 
   const { scrollYProgress: exitProgress } = useScroll({
     target: stepsRef,
-    offset: ["end", "end 0.2"],
+    offset: ["end 0.8", "end 0.5"],
   });
 
   const opacity = useTransform(exitProgress, [0, 1], [1, 0]);

@@ -55,11 +55,10 @@ export const Header = () => {
   return (
     <>
       <motion.div
-        id="mod-de-lucru"
         style={{ opacity, scale, y }}
         ref={elementRef}
         className={
-          "flex gap-3 w-fit md:sticky  top-[0vh] z-20 mx-auto inset-x-0 flex-col justify-start items-center pt-[30vh] " +
+          "flex gap-3 w-fit md:sticky top-[0vh] z-1 mx-auto inset-x-0 flex-col justify-start items-center pt-[30vh] " +
           (isMobile ? " min-h-[40vh]" : "min-h-[40vh]")
         }
       >

@@ -56,11 +56,8 @@ const ServicesSection = () => {
 
   // const x = useTransform(offset, [0, -width], ["0%", "100%"]);
   return (
-    <section>
-      <div
-        id={id}
-        className="relative bottom-0 flex flex-col items-start gap-3 sm:gap-4 lg:gap-6 2xl:gap-8 "
-      >
+    <section id="servicii">
+      <div className="relative bottom-0 flex flex-col items-start gap-3 sm:gap-4 lg:gap-6 2xl:gap-8 ">
         <Header />
 
         <motion.div ref={carouselRef} className=" -mt-[40vh]">

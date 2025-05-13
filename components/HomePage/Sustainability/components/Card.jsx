@@ -7,7 +7,7 @@ import {
 } from "framer-motion";
 import { useRef } from "react";
 
-import { TextFadeIn, TextReveal } from "../../utils/animations";
+import { TextFadeIn, TextReveal } from "../../../utils/animations";
 import { isMobile } from "react-device-detect";
 
 const Card = ({ item, id, numberOfCards, scrollYProgress }) => {

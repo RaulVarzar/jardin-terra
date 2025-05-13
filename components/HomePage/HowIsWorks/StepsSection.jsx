@@ -3,10 +3,10 @@ import Content from "./Content/Content";
 
 const Sustainability = () => {
   return (
-    <div>
+    <section id="mod-de-lucru">
       <Header />
       <Content />
-    </div>
+    </section>
   );
 };
 

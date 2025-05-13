@@ -36,7 +36,6 @@ const Header = () => {
     >
       <motion.div
         style={{ opacity: exitOpacity, scale: exitScale, y: exitY }}
-        id="servicii"
         className=" pt-[5vh] pb-[5vh] min-h-screen -mt-[65vh] sticky top-0 flex flex-col items-center justify-center gap-4 lg:gap-6 2xl:gap-8 mx-auto -z-0 w-screen "
       >
         <TextReveal duration={1}>
