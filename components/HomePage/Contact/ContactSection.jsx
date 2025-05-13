@@ -22,7 +22,7 @@ const ContactSection = () => {
       <motion.div
         ref={containerRef}
         style={{ y }}
-        className="flex items-center justify-center w-full min-h-[70vh] md:min-h-[25vh] px-2 md:px-4 lg:px-8 py-8 md:py-20 gap-y-10 gap-x-8 flex-col lg:flex-row lg:grid-cols-2  md:gap-x-12 xl:gap-16 overflow-hidden "
+        className="flex items-center justify-center w-full md:min-h-[25vh] px-2 md:px-4 lg:px-8 py-8 md:py-20 gap-y-10 gap-x-8 flex-col lg:flex-row lg:grid-cols-2  md:gap-x-12 xl:gap-16 overflow-hidden "
       >
         <div className="flex flex-col justify-center gap-4 max-w-4xl">
           <TextReveal duration={1.3} delay={0.1}>

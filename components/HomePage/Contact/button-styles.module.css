@@ -1,5 +1,5 @@
 .button {
-  @apply flex items-center gap-6 pl-8 xl:pl-20 pr-8 py-10 md:pt-20 tracking-wide uppercase  rounded-2xl shadow-md text-md md:text-lg xl:text-xl font-black bg-neutral-content text-base-200;
+  @apply flex items-center gap-6 pl-8 xl:pl-20 pr-8 md:pr-10 py-8 md:pt-20 tracking-wide uppercase  rounded-2xl shadow-md text-md md:text-lg xl:text-xl font-black bg-neutral-content text-base-200;
 }
 
 @keyframes tilt-shaking {

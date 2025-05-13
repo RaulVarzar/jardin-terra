@@ -9,7 +9,7 @@ import { useRef } from "react";
 
 const Steps = ({ steps }) => {
   return (
-    <motion.div className="flex flex-col max-w-5xl grow  gap-8 px-3 md:px-10 2xl:px-12  items-start pb-[12vh]">
+    <motion.div className="flex flex-col max-w-5xl grow gap-8 px-3 md:px-10 2xl:px-12  items-start pb-[12vh]">
       {steps.map((step, i) => (
         <Step
           // progress={progress}
@@ -65,7 +65,7 @@ const Step = ({ step, id }) => {
   return (
     <motion.div
       ref={elementRef}
-      className="flex flex-col  will-change-transform origin-top sm:origin-top-left items-start min-h-[50vh] sm:min-h-[60vh] justify-start place-self-start  h-fit pt-24"
+      className="flex flex-col  will-change-transform  origin-top sm:origin-top-left items-start min-h-[20vh] lg:min-h-[60vh] justify-start place-self-start  h-fit pt-24"
       style={{
         opacity,
         filter,
@@ -74,7 +74,7 @@ const Step = ({ step, id }) => {
     >
       <div
         ref={ref}
-        className="flex flex-col sm:flex-row gap-x-4 text-center sm:text-left "
+        className="flex flex-col  sm:flex-row gap-x-4 text-left px-4 "
       >
         <Index id={id} visible={visible} />
         <div className="flex-col flex gap-2 md:gap-3 lg:gap-6 xl:gap-10">
@@ -119,7 +119,7 @@ export const Title = ({ text, visible }) => {
   };
 
   return (
-    <motion.div className="text-3xl flex flex-col gap-x-2 leading-none  md:text-4xl xl:text-5xl 2xl:text-6xl font-bold tracking-wide uppercase text-neutral-content">
+    <motion.div className="text-4xl flex flex-col gap-x-2 leading-none  md:text-5xl xl:text-5xl 2xl:text-6xl font-bold tracking-wide uppercase text-neutral-content">
       {text.split("\n").map((line, index) => (
         <div key={index} className="overflow-hidden ">
           <motion.p
@@ -168,7 +168,7 @@ export const Description = ({ text, visible }) => {
         variants={contentVariants}
         initial="hidden"
         animate={visible && "visible"}
-        className="text-sm px-4 sm:px-0 flex sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl leading-tight max-w-4xl  text-balance tracking-wide font-extralight text-neutral-content w-full"
+        className="text-base flex sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl leading-tight max-w-4xl  text-balance tracking-wide font-extralight text-neutral-content w-full"
       >
         {text}
       </motion.p>

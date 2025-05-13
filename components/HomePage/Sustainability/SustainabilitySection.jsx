@@ -77,20 +77,20 @@ const Sustainability = () => {
           className="absolute z-0 w-full border h-full inset-0 bg-primary overflow-hidden rounded-t-3xl"
         /> */}
 
-          <div className="flex flex-col items-start relative md:pt-24 xl:pt-48 gap-y-12">
+          <div className="flex flex-col items-center relative md:pt-24 xl:pt-48 gap-y-16 sm:gap-y-24 md:gap-y-32 xl:gap-y-48">
             <motion.div
               ref={headerRef}
               // style={{ y: titleY, opacity: titleOpacity }}
-              className="max-md:pt-12  h-scree stick md:top-[10vh] 2xl:top-[15vh] w-1/2 gap-y-4 items-end justify-start border-warning  z-10 flex flex-col  "
+              className="max-md:pt-12  h-scree stick md:top-[10vh] 2xl:top-[15vh] w-full max-w-screen-3xl gap-y-4 items-center justify-start border-warning  z-10 flex flex-col  "
             >
-              <div className="flex flex-col max-w-2xl justify-start items-start">
+              <div className="flex flex-col px-4 sm:px-8 lg:flex-row gap-y-8 justify-start items-start text-center lg:text-left">
                 <TextReveal duration={1}>
-                  <motion.h3 className="font-bold text-2xl text-left w-fit leading-none tracking-wide uppercase  sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-neutral-content">
+                  <motion.h3 className="font-bold text-3xl max-w-4xl w-fit leading-none tracking-wide uppercase  sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-7xl text-neutral-content">
                     Susținem amenajările sustenabile
                   </motion.h3>
                 </TextReveal>
                 <div className=" flex justify-end ">
-                  <h3 className="text-xl max-w-xl text-balance leading-snug tracking-wide text-neutral-content opacity-75 font-light text-left ">
+                  <h3 className="text-xl max-md:px-4 max-w-xl text-balance leading-tight sm:leading-snug tracking-wide text-neutral-content opacity-75 font-light  ">
                     Serviciile noastre de proiectare și amenajare a spațiilor
                     verzi implică și evaluarea impactului activității noastre
                     asupra mediului. În procesul de evaluare, ținem cont de
@@ -133,7 +133,7 @@ export const Photos = () => {
   return (
     <div
       ref={cardsRef}
-      className="relative w-full flex gap-y-16 gap-x-12 xl:gap-y-24 flex-row items-center justify-center z-20 mx-auto pb-12 min-h-scree"
+      className="relative w-full flex gap-y-16 px-4 sm:px-6 gap-x-12 xl:gap-y-24 flex-col lg:flex-row items-center justify-center z-20 mx-auto pb-12 min-h-scree"
     >
       {/* {TOPICS.map((item, i) => (
             <Card
@@ -147,7 +147,7 @@ export const Photos = () => {
           ))} */}
       <motion.div
         style={{ clipPath: clipPathL, y: exitLeft }}
-        className="w-1/2 h-full  max-w-2xl rounded-3xl overflow-hidden aspect-video xl:aspect-square"
+        className="lg:w-1/2 h-full  max-w-2xl rounded-3xl overflow-hidden aspect-video xl:aspect-square"
       >
         <img
           src="/images/sustenabilitate/main.jpg"
@@ -157,7 +157,7 @@ export const Photos = () => {
       </motion.div>
       <motion.div
         style={{ clipPath: clipPathR, y: exitRight }}
-        className="w-1/2 h-full max-w-2xl rounded-3xl overflow-hidden aspect-video xl:aspect-square -translate-y-[15%]"
+        className="lg:w-1/2 h-full max-w-2xl rounded-3xl overflow-hidden aspect-video xl:aspect-square -translate-y-[15%]"
       >
         <img
           src="/images/sustenabilitate/main2.jpg"

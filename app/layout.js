@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="emerald">
       <head>{/* <meta name="theme-color" content="#db5945"></meta> */}</head>
-      <body className={`${poppins.variable}`}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

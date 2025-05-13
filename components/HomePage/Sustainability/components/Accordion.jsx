@@ -51,13 +51,13 @@ const Accordion = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 md:gap-12 xl:gap-24 w-full  items-center lg:items-start py-12 md:py-16 xl:py-24  max-w-screen-3xl mx-auto">
-      <div>
-        <h1 className="inline text-2xl  2xl:text-5xl lg:pt-24 font-bold text-neutral-content text-center lg:text-right  max-w-4xl text-balance tracking-wide leading-tight uppercase">
+    <div className="flex flex-col lg:flex-row gap-8 md:gap-12 xl:gap-24 w-full  items-center lg:items-start py-2 md:py-16 xl:py-24  max-w-screen-3xl mx-auto">
+      <div className="max-lg:px-4 text-pretty">
+        <h1 className="inline text-2xl  2xl:text-5xl lg:pt-24 font-bold text-neutral-content text-center lg:text-right  max-w-4xl tracking-wide leading-tight uppercase">
           Există mai multe elemente cheie în proiectarea unui spațiu verde
         </h1>
         <div className="relative inline">
-          <span className="absolute top-0 left-0 right-0 bottom-0 origin-center w-full h-14 bg-base-content -rotate-1 translate-x-1 -z-10 -translate-y-1/2"></span>
+          <span className="absolute top-0 left-0 right-0 bottom-0 origin-center w-full h-10 lg:h-14 bg-base-content -rotate-1 translate-x-1 -z-10 -translate-y-1/3 lg:-translate-y-1/2"></span>
           <h1 className=" pl-2.5 inline text-2xl font-bold text-neutral-content 2xl:text-5xl tracking-wide leading-tight uppercase ">
             sustenabil
           </h1>
@@ -132,11 +132,11 @@ export const Title = ({ isActive, title }) => {
   return (
     <div
       className={
-        "flex flex-row gap-4 w-full items-center pl-3 pr-8 py-4 md:py-5 xl:py-6 z-10 cursor-pointer bg-accent-conten transition-opacity duration-300 " +
+        "flex flex-row gap-4 w-full items-center pl-3 pr-8 py-5 md:py-5 xl:py-6 z-10 cursor-pointer bg-accent-conten transition-opacity duration-300 " +
         (isActive ? " opacity-100" : " opacity-80")
       }
     >
-      <span className="text-xl font-bol tracking-wide md:text-2xl xl:text-3xl grow uppercase leading-tight">
+      <span className="text-xl text-balance font-bol tracking-wide md:text-2xl xl:text-3xl grow uppercase leading-tight">
         {title}
       </span>
       <motion.span
@@ -173,7 +173,7 @@ export const Content = ({ text }) => {
           ease: [0.7, 0, 0.3, 1],
         },
       }}
-      className="pt-2 pb-8 md:pb-12 xl:pb-16 px-12 opacity-80 leading-snug text-md md:text-lg 2xl:text-xl"
+      className="pt-2 pb-8 md:pb-12 xl:pb-16 px-8 md:px-12 opacity-80 leading-snug text-md md:text-lg 2xl:text-xl"
     >
       {text}
     </motion.p>
