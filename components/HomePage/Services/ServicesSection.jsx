@@ -80,7 +80,7 @@ const ServicesSection = () => {
               }}
               style={{ touchAction: "none", x: offset }}
               ref={draggableRef}
-              className="gap-4 cursor-grab justify-stretch items-stretch active:cursor-grabbing sm:gap-8 md:gap-10 xl:gap-12 flex px-[5vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  max-md:min-h-[80vh] md:min-h-[75vh] 2xl:min-h-[70vh]"
+              className="gap-4 cursor-grab justify-stretch items-stretch active:cursor-grabbing sm:gap-8 md:gap-10 xl:gap-12 flex px-[5vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  max-md:min-h-[60vh] 2xl:min-h-[70vh]"
             >
               {SERVICES.map((item) => (
                 <Card

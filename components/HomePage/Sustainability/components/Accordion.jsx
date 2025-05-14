@@ -51,9 +51,9 @@ const Accordion = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 md:gap-12 xl:gap-24 w-full  items-center lg:items-start py-2 md:py-16 xl:py-24  max-w-screen-3xl mx-auto">
-      <div className="max-lg:px-4 text-pretty">
-        <h1 className="inline text-2xl  2xl:text-5xl lg:pt-24 font-bold text-neutral-content text-center lg:text-right  max-w-4xl tracking-wide leading-tight uppercase">
+    <div className="flex 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl flex-col xl:flex-row gap-8 md:gap-12 xl:gap-24 w-full  items-center lg:items-start py-2 md:py-16 xl:py-24  max-w-screen-3xl mx-auto">
+      <div className="max-xl:px-1 text-pretty">
+        <h1 className="inline text-2xl  2xl:text-5xl lg:pt-24 text-balance font-bold text-neutral-content text-center lg:text-right  max-w-4xl tracking-wide leading-tight uppercase">
           Există mai multe elemente cheie în proiectarea unui spațiu verde
         </h1>
         <div className="relative inline">

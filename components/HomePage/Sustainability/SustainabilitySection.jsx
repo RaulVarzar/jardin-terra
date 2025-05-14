@@ -5,6 +5,7 @@ import {
   useTransform,
   motion,
   useMotionTemplate,
+  useInView,
 } from "framer-motion";
 import { useRef } from "react";
 import Card from "./components/Card";
@@ -12,6 +13,7 @@ import Accordion from "./components/Accordion";
 import { TextReveal } from "../../utils/animations";
 import useScreenWidth from "../../utils/useScreenWidth";
 import Image from "next/image";
+import AnimatedRows from "../../utils/AnimatedRows";
 
 const TOPICS = [
   {
@@ -40,7 +42,7 @@ const TOPICS = [
 const Sustainability = () => {
   const isMobile = useScreenWidth();
   const sectionRef = useRef(null);
-  const headerRef = useRef(null);
+
   // GENERAL SCROLL PROGRESS
 
   const { scrollYProgress: sectionEnter } = useScroll({
@@ -68,45 +70,53 @@ const Sustainability = () => {
         <motion.div
           id="sustenabilitate"
           className={
-            "flex flex-col relative will-change-transform border- border-info justify-center bg-accent-content z-[10]  pb-[15vh] gap-8 md:gap-24 xl:gap-36 2xl:gap-44  " +
+            "flex flex-col px-3 sm:px-6 md:px-12 lg:px-16 relative justify-center bg-accent-content z-[10]  pb-[15vh] gap-8 md:gap-12 xl:gap-16 2xl:gap-24  " +
             (isMobile ? " mt-36" : " ")
           }
         >
-          {/* <motion.div
-          style={{ scaleY: sectionScale }}
-          className="absolute z-0 w-full border h-full inset-0 bg-primary overflow-hidden rounded-t-3xl"
-        /> */}
-
-          <div className="flex flex-col items-center relative md:pt-24 xl:pt-48 gap-y-16 sm:gap-y-24 md:gap-y-32 xl:gap-y-48">
-            <motion.div
-              ref={headerRef}
-              // style={{ y: titleY, opacity: titleOpacity }}
-              className="max-md:pt-12  h-scree stick md:top-[10vh] 2xl:top-[15vh] w-full max-w-screen-3xl gap-y-4 items-center justify-start border-warning  z-10 flex flex-col  "
-            >
-              <div className="flex flex-col px-4 sm:px-8 lg:flex-row gap-y-8 justify-start items-start text-center lg:text-left">
-                <TextReveal duration={1}>
-                  <motion.h3 className="font-bold text-3xl max-w-4xl w-fit leading-none tracking-wide uppercase  sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-7xl text-neutral-content">
-                    Susținem amenajările sustenabile
-                  </motion.h3>
-                </TextReveal>
-                <div className=" flex justify-end ">
-                  <h3 className="text-xl max-md:px-4 max-w-xl text-balance leading-tight sm:leading-snug tracking-wide text-neutral-content opacity-75 font-light  ">
-                    Serviciile noastre de proiectare și amenajare a spațiilor
-                    verzi implică și evaluarea impactului activității noastre
-                    asupra mediului. În procesul de evaluare, ținem cont de
-                    responsabilitatea ecologică a spațiului, de biodiversitatea
-                    acestuia și compoziția materialelor utilizate.
-                  </h3>
-                </div>
-              </div>
-            </motion.div>
-
-            <Photos />
-          </div>
+          <Header />
           <Accordion />
         </motion.div>
       </motion.div>
     </section>
+  );
+};
+
+export const Header = () => {
+  return (
+    <div className="flex flex-col items-center relative pt-16 md:pt-24 xl:pt-48 gap-y-16 sm:gap-y-24 md:gap-y-32 xl:gap-y-48">
+      <motion.div
+        // style={{ y: titleY, opacity: titleOpacity }}
+        className="max-md:pt-12stick md:top-[10vh] 2xl:top-[15vh] w-full max-w-screen-3xl  gap-y-4 items-between justify-start z-10 flex flex-col  "
+      >
+        <div className="flex flex-col  px-3 sm:px-8 lg:flex-row gap-y-4 justify-start items-start text-center lg:text-left">
+          <AnimatedRows
+            initialDelay={0.1}
+            duration={1.3}
+            className="font-bold text-4xl  max-w-4xl w-fit leading-none tracking-wide uppercase  sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-7xl text-neutral-content"
+          >
+            Susținem amenajările sustenabile
+          </AnimatedRows>
+          <div className=" flex justify-end grow items-end md:pt-6 xl:pt-8 ">
+            <span className="max-w-3xl 2xl:max-w-4xl">
+              <AnimatedRows
+                duration={1.2}
+                initialDelay={0.3}
+                className="text-base  opacity-65 max-md:px-4  text-pretty text-right leading-tight sm:leading-snug md:tracking-wide text-neutral-content  font-light  "
+              >
+                Serviciile noastre de proiectare și amenajare a spațiilor verzi
+                implică și evaluarea impactului activității noastre asupra
+                mediului. În procesul de evaluare, ținem cont de
+                responsabilitatea ecologică a spațiului, de biodiversitatea
+                acestuia și compoziția materialelor utilizate.
+              </AnimatedRows>
+            </span>
+          </div>
+        </div>
+      </motion.div>
+
+      <Photos />
+    </div>
   );
 };
 
@@ -124,16 +134,30 @@ export const Photos = () => {
 
   const top = useTransform(scrollYProgress, [0, 1], [15, 0]);
   const leftright = useTransform(scrollYProgress, [0, 1], [10, 0]);
-  const clipPathL = useMotionTemplate`inset(${top}% 0% 0% ${leftright}% round 3%)`;
-  const clipPathR = useMotionTemplate`inset(${top}% ${leftright}% 0% 0% round 3%)`;
+  const clipPathL = useMotionTemplate`inset(${top}% 0% 0% 0% round 2vw)`;
+  const clipPathR = useMotionTemplate`inset(${top}% 0% 0% 0% round 2vw)`;
 
   const exitLeft = useTransform(exitProgress, [0, 1], ["0%", "-15%"]);
   const exitRight = useTransform(exitProgress, [0, 1], ["-15%", "-25%"]);
 
+  const isInView = useInView(cardsRef, { margin: "-15%" });
+  const clipVariants = {
+    hidden: {
+      clipPath: "inset(90% 0% 0% 0% round 2vw)", // fully covered
+    },
+    show: {
+      clipPath: "inset(0% 0% 0% 0% round 2vw)", // fully revealed
+      transition: {
+        duration: 2.1,
+        ease: [0.7, 0, 0.3, 1],
+      },
+    },
+  };
+
   return (
     <div
       ref={cardsRef}
-      className="relative w-full flex gap-y-16 px-4 sm:px-6 gap-x-12 xl:gap-y-24 flex-col lg:flex-row items-center justify-center z-20 mx-auto pb-12 min-h-scree"
+      className="relative w-full flex gap-y-12 gap-x-12 xl:gap-y-24 flex-col lg:flex-row items-center justify-center z-20 mx-auto pb-12 min-h-scree"
     >
       {/* {TOPICS.map((item, i) => (
             <Card
@@ -146,18 +170,24 @@ export const Photos = () => {
             />
           ))} */}
       <motion.div
-        style={{ clipPath: clipPathL, y: exitLeft }}
-        className="lg:w-1/2 h-full  max-w-2xl rounded-3xl overflow-hidden aspect-video xl:aspect-square"
+        style={{ y: exitLeft }}
+        variants={clipVariants}
+        initial="hidden"
+        animate={isInView && "show"}
+        className="lg:w-1/2 h-full  max-w-2xl overflow-hidden aspect-video xl:aspect-square"
       >
         <img
           src="/images/sustenabilitate/main.jpg"
           alt="sustenabilitate-img-1"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover "
         />
       </motion.div>
       <motion.div
-        style={{ clipPath: clipPathR, y: exitRight }}
-        className="lg:w-1/2 h-full max-w-2xl rounded-3xl overflow-hidden aspect-video xl:aspect-square -translate-y-[15%]"
+        style={{ y: exitRight }}
+        variants={clipVariants}
+        initial="hidden"
+        animate={isInView && "show"}
+        className="lg:w-1/2 h-full max-w-2xl overflow-hidden aspect-video xl:aspect-square -translate-y-[15%]"
       >
         <img
           src="/images/sustenabilitate/main2.jpg"

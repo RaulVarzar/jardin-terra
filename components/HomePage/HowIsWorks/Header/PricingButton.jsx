@@ -8,7 +8,7 @@ const buttonVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { delay: 1.3, duration: 1, ease: [0.7, 0, 0.35, 1] },
+    transition: { delay: 0.2, duration: 0.8, ease: [0.7, 0, 0.35, 1] },
   },
 };
 

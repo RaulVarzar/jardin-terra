@@ -32,11 +32,11 @@ const Header = () => {
   return (
     <div
       ref={sectionRef}
-      className="lg:min-h-[180vh] border- border-warning flex items-start relative "
+      className="min-h-[180vh] border- border-warning flex items-start relative "
     >
       <motion.div
         style={{ opacity: exitOpacity, scale: exitScale, y: exitY }}
-        className=" pt-[5vh] pb-[5vh] min-h-screen -mt-[65vh] sticky top-0 flex flex-col items-center justify-center gap-4 lg:gap-6 2xl:gap-8 mx-auto -z-0 w-screen "
+        className=" pt-[5vh] pb-[5vh] min-h-screen -mt-[90vh] will-change-transform sticky top-0 flex flex-col items-center justify-center gap-4 lg:gap-6 2xl:gap-8 mx-auto -z-0 w-screen "
       >
         <TextReveal duration={1}>
           <motion.h3 className=" font-bold text-5xl leading-none px-24 tracking-wide text-center sm:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-neutral-content">

@@ -6,6 +6,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { useRef } from "react";
+import AnimatedRows from "../../../utils/AnimatedRows";
 
 const Steps = ({ steps }) => {
   return (
@@ -163,15 +164,15 @@ export const Description = ({ text, visible }) => {
   };
 
   return (
-    <motion.div className="">
-      <motion.p
-        variants={contentVariants}
-        initial="hidden"
-        animate={visible && "visible"}
-        className="text-base flex sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl leading-tight max-w-4xl  text-balance tracking-wide font-extralight text-neutral-content w-full"
+    <div className="flex max-w-4xl text-balance w-full">
+      <AnimatedRows
+        initialDelay={0.5}
+        duration={1}
+        stagger={0.08}
+        className="text-base sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl leading-tight text-balance tracking-wide font-extralight text-neutral-content "
       >
         {text}
-      </motion.p>
-    </motion.div>
+      </AnimatedRows>
+    </div>
   );
 };

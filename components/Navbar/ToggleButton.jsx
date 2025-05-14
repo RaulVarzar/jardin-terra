@@ -3,7 +3,7 @@ import MagneticButton from "../MagneticButton";
 
 const ToggleButton = ({ menuOpen, toggleMenu }) => {
   return (
-    <MagneticButton>
+    <MagneticButton amount={[3, 3]}>
       <div
         onClick={toggleMenu}
         className={

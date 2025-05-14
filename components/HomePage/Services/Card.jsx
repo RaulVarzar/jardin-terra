@@ -10,7 +10,7 @@ const Card = ({ item, setSelectedId, layoutId }) => {
   return (
     <motion.div
       layoutId={layoutId}
-      className="grid relative bg-secondary h-auto transition-colors duration-300 shadow-2xl group max-lg:grid-rows-7 lg:grid-cols-7 z-50  w-[90vw] xl:w-[85vw] 3xl:w-[80vw]  max-w-screen-xl p-4 md:p-4 lg:p-8  rounded-2xl lg:rounded-3xl "
+      className="grid relative bg-secondary h-auto transition-colors duration-300 shadow-2xl group max-lg:grid-rows-7 lg:grid-cols-7 z-50  w-[90vw] xl:w-[85vw] 3xl:w-[80vw]  max-w-screen-xl pb-8 p-4 md:p-4 lg:p-8  rounded-2xl lg:rounded-3xl "
     >
       <ExpandButton setSelectedId={() => setSelectedId(item.id)} />
 
@@ -30,7 +30,7 @@ const Card = ({ item, setSelectedId, layoutId }) => {
         </Blur>
       </div>
 
-      <div className="z-0 touch-pan-y  flex flex-col justify-start lg:justify-center gap-6 px-3 py-8 mx-auto overflow-auto lg:gap-8 md:px-5 xl:px-12 max-sm:row-span-4 sm:max-lg:row-span-3 lg:col-span-4 xl:col-span-3">
+      <div className="z-0 touch-pan-y flex flex-col justify-start lg:justify-center gap-6 px-3 py-8 mx-auto overflow-auto lg:gap-8 md:px-5 xl:px-12 max-sm:row-span-4 sm:max-lg:row-span-3 lg:col-span-4 xl:col-span-3">
         <div className="flex flex-col gap-1 xl:gap-2">
           <motion.h1
             initial={{ opacity: 0, filter: "blur(5px)" }}
@@ -77,7 +77,7 @@ export const ExpandButton = ({ setSelectedId }) => {
   return (
     <motion.span
       onClick={setSelectedId}
-      className="text-2xl z-50  absolute max-lg:bottom-4  rounded-full right-6 lg:top-4 xl:top-6 xl:right-6  transition duration-300   text-base-content hover:brightness-150 2xl:scale-110"
+      className="text-2xl z-50  absolute max-lg:bottom-2  rounded-full right-6 lg:top-4 xl:top-6 xl:right-6  transition duration-300   text-base-content hover:brightness-150 2xl:scale-110"
     >
       <MagneticButton magnify={1.1}>
         <span className="w-full h-full hover:bg-secondary z-50 flex items-center justify-center p-4 md:p-4  rounded-full">

@@ -11,6 +11,7 @@ import ModalCard from "./ModalCard";
 import { useRef, useState } from "react";
 import { TextReveal, WordReveal } from "../../../utils/animations.jsx";
 import useScreenWidth from "../../../utils/useScreenWidth";
+import AnimatedRows from "../../../utils/AnimatedRows.jsx";
 
 const titleVariants = {
   hidden: {
@@ -41,7 +42,7 @@ export const Header = () => {
 
   const { scrollYProgress } = useScroll({
     target: exitHelper,
-    offset: ["start 0.42", "start 0.34"],
+    offset: ["end 0.7", "end 0.5"],
   });
   const opacity = useTransform(scrollYProgress, [0, 1], ["100%", "0%"]);
   const scale = useTransform(scrollYProgress, [0, 1], ["100%", "97%"]);
@@ -58,8 +59,8 @@ export const Header = () => {
         style={{ opacity, scale, y }}
         ref={elementRef}
         className={
-          "flex gap-3 w-fit md:sticky top-[0vh] z-1 mx-auto inset-x-0 flex-col justify-start items-center pt-[30vh] " +
-          (isMobile ? " min-h-[40vh]" : "min-h-[40vh]")
+          "flex gap-3 w-fit md:sticky top-[0vh] z-1 mx-auto inset-x-0 flex-col justify-start items-center pt-[20vh] md:pt-[30vh] max-md:pb-[10vh] " +
+          (isMobile ? " min-h-[60vh]" : "min-h-[40vh]")
         }
       >
         <AnimatePresence>
@@ -74,7 +75,7 @@ export const Header = () => {
         </AnimatePresence>
       </motion.div>
 
-      <div ref={exitHelper} className="h-0" />
+      <div ref={exitHelper} className="md:h-[40vh]" />
 
       <AnimatePresence>
         {openModal && <ModalCard closeCard={() => setOpenModal(false)} />}
@@ -85,8 +86,8 @@ export const Header = () => {
 
 const Title = ({}) => {
   return (
-    <TextReveal duration={1.6} threshold={10}>
-      <motion.h3 className="text-3xl font-semibold text-center text-neutral-content pb-4  leading-none tracking-wide uppercase sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl">
+    <TextReveal duration={0.9} threshold={10}>
+      <motion.h3 className="text-4xl font-semibold text-center text-neutral-content pb-4  leading-none tracking-wide uppercase sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl">
         Modul de lucru
       </motion.h3>
     </TextReveal>
@@ -97,14 +98,20 @@ export default Header;
 
 const Description = () => {
   return (
-    <motion.span className="text-center  w-full flex flex-row flex-wrap justify-center text-neutral-content font-light leading-snug tracking-wider px-6 text-base opacity-70 max-w-3xl 2xl:max-w-4xl md:text-lg lg:text-xl xl:text-2xl text-balance 2xl:text-3xl">
-      <WordReveal duration={2} delay={0.7} staggerDelay={0.03}>
+    <motion.span className="  w-full flex flex-row flex-wrap justify-center opacity-70 px-2 max-w-3xl 2xl:max-w-4xl">
+      {/* <WordReveal duration={2} delay={0.7} staggerDelay={0.03}> */}
+      <AnimatedRows
+        initialDelay={0.1}
+        duration={1}
+        className="text-center md:text-lg lg:text-xl xl:text-2xl  2xl:text-3xl text-neutral-content font-light leading-snug tracking-wider text-base"
+      >
         Înainte de a trece la lopată și săpăligă, analizăm dimensiunile și forma
         spațiului tău verde. Apoi, ascultăm cu atenție dorințele tale și începem
         proiectarea grădinii. Suntem consultanții peisagiști pe care te poți
         baza pentru a avea propriul tău colț de natură, în armonie cu nevoile
         tale personale sau profesionale.
-      </WordReveal>
+      </AnimatedRows>
+      {/* </WordReveal> */}
     </motion.span>
   );
 };

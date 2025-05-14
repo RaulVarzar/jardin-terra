@@ -44,8 +44,13 @@ const MagneticButton = ({ children, amount, magnify, className, ...props }) => {
       onMouseLeave={handleReset}
       animate={{ x, y }}
       whileHover={{ scale: magnify || 1 }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-      className={className}
+      transition={{
+        type: "spring",
+        stiffness: 75,
+        damping: 5,
+        mass: 0.15,
+      }}
+      className={`will-change-transform ${className}`}
       {...props}
     >
       {children}
