@@ -44,7 +44,6 @@ const Sustainability = () => {
   const sectionRef = useRef(null);
 
   // GENERAL SCROLL PROGRESS
-
   const { scrollYProgress: sectionEnter } = useScroll({
     target: sectionRef,
     offset: ["start 0.9", "start"],
@@ -59,8 +58,8 @@ const Sustainability = () => {
   const sectionScale = useTransform(sectionEnter, [0, 1], ["80%", "100%"]);
 
   return (
-    <section ref={sectionRef} className="-mt-[30vh] ">
-      <motion.div style={{ y: sectionY }} className="">
+    <section ref={sectionRef} className={!isMobile && "-mt-[30vh] "}>
+      <motion.div style={!isMobile && { y: sectionY }} className="">
         {/* <motion.h1
           style={{ y: titleY }}
           className="mx-auto w-full borde text-secondary-content text-[8vw] opacity-20 saturate-[70%] tracking-wide font-bold text-center  leading-none"
@@ -74,7 +73,7 @@ const Sustainability = () => {
             (isMobile ? " mt-36" : " ")
           }
         >
-          <Header />
+          <MainContent />
           <Accordion />
         </motion.div>
       </motion.div>
@@ -82,40 +81,46 @@ const Sustainability = () => {
   );
 };
 
-export const Header = () => {
+export const MainContent = () => {
   return (
     <div className="flex flex-col items-center relative pt-16 md:pt-24 xl:pt-48 gap-y-16 sm:gap-y-24 md:gap-y-32 xl:gap-y-48">
       <motion.div
         // style={{ y: titleY, opacity: titleOpacity }}
         className="max-md:pt-12stick md:top-[10vh] 2xl:top-[15vh] w-full max-w-screen-3xl  gap-y-4 items-between justify-start z-10 flex flex-col  "
       >
-        <div className="flex flex-col  px-3 sm:px-8 lg:flex-row gap-y-4 justify-start items-start text-center lg:text-left">
-          <AnimatedRows
-            initialDelay={0.1}
-            duration={1.3}
-            className="font-bold text-4xl  max-w-4xl w-fit leading-none tracking-wide uppercase  sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-7xl text-neutral-content"
-          >
-            Susținem amenajările sustenabile
-          </AnimatedRows>
-          <div className=" flex justify-end grow items-end md:pt-6 xl:pt-8 ">
-            <span className="max-w-3xl 2xl:max-w-4xl">
-              <AnimatedRows
-                duration={1.2}
-                initialDelay={0.3}
-                className="text-base  opacity-65 max-md:px-4  text-pretty text-right leading-tight sm:leading-snug md:tracking-wide text-neutral-content  font-light  "
-              >
-                Serviciile noastre de proiectare și amenajare a spațiilor verzi
-                implică și evaluarea impactului activității noastre asupra
-                mediului. În procesul de evaluare, ținem cont de
-                responsabilitatea ecologică a spațiului, de biodiversitatea
-                acestuia și compoziția materialelor utilizate.
-              </AnimatedRows>
-            </span>
-          </div>
-        </div>
+        <Header />
       </motion.div>
 
       <Photos />
+    </div>
+  );
+};
+
+const Header = () => {
+  return (
+    <div className="flex flex-col  px-3 sm:px-8 lg:flex-row gap-y-4 justify-start items-start text-center lg:text-left">
+      <AnimatedRows
+        initialDelay={0.1}
+        duration={1.3}
+        className="font-bold text-4xl  max-w-4xl w-fit leading-none tracking-wide uppercase  sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-7xl text-neutral-content"
+      >
+        Susținem amenajările sustenabile
+      </AnimatedRows>
+      <div className=" flex justify-end grow items-end md:pt-6 xl:pt-8 ">
+        <span className="max-w-3xl xl:max-w-4xl 3xl:max-w-5xl opacity-75">
+          <AnimatedRows
+            duration={1.2}
+            initialDelay={0.3}
+            className="text-base   max-md:px-4 md:text-lg 2xl:text-xl  text-pretty text-right leading-tight sm:leading-snug md:tracking-wide text-neutral-content  font-light  "
+          >
+            Serviciile noastre de proiectare și amenajare a spațiilor verzi
+            implică și evaluarea impactului activității noastre asupra mediului.
+            În procesul de evaluare, ținem cont de responsabilitatea ecologică a
+            spațiului, de biodiversitatea acestuia și compoziția materialelor
+            utilizate.
+          </AnimatedRows>
+        </span>
+      </div>
     </div>
   );
 };

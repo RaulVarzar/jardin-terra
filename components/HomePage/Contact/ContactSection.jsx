@@ -12,7 +12,7 @@ const ContactSection = () => {
     target: containerRef,
     offset: ["0.2 end", "0.9 end"],
   });
-  const y = useTransform(scrollYProgress, [0, 0.8], ["10vh", "0vh"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["5vh", "0vh"]);
 
   return (
     <div

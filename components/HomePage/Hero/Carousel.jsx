@@ -28,7 +28,7 @@ const Carousel = ({ scrollYProgress }) => {
   const scale = useTransform(scrollYProgress, [0, 1], ["100%", "113%"]);
 
   return (
-    <div className="w-full h-full row-span-6 sm:row-span-7 xl:col-span-6">
+    <div className="w-full h-full row-span-6  sm:row-span-7 xl:col-span-6 2xl:col-span-7">
       <motion.div className="relative w-full h-full  group overflow-hidden rounded-3xl 2xl:rounded-4xl shadow-md">
         <AnimatePresence mode="popLayout">
           <motion.div

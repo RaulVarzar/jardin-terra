@@ -22,6 +22,7 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
   return (
     <motion.div
       layoutId={layoutId}
+      layout="size"
       className="relative group z-50 flex flex-row xl:flex-col border  w-full h-full  p-4   max-sm:place-self-end items-center rounded-t-2xl max-h-[95dvh] sm:rounded-2xl xl:rounded-3xl max-w-screen-3xl mx-auto md:p-6 xl:p-8   bg-secondary"
     >
       {/* <motion.span
@@ -46,6 +47,7 @@ const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
       <div className="relative z-20 flex flex-col  sm:gap-2 px-1 py-4 sm:py-6 md:py-12  w-full border-2  lg:row-span-1 md:px-5 xl:px-12">
         <motion.h1
           layoutId={title}
+          layout="size"
           className="p-0 pb-4 my-0 text-2xl font-semibold uppercase leading-none md:text-4xl xl:text-5xl text-neutral-content"
         >
           {title}

@@ -14,7 +14,7 @@ const Home = () => {
     <SmoothScroll>
       <ScrollBar />
       <Navbar />
-      <div className="h-full rounded-b-3xl md:rounded-b-4xl overflow-clip bg-accent">
+      <div className="h-full rounded-b-2xl md:rounded-b-3xl overflow-clip bg-accent">
         <HeroSection />
         <ServicesSection />
         <StepsSection />

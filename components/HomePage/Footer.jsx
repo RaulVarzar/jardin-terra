@@ -6,23 +6,25 @@ import logo from "/public/logo.png";
 import Image from "next/image";
 
 const Footer = () => {
-  const ref = useRef(null);
+  const footerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
-    target: "ref",
+    target: footerRef,
     offset: ["start end", "end"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0.99, 1], [0.3, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.85], [0.3, 1]);
   const scale = useTransform(scrollYProgress, [0.95, 1], [0.8, 1]);
 
-  const y = useTransform(scrollYProgress, [0.8, 1], ["-150vh", "0vh"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-25vh", "0vh"]);
 
   return (
-    <div className="flex justify-center -z-10 sticky bottom-0 overflow-hidden py-36 text-neutral-content">
+    <div
+      ref={footerRef}
+      className="flex justify-center -z-10 stick bottom-0 overflow-hidden py-36 text-neutral-content"
+    >
       <motion.div
-        ref={ref}
-        style={{ opacity, scale }}
+        style={{ y, opacity }}
         className="grid w-fit md:grid-cols-2 max-w-8xl border-success lg:gap-x-12 2xl:gap-x-24"
       >
         <div className="flex flex-col relative items-center justify-center px-4 py-2 max-w-60 mx-auto">

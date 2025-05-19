@@ -12,7 +12,6 @@ import useWindowDimensions from "../../utils/useScreenDimensions";
 
 import { SERVICES } from "../../utils/data";
 import Card from "./Card";
-import ExpandedCard from "./ExpandedCard/ExpandedCard";
 import ExpandedCardMobile from "./ExpandedCard/ExpandedCardMobile";
 
 import Header from "./Header";
@@ -66,7 +65,7 @@ const ServicesSection = () => {
             // initial={{ y: "0%" }}
             // animate={carouselInView ? { y: 0 } : { y: "0%" }}
             // transition={{ duration: 1.3, ease: [0.7, 0, 0.4, 1] }}
-            className="relative z-50 flex justify-start w-[95vw] pt-16 md:pt-0 overflow-clip items-start fade-horizontal "
+            className="relative z-50 flex justify-start w-screen sm:w-[95vw] pt-16 md:pt-0 overflow-clip items-start sm:fade-horizontal "
           >
             <motion.div
               drag="x"
@@ -80,7 +79,7 @@ const ServicesSection = () => {
               }}
               style={{ touchAction: "none", x: offset }}
               ref={draggableRef}
-              className="gap-4 cursor-grab justify-stretch items-stretch active:cursor-grabbing sm:gap-8 md:gap-10 xl:gap-12 flex px-[5vw] xl:px-[5vw] 3xl:px-[7vw] flex-row  max-md:min-h-[60vh] 2xl:min-h-[70vh]"
+              className="gap-4 cursor-grab justify-stretch items-stretch active:cursor-grabbing sm:gap-8 md:gap-10 xl:gap-12 flex px-[5vw] xl:px-[5vw] 3xl:px-[7vw] flex-row max-sm:min-h-[600px] max-md:min-h-[60vh] 2xl:min-h-[70vh]"
             >
               {SERVICES.map((item) => (
                 <Card

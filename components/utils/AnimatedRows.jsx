@@ -62,7 +62,7 @@ export default function AnimatedRows({
               transition={{
                 delay: initialDelay + i * stagger,
                 duration,
-                ease: [0.77, 0, 0.25, 1],
+                ease: [0.75, 0, 0.2, 1],
               }}
               className={`will-change-transform ${className}`}
             >

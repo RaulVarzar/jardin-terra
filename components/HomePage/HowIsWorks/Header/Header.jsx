@@ -44,27 +44,35 @@ export const Header = () => {
     target: exitHelper,
     offset: ["end 0.7", "end 0.5"],
   });
-  const opacity = useTransform(scrollYProgress, [0, 1], ["100%", "0%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], ["100%", "97%"]);
-
+  const { scrollYProgress: headerExit } = useScroll({
+    target: exitHelper,
+    offset: ["start end", "end 0.5"],
+  });
   const { scrollYProgress: elementProgress } = useScroll({
     target: elementRef,
-    offset: ["start end", "end 0.8"],
+    offset: ["start end", "start"],
   });
-  const y = useTransform(elementProgress, [0, 1], ["30%", "0%"]);
+
+  const opacity = useTransform(scrollYProgress, [0, 1], ["100%", "0%"]);
+  const scale = useTransform(scrollYProgress, [0, 1], ["100%", "97%"]);
+  const y = useTransform(elementProgress, [0, 1], ["20vh", "0vh"]);
+  const exitY = useTransform(headerExit, [0, 1], ["0vh", "-15vh"]);
 
   return (
     <>
       <motion.div
-        style={{ opacity, scale, y }}
+        style={{ opacity, y }}
         ref={elementRef}
         className={
-          "flex gap-3 w-fit md:sticky top-[0vh] z-1 mx-auto inset-x-0 flex-col justify-start items-center pt-[20vh] md:pt-[30vh] max-md:pb-[10vh] " +
-          (isMobile ? " min-h-[60vh]" : "min-h-[40vh]")
+          "flex gap-3  will-change-transform w-fit md:sticky top-[0vh] z-1 mx-auto inset-x-0 flex-col justify-start items-center pt-[20vh] lg:pt-[30vh] max-lg:pb-[10vh] " +
+          (isMobile ? " min-h-[100vh]" : "min-h-[100vh]")
         }
       >
         <AnimatePresence>
-          <motion.div className="flex flex-col gap-2 z-[100] lg:gap-3 2xl:gap-4 justify-center h-full items-center relative">
+          <motion.div
+            style={{ y: exitY }}
+            className="flex flex-col gap-2 z-[100] lg:gap-3 2xl:gap-4 justify-center h-full items-center relative"
+          >
             <Title />
             <Description />
             <PricingButton
@@ -75,7 +83,7 @@ export const Header = () => {
         </AnimatePresence>
       </motion.div>
 
-      <div ref={exitHelper} className="md:h-[40vh]" />
+      <div ref={exitHelper} className="md:h-[30vh] w-full " />
 
       <AnimatePresence>
         {openModal && <ModalCard closeCard={() => setOpenModal(false)} />}
