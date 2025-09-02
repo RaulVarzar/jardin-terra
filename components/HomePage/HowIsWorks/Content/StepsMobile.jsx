@@ -112,8 +112,10 @@ export const Description = ({ text }) => {
       text={text}
       duration={1}
       stagger={0.1}
-      initialDelay={1}
-      className={"max-w-4xl relative w-full opacity-80 text-xl font-light"}
+      initialDelay={0.6}
+      className={
+        "max-w-3xl relative w-full brightness-75 text-xl tracking-wide leading-snug text-neutral-content font-light"
+      }
     />
   );
 };

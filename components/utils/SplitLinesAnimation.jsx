@@ -15,7 +15,7 @@ const SplitLinesAnimation = ({
       <div ref={ref} className="invisible w-full">
         {text}
       </div>
-      <ul className=" text-neutral-content w-full absolute top-0 left-0">
+      <ul className="  w-full absolute top-0 left-0">
         {lines.map((line, i) => (
           <motion.li className="overflow-hidden" key={i}>
             <motion.p

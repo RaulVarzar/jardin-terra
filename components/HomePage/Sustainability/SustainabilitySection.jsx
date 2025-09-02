@@ -14,6 +14,7 @@ import { TextReveal } from "../../utils/animations";
 import useScreenWidth from "../../utils/useScreenWidth";
 import Image from "next/image";
 import AnimatedRows from "../../utils/AnimatedRows";
+import SplitLinesAnimation from "../../utils/SplitLinesAnimation";
 
 const TOPICS = [
   {
@@ -96,29 +97,29 @@ export const MainContent = () => {
   );
 };
 
+// TO DO !!!!!!!!!!!!
+// MODIFICA ANIMATIILE DE TEXT SA PORNEASCA DOAR CAND ELEMENTUL E IN VIEW
+
 const Header = () => {
+  const description =
+    "Serviciile noastre de proiectare și amenajare a spațiilor verzi implică și evaluarea impactului activității noastre asupra mediului. În procesul de evaluare, ținem cont de responsabilitatea ecologică a spațiului, de biodiversitatea acestuia și compoziția materialelor utilizate.";
+
   return (
     <div className="flex flex-col  px-3 sm:px-8 lg:flex-row gap-y-4 justify-start items-start text-center lg:text-left">
-      <AnimatedRows
+      <SplitLinesAnimation
         initialDelay={0.1}
         duration={1.3}
-        className="font-bold text-4xl  max-w-4xl w-fit leading-none tracking-wide uppercase  sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-7xl text-neutral-content"
-      >
-        Susținem amenajările sustenabile
-      </AnimatedRows>
+        text={"Susținem amenajările sustenabile"}
+        className="font-black text-4xl  max-w-4xl w-fit leading-none tracking- uppercase  sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-7xl text-neutral-content"
+      />
       <div className=" flex justify-end grow items-end md:pt-6 xl:pt-8 ">
-        <span className="max-w-3xl xl:max-w-4xl 3xl:max-w-5xl opacity-75">
-          <AnimatedRows
+        <span className="max-w-3xl xl:max-w-4xl  opacity-75">
+          <SplitLinesAnimation
             duration={1.2}
             initialDelay={0.3}
+            text={description}
             className="text-base   max-md:pl-4 md:text-lg 2xl:text-xl  text-pretty text-right leading-tight sm:leading-snug md:tracking-wide text-neutral-content  font-light  "
-          >
-            Serviciile noastre de proiectare și amenajare a spațiilor verzi
-            implică și evaluarea impactului activității noastre asupra mediului.
-            În procesul de evaluare, ținem cont de responsabilitatea ecologică a
-            spațiului, de biodiversitatea acestuia și compoziția materialelor
-            utilizate.
-          </AnimatedRows>
+          />
         </span>
       </div>
     </div>
@@ -164,16 +165,6 @@ export const Photos = () => {
       ref={cardsRef}
       className="relative w-full px-2 flex gap-y-12 gap-x-12 xl:gap-y-24 flex-col lg:flex-row items-center justify-center z-20 mx-auto pb-12 min-h-scree"
     >
-      {/* {TOPICS.map((item, i) => (
-            <Card
-              key={item.title}
-              item={item}
-              sectionInView={true}
-              id={i}
-              numberOfCards={TOPICS.length}
-              scrollYProgress={scrollYProgress}
-            />
-          ))} */}
       <motion.div
         style={{ y: exitLeft }}
         variants={clipVariants}

@@ -25,14 +25,9 @@ const Content = () => {
   const contentRef = useRef(null);
   const { step } = useScrollSteps({ steps: 4, ref: stepsRef });
 
-  // const { scrollYProgress: enterProgress } = useScroll({
-  //   target: stepsRef,
-  //   offset: ["start end", "start 0.5"],
-  // });
-
   const { scrollYProgress } = useScroll({
     target: stepsRef,
-    offset: ["start", "end"],
+    offset: ["start 0.12", "end"],
   });
 
   const { scrollYProgress: exitProgress } = useScroll({
@@ -45,17 +40,6 @@ const Content = () => {
 
   const visible = useInView(contentRef, { amount: 0.96 });
 
-  // const [activeStep, setActiveStep] = useState(0);
-
-  // useMotionValueEvent(scrollYProgress, "change", (latest) => {
-  //   const stepValue = 1 / STEPS.length;
-  //   const newStep = Math.floor(latest / stepValue);
-
-  //   if (activeStep != newStep) {
-  //     setActiveStep(newStep);
-  //   }
-  // });
-
   return (
     <section ref={stepsRef} className="relative flex flex-row h-[400vh]">
       <motion.div
@@ -63,11 +47,7 @@ const Content = () => {
         ref={contentRef}
         className="w-full sticky top-0 h-screen max-w-screen-3xl  mx-auto flex flex-col lg:flex-row   items-start justify-center"
       >
-        <Tree
-          activeStep={step}
-          // showSteps={visible || isMobile}
-          // progress={scrollYProgress}
-        ></Tree>
+        <Tree steps={STEPS} scrollProgress={scrollYProgress} />
 
         <Steps activeStep={step} steps={STEPS} />
       </motion.div>
