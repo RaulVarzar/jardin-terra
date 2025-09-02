@@ -111,7 +111,7 @@ const Header = () => {
           <AnimatedRows
             duration={1.2}
             initialDelay={0.3}
-            className="text-base   max-md:px-4 md:text-lg 2xl:text-xl  text-pretty text-right leading-tight sm:leading-snug md:tracking-wide text-neutral-content  font-light  "
+            className="text-base   max-md:pl-4 md:text-lg 2xl:text-xl  text-pretty text-right leading-tight sm:leading-snug md:tracking-wide text-neutral-content  font-light  "
           >
             Serviciile noastre de proiectare și amenajare a spațiilor verzi
             implică și evaluarea impactului activității noastre asupra mediului.
@@ -162,7 +162,7 @@ export const Photos = () => {
   return (
     <div
       ref={cardsRef}
-      className="relative w-full flex gap-y-12 gap-x-12 xl:gap-y-24 flex-col lg:flex-row items-center justify-center z-20 mx-auto pb-12 min-h-scree"
+      className="relative w-full px-2 flex gap-y-12 gap-x-12 xl:gap-y-24 flex-col lg:flex-row items-center justify-center z-20 mx-auto pb-12 min-h-scree"
     >
       {/* {TOPICS.map((item, i) => (
             <Card

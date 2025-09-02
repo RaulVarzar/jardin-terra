@@ -34,7 +34,7 @@ const Header = ({ scrollYProgress }) => {
       <div className="flex  flex-wrap text-pretty justify-center max-w-2xl font-light leading-none opacity-50 xl:justify-start text-neutral-content text-md sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 3xl:text-4xl">
         <WordReveal offset={135} delay={1} duration={1.2} staggerDelay={0.15}>
           Proiectăm spații verzi în armonie cu natura
-        </WordReveal>
+        </WordReveal> 
       </div>
 
       <Link href="/contact">

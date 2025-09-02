@@ -32,9 +32,10 @@ const PricingButton = ({ expanded, setExpanded }) => {
     >
       <motion.button
         layoutId="toggle"
+        transition={{ layout: { duration: 1.4 } }}
         onClick={setExpanded}
-        onHoverEnd={!isMobile && (() => setHovering(false))}
-        onHoverStart={!isMobile && (() => setHovering(true))}
+        // onHoverEnd={!isMobile && (() => setHovering(false))}
+        // onHoverStart={!isMobile && (() => setHovering(true))}
         className="text-base-content origin-left w-fit overflow-clip my-4 bg-secondary shadow-sm transition-colors duration-300  rounded-full cursor-pointer group "
       >
         <motion.div
@@ -54,7 +55,7 @@ const PricingButton = ({ expanded, setExpanded }) => {
           layout
           className="flex flex-row items-center relative text-neutral-content  px-6 py-3  md:px-6 lg:py-6 lg:px-8 "
         >
-          <motion.span
+          {/* <motion.span
             animate={
               hovering
                 ? { width: "110%", height: "auto", x: -45 }
@@ -69,7 +70,7 @@ const PricingButton = ({ expanded, setExpanded }) => {
                 (isMobile ? " bg-secondary" : "bg-neutral-content")
               }
             ></span>
-          </motion.span>
+          </motion.span> */}
 
           <motion.div
             animate={hovering ? { x: -30 } : { x: 0 }}
@@ -77,7 +78,7 @@ const PricingButton = ({ expanded, setExpanded }) => {
             className="flex flex-row items-center ml-10"
           >
             <motion.h3
-              layout
+              layoutId={"title"}
               className={
                 "text-sm md:text-base 2xl:text-md font-normal tracking-wider z-10 transition-colors duration-400 delay-100 " +
                 (!isMobile && hovering

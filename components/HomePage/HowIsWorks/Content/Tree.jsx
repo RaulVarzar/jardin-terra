@@ -22,26 +22,30 @@ const variants = {
   },
 };
 
-const Tree = ({ activeStep, showSteps, children }) => {
+const Tree = ({ activeStep, showSteps }) => {
   return (
-    <motion.div className="sticky top-0  md:h-screen max-w-3xl flex flex-col gap-12 max-md:w-full  px-2 max-md:pt-6 md:px-12 md:w-1/2 xl:px-16  items-center justify-center ">
-      <AnimatePresence>
-        <motion.div
-          variants={variants}
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-          className="w-full max-w-3xl relative h-40 md:h-80 lg:h-96 xl:h-[80vh] 2xl:h-[75vh] "
-        >
-          <SVG activeStep={activeStep} />
-        </motion.div>
-      </AnimatePresence>
-      {children}
+    <motion.div className=" md:h-screen max-w-3xl z-10 flex flex-col gap-12 max-md:w-full  px-2 max-md:pt-6 md:px-12 md:w-1/2 xl:px-16  items-center justify-center ">
+      <motion.div className="w-full  max-w-3xl max-h-[800px] relative h-40 md:h-80 lg:h-96 xl:h-[80vh] 2xl:h-[75vh] ">
+        {/* <SVG activeStep={activeStep} /> */}
+        <ImageSlideshow />
+      </motion.div>
     </motion.div>
   );
 };
 
 export default Tree;
+
+export const ImageSlideshow = () => {
+  return (
+    <div className="bg-red-400 w-full h-full overflow-hidden rounded-2xl">
+      <img
+        src="images/how-it-works/step1.jpg"
+        className="w-full h-full object-cover"
+        alt="current-image"
+      />
+    </div>
+  );
+};
 
 export const SVG = ({ activeStep }) => {
   const variants = {

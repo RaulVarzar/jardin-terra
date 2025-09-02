@@ -18,6 +18,11 @@ h3,
   font-family: "Kanit", sans-serif;
 }
 
+.line {
+  display: block; /* ensures each line wraps independently */
+  overflow: hidden;
+}
+
 html {
   scrollbar-width: none;
 }

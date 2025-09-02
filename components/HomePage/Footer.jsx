@@ -42,7 +42,7 @@ const Footer = () => {
               <i className="fa-solid fa-location-dot" />
               <i className="fa-solid fa-phone" />
             </div>
-            <span className="flex flex-col items-start h-full gap-3 text-xl tracking-wide justify-evenly">
+            <span className="flex flex-col items-center md:items-start h-full gap-3 text-xl tracking-wide justify-evenly">
               <p> office@jardinterra.ro</p>
               <p>Cluj-Napoca, RO</p>
               <p>0737 837 383</p>

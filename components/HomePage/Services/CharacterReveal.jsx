@@ -6,7 +6,7 @@ const CharacterReveal = ({ progress }) => {
   const splitText = TEXT.split(" ").concat(["  ", "  "]);
 
   return (
-    <p className="flex gap-2 flex-wrap justify-center text-neutral-content leading-4 sm:leading-none tracking-wide text-lg font-light  sm:text-xl lg:text-3xl xl:text-4xl 2xl:text-5xl md:tracking-wider opacity-80 ">
+    <p className="flex gap-x-2 gap-y-1 flex-wrap justify-center text-neutral-content leading-4 sm:leading-none tracking-tight text-lg font-light  sm:text-xl lg:text-3xl xl:text-4xl 2xl:text-5xl md:tracking-normal opacity-80 ">
       {splitText.map((word, i) => {
         const start = i / splitText.length;
         const end = start + 3 / splitText.length;
@@ -35,7 +35,7 @@ export const Word = ({ children, range, progress, colored }) => {
       className={
         "" +
         (colored &&
-          "text-secondary-content font-bold brightness-150 saturate-150")
+          "text-secondary-content  font-bold brightness-150 saturate-150")
       }
       style={{ opacity }}
     >

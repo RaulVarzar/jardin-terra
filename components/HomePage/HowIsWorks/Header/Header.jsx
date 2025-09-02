@@ -70,7 +70,7 @@ export const Header = () => {
       >
         <AnimatePresence>
           <motion.div
-            style={{ y: exitY }}
+            // style={{ y: exitY }}
             className="flex flex-col gap-2 z-[100] lg:gap-3 2xl:gap-4 justify-center h-full items-center relative"
           >
             <Title />

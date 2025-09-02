@@ -12,7 +12,7 @@ import ScrollBar from "/components/ScrollBar.jsx";
 const Home = () => {
   return (
     <SmoothScroll>
-      <ScrollBar />
+      {/* <ScrollBar /> */}
       <Navbar />
       <div className="h-full rounded-b-2xl md:rounded-b-3xl overflow-clip bg-accent">
         <HeroSection />

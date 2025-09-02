@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import {
+  AnimatePresence,
   motion,
   useInView,
   useMotionValueEvent,
@@ -15,11 +16,14 @@ import Tree from "./Tree";
 import Steps from "./StepsMobile";
 import RoundedTop from "./RoundedTop";
 import ProgressBar from "./ProgressBar";
+import { useScrollSteps } from "../../../hooks/useScrollSteps";
 
 const Content = () => {
   const isMobile = useScreenWidth();
 
   const stepsRef = useRef(null);
+  const contentRef = useRef(null);
+  const { step } = useScrollSteps({ steps: 4, ref: stepsRef });
 
   // const { scrollYProgress: enterProgress } = useScroll({
   //   target: stepsRef,
@@ -28,53 +32,54 @@ const Content = () => {
 
   const { scrollYProgress } = useScroll({
     target: stepsRef,
-    offset: ["start 0.25", "0.96 end "],
+    offset: ["start", "end"],
   });
 
   const { scrollYProgress: exitProgress } = useScroll({
     target: stepsRef,
-    offset: ["end 0.8", "end 0.5"],
+    offset: ["end 0.95", "end 0.5"],
   });
 
   const opacity = useTransform(exitProgress, [0, 1], [1, 0]);
+  const scale = useTransform(exitProgress, [0, 1], [1, 0.92]);
 
-  const visible = useInView(stepsRef, { margin: "1000% 0% -70% 0%" });
+  const visible = useInView(contentRef, { amount: 0.96 });
 
-  const [activeStep, setActiveStep] = useState(0);
+  // const [activeStep, setActiveStep] = useState(0);
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const stepValue = 1 / STEPS.length;
-    const newStep = Math.floor(latest / stepValue);
+  // useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  //   const stepValue = 1 / STEPS.length;
+  //   const newStep = Math.floor(latest / stepValue);
 
-    if (activeStep != newStep) {
-      setActiveStep(newStep);
-    }
-  });
+  //   if (activeStep != newStep) {
+  //     setActiveStep(newStep);
+  //   }
+  // });
 
   return (
-    <>
+    <section ref={stepsRef} className="relative flex flex-row h-[400vh]">
       <motion.div
-        style={{ opacity }}
-        className="w-full origin-bottom max-w-screen-3xl  mx-auto flex flex-col lg:flex-row  items-start justify-center"
+        style={{ opacity, scale }}
+        ref={contentRef}
+        className="w-full sticky top-0 h-screen max-w-screen-3xl  mx-auto flex flex-col lg:flex-row   items-start justify-center"
       >
         <Tree
-          activeStep={activeStep}
-          showSteps={visible || isMobile}
-          progress={scrollYProgress}
+          activeStep={step}
+          // showSteps={visible || isMobile}
+          // progress={scrollYProgress}
         ></Tree>
 
-        <div ref={stepsRef} className="lg:mt-[15vh] pt-[10vh] ">
-          <Steps progress={scrollYProgress} steps={STEPS} />
-        </div>
+        <Steps activeStep={step} steps={STEPS} />
       </motion.div>
-      {visible && (
-        <ProgressBar
-          progress={scrollYProgress}
-          numberOfSteps={STEPS.length}
-          activeStep={Math.floor(activeStep)}
-        />
-      )}
-    </>
+      <AnimatePresence>
+        {visible && (
+          <ProgressBar
+            progress={scrollYProgress}
+            numberOfSteps={STEPS.length}
+          />
+        )}{" "}
+      </AnimatePresence>
+    </section>
   );
 };
 

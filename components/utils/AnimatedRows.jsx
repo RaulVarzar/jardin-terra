@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 
 //ANIMATE EACH ROW INDIVIDUALLY (RESPONSIVE)
 export default function AnimatedRows({
@@ -11,6 +11,7 @@ export default function AnimatedRows({
 }) {
   const containerRef = useRef(null);
   const [lines, setLines] = useState([]);
+
   useEffect(() => {
     const words = Array.from(containerRef.current.querySelectorAll(".word"));
     const grouped = [];
@@ -32,17 +33,20 @@ export default function AnimatedRows({
   const isInView = useInView(ref, { margin: "-10%" });
 
   return (
-    <div ref={ref} className="relative flex justify-center items-center w-full">
+    <motion.div
+      ref={ref}
+      className="relative flex justify-center items-center w-full"
+    >
       {/* Measurement Container (invisible) */}
       <div
         ref={containerRef}
-        className={`w-full  invisible ${className}`}
+        className={`w-full text-balance invisible ${className}`}
         style={{ wordBreak: "break-word", overflowWrap: "break-word" }}
       >
         {children.split(" ").map((word, i) => (
           <span
             key={i}
-            className="word inline-block mr-2"
+            className="word inline-block mr-1"
             style={{
               whiteSpace: "nowrap", // ensures word stays together
             }}
@@ -52,13 +56,17 @@ export default function AnimatedRows({
         ))}
       </div>
 
-      {/* Animated Display */}
-      <div className="absolute top-0 left-0 w-full">
+      <motion.div className="absolute top-0 left-0 w-full">
         {lines.map((line, i) => (
           <motion.div key={i} className="overflow-hidden">
             <motion.p
               initial={{ opacity: 0, y: "120%" }}
               animate={isInView && { opacity: 1, y: 0 }}
+              exit={{
+                opacity: 0.6,
+                y: "120%",
+                transition: { delay: 0, duration: 1.5 },
+              }}
               transition={{
                 delay: initialDelay + i * stagger,
                 duration,
@@ -70,7 +78,7 @@ export default function AnimatedRows({
             </motion.p>
           </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

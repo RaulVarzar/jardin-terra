@@ -29,7 +29,7 @@ export const Modal = ({ closeCard }) => {
 
   return (
     <motion.div
-      className="relative z-[1000]  max-h-[95vh] flex h-fit flex-col justify-center items-center max-w-5xl gap-2 md:gap-8 px-8 py-10 md:py-16  md:px-6 bg-secondary   rounded-3xl xl:rounded-5xl"
+      className="relative z-[1000] max-h-[95vh] flex h-fit flex-col justify-center items-center max-w-5xl gap-2 md:gap-8 px-8 py-10 md:py-16  md:px-6 bg-secondary   rounded-3xl xl:rounded-5xl"
       layoutId="toggle"
     >
       <div className="flex flex-col items-center md:flex-row gap-x-6 gap-y-2 lg:gap-8 w-full md:w-9/12">

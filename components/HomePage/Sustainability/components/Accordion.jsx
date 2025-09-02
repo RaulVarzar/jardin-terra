@@ -160,11 +160,11 @@ export const Title = ({ isActive, title }) => {
   return (
     <div
       className={
-        "flex flex-row gap-4 w-full items-center pl-3 pr-8 py-5 md:py-5 xl:py-6 z-10 cursor-pointer bg-accent-conten transition-opacity duration-300 " +
+        "flex flex-row gap-4 w-full items-center pl-3 pr-4 md:pr-8 py-5 md:py-5 xl:py-6 z-10 cursor-pointer bg-accent-conten transition-opacity duration-300 " +
         (isActive ? " opacity-100" : " opacity-80")
       }
     >
-      <h2 className="text-xl text-balance font-medium tracking-wide md:text-2xl xl:text-3xl grow uppercase leading-tight">
+      <h2 className="text-lg text-balance font-medium sm:tracking-wide md:text-2xl xl:text-3xl grow uppercase leading-tight">
         {title}
       </h2>
       <motion.span
@@ -201,7 +201,7 @@ export const Content = ({ text }) => {
           ease: [0.7, 0, 0.3, 1],
         },
       }}
-      className="pt-2 pb-8 md:pb-12 xl:pb-16 px-8 md:px-12 opacity-80 leading-snug text-md md:text-lg 2xl:text-xl"
+      className="pt-2 pb-8 md:pb-12 xl:pb-16 px-4 text-balance sm:px-8 md:px-12 opacity-80 leading-snug text-md md:text-lg 2xl:text-xl"
     >
       <AnimatedRows duration={0.9} stagger={0.1}>
         {text}

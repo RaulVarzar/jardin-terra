@@ -1,4 +1,5 @@
 import {
+  AnimatePresence,
   motion,
   useInView,
   useMotionTemplate,
@@ -7,50 +8,29 @@ import {
 } from "framer-motion";
 import { useRef } from "react";
 import AnimatedRows from "../../../utils/AnimatedRows";
+import { useSplitLines } from "../../../hooks/useSplitLines";
+import SplitLinesAnimation from "../../../utils/SplitLinesAnimation";
 
-const Steps = ({ steps }) => {
+const Steps = ({ steps, activeStep }) => {
   return (
-    <motion.div className="flex flex-col max-w-5xl grow gap-8 px-3 md:px-10 2xl:px-12  items-start pb-[12vh]">
+    <div className="h-full relative w-7/12 grid items-center  gap-4 my-auto max-h-[960px]">
       {steps.map((step, i) => (
         <Step
-          // progress={progress}
+          activeStep={activeStep}
           step={step}
           steps={steps}
           key={i}
           id={i}
         />
       ))}
-    </motion.div>
+    </div>
   );
 };
 
 export default Steps;
 
-const Step = ({ step, id }) => {
+const Step = ({ step, id, activeStep }) => {
   const { title, content } = step;
-  // const divider = 1 / steps.length;
-  // const opacity = useTransform(
-  //   progress,
-  //   [
-  //     id * divider - 0.01,
-  //     id * divider + 0.1,
-  //     id * divider + 0.2,
-  //     (id + 1) * divider,
-  //   ],
-  //   [id > 0 ? 0 : 1, 1, 1, id < steps.length - 1 ? 0 : 1]
-  // );
-  // const blur = useTransform(
-  //   progress,
-  //   [(id + 1) * divider - 0.05, (id + 1) * divider],
-  //   [0, id < steps.length - 1 ? 5 : 0]
-  // );
-  // const y = useTransform(
-  //   progress,
-  //   [id * divider - 0.01, (id + 1) * divider],
-  //   ["0vh", "-3vh"]
-  // );
-  const ref = useRef(null);
-  const visible = useInView(ref, { margin: "1000% 0% -7% 0%" });
   const elementRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -66,113 +46,74 @@ const Step = ({ step, id }) => {
   return (
     <motion.div
       ref={elementRef}
-      className="flex flex-col  will-change-transform  origin-top sm:origin-top-left items-start min-h-[20vh] lg:min-h-[60vh] justify-start place-self-start  h-fit pt-24"
-      style={{
-        opacity,
-        filter,
-        scale,
-      }}
+      // transition={{ duration: 0.8, ease: [0.7, 0, 0.3, 1] }}
+      // animate={
+      //   activeStep === id + 1
+      //     ? {
+      //         opacity: 1,
+      //         filter: "blur(0px)",
+      //         transition: { duration: 0.65, delay: 0.8 },
+      //       }
+      //     : { opacity: 0, filter: "blur(5px)" }
+      // }
+      className={`flex flex-col  col-start-1 row-start-1 z-0 w-full  ${
+        activeStep >= id + 1 ? "" : ""
+      }  `}
     >
-      <div
-        ref={ref}
-        className="flex flex-col  sm:flex-row gap-x-4 text-left px-4 "
-      >
-        <Index id={id} visible={visible} />
-        <div className="flex-col flex gap-2 md:gap-3 lg:gap-6 xl:gap-10">
-          <Title text={title} visible={visible} />
-          <Description text={content} visible={visible} />
-        </div>
-      </div>
+      <AnimatePresence>
+        {activeStep === id + 1 && (
+          <motion.div className="flex-col flex gap-2  w-full z-0 md:gap-3 lg:gap-4 xl:gap-6">
+            <div className="flex flex-row">
+              {/* <Index id={id} /> */}
+              <Title text={title} />
+            </div>
+            <Description text={content} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
 
-export const Index = ({ id, visible }) => {
+export const Index = ({ id }) => {
   return (
     <motion.span
       initial={{ opacity: 0 }}
-      animate={visible && { opacity: 1 }}
+      animate={{ opacity: 1 }}
       transition={{
         duration: 1,
         delay: 0.2,
         ease: [0.7, 0, 0.3, 1],
       }}
-      className=" text-6xl font-light leading-none mt-1 opacity-60"
+      className=" text-7xl font-normal leading-none mt-1 opacity-60"
     >
       0{id + 1}
     </motion.span>
   );
 };
 
-export const Title = ({ text, visible }) => {
-  const titleVariants = {
-    visible: (custom) => ({
-      y: 0,
-      transition: {
-        duration: 1.2,
-        delay: custom * 0.08,
-        ease: [0.7, 0, 0.3, 1],
-      },
-    }),
-    hidden: {
-      y: "110%",
-    },
-  };
-
+export const Title = ({ text }) => {
   return (
-    <motion.div className="text-4xl flex flex-col gap-x-2 leading-none  md:text-5xl xl:text-5xl 2xl:text-6xl font-bold tracking-wide uppercase text-neutral-content">
-      {text.split("\n").map((line, index) => (
-        <div key={index} className="overflow-hidden ">
-          <motion.p
-            variants={titleVariants}
-            initial="hidden"
-            animate={visible && "visible"}
-            custom={index}
-            key={index}
-          >
-            {line.split("").map((char, i) => (
-              <motion.span key={i}>{char}</motion.span>
-            ))}
-          </motion.p>
-        </div>
-      ))}
-    </motion.div>
+    <SplitLinesAnimation
+      text={text}
+      duration={1.2}
+      stagger={0.1}
+      initialDelay={0.3}
+      className={
+        "text-2xl min-w-full leading-none w-full md:text-3xl lg:text-3xl xl:text-5xl 2xl:text-7xl uppercase font-black text-neutral-content"
+      }
+    />
   );
 };
 
-export const Description = ({ text, visible }) => {
-  const contentVariants = {
-    hidden: {
-      opacity: 0,
-      y: "5%",
-      filter: "blur(5px)",
-      transition: {
-        duration: 0.4,
-        ease: [0.7, 0, 0.3, 1],
-      },
-    },
-    visible: {
-      opacity: 0.7,
-      y: 0,
-      filter: "blur(0px)",
-      transition: {
-        duration: 1,
-        delay: 0.5,
-        ease: [0.7, 0, 0.3, 1],
-      },
-    },
-  };
-
+export const Description = ({ text }) => {
   return (
-    <div className="flex max-w-4xl text-balance w-full">
-      <AnimatedRows
-        initialDelay={0.5}
-        duration={1}
-        stagger={0.08}
-        className="text-base sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl leading-tight text-balance tracking-wide font-extralight text-neutral-content "
-      >
-        {text}
-      </AnimatedRows>
-    </div>
+    <SplitLinesAnimation
+      text={text}
+      duration={1}
+      stagger={0.1}
+      initialDelay={1}
+      className={"max-w-4xl relative w-full opacity-80 text-xl font-light"}
+    />
   );
 };

@@ -1,53 +1,57 @@
-"use client";
-import { motion } from "framer-motion";
-import { useRef, useState } from "react";
-import { isMobile } from "react-device-detect";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useRef } from "react";
+import { isMobile } from "react-device-detect"; // or however you detect mobile
 
-const MagneticButton = ({ children, amount, magnify, className, ...props }) => {
+const MagneticButton = ({
+  children,
+  amount = [2, 2],
+  magnify = 1.05,
+  className,
+  ...props
+}) => {
   const ref = useRef(null);
 
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  // raw values
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
 
-  // disable animations on mobile
+  // spring versions for smooth follow
+  const x = useSpring(rawX, { stiffness: 120, damping: 12, mass: 0.2 });
+  const y = useSpring(rawY, { stiffness: 120, damping: 12, mass: 0.2 });
+
   if (isMobile) {
     return <motion.div>{children}</motion.div>;
   }
-  //////
 
-  const offsets = amount || [2, 2];
-  const xOffset = offsets[0];
-  const yOffset = offsets[1];
+  const [xOffset, yOffset] = amount;
 
   const handleMouse = (e) => {
     const { clientX, clientY } = e;
-
     const { height, width, left, top } = ref.current.getBoundingClientRect();
 
     const moveX = clientX - (left + width / 2);
-
     const moveY = clientY - (top + height / 2);
 
-    setPosition({ x: moveX / xOffset, y: moveY / yOffset });
+    rawX.set(moveX / xOffset);
+    rawY.set(moveY / yOffset);
   };
 
   const handleReset = () => {
-    setPosition({ x: 0, y: 0 });
+    rawX.set(0);
+    rawY.set(0);
   };
-
-  const { x, y } = position;
 
   return (
     <motion.div
-      style={{ position: "relative" }}
       ref={ref}
+      style={{ position: "relative", x, y }}
       onMouseMove={handleMouse}
       onMouseLeave={handleReset}
-      animate={{ x, y }}
-      whileHover={{ scale: magnify || 1 }}
+      whileHover={{ scale: magnify }}
       transition={{
         type: "spring",
-        stiffness: 75,
-        damping: 5,
+        stiffness: 105,
+        damping: 20,
         mass: 0.15,
       }}
       className={`will-change-transform ${className}`}
