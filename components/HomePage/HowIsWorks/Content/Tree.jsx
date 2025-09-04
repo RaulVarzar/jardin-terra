@@ -26,7 +26,7 @@ const variants = {
 const Tree = ({ steps, scrollProgress }) => {
   return (
     <motion.div className=" md:h-screen max-w-3xl z-10 flex flex-col gap-12 max-md:w-full  px-2 max-md:pt-6 md:px-12 md:w-1/2 xl:px-16  items-center justify-center ">
-      <motion.div className="w-full  max-w-3xl max-h-[800px] relative h-40 md:h-80 lg:h-96 xl:h-[70vh] 2xl:h-[65vh] ">
+      <motion.div className="w-full  max-w-3xl max-h-[800px] relative aspect-square h-full xl:h-[70vh] 2xl:h-[65vh] ">
         <ImageSlideshow steps={steps} scrollProgress={scrollProgress} />
       </motion.div>
     </motion.div>
@@ -35,7 +35,7 @@ const Tree = ({ steps, scrollProgress }) => {
 
 export default Tree;
 
-export const ImageSlideshow = ({ steps, scrollProgress }) => {
+const ImageSlideshow = ({ steps, scrollProgress }) => {
   return (
     <div className="w-full h-full grid overflow-hidden rounded-3xl xl:rounded-[48px]">
       {steps.map((step, i) => {
@@ -52,8 +52,9 @@ export const ImageSlideshow = ({ steps, scrollProgress }) => {
 
         return (
           <motion.div
+            key={step.title}
             style={{ clipPath, scale: 1.01, zIndex: steps.length - i }}
-            className="w-full h-full border-4 border-indigo-600 relative col-start-1 row-start-1 "
+            className="w-full h-full digo-600 relative col-start-1 row-start-1 "
           >
             <motion.img
               key={i}

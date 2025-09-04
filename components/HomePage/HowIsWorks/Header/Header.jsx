@@ -1,17 +1,12 @@
 "use client";
 
-import {
-  AnimatePresence,
-  motion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
-import PricingButton from "./PricingButton";
-import ModalCard from "./ModalCard";
-import { useRef, useState } from "react";
-import { TextReveal, WordReveal } from "../../../utils/animations.jsx";
+import { motion, useScroll, useTransform } from "framer-motion";
+import PricingButton from "./PricingButton.jsx";
+
+import { useRef } from "react";
+import { TextReveal } from "../../../utils/animations.jsx";
 import useScreenWidth from "../../../utils/useScreenWidth";
-import AnimatedRows from "../../../utils/AnimatedRows.jsx";
+import SplitLinesAnimation from "../../../utils/SplitLinesAnimation.jsx";
 
 const titleVariants = {
   hidden: {
@@ -37,7 +32,6 @@ const titleVariants = {
 export const Header = () => {
   const exitHelper = useRef(null);
   const elementRef = useRef(null);
-  const [openModal, setOpenModal] = useState(null);
   const isMobile = useScreenWidth();
 
   const { scrollYProgress } = useScroll({
@@ -61,33 +55,20 @@ export const Header = () => {
   return (
     <>
       <motion.div
-        style={{ opacity, y }}
+        // style={{ opacity, y }}
         ref={elementRef}
         className={
-          "flex gap-3  will-change-transform w-fit md:sticky top-[0vh] z-1 mx-auto inset-x-0 flex-col justify-start items-center pt-[20vh] lg:pt-[30vh] max-lg:pb-[10vh] " +
-          (isMobile ? " min-h-[100vh]" : "min-h-[100vh]")
+          "flex gap-3  will-change-transform w-fit md:stick top-[0vh] z-1 mx-auto inset-x-0 flex-col justify-start items-center pt-[20vh] lg:pt-[30vh]  " +
+          (isMobile ? " " : " ")
         }
       >
-        <AnimatePresence>
-          <motion.div
-            // style={{ y: exitY }}
-            className="flex flex-col gap-2 z-[100] lg:gap-3 2xl:gap-4 justify-center h-full items-center relative"
-          >
-            <Title />
-            <Description />
-            <PricingButton
-              opened={openModal}
-              setExpanded={() => setOpenModal(true)}
-            />
-          </motion.div>
-        </AnimatePresence>
+        <motion.div className="flex flex-col gap-2 z-[100] lg:gap-3 2xl:gap-4 justify-center h-full items-center ">
+          <Title />
+          <Description />
+        </motion.div>
       </motion.div>
-
-      <div ref={exitHelper} className="md:h-[30vh] w-full " />
-
-      <AnimatePresence>
-        {openModal && <ModalCard closeCard={() => setOpenModal(false)} />}
-      </AnimatePresence>
+      <PricingButton />
+      <div ref={exitHelper} className="md:h-[1vh] w-full " />
     </>
   );
 };
@@ -107,19 +88,18 @@ export default Header;
 const Description = () => {
   return (
     <motion.span className="  w-full flex flex-row flex-wrap justify-center opacity-70 px-2 max-w-3xl 2xl:max-w-4xl">
-      {/* <WordReveal duration={2} delay={0.7} staggerDelay={0.03}> */}
-      <AnimatedRows
+      <SplitLinesAnimation
         initialDelay={0.1}
         duration={1}
-        className="text-center md:text-lg lg:text-xl xl:text-2xl  2xl:text-3xl text-neutral-content font-light leading-snug tracking-wider text-base"
-      >
-        Înainte de a trece la lopată și săpăligă, analizăm dimensiunile și forma
+        once={true}
+        margin={15}
+        text="Înainte de a trece la lopată și săpăligă, analizăm dimensiunile și forma
         spațiului tău verde. Apoi, ascultăm cu atenție dorințele tale și începem
         proiectarea grădinii. Suntem consultanții peisagiști pe care te poți
         baza pentru a avea propriul tău colț de natură, în armonie cu nevoile
-        tale personale sau profesionale.
-      </AnimatedRows>
-      {/* </WordReveal> */}
+        tale personale sau profesionale."
+        className="text-center md:text-lg lg:text-xl xl:text-2xl  2xl:text-3xl text-neutral-content font-light leading-snug tracking-wider text-base"
+      />
     </motion.span>
   );
 };

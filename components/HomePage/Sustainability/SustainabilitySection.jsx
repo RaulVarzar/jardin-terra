@@ -59,8 +59,8 @@ const Sustainability = () => {
   const sectionScale = useTransform(sectionEnter, [0, 1], ["80%", "100%"]);
 
   return (
-    <section ref={sectionRef} className={!isMobile && "-mt-[30vh] "}>
-      <motion.div style={!isMobile && { y: sectionY }} className="">
+    <section ref={sectionRef} className={!isMobile ? "-mt-[30vh] " : ""}>
+      <motion.div style={!isMobile && { y: sectionY }}>
         {/* <motion.h1
           style={{ y: titleY }}
           className="mx-auto w-full borde text-secondary-content text-[8vw] opacity-20 saturate-[70%] tracking-wide font-bold text-center  leading-none"
@@ -110,15 +110,15 @@ const Header = () => {
         initialDelay={0.1}
         duration={1.3}
         text={"Susținem amenajările sustenabile"}
-        className="font-black text-4xl  max-w-4xl w-fit leading-none tracking- uppercase  sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-7xl text-neutral-content"
+        className="font-black text-5xl  max-w-4xl w-fit leading-none tracking- uppercase  sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-7xl text-neutral-content"
       />
-      <div className=" flex justify-end grow items-end md:pt-6 xl:pt-8 ">
+      <div className=" flex justify-end grow items-end pt-4 md:pt-6 xl:pt-8 ">
         <span className="max-w-3xl xl:max-w-4xl  opacity-75">
           <SplitLinesAnimation
             duration={1.2}
             initialDelay={0.3}
             text={description}
-            className="text-base   max-md:pl-4 md:text-lg 2xl:text-xl  text-pretty text-right leading-tight sm:leading-snug md:tracking-wide text-neutral-content  font-light  "
+            className="text-sm   max-md:pl-4 md:text-lg 2xl:text-xl  text-pretty text-center md:text-right leading-tight sm:leading-snug md:tracking-wide text-neutral-content  font-light  "
           />
         </span>
       </div>
@@ -128,9 +128,10 @@ const Header = () => {
 
 export const Photos = () => {
   const cardsRef = useRef(null);
+
   const { scrollYProgress } = useScroll({
     target: cardsRef,
-    offset: ["start end", "end"],
+    offset: ["start end", "end 0"],
   });
 
   const { scrollYProgress: exitProgress } = useScroll({
@@ -138,10 +139,7 @@ export const Photos = () => {
     offset: ["0.25 start", "end start"],
   });
 
-  const top = useTransform(scrollYProgress, [0, 1], [15, 0]);
-  const leftright = useTransform(scrollYProgress, [0, 1], [10, 0]);
-  const clipPathL = useMotionTemplate`inset(${top}% 0% 0% 0% round 2vw)`;
-  const clipPathR = useMotionTemplate`inset(${top}% 0% 0% 0% round 2vw)`;
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "17%"]);
 
   const exitLeft = useTransform(exitProgress, [0, 1], ["0%", "-15%"]);
   const exitRight = useTransform(exitProgress, [0, 1], ["-15%", "-25%"]);
@@ -166,26 +164,28 @@ export const Photos = () => {
       className="relative w-full px-2 flex gap-y-12 gap-x-12 xl:gap-y-24 flex-col lg:flex-row items-center justify-center z-20 mx-auto pb-12 min-h-scree"
     >
       <motion.div
-        style={{ y: exitLeft }}
+        // style={{ y: exitLeft }}
         variants={clipVariants}
         initial="hidden"
         animate={isInView && "show"}
         className="lg:w-1/2 h-full  max-w-2xl overflow-hidden aspect-video xl:aspect-square"
       >
-        <img
+        <motion.img
+          style={{ y: imageY, scale: 1.22 }}
           src="/images/sustenabilitate/main.jpg"
           alt="sustenabilitate-img-1"
           className="w-full h-full object-cover "
         />
       </motion.div>
       <motion.div
-        style={{ y: exitRight }}
+        // style={{ y: exitRight }}
         variants={clipVariants}
         initial="hidden"
         animate={isInView && "show"}
         className="lg:w-1/2 h-full max-w-2xl overflow-hidden aspect-video xl:aspect-square -translate-y-[15%]"
       >
-        <img
+        <motion.img
+          style={{ y: imageY, scale: 1.22 }}
           src="/images/sustenabilitate/main2.jpg"
           alt="sustenabilitate-img-2"
           className="w-full h-full object-cover"
