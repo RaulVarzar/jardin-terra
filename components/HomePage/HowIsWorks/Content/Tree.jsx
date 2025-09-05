@@ -1,32 +1,9 @@
-import { AnimatePresence, motion, steps, useTransform } from "framer-motion";
-import ProgressBar from "./ProgressBar";
-import { div } from "framer-motion/client";
-
-const variants = {
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 1.2,
-      delay: 0,
-      ease: [0.7, 0, 0.3, 1],
-    },
-  },
-  hidden: {
-    opacity: 0,
-    scale: 0.95,
-    transition: {
-      duration: 0.5,
-      delay: 0,
-      ease: [0.7, 0, 0.3, 1],
-    },
-  },
-};
+import { motion, useTransform } from "framer-motion";
 
 const Tree = ({ steps, scrollProgress }) => {
   return (
-    <motion.div className=" md:h-screen max-w-3xl z-10 flex flex-col gap-12 max-md:w-full  px-2 max-md:pt-6 md:px-12 md:w-1/2 xl:px-16  items-center justify-center ">
-      <motion.div className="w-full  max-w-3xl max-h-[clamp(0px,80vh,800px)] relative aspect-square h-full xl:h-[70vh] 2xl:h-[65vh] ">
+    <motion.div className="md:h-screen max-w-3xl z-10 flex flex-col gap-12 max-md:w-full px-2 max-md:pt-6 md:px-12 md:w-1/2 xl:px-16 items-center justify-center">
+      <motion.div className="w-full max-w-3xl max-h-[clamp(0px,80vh,800px)] relative aspect-square h-full xl:h-[70vh] 2xl:h-[65vh]">
         <ImageSlideshow steps={steps} scrollProgress={scrollProgress} />
       </motion.div>
     </motion.div>
@@ -36,35 +13,38 @@ const Tree = ({ steps, scrollProgress }) => {
 export default Tree;
 
 const ImageSlideshow = ({ steps, scrollProgress }) => {
+  const clipPaths = steps.map((_, i) => {
+    const start = i / steps.length - 0.01;
+    const end = (i + 1) / steps.length + 0.05;
+
+    return useTransform(
+      scrollProgress,
+      [start, end],
+      i === steps.length - 1
+        ? ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)"]
+        : ["inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
+    );
+  });
+
   return (
     <div className="w-full h-full grid overflow-hidden rounded-3xl xl:rounded-[48px]">
-      {steps.map((step, i) => {
-        const start = i / steps.length - 0.01;
-        const end = (i + 1) / steps.length + 0.05;
-
-        const clipPath = useTransform(
-          scrollProgress,
-          [start, end],
-          i == steps.length - 1
-            ? ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)"]
-            : ["inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
-        );
-
-        return (
-          <motion.div
-            key={step.title}
-            style={{ clipPath, scale: 1.01, zIndex: steps.length - i }}
-            className="w-full h-full digo-600 relative col-start-1 row-start-1 "
-          >
-            <motion.img
-              key={i}
-              src={`images/how-it-works/${step.image}`}
-              className={`w-full h-full object-cover  `}
-              alt={step.title}
-            />
-          </motion.div>
-        );
-      })}
+      {steps.map((step, i) => (
+        <motion.div
+          key={step.title}
+          style={{
+            clipPath: clipPaths[i],
+            scale: 1.01,
+            zIndex: steps.length - i,
+          }}
+          className="w-full h-full relative col-start-1 row-start-1"
+        >
+          <motion.img
+            src={`images/how-it-works/${step.image}`}
+            className="w-full h-full object-cover"
+            alt={step.title}
+          />
+        </motion.div>
+      ))}
     </div>
   );
 };
