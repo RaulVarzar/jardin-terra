@@ -26,7 +26,7 @@ const variants = {
 const Tree = ({ steps, scrollProgress }) => {
   return (
     <motion.div className=" md:h-screen max-w-3xl z-10 flex flex-col gap-12 max-md:w-full  px-2 max-md:pt-6 md:px-12 md:w-1/2 xl:px-16  items-center justify-center ">
-      <motion.div className="w-full  max-w-3xl max-h-[800px] relative aspect-square h-full xl:h-[70vh] 2xl:h-[65vh] ">
+      <motion.div className="w-full  max-w-3xl max-h-[clamp(0px,80vh,800px)] relative aspect-square h-full xl:h-[70vh] 2xl:h-[65vh] ">
         <ImageSlideshow steps={steps} scrollProgress={scrollProgress} />
       </motion.div>
     </motion.div>

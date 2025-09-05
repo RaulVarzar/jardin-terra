@@ -17,6 +17,8 @@ import Steps from "./StepsMobile";
 import RoundedTop from "./RoundedTop";
 import ProgressBar from "./ProgressBar";
 import { useScrollSteps } from "../../../hooks/useScrollSteps";
+import SharedLayoutTransition from "../../../utils/Shared LayoutTransition";
+import PricingButton from "../Header/PricingButton";
 
 const Content = () => {
   const isMobile = useScreenWidth();
@@ -57,7 +59,7 @@ const Content = () => {
             progress={scrollYProgress}
             numberOfSteps={STEPS.length}
           />
-        )}{" "}
+        )}
       </AnimatePresence>
     </section>
   );

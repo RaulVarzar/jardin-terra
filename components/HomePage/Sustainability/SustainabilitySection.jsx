@@ -87,7 +87,7 @@ export const MainContent = () => {
     <div className="flex flex-col items-center relative pt-16 md:pt-24 xl:pt-48 gap-y-16 sm:gap-y-24 md:gap-y-32 xl:gap-y-48">
       <motion.div
         // style={{ y: titleY, opacity: titleOpacity }}
-        className="max-md:pt-12stick md:top-[10vh] 2xl:top-[15vh] w-full max-w-screen-3xl  gap-y-4 items-between justify-start z-10 flex flex-col  "
+        className="max-md:pt-12 md:top-[10vh] 2xl:top-[15vh] w-full max-w-screen-3xl  gap-y-4 items-between justify-start z-10 flex flex-col  "
       >
         <Header />
       </motion.div>
@@ -197,9 +197,3 @@ export const Photos = () => {
 };
 
 export default Sustainability;
-
-const TitleLetter = ({ letter, id, progress }) => {
-  const y = useTransform(progress, [id * 0.04, 0.95], ["120%", "0%"]);
-
-  return <motion.span style={{ y }}>{letter}</motion.span>;
-};

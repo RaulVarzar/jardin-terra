@@ -5,25 +5,20 @@ import { useEffect } from "react";
 import { CardImage } from "./CardImage";
 import { CardContent } from "./CardContent";
 
-const ExpandedCard = ({ item, setSelectedId, layoutId }) => {
+const ExpandedCard = ({ item, onClick }) => {
   const lenisInstance = useLenis();
-  // useEffect(() => {
-  //   lenisInstance.stop();
-  //   return () => {
-  //     lenisInstance.start();
-  //   };
-  // }, []);
-
-  const { title, photo, descriptions, steps } = item;
+  useEffect(() => {
+    lenisInstance.stop();
+    return () => {
+      lenisInstance.start();
+    };
+  }, []);
 
   return (
-    <motion.div
-      layoutId={layoutId}
-      className="relative group z-50 grid grid-rows-7 md:p-6 2xl:p-8 w-full h-full p-4 max-w-screen-3xl rounded-2xl bg-secondary xl:grid-rows-1 xl:grid-cols-7"
-    >
-      <CloseButton closeCard={() => setSelectedId(null)} />
+    <motion.div className="relative group z-50 grid grid-rows-7 min-h-[75vh] md:p-6 2xl:p-8 w-full h-full p-4 max-w-screen-3xl rounded-2xl bg-secondary xl:grid-rows-1 xl:grid-cols-7">
+      <CloseButton closeCard={onClick} />
 
-      <CardImage photo={photo} />
+      <CardImage photo={item.photo} />
 
       <CardContent item={item} />
     </motion.div>

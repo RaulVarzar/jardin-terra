@@ -16,7 +16,6 @@ export const CardContent = ({ item }) => {
       </motion.h1>
       <motion.h3
         layoutId={descriptions[0].content}
-        layout="size"
         className="text-sm font-light leading-tight tracking-tight md:leading-tight md:tracking-wider xl:text-base opacity-100 text-neutral-content"
       >
         {descriptions[0].content}

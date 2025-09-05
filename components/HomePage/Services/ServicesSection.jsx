@@ -46,7 +46,7 @@ const ServicesSection = () => {
   const [id, setId] = useState(null);
 
   // const carouselInView = useInView(carouselRef, { margin: "1000% 0% -35% 0%" });
-  const showSlider = useInView(sectionRef, { amount: 0.75 });
+  const showSlider = useInView(carouselRef, { amount: 0.85 });
   const offset = useMotionValue(0);
 
   // useEffect(() => {
@@ -59,13 +59,10 @@ const ServicesSection = () => {
       <div className="relative bottom-0 flex flex-col items-start gap-3 sm:gap-4 lg:gap-6 2xl:gap-8 ">
         <Header />
 
-        <motion.div ref={carouselRef} className=" -mt-[40vh]">
-          <motion.div
+        <motion.div ref={carouselRef} className=" -mt-[60vh] w-full pt-[30vh]">
+          {/* <motion.div
             ref={sectionRef}
-            // initial={{ y: "0%" }}
-            // animate={carouselInView ? { y: 0 } : { y: "0%" }}
-            // transition={{ duration: 1.3, ease: [0.7, 0, 0.4, 1] }}
-            className="relative z-50 flex justify-start w-screen sm:w-[95vw] pt-16 md:pt-0 overflow-clip items-start sm:fade-horizontal "
+            className=" z-50 flex  justify-start w-screen sm:w-[95vw] pt-16 md:pt-0 overflow-clip items-start sm:fade-horizontal "
           >
             <motion.div
               drag="x"
@@ -79,37 +76,62 @@ const ServicesSection = () => {
               }}
               style={{ touchAction: "none", x: offset }}
               ref={draggableRef}
-              className="gap-4 cursor-grab justify-stretch items-stretch active:cursor-grabbing sm:gap-8 md:gap-10 xl:gap-12 flex px-[5vw] xl:px-[5vw] 3xl:px-[7vw] flex-row max-sm:min-h-[600px] max-md:min-h-[60vh] 2xl:min-h-[70vh]"
+              className="relative cursor-grab justify-stretch items-stretch active:cursor-grabbing gap-4  sm:gap-8 md:gap-10 xl:gap-12 flex px-[5vw] xl:px-[5vw] 3xl:px-[7vw] flex-row max-sm:min-h-[600px] max-md:min-h-[60vh] 2xl:min-h-[70vh]"
             >
               {SERVICES.map((item) => (
-                <Card
-                  setSelectedId={setId}
-                  item={item}
-                  layoutId={item.id}
+                <SharedLayoutTransition
                   key={item.id}
+                  layoutId={`card-${item.id}`} // unique per card
+                  preview={({ open }) => (
+                    <Card item={item} onClick={() => open()} />
+                  )}
+                  expanded={({ close }) => (
+                    <ExpandedCardMobile item={item} onClick={() => close()} />
+                  )}
                 />
               ))}
             </motion.div>
-          </motion.div>
+          </motion.div> */}
+          <CarouselSharedOverlay />
         </motion.div>
 
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {id && (
-            <motion.div
-              className="fixed flex justify-center inset-0 w-screen top-0 left-0 h-screen z-[1000]  p-4 sm:p-12 backdrop-blur-xl backdrop-brightness-75 lg:p-16 2xl:p-24"
-              variants={overlayVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            >
-              <ExpandedCardMobile
-                layoutId={id}
-                setSelectedId={setId}
-                item={SERVICES.find((service) => service.id === id)}
-              />
-            </motion.div>
+            // <motion.div
+            //   className="fixed flex justify-center inset-0 w-screen top-0 left-0 h-screen z-[1000]  p-4 sm:p-12 backdrop-blur-xl backdrop-brightness-75 lg:p-16 2xl:p-24"
+            //   variants={overlayVariants}
+            //   initial="hidden"
+            //   animate="visible"
+            //   exit="exit"
+            // >
+            //   <ExpandedCardMobile
+            //     layoutId={id}
+            //     setSelectedId={setId}
+            //     item={SERVICES.find((service) => service.id === id)}
+            //   />
+            // </motion.div>
+
+            // <motion.div className="fixed z-[9999] top-0 left-0 flex w-full h-full place-content-center place-items-center">
+            //   <motion.div
+            //     className="relative overflow-hidden  "
+            //     layoutId="cardLayout"
+            //   >
+            //     <ExpandedCardMobile
+            //       layoutId={id}
+            //       setSelectedId={setId}
+            //       item={SERVICES.find((service) => service.id === id)}
+            //     />
+            //   </motion.div>
+            //   <motion.div
+            //     onClick={() => setOpen(false)}
+            //     initial={{ opacity: 0 }}
+            //     animate={{ opacity: 1 }}
+            //     exit={{ opacity: 0 }}
+            //     className="absolute top-0 left-0 w-full h-full cursor-pointer  backdrop-blur-sm backdrop-brightness-50"
+            //   ></motion.div>
+            // </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </div>
       <AnimatePresence>
         {showSlider && !hidden && (
@@ -138,6 +160,8 @@ export const Expanded = ({ item, layoutId }) => {
   );
 };
 import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
+import SharedLayoutTransition from "../../utils/Shared LayoutTransition";
+import CarouselSharedOverlay from "./CarouselSharedOverlay";
 
 export const DragSlider = () => {
   const variants = {

@@ -13,7 +13,7 @@ import SplitLinesAnimation from "../../../utils/SplitLinesAnimation";
 
 const Steps = ({ steps, activeStep }) => {
   return (
-    <div className="h-full relative lg:w-7/12 grid items-center max-lg:px-4  gap-4 my-auto max-h-[960px]">
+    <div className="h-full relative lg:w-7/12 grid items-center max-lg:px-4 lg:pr-8  gap-4 my-auto max-h-[960px]">
       {steps.map((step, i) => (
         <Step
           activeStep={activeStep}
@@ -98,7 +98,10 @@ export const Title = ({ text }) => {
       text={text}
       duration={1.2}
       stagger={0.1}
-      initialDelay={0.3}
+      initialDelay={0.15}
+      exitDuration={0.4}
+      exitDelay={0.1}
+      exitToTop
       className={
         "text-2xl min-w-full leading-none w-full md:text-3xl lg:text-3xl xl:text-5xl 2xl:text-7xl uppercase font-black text-neutral-content"
       }
@@ -111,8 +114,10 @@ export const Description = ({ text }) => {
     <SplitLinesAnimation
       text={text}
       duration={1}
-      stagger={0.1}
-      initialDelay={0.6}
+      stagger={0.12}
+      initialDelay={0.3}
+      exitDuration={0.4}
+      exitToTop
       className={
         "max-w-3xl relative w-full brightness-75 text-base tracking-wide leading-snug text-neutral-content font-light"
       }

@@ -52,7 +52,7 @@ export const Steps = ({ steps }) => {
           </motion.span>
         </motion.div>
       </AnimatePresence> */}
-      <div class=" w-full flex flex-col gap-2 relative h-fit ">
+      <div className=" w-full flex flex-col gap-2 relative h-fit ">
         {/* <Navigation
           selectedTopic={selectedTopic}
           handleDecrease={() => handleDecrease()}

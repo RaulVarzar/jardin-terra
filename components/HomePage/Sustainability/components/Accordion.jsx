@@ -1,6 +1,5 @@
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import { useLayoutEffect, useRef, useState } from "react";
-import { FaCaretDown } from "react-icons/fa";
+import { useRef, useState } from "react";
 
 const ACCORDION_ITEMS = [
   {
@@ -59,15 +58,18 @@ const itemVariants = {
 };
 
 const Accordion = () => {
-  const [active, setActive] = useState(undefined);
+  const [activeItems, setActiveItems] = useState([]);
   const toggleActive = (index) => {
-    if (index == active) {
-      setActive(undefined);
-    } else setActive(index);
+    setActiveItems(
+      (prev) =>
+        prev.includes(index)
+          ? prev.filter((i) => i !== index) // collapse if already open
+          : [...prev, index] // expand if closed
+    );
   };
 
   return (
-    <div className="flex 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl flex-col xl:flex-row gap-8 md:gap-10 xl:gap-12 w-full  items-center lg:items-start py-2 md:py-16 xl:py-24 mx-auto">
+    <div className="flex 2xl:max-w-screen-2xl  3xl:max-w-screen-3xl flex-col xl:flex-row gap-8 md:gap-10 xl:gap-12 w-full  items-center lg:items-start py-2 md:py-16 xl:py-24 mx-auto">
       <SectionTitle />
 
       <motion.ul
@@ -75,15 +77,14 @@ const Accordion = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.3 }}
-        className="w-full mt-[5vh] relative h-full flex flex-col max-w-7xl"
+        className="w-full mt-[2vh] relative h-full flex flex-col max-w-7xl"
       >
         {ACCORDION_ITEMS.map((item, index) => (
           <AccordionItem
-            item={item}
             key={index}
-            toggleActive={toggleActive}
-            isActive={active == index}
-            index={index}
+            item={item}
+            isActive={activeItems.includes(index)}
+            onClick={() => toggleActive(index)}
           />
         ))}
       </motion.ul>
@@ -101,40 +102,30 @@ const SectionTitle = () => {
       initial={{ opacity: 0, y: "10%", filter: "blur(6px)" }}
       animate={visible && { opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 1, ease: [0.7, 0, 0.35, 1] }}
-      className="max-xl:px-1 text-pretty max-w-2xl"
+      className="max-xl:px-1 text-pretty max-w-2xl xl:sticky top-[15vh] text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-5xl"
     >
-      <h1 className="inline text-2xl  2xl:text-5xl lg:pt-24 text-balance font-bold text-neutral-content text-center lg:text-right  max-w-4xl tracking-wide leading-tight uppercase">
+      <h1 className="inline  lg:pt-24 text-balance font-bold text-neutral-content text-center lg:text-right  max-w-4xl tracking-wide leading-tight uppercase">
         Există mai multe elemente cheie în proiectarea unui spațiu verde
       </h1>
       <div className="relative inline">
-        <span className="absolute top-0 left-0 right-0 bottom-0 origin-center w-full h-10 lg:h-14 bg-base-content -rotate-1 translate-x-1 -z-10 -translate-y-1/3 lg:-translate-y-1/2"></span>
-        <h1 className=" pl-2.5 inline text-2xl font-bold text-neutral-content 2xl:text-5xl tracking-wide leading-tight uppercase ">
+        <span className="absolute top-0 left-0 right-0 bottom-0 origin-center w-full h-10 lg:h-12 2xl:h-14 3xl:h-16 bg-base-content -rotate-1 translate-x-1 -z-10 -translate-y-1"></span>
+        <h1 className=" pl-2.5 inline  font-bold text-neutral-content  tracking-wide leading-tight uppercase ">
           sustenabil
         </h1>
       </div>
-      <h1 className="inline text-2xl font-bold text-neutral-content 2xl:text-5xl tracking-wide leading-tight uppercase">
+      <h1 className="inline  font-bold text-neutral-content tracking-wide leading-tight uppercase">
         , inclusiv:
       </h1>
     </motion.div>
   );
 };
 
-const AccordionItem = ({
-  item,
-  toggleActive,
-  isActive,
-  index,
-
-  hoveredIndex,
-}) => {
+const AccordionItem = ({ item, isActive, onClick }) => {
   return (
     <motion.li
-      onClick={() => toggleActive(index)}
+      onClick={onClick}
       variants={itemVariants}
-      className={
-        " relative font-semibol tracking-wide " +
-        (hoveredIndex === index ? "  text-base-100" : "  text-neutral-content")
-      }
+      className=" relative font-medium leading-snug tracking-wide group text-neutral-content"
     >
       <div
         className={`flex flex-col items-center transition-colors duration-300 relative w-full border-t border-neutral-content border-opacity-20 overflow-hidden ${
@@ -142,15 +133,19 @@ const AccordionItem = ({
         }`}
       >
         <Title isActive={isActive} title={item.title} />
-        <motion.div
-          initial={{ height: 0 }}
-          animate={isActive ? { height: "auto" } : { height: 0 }}
-          transition={{ duration: 0.6, ease: [0.7, 0, 0.25, 1] }}
-        >
-          <AnimatePresence>
-            {isActive && <Content text={item.content} />}
-          </AnimatePresence>
-        </motion.div>
+        <AnimatePresence>
+          {isActive && (
+            <motion.div
+              key="content"
+              initial={{ height: 0 }}
+              animate={isActive ? { height: "auto" } : { height: 0 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.6, ease: [0.7, 0, 0.25, 1] }}
+            >
+              <Content text={item.content} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.li>
   );
@@ -163,8 +158,8 @@ export const Title = ({ isActive, title }) => {
   return (
     <div
       className={
-        "flex flex-row gap-4 w-full items-center pl-3 pr-4 md:pr-8 md:pl-6 py-5 md:py-5 xl:py-6 z-10 cursor-pointer  transition-all duration-500 " +
-        (isActive ? " brightness-150" : " brightness-75")
+        "flex flex-row gap-4 w-full items-center pl-3 pr-4 group-hover:brightness-110 md:pr-8 md:pl-6 py-5 md:py-6 2xl:py-8  z-10 cursor-pointer  transition-all duration-500 " +
+        (isActive ? " brightness-150 " : " brightness-75")
       }
     >
       <h2 className="text-lg text-balance font-medium sm:tracking-wide md:text-2xl xl:text-3xl grow uppercase leading-tight">
@@ -172,7 +167,7 @@ export const Title = ({ isActive, title }) => {
       </h2>
       <motion.span
         initial={{ rotate: 0 }}
-        animate={isActive ? { rotate: 180 } : { rotate: 0 }}
+        animate={isActive ? { rotate: 135 } : { rotate: 0 }}
         transition={{ duration: 0.5, ease: [0.7, 0, 0.25, 1] }}
         className="text-2xl md:text-3xl xl:text-4xl"
       >
@@ -184,20 +179,9 @@ export const Title = ({ isActive, title }) => {
 
 export const Content = ({ text }) => {
   return (
-    <motion.div
-      exit={{
-        y: "10%",
-        opacity: 0,
-        transition: {
-          delay: 0,
-          duration: 0.3,
-          ease: [0.7, 0, 0.3, 1],
-        },
-      }}
-      className="pt-2 pb-8 md:pb-12 xl:pb-16 px-4 text-balance sm:px-8 md:px-12 opacity-80 leading-snug text-md md:text-lg 2xl:text-xl"
-    >
-      <SplitLinesAnimation text={text} duration={0.9} stagger={0.1} />
-    </motion.div>
+    <div className="pt-2 pb-8 md:pb-10 xl:pb-12 px-4 md:pt-5 xl:pt-6 text-balance sm:px-8 md:px-12 opacity-80 leading-snug text-md md:text-lg lg:text-xl 2xl:text-2xl">
+      <SplitLinesAnimation text={text} duration={0.7} stagger={0.1} />
+    </div>
   );
 };
 
