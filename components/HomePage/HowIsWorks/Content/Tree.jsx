@@ -1,4 +1,4 @@
-import { motion, useTransform } from "framer-motion";
+import { motion, useTransform, useSpring } from "framer-motion";
 
 const Tree = ({ steps, scrollProgress }) => {
   return (
@@ -13,39 +13,44 @@ const Tree = ({ steps, scrollProgress }) => {
 export default Tree;
 
 const ImageSlideshow = ({ steps, scrollProgress }) => {
-  const clipPaths = steps.map((_, i) => {
-    const start = i / steps.length - 0.01;
-    const end = (i + 1) / steps.length + 0.05;
-
-    return useTransform(
-      scrollProgress,
-      [start, end],
-      i === steps.length - 1
-        ? ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)"]
-        : ["inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
-    );
-  });
-
   return (
     <div className="w-full h-full grid overflow-hidden rounded-3xl xl:rounded-[48px]">
       {steps.map((step, i) => (
-        <motion.div
+        <SlideshowImage
           key={step.title}
-          style={{
-            clipPath: clipPaths[i],
-            scale: 1.01,
-            zIndex: steps.length - i,
-          }}
-          className="w-full h-full relative col-start-1 row-start-1"
-        >
-          <motion.img
-            src={`images/how-it-works/${step.image}`}
-            className="w-full h-full object-cover"
-            alt={step.title}
-          />
-        </motion.div>
+          step={step}
+          index={i}
+          total={steps.length}
+          scrollProgress={scrollProgress}
+        />
       ))}
     </div>
+  );
+};
+
+const SlideshowImage = ({ step, index, total, scrollProgress }) => {
+  const start = index / total;
+  const end = (index + 1) / total + 0.02;
+
+  const clipPath = useTransform(
+    scrollProgress,
+    [start, end],
+    index === total - 1
+      ? ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)"]
+      : ["inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
+  );
+
+  return (
+    <motion.div
+      style={{ clipPath, scale: 1.01, zIndex: total - index }}
+      className="w-full h-full relative col-start-1 row-start-1"
+    >
+      <motion.img
+        src={`images/how-it-works/${step.image}`}
+        className="w-full h-full object-cover"
+        alt={step.title}
+      />
+    </motion.div>
   );
 };
 
