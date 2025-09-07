@@ -32,7 +32,7 @@ export const Reveal = ({
       transition: {
         duration: duration || 0.4,
         delay: delay,
-        ease: [0.33, 0.0, 0.01, 1.0],
+        ease: [0.75, 0, 0.25, 1],
       },
     },
     exit: {
@@ -44,7 +44,7 @@ export const Reveal = ({
       transition: {
         duration: exitDuration || 0.4,
         delay: exitDelay || 0,
-        ease: [0.33, 0.0, 0.01, 1.0],
+        ease: [0.75, 0, 0.25, 1],
       },
     },
   };
@@ -220,41 +220,33 @@ export const FromRight = ({
 
 export const FadeIn = ({
   children,
-  delay,
-  duration,
-  repeat,
-  parentVisible,
+  delay = 0,
+  duration = 0.4,
+  repeat = false,
+  offset = 100,
+  threshold = 0.15,
+  className = "",
   ...props
 }) => {
   const ref = useRef(null);
-
-  const isInView = useInView(ref, { once: !repeat || false });
-  const parentInView = parentVisible || isInView;
-
-  const mainControls = useAnimation();
-
-  useEffect(() => {
-    if (isInView && parentInView) {
-      mainControls.start("visible");
-    } else if (!parentInView) {
-      mainControls.start("hidden");
-    }
-  }, [isInView, parentVisible]);
+  const rootMargin = `0px 0px -${threshold * 100}% 0px`;
+  const isInView = useInView(ref, { once: !repeat, margin: rootMargin });
 
   return (
     <motion.div
       ref={ref}
       variants={{
-        hidden: { opacity: 0, scale: 0.8 },
-        visible: { opacity: 1, scale: 1 },
+        hidden: { opacity: 0, y: `${offset}%` },
+        visible: { opacity: 1, y: "0" },
       }}
       initial="hidden"
-      animate={mainControls}
+      animate={isInView ? "visible" : "hidden"}
       transition={{
-        duration: duration || 0.3,
-        delay: delay || 0,
-        ease: "easeInOut",
+        duration: duration,
+        delay: delay,
+        ease: [0.5, 0, 0.2, 1],
       }}
+      className={className}
       {...props}
     >
       {children}

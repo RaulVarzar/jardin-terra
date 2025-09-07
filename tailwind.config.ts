@@ -77,9 +77,9 @@ const config: Config = {
           primary: "#171b19",
           secondary: "#1a1f1c",
 
-          "accent-content": "#1c211e",
-          "primary-content": "#202723",
-          "secondary-content": "#242d29",
+          "accent-content": "#191f1c",
+          "primary-content": "#19241e",
+          "secondary-content": "#1e2a25",
 
           "base-100": "#0e100f",
           "base-200": "#111312",

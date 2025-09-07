@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { isMobile } from "react-device-detect";
 
-const PHOTOS = ["home2.jpg", "home1.jpg", "home3.jpg"];
+const PHOTOS = ["home2.jpg"];
 
 const Carousel = ({ scrollYProgress }) => {
   const [activePhoto, setActivePhoto] = useState(0);
@@ -25,32 +25,27 @@ const Carousel = ({ scrollYProgress }) => {
   }, [activePhoto]);
 
   // const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], ["100%", "113%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
-    <div className="w-full h-full row-span-6  sm:row-span-7 xl:col-span-6 2xl:col-span-7">
-      <motion.div className="relative w-full h-full  group overflow-hidden rounded-3xl 2xl:rounded-4xl shadow-md">
-        <AnimatePresence mode="popLayout">
-          <motion.div
-            key={activePhoto}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 1.5 } }}
-            exit={{ opacity: 0 }}
-            style={{ scale }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="object-cover w-full h-full brightness-85 relative"
-          >
-            <Image
-              src={`/${PHOTOS[activePhoto]}`}
-              alt="banner-img"
-              fill={true}
-              style={{ objectFit: "cover" }}
-              quality={100}
-              loading="eager"
-            />
-          </motion.div>
-        </AnimatePresence>
-        <div className="absolute max-md:opacity-70 opacity-60  group-hover:opacity-80 transition-opacity origin-bottom duration-300 inset-x-0 left-0 right-0 flex flex-row gap-4 max-xl:mx-auto w-fit bottom-3 md:bottom-4 xl:bottom-8 xl:left-10">
+    <motion.div className="relative min-h-[65vh] md:min-h-[80vh] w-full h-full flex  group p-12  rounded-3xl overflow-hidden 2xl:rounded-4xl shadow-md">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 1.5 } }}
+        style={{ y, scale: 1.25 }}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
+        className="object-cover w-full h-full  brightness-85 absolute inset-0"
+      >
+        <Image
+          src={`/${PHOTOS[activePhoto]}`}
+          alt="banner-img"
+          fill={true}
+          style={{ objectFit: "cover" }}
+          quality={100}
+          loading="eager"
+        />
+      </motion.div>
+      {/* <div className="absolute max-md:opacity-70 opacity-60  group-hover:opacity-80 transition-opacity origin-bottom duration-300 inset-x-0 left-0 right-0 flex flex-row gap-4 max-xl:mx-auto w-fit bottom-3 md:bottom-4 xl:bottom-8 xl:left-10">
           {PHOTOS.map((photo, i) => (
             <div
               key={i}
@@ -61,9 +56,8 @@ const Carousel = ({ scrollYProgress }) => {
               onClick={() => handleSetPhoto(i)}
             />
           ))}
-        </div>
-      </motion.div>
-    </div>
+        </div> */}
+    </motion.div>
   );
 };
 

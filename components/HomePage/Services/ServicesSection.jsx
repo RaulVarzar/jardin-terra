@@ -56,82 +56,12 @@ const ServicesSection = () => {
   // const x = useTransform(offset, [0, -width], ["0%", "100%"]);
   return (
     <section id="servicii">
-      <div className="relative bottom-0 flex flex-col items-start gap-3 sm:gap-4 lg:gap-6 2xl:gap-8 ">
+      <div className="relative flex flex-col items-start gap-3 sm:gap-4 lg:gap-6 2xl:gap-8 ">
         <Header />
 
-        <motion.div ref={carouselRef} className=" -mt-[60vh] w-full pt-[30vh]">
-          {/* <motion.div
-            ref={sectionRef}
-            className=" z-50 flex  justify-start w-screen sm:w-[95vw] pt-16 md:pt-0 overflow-clip items-start sm:fade-horizontal "
-          >
-            <motion.div
-              drag="x"
-              dragControls={controls}
-              dragTransition={{ bounceDamping: 60, bounceStiffness: 300 }}
-              dragConstraints={sectionRef}
-              onDragEnd={() => {
-                if (!hidden && offset.current < -700) {
-                  setHidden(true);
-                }
-              }}
-              style={{ touchAction: "none", x: offset }}
-              ref={draggableRef}
-              className="relative cursor-grab justify-stretch items-stretch active:cursor-grabbing gap-4  sm:gap-8 md:gap-10 xl:gap-12 flex px-[5vw] xl:px-[5vw] 3xl:px-[7vw] flex-row max-sm:min-h-[600px] max-md:min-h-[60vh] 2xl:min-h-[70vh]"
-            >
-              {SERVICES.map((item) => (
-                <SharedLayoutTransition
-                  key={item.id}
-                  layoutId={`card-${item.id}`} // unique per card
-                  preview={({ open }) => (
-                    <Card item={item} onClick={() => open()} />
-                  )}
-                  expanded={({ close }) => (
-                    <ExpandedCardMobile item={item} onClick={() => close()} />
-                  )}
-                />
-              ))}
-            </motion.div>
-          </motion.div> */}
+        <motion.div ref={carouselRef} className=" -mt-[60vh] w-full pt-[15vh]">
           <CarouselSharedOverlay />
         </motion.div>
-
-        {/* <AnimatePresence>
-          {id && (
-            // <motion.div
-            //   className="fixed flex justify-center inset-0 w-screen top-0 left-0 h-screen z-[1000]  p-4 sm:p-12 backdrop-blur-xl backdrop-brightness-75 lg:p-16 2xl:p-24"
-            //   variants={overlayVariants}
-            //   initial="hidden"
-            //   animate="visible"
-            //   exit="exit"
-            // >
-            //   <ExpandedCardMobile
-            //     layoutId={id}
-            //     setSelectedId={setId}
-            //     item={SERVICES.find((service) => service.id === id)}
-            //   />
-            // </motion.div>
-
-            // <motion.div className="fixed z-[9999] top-0 left-0 flex w-full h-full place-content-center place-items-center">
-            //   <motion.div
-            //     className="relative overflow-hidden  "
-            //     layoutId="cardLayout"
-            //   >
-            //     <ExpandedCardMobile
-            //       layoutId={id}
-            //       setSelectedId={setId}
-            //       item={SERVICES.find((service) => service.id === id)}
-            //     />
-            //   </motion.div>
-            //   <motion.div
-            //     onClick={() => setOpen(false)}
-            //     initial={{ opacity: 0 }}
-            //     animate={{ opacity: 1 }}
-            //     exit={{ opacity: 0 }}
-            //     className="absolute top-0 left-0 w-full h-full cursor-pointer  backdrop-blur-sm backdrop-brightness-50"
-            //   ></motion.div>
-            // </motion.div>
-          )}
-        </AnimatePresence> */}
       </div>
       <AnimatePresence>
         {showSlider && !hidden && (

@@ -74,7 +74,7 @@ const AccordionItem = ({ i, item, active, setActive }) => {
       initial={{ opacity: 0, filter: "blur(2px)" }}
       animate={{ opacity: 1, filter: "blur(0px)" }}
       transition={{ duration: 0.9, delay: 0.4 + i * 0.2 }}
-      className="flex flex-col py-2 md:py-3 xl:py-4 2xl:py-5  max-w-lg 2xl:max-w-xl mx-auto w-full border-b border-base-content border-opacity-30 last-of-type:border-none"
+      className="flex flex-col py-4 2xl:py-5  max-w-lg 2xl:max-w-xl mx-auto w-full border-b border-base-content border-opacity-30 last-of-type:border-none"
     >
       <motion.div
         onClick={() => setActive(isActive ? null : i)}
@@ -93,10 +93,12 @@ const AccordionItem = ({ i, item, active, setActive }) => {
             active: {
               rotate: 135,
               transition: { duration: 0.5, ease: [0.7, 0, 0.3, 1] },
+              delay: 0,
             },
             inactive: {
               rotate: 0,
               transition: { duration: 0.5, ease: [0.7, 0, 0.3, 1] },
+              delay: 0,
             },
           }}
           className="text-2xl lg:text-3xl    text-neutral-content opacity-80"
