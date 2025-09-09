@@ -3,10 +3,11 @@ import { AnimatePresence, motion, useTransform } from "framer-motion";
 import Image from "next/image";
 
 import { isMobile } from "react-device-detect";
+import { FadeIn } from "../../utils/animations";
 
-const PHOTOS = ["home2.jpg"];
+const PHOTOS = ["home2.png"];
 
-const Carousel = ({ scrollYProgress }) => {
+const Carousel = ({ scrollYProgress, clipPath }) => {
   const [activePhoto, setActivePhoto] = useState(0);
 
   const handleSetPhoto = (photo) => {
@@ -25,27 +26,31 @@ const Carousel = ({ scrollYProgress }) => {
   }, [activePhoto]);
 
   // const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
-    <motion.div className="relative min-h-[65vh] md:min-h-[80vh] w-full h-full flex  group p-12  rounded-3xl overflow-hidden 2xl:rounded-4xl shadow-md">
+    <FadeIn
+      style={{ clipPath }}
+      delay={1.4}
+      duration={1.3}
+      offset={30}
+      threshold={0.01}
+      className="relative min-h-[90vh]  w-full h-full flex group p-12 z-10 overflow-hidden"
+    >
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 1.5 } }}
-        style={{ y, scale: 1.25 }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="object-cover w-full h-full  brightness-85 absolute inset-0"
+        // style={{ y, scale: 1.15 }}
+        className=" w-full h-full brightness-90 absolute  inset-0"
       >
         <Image
           src={`/${PHOTOS[activePhoto]}`}
           alt="banner-img"
           fill={true}
-          style={{ objectFit: "cover" }}
           quality={100}
           loading="eager"
+          className="object-bottom object-cover"
         />
-      </motion.div>
-      {/* <div className="absolute max-md:opacity-70 opacity-60  group-hover:opacity-80 transition-opacity origin-bottom duration-300 inset-x-0 left-0 right-0 flex flex-row gap-4 max-xl:mx-auto w-fit bottom-3 md:bottom-4 xl:bottom-8 xl:left-10">
+
+        {/* <div className="absolute max-md:opacity-70 opacity-60  group-hover:opacity-80 transition-opacity origin-bottom duration-300 inset-x-0 left-0 right-0 flex flex-row gap-4 max-xl:mx-auto w-fit bottom-3 md:bottom-4 xl:bottom-8 xl:left-10">
           {PHOTOS.map((photo, i) => (
             <div
               key={i}
@@ -57,7 +62,8 @@ const Carousel = ({ scrollYProgress }) => {
             />
           ))}
         </div> */}
-    </motion.div>
+      </motion.div>
+    </FadeIn>
   );
 };
 

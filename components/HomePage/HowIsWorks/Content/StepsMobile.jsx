@@ -1,14 +1,11 @@
 import {
   AnimatePresence,
   motion,
-  useInView,
   useMotionTemplate,
   useScroll,
   useTransform,
 } from "framer-motion";
 import { useRef } from "react";
-import AnimatedRows from "../../../utils/AnimatedRows";
-import { useSplitLines } from "../../../hooks/useSplitLines";
 import SplitLinesAnimation from "../../../utils/SplitLinesAnimation";
 
 const Steps = ({ steps, activeStep }) => {
@@ -46,16 +43,6 @@ const Step = ({ step, id, activeStep }) => {
   return (
     <motion.div
       ref={elementRef}
-      // transition={{ duration: 0.8, ease: [0.7, 0, 0.3, 1] }}
-      // animate={
-      //   activeStep === id + 1
-      //     ? {
-      //         opacity: 1,
-      //         filter: "blur(0px)",
-      //         transition: { duration: 0.65, delay: 0.8 },
-      //       }
-      //     : { opacity: 0, filter: "blur(5px)" }
-      // }
       className={`flex flex-col  col-start-1 row-start-1 z-0 w-full  ${
         activeStep >= id + 1 ? "" : ""
       }  `}
@@ -119,7 +106,7 @@ export const Description = ({ text }) => {
       exitDuration={0.4}
       exitToTop
       className={
-        "max-w-3xl relative w-full brightness-75 text-base tracking-wide leading-snug text-neutral-content font-light"
+        "max-w-3xl xl:max-w-4xl relative w-full brightness-75 text-base md:text-md xl:text-lg 3xl:text-xl tracking-wide leading-snug text-neutral-content font-light"
       }
     />
   );

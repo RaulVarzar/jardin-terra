@@ -87,7 +87,7 @@ export default Header;
 
 const Description = () => {
   return (
-    <motion.span className="  w-full flex flex-row flex-wrap justify-center opacity-70 px-4 max-w-3xl 2xl:max-w-4xl">
+    <motion.span className="  w-full flex flex-row flex-wrap justify-center opacity-70 px-6 max-w-3xl 2xl:max-w-4xl">
       <SplitLinesAnimation
         initialDelay={0.1}
         duration={1}

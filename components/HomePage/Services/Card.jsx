@@ -1,6 +1,5 @@
 import { Blur } from "../../utils/animations";
 import { motion } from "framer-motion";
-import { AiOutlinePlus } from "react-icons/ai";
 import MagneticButton from "../../MagneticButton";
 import Image from "next/image";
 import SplitLinesAnimation from "../../utils/SplitLinesAnimation";
@@ -11,7 +10,7 @@ const Card = ({ item, onClick }) => {
   const { id, title, photo, descriptions } = item;
 
   return (
-    <motion.div className="grid relative bg-accent-content h-full shadow-lg group max-lg:grid-rows-7 lg:grid-cols-7 z-50  w-[90vw] xl:w-[85vw] 3xl:w-[80vw]  max-w-screen-xl pb-8 p-3 md:p-4 lg:p-4  rounded-2xl lg:rounded-3xl ">
+    <motion.div className="grid relative bg-secondary h-full shadow-lg group max-lg:grid-rows-7 lg:grid-cols-7 z-50  w-[90vw] xl:w-[85vw] 3xl:w-[80vw]  max-w-screen-xl pb-8 p-3 md:p-4 lg:p-4  rounded-2xl lg:rounded-3xl ">
       <ExpandButton setSelectedId={onClick} />
 
       <div className="-z-[10] touch-none h-full w-full overflow-hidden max-sm:row-span-3 sm:max-lg:row-span-4 lg:row-span-1 lg:col-span-3 2xl:col-span-4 rounded-[12px]  md:rounded-[20px] lg:rounded-[16px] ">

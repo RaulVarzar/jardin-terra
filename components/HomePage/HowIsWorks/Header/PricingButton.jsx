@@ -19,7 +19,7 @@ const PricingButton = () => {
             animate={{ width: hovering ? "auto" : "fit-content" }} // or px values
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             layoutId="one"
-            className="relative overflow-hidden flex flex-row gap-2 items-center text-neutral-content px-6 py-3 md:px-12 md:py-6 bg-accent-content shadow-sm rounded-full cursor-pointer"
+            className="relative overflow-hidden flex flex-row  gap-2 items-center text-neutral-content px-6 py-3 md:px-12 md:py-6 bg-accent-content shadow-md  rounded-full cursor-pointer"
             onHoverStart={() => setHovering(true)}
             onHoverEnd={() => setHovering(false)}
             onClick={() => setOpen(true)}

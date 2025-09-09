@@ -217,11 +217,30 @@ body::-webkit-scrollbar {
   -ms-user-select: none;
 }
 
-.fade-horizontal {
+.fade-end {
   mask: linear-gradient(
       to right,
       rgba(0, 0, 0, 1) 0,
       rgba(0, 0, 0, 1) 94%,
+      rgba(0, 0, 0, 0) 100%
+    )
+    100% 50% / 100% 100% repeat-x;
+}
+
+.fade-horizontal {
+  -webkit-mask: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 5%,
+      rgba(0, 0, 0, 1) 95%,
+      rgba(0, 0, 0, 0) 100%
+    )
+    100% 50% / 100% 100% repeat-x;
+  mask: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 5%,
+      rgba(0, 0, 0, 1) 95%,
       rgba(0, 0, 0, 0) 100%
     )
     100% 50% / 100% 100% repeat-x;

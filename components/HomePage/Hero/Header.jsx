@@ -1,5 +1,5 @@
 import { FadeIn, Reveal } from "../../utils/animations.jsx";
-import { motion } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
 import { isMobile } from "react-device-detect";
 import SplitLinesAnimation from "../../utils/SplitLinesAnimation.jsx";
 import ActionButton from "../../utils/ActionButton.jsx";
@@ -7,10 +7,15 @@ import ActionButton from "../../utils/ActionButton.jsx";
 import { PiPlantDuotone } from "react-icons/pi";
 
 const Header = ({ scrollYProgress }) => {
+  const y = useTransform(scrollYProgress, [0, 0.7], ["0vh", "-20vh"]);
+  const scale = useTransform(scrollYProgress, [0, 0.7], ["100%", "93%"]);
+  const opacity = useTransform(scrollYProgress, [0.8, 0.9], ["100%", "0%"]);
+
   return (
     <motion.div
       // style={isMobile ? null : { y: carouselY, rotate, x: carouselX }}
-      className="flex flex-col md:flex-row gap-y-6 max-md:pb-8 sm:pt-6 lg:pt-12 2xl:pt-16 grow w-full items-center xl:items-start justify-center  xl:gap-y-3 "
+      style={{ y, scale, opacity }}
+      className="flex flex-col md:flex-row   gap-y-6 max-md:pb-8 sm:pt-6 lg:pt-12 2xl:pt-16 grow w-full items-center xl:items-start justify-center  xl:gap-y-3 "
     >
       <div className="flex flex-col w-full  max-xl:text-center gap-y-1 md:gap-y-2 text-neutral-content ">
         <Reveal delay={0.5} duration={1.4} offset={130}>

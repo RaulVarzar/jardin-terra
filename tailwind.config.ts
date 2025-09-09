@@ -73,17 +73,19 @@ const config: Config = {
       {
         black: {
           ...require("daisyui/src/theming/themes")["black"],
-          accent: "#151816",
-          primary: "#171b19",
-          secondary: "#1a1f1c",
-
-          "accent-content": "#191f1c",
-          "primary-content": "#19241e",
-          "secondary-content": "#1e2a25",
 
           "base-100": "#0e100f",
           "base-200": "#111312",
           "base-300": "#131514",
+
+          accent: "#151816",
+          primary: "#171c19",
+          secondary: "#191f1b",
+
+          "accent-content": "#191f1a",
+          "primary-content": "#1b221d",
+          "secondary-content": "#1d261f",
+
           "base-content": "#4f564e",
           neutral: "#1d201e",
           "neutral-content": "#f6fdf9",

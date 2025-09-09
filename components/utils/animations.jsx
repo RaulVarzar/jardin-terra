@@ -233,23 +233,24 @@ export const FadeIn = ({
   const isInView = useInView(ref, { once: !repeat, margin: rootMargin });
 
   return (
-    <motion.div
-      ref={ref}
-      variants={{
-        hidden: { opacity: 0, y: `${offset}%` },
-        visible: { opacity: 1, y: "0" },
-      }}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      transition={{
-        duration: duration,
-        delay: delay,
-        ease: [0.5, 0, 0.2, 1],
-      }}
-      className={className}
-      {...props}
-    >
-      {children}
+    <motion.div ref={ref}>
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: `${offset}%` },
+          visible: { opacity: 1, y: "0" },
+        }}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        transition={{
+          duration: duration,
+          delay: delay,
+          ease: [0.5, 0, 0.2, 1],
+        }}
+        className={className}
+        {...props}
+      >
+        {children}
+      </motion.div>
     </motion.div>
   );
 };

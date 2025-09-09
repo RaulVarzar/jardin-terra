@@ -14,13 +14,13 @@ const Home = () => {
     <SmoothScroll>
       {/* <ScrollBar /> */}
       <Navbar />
-      <div className="h-full rounded-b-2xl md:rounded-b-3xl overflow-clip bg-accent">
+      <div className="h-full   z-50 relative  bg-accent">
         <HeroSection />
         <ServicesSection />
         <StepsSection />
         <SustainabilitySection />
-        <ContactSection />
       </div>
+      <ContactSection />
       <Footer />
     </SmoothScroll>
   );

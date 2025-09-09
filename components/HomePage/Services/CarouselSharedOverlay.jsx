@@ -1,5 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  LayoutGroup,
+  useScroll,
+  useTransform,
+  useMotionValue,
+} from "framer-motion";
 import { SERVICES } from "../../utils/data";
 import Card from "./Card";
 import ExpandedCardMobile from "./ExpandedCard/ExpandedCardMobile";
@@ -43,7 +50,7 @@ export default function CarouselSharedOverlay() {
       const track = trackRef.current;
       if (!container || !track) return;
       const max = Math.max(track.scrollWidth - container.offsetWidth, 0);
-      setConstraints({ left: -max, right: 0 });
+      setConstraints({ left: -max - container.offsetWidth / 6, right: 0 });
     }
     update();
     window.addEventListener("resize", update);
@@ -63,13 +70,13 @@ export default function CarouselSharedOverlay() {
     <LayoutGroup>
       <div className="relative ">
         {/* DRAGGABLE CAROUSEL (preview cards live here) */}
-        <div
+        <motion.div
           ref={containerRef}
-          className="overflow-hidden pl-[5vw] w-[95vw] max-w-[2400px] fade-horizontal"
+          className="overflow-hidden  mx-auto pl-[3vw] w-[95vw] max-w-[2400px]  fade-horizontal"
         >
           <motion.div
             ref={trackRef}
-            className="flex gap-4  sm:gap-8 md:gap-10 xl:gap-12 cursor-grab  max-sm:min-h-[600px] max-md:min-h-[60vh] 2xl:min-h-[70vh] active:cursor-grabbing p-4 w-full flex-row"
+            className="flex gap-4  sm:gap-8 md:gap-10 xl:gap-12  cursor-grab  max-sm:min-h-[600px] max-md:min-h-[60vh] 2xl:min-h-[70vh] active:cursor-grabbing w-full flex-row"
             drag="x"
             dragConstraints={constraints}
             dragTransition={{ bounceDamping: 60, bounceStiffness: 300 }}
@@ -85,7 +92,7 @@ export default function CarouselSharedOverlay() {
               </SharedLayoutPreview>
             ))}
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* EXPANDED OVERLAY: rendered outside of the draggable track but inside the same LayoutGroup */}
         <AnimatePresence>

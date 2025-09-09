@@ -1,59 +1,21 @@
 "use client";
 
 import { useRef, useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useInView,
-  useDragControls,
-  useMotionValue,
-} from "framer-motion";
-import useWindowDimensions from "../../utils/useScreenDimensions";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 
-import { SERVICES } from "../../utils/data";
-import Card from "./Card";
-import ExpandedCardMobile from "./ExpandedCard/ExpandedCardMobile";
+import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
+import CarouselSharedOverlay from "./CarouselSharedOverlay";
 
 import Header from "./Header";
 import { TfiHandDrag } from "react-icons/tfi";
 
-const overlayVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-  exit: { opacity: 0 },
-};
-
 const ServicesSection = () => {
-  const sectionRef = useRef(null);
   const carouselRef = useRef(null);
-  const draggableRef = useRef(null);
-
-  const controls = useDragControls();
 
   const [hidden, setHidden] = useState(false);
 
-  const [width, setWidth] = useState(null);
-
-  const { width: screenWidth } = useWindowDimensions();
-
-  // const { scrollYProgress } = useScroll({
-  //   target: sectionRef,
-  //   offset: ["start", "end "],
-  // });
-
-  // const x = useTransform(scrollYProgress, [0.0, 1], ["0", "-100.5%"]);
-
-  const [id, setId] = useState(null);
-
-  // const carouselInView = useInView(carouselRef, { margin: "1000% 0% -35% 0%" });
   const showSlider = useInView(carouselRef, { amount: 0.85 });
-  const offset = useMotionValue(0);
 
-  // useEffect(() => {
-  //   setWidth(draggableRef.current.offsetWidth - screenWidth);
-  // }, []);
-
-  // const x = useTransform(offset, [0, -width], ["0%", "100%"]);
   return (
     <section id="servicii">
       <div className="relative flex flex-col items-start gap-3 sm:gap-4 lg:gap-6 2xl:gap-8 ">
@@ -89,9 +51,6 @@ export const Expanded = ({ item, layoutId }) => {
     </motion.div>
   );
 };
-import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
-import SharedLayoutTransition from "../../utils/Shared LayoutTransition";
-import CarouselSharedOverlay from "./CarouselSharedOverlay";
 
 export const DragSlider = () => {
   const variants = {

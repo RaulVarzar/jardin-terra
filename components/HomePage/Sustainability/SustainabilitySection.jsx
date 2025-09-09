@@ -55,7 +55,7 @@ const Sustainability = () => {
   });
 
   const titleY = useTransform(titleExit, [0, 1], ["0%", "100%"]);
-  const sectionY = useTransform(sectionEnter, [0, 0.9], ["60vh", "0vh"]);
+  const sectionY = useTransform(sectionEnter, [0, 1], ["50vh", "0vh"]);
   const sectionScale = useTransform(sectionEnter, [0, 1], ["80%", "100%"]);
 
   return (
@@ -70,7 +70,7 @@ const Sustainability = () => {
         <motion.div
           id="sustenabilitate"
           className={
-            "flex flex-col px-3 sm:px-6 md:px-12 lg:px-16 relative justify-center bg-accent-content z-[10]  pb-[15vh] gap-8 md:gap-12 xl:gap-16 2xl:gap-24  " +
+            "flex flex-col px-3 sm:px-6 md:px-12 lg:px-16 relative justify-center bg-accent-content z-10 shadow-lg rounded-b-3xl pb-[15vh] gap-8 md:gap-12 xl:gap-16 2xl:gap-24  " +
             (isMobile ? " mt-36" : " ")
           }
         >
@@ -118,7 +118,7 @@ const Header = () => {
             duration={1.2}
             initialDelay={0.3}
             text={description}
-            className="text-sm   max-md:pl-4 md:text-lg 2xl:text-xl  text-pretty text-center md:text-right leading-tight sm:leading-snug md:tracking-wide text-neutral-content  font-light  "
+            className="text-base sm:text-md   max-md:pl-4 md:text-lg 2xl:text-xl  text-pretty text-center md:text-right leading-tight sm:leading-snug md:tracking-wide text-neutral-content  font-light  "
           />
         </span>
       </div>

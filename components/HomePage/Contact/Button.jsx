@@ -1,12 +1,6 @@
-import { useScroll, useTransform, motion } from "framer-motion";
-import styles from "./button-styles.module.css";
-
-import { BiMessageSquareDots } from "react-icons/bi";
-import { BsArrowUpRightCircle } from "react-icons/bs";
-
+import { motion } from "framer-motion";
 import MagneticButton from "../../MagneticButton";
-import { ScaleIn } from "../../utils/animations";
-import Link from "next/link";
+import { BsArrowUpRightCircle } from "react-icons/bs";
 
 const Button = () => {
   return (
@@ -14,7 +8,7 @@ const Button = () => {
       magnify={1.05}
       amount={[16, 8]}
       href="/contact"
-      className={styles.button}
+      className="flex items-center gap-6 px-4 md:px-6 xl:px-8 xl:pl-12 py-8 md:pt-20 tracking-wide uppercase  rounded-2xl shadow-md text-md md:text-lg xl:text-xl font-black bg-neutral-content text-base-200 hover:cursor-pointer"
     >
       {/* <ScaleIn duration={1.3} delay={1}> */}
 

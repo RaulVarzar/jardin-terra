@@ -21,11 +21,11 @@ const Footer = () => {
   return (
     <div
       ref={footerRef}
-      className="flex justify-center -z-10 stick bottom-0 overflow-hidden py-36 text-neutral-content"
+      className="flex justify-center z-10 min-h-[35vh] bottom-0 overflow-hidden bg-base-20 py-12 md:py-16 lg:py-36 text-neutral-content"
     >
       <motion.div
         style={{ y, opacity }}
-        className="grid w-fit md:grid-cols-2 max-w-8xl border-success lg:gap-x-12 2xl:gap-x-24"
+        className="grid w-fit md:grid-cols-2 max-w-8xl  lg:gap-x-12 2xl:gap-x-24"
       >
         <div className="flex flex-col relative items-center justify-center px-4 py-2 max-w-60 mx-auto">
           <Image

@@ -69,7 +69,7 @@ const Accordion = () => {
   };
 
   return (
-    <div className="flex 2xl:max-w-screen-2xl  3xl:max-w-screen-3xl flex-col xl:flex-row gap-8 md:gap-10 xl:gap-12 w-full  items-center lg:items-start py-2 md:py-16 xl:py-24 mx-auto">
+    <div className="flex 2xl:max-w-screen-2xl  3xl:max-w-screen-3xl flex-col xl:flex-row gap-3 md:gap-6 2xl:gap-12 w-full  items-center lg:items-start py-2 md:py-16 xl:py-24 mx-auto">
       <SectionTitle />
 
       <motion.ul
@@ -102,7 +102,7 @@ const SectionTitle = () => {
       initial={{ opacity: 0, y: "10%", filter: "blur(6px)" }}
       animate={visible && { opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 1, ease: [0.7, 0, 0.35, 1] }}
-      className="max-xl:px-1 text-pretty max-w-2xl xl:sticky top-[15vh] text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-5xl"
+      className="max-xl:px-1 text-pretty max-w-xl 2xl:max-w-2xl xl:sticky top-[15vh] text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-5xl"
     >
       <h1 className="inline  lg:pt-24 text-balance font-bold text-neutral-content text-center lg:text-right  max-w-4xl tracking-wide leading-tight uppercase">
         Există mai multe elemente cheie în proiectarea unui spațiu verde
@@ -128,7 +128,7 @@ const AccordionItem = ({ item, isActive, onClick }) => {
       className=" relative font-medium leading-snug tracking-wide group text-neutral-content"
     >
       <div
-        className={`flex flex-col items-center transition-colors duration-300 relative w-full border-t border-neutral-content border-opacity-20 overflow-hidden ${
+        className={`flex flex-col cursor-pointer items-center transition-colors duration-300 relative w-full border-t border-neutral-content border-opacity-20 overflow-hidden ${
           isActive ? "bg-base-content/10" : ""
         }`}
       >
